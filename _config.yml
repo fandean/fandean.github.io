@@ -1,5 +1,5 @@
 # Site Settings
-encoding: UTF-8
+ encoding: UTF-8
 exclude: ["*.gem", "*.gemspec", "Gemfile", "Gemfile.lock", "node_modules", "Rakefile", "starter-kit", "vendor"]
 lang: en
 #lang: zh
