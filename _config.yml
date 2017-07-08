@@ -21,14 +21,14 @@ sass:
   style: compressed
 
 # Site Data
-url: https://fandean.github.io # the base hostname & protocol for your site, e.g. http://example.com
+url: https://faner.gitlab.io  # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: # the subpath of your site, e.g. /blog
 title: Fan's Blog
-description: "A gem-based responsive simple texture styled Jekyll theme."
+description: "Personal blog for Fan Chuan, A programming enthusiast"
 keywords: 'Android,Linux,java,vim,git'
 author: 
   name: fan
-  job_title: 
+  job_title: Programming enthusiast
   location: Shenzhen
   email: fandean@outlook.com
   social_links:
@@ -48,18 +48,18 @@ author:
 #      url:
 home:
   section1: <h1>Fan</h1>
-  section2: <h2>A gem-based responsive simple texture styled Jekyll theme</h2>
+  section2: <h2>A programming enthusiast.</h2>
   section3: <div class="social-links"><a class="ico-github btn" href="https://github.com/fandean" title="View on GitHub"></a></div>
 blog:
   cc_license: http://creativecommons.org/licenses/by-sa/4.0/ # A link to CC License
   cc_license_image: /assets/images/theme/cc-by-sa.png # Choose one at https://creativecommons.org/choose/
-  footer_content: "A mechanical dog."
+  footer_content: Personal blog for Fan Chuan, A programming enthusiast.
 
 disqus:
   shortname: fandean
   public_key: SqM3TGVGvUM6YB1GRLHE7j5VHN6bjcls9BFqdrcY7ks9yippJEUsNtHuVY8fm6fu
 #  id: fandean
-google_analytics: UA-102167099-2  # fandean.github.io
+google_analytics: 'UA-102167099-2'  # fandean.github.io
 addthis_public_id: ra-595fc12cbd5b5125  # AddThis sharing plugin. See http://www.addthis.com/
 
 paths:
