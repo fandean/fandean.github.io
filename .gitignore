@@ -4,6 +4,7 @@
 _site
 Gemfile.lock
 vendor
+!tags
 
 Thumbs.db
 .DS_Store

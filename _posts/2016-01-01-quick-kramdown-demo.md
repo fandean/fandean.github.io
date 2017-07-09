@@ -2,10 +2,10 @@
 layout: post
 title: "Quick kramdown demo"
 description: "A quick demo post to some kramdown features."
-categories: [demo]
+categories: [jekyll]
 tags: [demo, jekyll]
 redirect_from:
-  - /2017/05/25/
+  - /2016/01/01/
 ---
 
 > This is [kramdown][kramdown] formatting test page for [Simple Texture][Simple Texture] theme.

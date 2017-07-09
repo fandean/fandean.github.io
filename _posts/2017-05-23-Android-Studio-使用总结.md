@@ -2,7 +2,7 @@
 layout: post
 title: "Android Studio 使用总结"
 description: "Android Studio的基本用法和插件推荐"
-date: 2017-07-01
+date: 2017-05-23
 tags: [android-studio]
 category: 开发工具
 comments: true
@@ -159,8 +159,8 @@ Android Studio也可在AndroidDevTools下载。
 #### 重启Android Studio
 
     File --> Invalidata Caches/Restart...  --> Just Restart
-    
-    
+
+​    
 _________________________________________________
 
 
