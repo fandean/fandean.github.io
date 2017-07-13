@@ -2,7 +2,7 @@
 
 Source code for my blog <https://fandean.github.io> 。
 
-由于国内访问github.io不顺畅，另见GitLab Pages : <https://faner.githlab.io>
+由于国内访问github.io不顺畅，另见GitLab Pages : <https://faner.gitlab.io>
 
 本博客使用了Jekyll 的 Simple Texture主题。
 
@@ -17,7 +17,7 @@ Source code for my blog <https://fandean.github.io> 。
 
 ![Gem Version](https://img.shields.io/gem/v/jekyll-theme-simple-texture.svg)
 
-Simple Texture is a gem-based responsive simple texture styled Jekyll theme for [Jekyll][Jekyll] 3.3 or above,
+Simple Texture is a gem-based responsive simple texture styled Jekyll theme for [Jekyll](http://jekyllrb.com/) 3.3 or above,
 which can also be forked as a boilerplate for older versions of Jekyll.
 
 ### Demo
@@ -31,5 +31,4 @@ which can also be forked as a boilerplate for older versions of Jekyll.
 ![Screenshot - Blog](/assets/images/screenshots/post.png)
 
 
-[Jekyll](http://jekyllrb.com/)  
 [Bunlder]( http://bundler.io/)  
