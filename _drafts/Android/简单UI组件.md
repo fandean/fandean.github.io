@@ -70,3 +70,10 @@ setBackgroundDrawable(Drawable background)
  属性 src 和 background 的区别:
 
 background 会根据 ImageView 组件给定的长宽进行拉伸来填满ImageView,；而 src 默认存放的是原图的大小, 不会进行拉伸(但可通过scaleType设置)。此外: scaleType 只对 src 起作用；bg 可设置透明度。
+
+
+
+另可参考：[Android中View的各个XML属性汇总](http://www.cnblogs.com/PengLee/p/5279998.html)
+
+
+

@@ -1,10 +1,63 @@
 # 理解BroadCast
 
+
+
+## broadcast Intent
+
+使用sendBroadcast()或其他相关方法发送的Intent，就是broadcast Intent
+
+## BroadCast Reciver
+
+### 静态注册
+
+在manifest文件中注册（此时称为 manifest reciver）。
+
+对于包含 manifest接收器的应用程序，在匹配的broadcast Intent被广播出去的时候，应用程序不一定要处于运行状态才能接收，此时如果该应用程序没有运行则他会被自动启动。
+
+
+
+### 动态注册
+在代码中注册。第一次见四大组件中有对象可以不在manifest文件中注册（恕我孤陋寡闻）
+
+
+
+
+> Androidmanifest文件作用之一：描述应用的各个组件，包括构成应用的 Activity、服务、广播接收器和内容提供程序。它还为实现每个组件的类命名并发布其功能，例如它们可以处理的 Intent 消息。这些声明向 Android 系统告知有关组件以及可以启动这些组件的条件的信息。
+
+
+### LocalBroadCastManger
+
+
+
+
+
+### 有序广播
+
+
+
+
+
+## Manifest Receiver
+
+
+
+
+
+
+
+
+## 广播进阶
+
+
 > 抄袭：[DroidPlugin/插件占坑，四大组件动态注册前奏（三） 系统BroadCast的注册发送流程.md ](https://github.com/DroidPluginTeam/DroidPlugin/blob/master/DOC/hejunlin/插件占坑，四大组件动态注册前奏（三）%20系统BroadCast的注册发送流程.md )
 >
 > 或见原文：[插件占坑，四大组件动态注册前奏（三） 系统BroadCast的注册发送流程 - 逆流的鱼yuiop - CSDN博客](http://blog.csdn.net/hejjunlin/article/details/52204143 "插件占坑，四大组件动态注册前奏（三） 系统BroadCast的注册发送流程 - 逆流的鱼yuiop - CSDN博客")
 >
-> 原作者：版权声明：我已委托“维权骑士”（rightknights.com）为我的文章进行维权行动.转载务必转载所有，且须注明出处。否则保留追究法律责任
+> 原作者，版权声明：我已委托“维权骑士”（rightknights.com）为我的文章进行维权行动.转载务必转载所有，且须注明出处。否则保留追究法律责任
+
+
+
+
 
 ## 为什么有广播？
 

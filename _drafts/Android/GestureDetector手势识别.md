@@ -24,7 +24,7 @@ GestureDetector类：
 几个内部成员和方法的介绍：  
 
 1. `boolean onTouchEvent(MotionEvent ev)`方法：  
-Analyzes the given motion event and if applicable(可适用) triggers(触发) the appropriate(适当的) callbacks(回调) on the GestureDetector.OnGestureListener supplied(提供的).(分析事件，如果适用则调用相关回调方法)
+  Analyzes the given motion event and if applicable(可适用) triggers(触发) the appropriate(适当的) callbacks(回调) on the GestureDetector.OnGestureListener supplied(提供的).(分析事件，如果适用则调用相关回调方法)
 2. 内部类（接口）`GestureDetector.OnGestureListener`: The listener that is used to notify(通知) when gestures occur(当产生手势时). 
 3. 静态内部类`GestureDetector.SimpleOnGestureListener`: 该类直接继承了GestureDetector类中的所有接口，并实现了所有接口中的所有方法，但是在实现的方法中只是简单的返回false。如果你只想监听手势的一个子集，则只需简单的继承该类即可。
 
@@ -32,4 +32,12 @@ Analyzes the given motion event and if applicable(可适用) triggers(触发) th
 因此实现手势识别有两种方法，一种实现OnGestureListener接口，另一种是使用SimpleOnGestureListener类。
 
 
+
+
+
+
+
+另可参考：
+
+[Android 手势监测GestureDetector - 超级Peng - 博客园](http://www.cnblogs.com/PengLee/p/4149171.html "Android 手势监测GestureDetector - 超级Peng - 博客园")
 

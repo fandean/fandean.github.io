@@ -4,11 +4,17 @@
 
 ---
 
->此篇文章大多数为抄袭，少量自己总结。
+
 
 必看的参考页面：  
 [Activities](http://www.android-doc.com/guide/components/activities.html)  
 [android面试题-关于Activity](http://www.iwfu.me/2016/07/17/%E5%AE%89%E5%8D%93%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%9A1-%E5%85%B3%E4%BA%8Eactivity/)
+
+官方文档：[Activity - Android Developers](https://developer.android.com/guide/components/activities.html "Activity  Android Developers")
+
+
+
+
 
 
 
@@ -47,3 +53,36 @@ onSaveInstanceState在onStop之前调用，但不一定在onPause之前或者之
 
 
 如果Activity是由用户关闭的（按下Back按钮），或是通过在代码中调用finish关闭，那么下次创建Activity时，**实例状态Bundle不会被传递给onCreate或onRestoreInstanceState。(竟然是不会传递！不会传递！不会传递！)**应该使用 Shared Preference存储应在用户会话之间持久化的数据。《Android 4 高级编程》第7章
+
+
+
+## 参考：[Activity启动中的requestCode 和 resultCode 的传递和用法（Activity 三 ）](http://www.cnblogs.com/PengLee/p/4083936.html)
+
+
+
+### requestCode请求码的作用
+
+```java
+startActivityForResult(Intent intent, int requestCode)
+```
+
+
+
+**请求码的值是根据业务需要由自已设定，用于标识请求来源。**一个Activity有两个按钮，点击这两个按钮都会打开同一个Activity，不管是那个按钮打开新Activity，当这个新Activity关闭后，系统都会调用前面Activity的onActivityResult(int requestCode, int resultCode, Intent data)方法。在onActivityResult()方法如果需要知道新Activity是由那个按钮打开的，并且要做出相应的业务处理，这时可以这样做。
+
+
+
+### resultCode结果码的作用
+
+```java
+onActivityResult(int requestCode, int resultCode, Intent data)
+```
+
+
+
+为了知道返回的数据来自于哪个子Activity；或者用resultCode判断子Activity的业务是否处理成功。
+
+
+
+
+

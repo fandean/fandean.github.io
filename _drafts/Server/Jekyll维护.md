@@ -1,6 +1,21 @@
+---
+layout: post
+title: "Jekyll维护"
+description: "Jekyll维护"
+date: 2017-07-17
+tags: [jekyll]
+category: Server
+last_updated: 2017-07-17
+comments: true
+chare: true
+---
+
+* Kramdown table of contents
+{:toc .toc}
+
+
+
 # Jekyll维护
-
-
 
 Jekyll网站内容维护的学习路线：
 
@@ -60,6 +75,8 @@ Jekyll网站功能维护涉及到的内容：
 ## post相关
 
 [撰写博客 - Jekyll • 简单静态博客网站生成器](http://jekyllcn.com/docs/posts/ "撰写博客 - Jekyll • 简单静态博客网站生成器")
+
+`_post`目录下可以新建子目录，不会产生负面影响。
 
 
 
@@ -247,6 +264,9 @@ tag：标签； category：分类
 以Rake一键生成Jekyll文章模版，一键预览效果，一键发布等等；Rake让Jekyll写博更优雅。
 
 
+> 如果使用VS Code还可使用相关插件来生成文件头部的 Front Matter 头信息
+
+
 
 ## 注意事项
 
@@ -257,9 +277,37 @@ tag：标签； category：分类
 由于在md文件中大量使用了 `右键该项目 | 添加新项 | 选择“文本文件”`这种形式的语句表示操作步骤，导致jekyll解析错误，页面无法正常显示。
 
 
+**标题问题：**
 
 仅使用 `Alt + /`作为标题，也导致解析错误，页面无法正常显示。
 
+**图片问题：**
+
+图片不能显示在下一行：
+
+Party Popper emoji on Google Android 7.1：  
+![](https://emojipedia-us.s3.amazonaws.com/thumbs/160/google/80/party-popper_1f389.png)
+
+
+```
+//7.1: 后面是添加了两个空格后再换行的
+Party Popper emoji on Google Android 7.1：  
+![](https://emojipedia-us.s3.amazonaws.com/thumbs/160/google/80/party-popper_1f389.png)
+```
+
+> 在本地时，有时有问题，有时又没有问题。真正部署到Github 上再验证。
+
+这样才可以： 
+
+Party Popper emoji on Google Android 7.1：     
+
+![](https://emojipedia-us.s3.amazonaws.com/thumbs/160/google/80/party-popper_1f389.png)
+
+```
+Party Popper emoji on Google Android 7.1：     
+
+![](https://emojipedia-us.s3.amazonaws.com/thumbs/160/google/80/party-popper_1f389.png)
+```
 
 
 ## Kramdown配置

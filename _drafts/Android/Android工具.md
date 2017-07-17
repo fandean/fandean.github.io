@@ -1,4 +1,4 @@
-﻿# Android工具
+# Android工具
 
 标签（空格分隔）： Android
 
@@ -6,6 +6,8 @@
 
 ## adb调试工具
 > 参考《Android群英传》
+>
+> [Android 调试桥 - Android Studio](https://developer.android.com/studio/command-line/adb.html#shellcommands "Android 调试桥 - Android Studio")
 
 adb (Android Debug Bridge)  
 

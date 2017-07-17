@@ -97,3 +97,23 @@ Material Design中加入了Launch Screen； 对于启动屏的讨论[不支持�
 ![](http://2.bp.blogspot.com/-7hGYFpZwDKU/Vi-5RkEDbnI/AAAAAAAA184/0hJlyZ5QyBs/s1600/0052.jpg)
 
 
+
+
+
+
+
+## 其他一些控件
+
+
+
+### StackView
+
+- Stackview是AdapterViewAnimator的子類，顧名思義就是以堆疊的方式呈現。
+- 可透過滑動以及調用方法控畫面。
+
+
+
+### SurfaceView
+
+
+
