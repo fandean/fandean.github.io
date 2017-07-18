@@ -433,10 +433,10 @@ git commit -m ':toilet:'
 
 重要的是在特定情况下，应选取哪一个emoji？这里介绍了正确使用这些emoji的方式：  
 
-
+- [gitmoji  -  An emoji guide for your commit messages](https://gitmoji.carloscuesta.me/ "推荐")
 - [dannyfritz/commit-message-emoji](https://github.com/dannyfritz/commit-message-emoji)
 - [Git Commit message Emoji](https://gist.github.com/parmentf/035de27d6ed1dce0b36a)
-- [gitmoji  -  An emoji guide for your commit messages](https://gitmoji.carloscuesta.me/)
+
 
 
 ### Markdown工具

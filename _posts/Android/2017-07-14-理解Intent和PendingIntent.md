@@ -89,7 +89,7 @@ startActivity(intent);
 
 
 
-### 确定Intent能否解析
+### 检查是否有能接收该intent的组件
 
 >  《Android 4 高级编程》第5章
 
@@ -99,7 +99,7 @@ startActivity(intent);
 
 
 
-通过调用Intent的resolveActivity方法，并向该方法传入包管理器，可以对包管理器进行查询，确定是否有Activity能够启动以响应该Intent。
+通过调用Intent的resolveActivity方法，并向该方法传入包管理器，可以对包管理器进行查询，确定是否有组件能够启动以响应该Intent。
 
 
 

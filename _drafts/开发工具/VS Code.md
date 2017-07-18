@@ -237,14 +237,16 @@ Open the file to view the history, and then Press F1 and select/type "Git: View 
 
 ### Markdown相关插件
 
+VS Code貌似默认就带有markdown的预览功能；按`ctrl + shift + v`即可进行预览。
+
 #### Markdown Preview Enhanced
-预览效果不错，功能强。但就是有时会预览不成功，不知是何原因。
+预览效果不错，功能强。若无法预览可选择先将VC code关闭，再重新打开。
 
 使用快捷键`ctrl + shift + m`预览。或输入`ctrl + shift + p`再输入 mpv 选择执行相关命令。
 
 
 #### preview
-
+预览
 
 #### markdown Shortcuts
 功能很强的编辑markdown文件的辅助工具。
@@ -288,5 +290,38 @@ Config Example见插件的示例。
 
 #### vscode-hexo
 VSCode extension to manage hexo commands.
+
+另也可以自行配置部署hexo的任务：
+
+```json
+{
+  "version": "0.1.0",
+  "command": "hexo",
+  "isShellCommand": true,
+  "showOutput": "always",
+  "suppressTaskName": true,
+  "tasks": [
+    {
+      "taskName": "Generate",
+      "args": ["g"]
+    },
+    {
+      "taskName": "Deploy",
+      "args": ["d"]
+    },
+    {
+      "taskName": "Generate and Deploy",
+      "args": ["d", "--g"]
+    },
+    {
+      "taskName": "Serve",
+      "args": [
+        "s"
+      ]
+    }
+  ]
+}
+```
+
 
 貌似也可以自己配置任务来管理jekyll。

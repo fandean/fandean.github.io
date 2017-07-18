@@ -322,7 +322,7 @@ Party Popper emoji on Google Android 7.1：
 
 [Syntax kramdown](https://kramdown.gettalong.org/syntax.html "Syntax  kramdown")
 
-[kramdown和markdown较大的差异比较](http://gohom.win/2015/11/06/Kramdown-note/ "kramdown和markdown较大的差异比较 | Hom")
+[kramdown和markdown较大的差异比较](http://gohom.win/2015/11/06/Kramdown-note/)
 
 
 

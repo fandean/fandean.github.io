@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "理解Handler"
-description: " Handler的入门级介绍 "
-date: 2017-07-15
+title: "简单理解Handler"
+description: " Handler的入门介绍 "
+date: 2017-07-14
 tags: [android]
 category: android
 comments: true
 share: true
-last_updated:  
+last_updated: 2017-07-18
 ---
 
 

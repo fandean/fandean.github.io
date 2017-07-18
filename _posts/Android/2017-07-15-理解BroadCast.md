@@ -19,7 +19,7 @@ chare: true
 
 > [Broadcasts - Android Developers](https://developer.android.com/guide/components/broadcasts.html "Broadcasts - Android Developers")
 
-广播是一种跨进程的通信方式。
+广播是一种跨进程的通信方式，当然它也可以用于不跨进程的情形。
 
 
 ## broadcast Intent
@@ -57,12 +57,12 @@ chare: true
 
 **将全局广播改造为本地广播：**
 
-1. 条件1：只应用程序的内部使用。  
+1. 条件1：只在应用程序的内部使用。  
 2. 条件2：Intent只能被应用程序的特定广播接收器接收。   
 3. 条件3：广播接收器只能接收本应用程序发出的Intent。   
 
 条件1：使用动态注册广播接收器即可。     
-条件2和3：可以通过创建自己使用的权限，然后应用于Intent和广播接收器。   
+条件2和3：可以通过创建自定义的权限，然后应用于Intent和广播接收器。   
 
 
 #### LocalBroadCastManager
@@ -128,7 +128,7 @@ void sendOrderedBroadcast (
 
 使用场景：
 
-1.过滤前台通知消息：
+比如：《Android编程权威指南》中的，用于过滤前台通知消息，见[AndroidDemo/PhotoGallery](https://github.com/FanDean/AndroidDemo/tree/master/PhotoGallery)
 
 
 
@@ -161,7 +161,7 @@ Manifest Receiver就是在manifest文件中静态注册的Receiver。
 2. 使用BroadcastReceiver.goAsync()方法。（Async异步）该方法的优点是可以设置有序广播的结果；缺点是限制多。
 
 
-### 对进程状态的影响
+### BroadcastReceiver对进程状态的影响
 
 
 见
@@ -177,8 +177,8 @@ goAsync()方法：<https://developer.android.com/reference/android/content/Broad
 
 **广播的生命周期**，从对象调用它开始，到onReceiver方法执行完成之后结束。
 
-
-> 参考：[DroidPlugin/插件占坑，四大组件动态注册前奏（三） 系统BroadCast的注册发送流程.md ](https://github.com/DroidPluginTeam/DroidPlugin/blob/master/DOC/hejunlin/插件占坑，四大组件动态注册前奏（三）%20系统BroadCast的注册发送流程.md )
+**推荐阅读：**  
+> [DroidPlugin/插件占坑，四大组件动态注册前奏（三） 系统BroadCast的注册发送流程.md ](https://github.com/DroidPluginTeam/DroidPlugin/blob/master/DOC/hejunlin/插件占坑，四大组件动态注册前奏（三）%20系统BroadCast的注册发送流程.md )
 >
 > 或见原文：[插件占坑，四大组件动态注册前奏（三） 系统BroadCast的注册发送流程 - 逆流的鱼yuiop - CSDN博客](http://blog.csdn.net/hejjunlin/article/details/52204143 "插件占坑，四大组件动态注册前奏（三） 系统BroadCast的注册发送流程 - 逆流的鱼yuiop - CSDN博客")
 

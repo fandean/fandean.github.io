@@ -56,8 +56,13 @@ onSaveInstanceState在onStop之前调用，但不一定在onPause之前或者之
 
 
 
-## 参考：[Activity启动中的requestCode 和 resultCode 的传递和用法（Activity 三 ）](http://www.cnblogs.com/PengLee/p/4083936.html)
+## Activity生命周期应用场景
 
+1.动态广播接收器的注册和销毁
+
+
+
+## 参考：[Activity启动中的requestCode 和 resultCode 的传递和用法（Activity 三 ）](http://www.cnblogs.com/PengLee/p/4083936.html)
 
 
 ### requestCode请求码的作用
