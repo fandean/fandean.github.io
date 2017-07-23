@@ -21,7 +21,9 @@
 
 ## 离线下载源码
 
-上清华镜像站
+上清华镜像站：[清华大学开源软件镜像站  Tsinghua Open Source Mirror](https://mirrors.tuna.tsinghua.edu.cn/help/AOSP/ "清华大学开源软件镜像站| Tsinghua Open Source Mirror")   
+科大镜像：[AOSP(Android) 镜像使用帮助](https://lug.ustc.edu.cn/wiki/mirrors/help/aosp "AOSP(Android) 镜像使用帮助 ")
+
 
 [史上最简单Android源码编译环境搭建方法 - Weishu's Notes](http://weishu.me/2016/12/30/simple-way-to-compile-android-source/index.html "史上最简单Android源码编译环境搭建方法 - Weishu's Notes")
 

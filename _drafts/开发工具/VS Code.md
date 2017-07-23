@@ -5,7 +5,7 @@ description: "VS Code"
 date: 2017-07-17
 tags: 
 category: 
-last_updated: 2017-07-17
+last_updated: 2017-07-23
 comments: true
 chare: true
 ---
@@ -61,6 +61,14 @@ chare: true
 
 ![](https://code.visualstudio.com/images/editingevolved_column-select.gif)
 
+
+
+> 技巧：  
+复制时使用的是通过 ctrl + d 选择的项目，粘贴时所选的项目也必须是通过ctrl + d选择的   
+vs code的使用    
+包含块后面的空格：先使用 Ctrl + d 选中相同的单词，再按 Ctrl + shift  + 左/右箭头调整（它能够按单词调整）  
+按住Ctrl再按 左/右箭头 可同时调整所有光标位置。    
+从/usr/bin/xjc 复制一个 xjc 出来这种形式，也是可以通过vscode批量实现的    
 
 
 ### 命令面板
@@ -245,14 +253,15 @@ VS Code貌似默认就带有markdown的预览功能；按`ctrl + shift + v`即�
 使用快捷键`ctrl + shift + m`预览。或输入`ctrl + shift + p`再输入 mpv 选择执行相关命令。
 
 
+添加链接： `ctrl + l`      
+添加图片链接： `ctrl + shift + l`    
+可先选中文字。  
+
 #### preview
 预览
 
 #### markdown Shortcuts
 功能很强的编辑markdown文件的辅助工具。
-
-
-#### Markdown PasteUrl
 
 
 
@@ -283,6 +292,13 @@ Config Example见插件的示例。
 "pasteImage.forceUnixStyleSeparator": true,
 "pasteImage.prefix": "/",
 ```
+
+
+
+图片命名规范，避免日后出现重复名称： `日期-图片相关信息`
+
+#### paste image to qiniu
+截图上传七牛云插件
 
 
 #### Jekyll Snippets
@@ -325,3 +341,9 @@ VSCode extension to manage hexo commands.
 
 
 貌似也可以自己配置任务来管理jekyll。
+
+
+
+vscode 插件：  Translator plus, markdown shortcuts,  psioniq File Header，
+
+似乎发现问题了，确实。 原因可能是手误触到笔记本的触摸板。

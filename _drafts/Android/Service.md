@@ -15,5 +15,5 @@
 - 振动器服务类——Vibrator
 - 手机闹钟服务类——AlarmManager
 - 通知服务类——Notification
-- ​
+
 

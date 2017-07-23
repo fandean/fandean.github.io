@@ -2,14 +2,21 @@
 #
 #Linux上四个最佳的现代开源代码编辑器：
 #1.Brackets（专注与web设计）2.ATOM 3.Lime Text 它是Sublime Text的开源克隆版 4.Light Table 【另vs code也不错】
-#
+# 安装一些第三方软件时可能会下载临时文件，切换到/tmp目录。比如按照vscode时会下载临时的公钥。
+cd /tmp
+
+sudo apt-get update -qq
 #选项 -y 表示同意安装此软件
 #两个著名的编辑器，及其插件
 sudo apt-get install emacs -y
 sudo apt-get install vim vim-doc vim-scripts -y
 #sudo apt-get ingtall gvim -y	#没有这个了？
 #另见vim Teb 之后列出的软件，其中包括，vim-youcompleteme
+
+# 安装vim-youcompleteme会同时安装： vim-nox , ruby...， 
+# 并且会设置 update-alternatives: 使用 /usr/bin/vim.nox 来在自动模式中提供 /usr/bin/vim (vim)
 sudo apt-get install vim-youcompleteme -y
+
 sudo apt-get install cscope -y
 #安装vim的某自动补全插件需要的工具
 sudo apt-get install cmake -y
@@ -19,12 +26,67 @@ sudo apt-get install python-dev -y
 #版本控制工具 git    ## 参考另一篇笔记，源码安装最新版。
 sudo apt-get install git git-doc -y
 
+# curl 与 wget 类似的下载工具
+sudo apt-get install curl -y
+
 #用于vim，或 ... 
 sudo apt-get install exuberant-ctags -y
 
+#关于软件编译... 等
+sudo apt-get install checkinstall -y
+sudo apt-get install autoconf automake -y
+
+
+
+##########################################################################
+#
+#                   编程语言相关（开发环境）
+#
+##########################################################################
+
+######### Java ########
+# Java JDK 安装见后面的第三方软件安装
+
+######### Android ########
+#Java,Android相关工具，另可参见javaAndAndroid.md文件
+#sudo apt-get install ant ant-doc -y
+# Groovy版本太低，选择官网下载
+#sudo apt-get install groovy groovy-doc -y
+
+######### Web ########
+# Node.js安装：直接在网站下载最新版，里面包含了npm。位置存放在/opt 目录
+# 此时安装 nodejs 是为了安装gitbook；另可下载 gitbook editer
+
+# 错误：（也不是默认安装） xubuntu 16.04默认安装 nodejs 但没有安装 npm
+# npm: package manager for Node.js
+sudo apt-get install npm -y
+
+######### Ruby ########
+# 在安装vim-youcompleteme的时候就同时安装了： libruby2.3 rake ruby ruby2.3 vim-addon-manager vim-nox 
+# 错误：xubuntu 16.04默认安装 ruby  和 gem
+
+# 可通过 rbenv 安装 ruby，它会将相关文件安装在用户本地的`~/.rbenv/`目录下。
+# [Groom your app’s Ruby environment](https://github.com/rbenv/rbenv)
+# [How To Install Ruby on Rails with rbenv on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-16-04)
+# 貌似也可通过 sudo apt-get install rbenv，不知此处的rbenv和上文的rbenv有何区别。
+
+sudo apt-get install ruby-dev -y
+
+######### Jekyll ########
+# 需在ruby之后安装
+gem install jekyll 
+gem install bundler
+
+######### python ########
+# xubuntu 16.04默认安装了python 但没有安装 pip
+
+# pip : alternative Python package installer
+sudo apt-get install python-pip -y
+
+# 感觉 nodejs的npm、Ruby的gem、python的pip 好像都存在相同的功能  package manager
+
+
 #VirtualBox的安装参见官网介绍的添加项目到sources.list的方法安装
-
-
 
 #fcitx输入法框架，及输入法
 sudo apt-get install fcitx fcitx-googlepinyin fcitx-frontend-fbterm -y
@@ -38,7 +100,7 @@ sudo apt-get install fcitx fcitx-googlepinyin fcitx-frontend-fbterm -y
 # sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make
 #
 # . ubuntu make  ; ubuntu 16 可直接使用 apt 命令安装
-sudo apt install ubuntu-make -y
+# sudo apt install ubuntu-make -y
 
 #分区工具GParted 支持动态调整分区大小
 sudo apt-get install gparted -y
@@ -81,6 +143,9 @@ sudo apt-get install at -y
 #分屏软件
 sudo apt-get install tmux -y
 
+# 翻译软件
+sudo apt-get install goldendict -y
+
 #解压软件
 sudo apt-get install unrar -y
 sudo apt-get install rar -y
@@ -101,9 +166,6 @@ sudo apt-get install keynav -y
 #用于在终端下正确显示输入中文
 sudo apt-get install fbterm -y
 
-#关于软件编译... 等
-sudo apt-get install checkinstall -y
-sudo apt-get install autoconf automake -y
 
 
 #入侵检测软件 aide , 暂时不会用。  
@@ -195,10 +257,6 @@ sudo apt-get install okular -y
 sudo apt-get install bleachbit -y
 
 
-#Java,Android相关工具，另可参见javaAndAndroid.md文件
-#sudo apt-get install ant ant-doc -y
-# Groovy版本太低，选择官网下载
-#sudo apt-get install groovy groovy-doc -y
 
 #OpenVPN
 sudo apt-get install openvpn -y
@@ -212,7 +270,10 @@ sudo apt-get install openvpn -y
 
 # Visual Studio Code
 # 安装: 可直接通过 umake 进行安装
-# 卸载 : sudo apt-get purge code
+# 卸载 : sudo apt-get remove code
+
+# vscode的一个图片预览插件需要安装的工具
+sudo apt-get install xclip -y 
 
 # Light Table全新理念的IDE 编辑器
 # sudo add-apt-repository ppa:dr-akulavich/lighttable
@@ -228,7 +289,7 @@ sudo apt-get install openvpn -y
 # tlp-stat -t 显示温度，sudo tlp ac 开启交流电模式(及插电)，sudo tlp bat 开启电池模式(及使用电池与tlp true一样),它与xfce4 PM 好像并无冲突，后者处理关闭盖子等事件。
 # <http://www.mamicode.com/info-detail-40199.html>
 # "注意"：安装后关闭屏幕等配置可能就要在这个软件中配置.
-sudo apt-get install tlp -y
+# sudo apt-get install tlp -y
 
 # Remarkable，Linux下的Markdown编辑器，
 
@@ -245,10 +306,6 @@ sudo apt-get install lolcat -y
 
 # KchmViewer用于打开 chm 帮助文件；另可下载 chrome 的插件来打开chm文件
 sudo apt-get install kchmviewer -y
-
-
-# Node.js安装：直接在网站下载最新版，里面包含了npm。位置存放在/opt 目录
-# 此时安装 nodejs 是为了安装gitbook；另可下载 gitbook editer
 
 
 # GitKraken：git的第三方GUI客户端
@@ -275,19 +332,46 @@ sudo apt-get install colordiff -y
 # ASCII Art：纯文本流程图绘制
 # http://weishu.me/2016/01/03/use-pure-ascii-present-graph/
 
-##################################################
+
+# Fresh player plugin 用于火狐
+# sudo apt-get install browser-plugin-freshplayer-pepperflash
+
+# speedtest-cli 网速测试； 国内测试可能不是非常准确。使用方法直接 speedtest-cli
+# 该工具可以使用python 的 pip 进行升级： sudo pip install speedtest-cli --upgrade
+sudo apt-get install speedtest-cli -y
+
+
+
+
+
+
+########################################################################
 #
-#				第三方软件
-#	适用于 Ubuntu 16.04
-##################################################
+#				        第三方软件
+#	        适用于 Ubuntu 16.04
+#           建议备份 /etc/apt/ 目录
 #
+########################################################################
+
+# 推荐：
+# [How To Install The Latest Nvidia Drivers In Ubuntu or Linux Mint Via PPA](http://www.webupd8.org/2016/06/how-to-install-latest-nvidia-drivers-in.html)
+# [Use GNOME 3.18+ Google Drive Integration Feature In Unity, Xfce And Other Desktop Environments](http://www.webupd8.org/2016/03/use-gnome-318-google-drive-integration.html)
+# [Mount Google Drive In Linux With google-drive-ocamlfuse](http://www.webupd8.org/2013/09/mount-google-drive-in-linux-with-google.html "挂载Google Drive")
+# [Translate Any Text You Select On Your Linux Desktop With A Keyboard Shortcut And Notifications](http://www.webupd8.org/2016/03/translate-any-text-you-select-on-your.html "这个翻译看起来不错，使用的还是google翻译的api")
+# [How To Change The Mouse Scroll Wheel Speed In Linux Using imwheel](http://www.webupd8.org/2015/12/how-to-change-mouse-scroll-wheel-speed.html "调节鼠标滚轮速度")
+# [Encrypt Your Cloud Files With Cryptomator (Open Source, Cross-Platform)](http://www.webupd8.org/2016/04/encrypt-your-cloud-files-with.html "加密云端文件")
+
+
+# ################### 第三方软件安装 ###############################
 #        在此处统一添加 ppa  
 #    添加： add-apt-repository ppa:user/ppa-name
 #    移除： add-apt-repository -r ppa:user/ppa-name
 #    最新的PPA见各软件的官网，或官方blog
 #
 # 1. Java JDK 安装，但是安装时会有协议让你选择,且下载过程十分缓慢
-#sudo add-apt-repository ppa:webupd8team/java
+# 推荐直接官网下载JDK 解压到 /opt ，然后配置3个环境变量即可，环境变量见.bashrc文件，此方法不妥，见单独的java安装配置文件
+# 必看参考：[Install Oracle Java 8 In Ubuntu Or Linux Mint Via PPA Repository](http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html)
+# sudo add-apt-repository ppa:webupd8team/java
 
 # 2. shutter 出名的屏幕截图工具，跨平台,可实现多种截图形式/功能
 sudo apt-add-repository ppa:shutter/ppa
@@ -325,14 +409,32 @@ sudo add-apt-repository ppa:zanchey/asciinema
 # 11.  typora，介绍见上文
 sudo add-apt-repository 'deb https://typora.io ./linux/'
 
-#############统一在在此更新############################
+
+# 12. shadowsocks-qt5 主要用于fq的软件
+sudo add-apt-repository ppa:hzwhuang/ss-qt5
+
+
+# 13.  google-chrome
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+
+# 14. vscode
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+
+# 15. Atom： 一个与vscode类似的编辑器
+# sudo add-apt-repository ppa:webupd8team/atom  
+
+
+##################统一在在此更新############################
 sudo apt-get update  -qq
 
 
 # 1. Oracle的JavaSE 的安装由于版本更新，安装时修改版本号
 #sudo apt-get install oracle-java8-installer -y
-#或者直接官网下载JDK 解压到 /opt ，然后配置3个环境变量即可，环境变量见.bashrc文件，此方法不妥，见单独的java安装配置文件
-# 2.
+
+# 2. shutter
 sudo apt-get install shutter -y
 
 # 3. midori浏览器
@@ -364,3 +466,15 @@ sudo apt-get install asciinema -y
 
 # 11. typora
 sudo apt-get install typora -y
+
+# 12. shadowsocks-qt5
+sudo apt-get install shadowsocks-qt5
+
+# 13. google-chrome
+sudo apt-get install google-chrome-stable
+
+# 14. vscode
+sudo apt-get install code
+
+# 15. Atom
+# sudo apt-get install atom

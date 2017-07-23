@@ -5,6 +5,7 @@ description: "Android Studio的基本用法和插件推荐"
 date: 2017-05-23
 tags: [android-studio]
 category: 开发工具
+last_updated: 2017-07-22
 comments: true
 share: true
 ---
@@ -18,7 +19,7 @@ share: true
 
 ## Android Studio安装
 
-[视频地址](http://www.maiziedu.com/course/68/)
+[安装视频地址](http://www.maiziedu.com/course/68/)
 
 
 Android Studio安装/学习可参考 [CodePath Android Cliffnotes](http://guides.codepath.com/android)  
@@ -32,6 +33,24 @@ Android Studio安装/学习可参考 [CodePath Android Cliffnotes](http://guides
 - Android emulator(模拟器)
 - Version control with Git 
 
+
+
+如果没有正确配置jdk或没有安装jdk，Android Studio会提示有三种解决方案: 
+```
+Please use JDK 8 or newer : 还会告诉你使用哪个版本的JDK
+
+use embedded JDK (recommended)  使用内嵌的JDK推荐的方法
+Download JDK 8                  下载JDK
+Select a JDK from the File System  选择JDK路径
+```
+
+那就使用内嵌的JDK吧，另外系统中还下载openjdk，这样就不使用oracle-jdk了。
+
+> 另见：[java - How to set the JDK for Android Studio? - Ask Ubuntu](https://askubuntu.com/questions/467870/how-to-set-the-jdk-for-android-studio "java - How to set the JDK for Android Studio? - Ask Ubuntu")
+
+
+**Ubuntu 下的安装：**     
+[Setting Up Android Studio on Ubuntu · uw-it-aca/spacescout-android Wiki · GitHub](https://github.com/uw-it-aca/spacescout-android/wiki/1.-Setting-Up-Android-Studio-on-Ubuntu "1. Setting Up Android Studio on Ubuntu · uw-it-aca/spacescout-android Wiki · GitHub")
 
 
 
