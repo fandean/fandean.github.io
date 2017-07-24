@@ -53,4 +53,3 @@ sudo update-alternatives --install /usr/bin/xjc xjc  $JAVAHOME/bin/xjc 300
 
 sudo update-alternatives --install /usr/lib/mozilla/plugins/libjavaplugin.so mozilla-javaplugin.so  $JAVAHOME/jre/lib/amd64/libnpjp2.so 300
 
-# 从/usr/bin/xjc 复制一个 xjc 出来这种形式，也是可以通过vscode批量实现的  

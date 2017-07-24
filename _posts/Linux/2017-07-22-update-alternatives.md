@@ -5,7 +5,7 @@ description: "update-alternatives命令的使用；更改Ubuntu默认程序"
 date: 2017-07-22
 tags: [Linux命令]
 category: Linux
-last_updated: 2017-07-23
+last_updated: 2017-07-24
 comments: true
 chare: true
 ---
@@ -15,8 +15,15 @@ chare: true
 
 
 
-
 # update-alternatives 命令
+
+## update-alternatives简介
+
+容我引用 [update-alternatives学习笔记](http://blog.csdn.net/HEYUTAO007/article/details/5441482 "update-alternatives学习笔记 - - CSDN博客") 
+>  Linux 发展到今天，可用的软件已经非常多了。这样自然会有一些软件的功能大致上相同。例如，同样是编辑器，就有 nvi、vim、emacs、nano，而且我说的这些还只是一部分。大多数情况下，这样的功能相似的软件都是同时安装在系统里的，可以用它们的名称来执行。例如，要执行 vim，只要在终端下输入 vim 并按回车就可以了。不过，有些情况下我们需要用一个相对固定的命令调用这些程序中的一个。例如，当我们写一个脚本程序时，只要写下 editor，而不希望要为“编辑器是哪个”而操心。Debian 提供了一种机制来解决这个问题，而 update-alternatives 就是用来实现这种机制的。  
+[update-alternatives学习笔记 - - CSDN博客](http://blog.csdn.net/HEYUTAO007/article/details/5441482 "update-alternatives学习笔记 - - CSDN博客")
+
+
 
 `update-alternatives --help` 命令输出：
 ```
@@ -43,7 +50,7 @@ chare: true
     (如 /usr/bin/pager)
 <名称> 是该链接替换组的主控名。
     (如 pager)
-<路径> 是候选项目标文件的位置。
+<路径> 是候选项目标文件的位置。（程序的实际路径）
     (如 /usr/bin/less)
 <优先级> 是一个整数，在自动模式下，这个数字越高的选项，其优先级也就越高。
 
@@ -61,38 +68,286 @@ chare: true
 ```
 
 
-## update-alternatives简介
-必看的三篇介绍：  
-- [update-alternatives - William DeMeo](http://williamdemeo.github.io/linux/update-alternatives.html "update-alternatives - William DeMeo")    
-- [alternatives - Manages alternative programs for common commands — Ansible Documentation](http://docs.ansible.com/ansible/latest/alternatives_module.html "alternatives - Manages alternative programs for common commands — Ansible Documentation")   
-- [update-alternatives学习笔记 - - CSDN博客](http://blog.csdn.net/HEYUTAO007/article/details/5441482 "update-alternatives学习笔记 - - CSDN博客")
 
-update-alternatives实用程序的目的是：
-可以在同一个系统上安装满足相同或相似功能的多个程序。 Debian的 alternative system 旨在管理这种情况。
+## 以editor为例来讲解
+editor编辑器。一般系统中都会安装有多个具有编辑功能的程序， 比如ed、vi、vim、emacs24 ...
 
 
-- 使用“update-alternatives”工具管理符号链接
-- 当安装了多个提供类似功能的程序时很有用
+我们这里把 `editor` 称作为一个 `名称` 或者 `name`。
 
-通用名称不是所选alternative的直接符号链接；而是替代目录(alternatives directory)中的一个名称的符号链接，而该目录又是一个引用的实际文件的符号链接。这样做是为了使系统管理员的更改可以被限制在/ etc目录中。
+查看editor当前包含的候选项： 
+```shell
+[fan 10:48:25]~$ update-alternatives --display editor 
+editor - 自动模式
+  link best version is /usr/bin/vim.basic
+ 链接目前指向 /usr/bin/vim.basic
+  link editor is /usr/bin/editor
+  slave editor.1.gz is /usr/share/man/man1/editor.1.gz
+  slave editor.fr.1.gz is /usr/share/man/fr/man1/editor.1.gz
+  slave editor.it.1.gz is /usr/share/man/it/man1/editor.1.gz
+  slave editor.ja.1.gz is /usr/share/man/ja/man1/editor.1.gz
+  slave editor.pl.1.gz is /usr/share/man/pl/man1/editor.1.gz
+  slave editor.ru.1.gz is /usr/share/man/ru/man1/editor.1.gz
+/bin/ed - 优先级 -100
+  次要 editor.1.gz：/usr/share/man/man1/ed.1.gz
+/bin/nano - 优先级 40
+  次要 editor.1.gz：/usr/share/man/man1/nano.1.gz
+/usr/bin/code - 优先级 0
+/usr/bin/emacs24 - 优先级 0
+  次要 editor.1.gz：/usr/share/man/man1/emacs.emacs24.1.gz
+/usr/bin/vim.basic - 优先级 60
+  次要 editor.1.gz：/usr/share/man/man1/vim.1.gz
+  次要 editor.fr.1.gz：/usr/share/man/fr/man1/vim.1.gz
+  次要 editor.it.1.gz：/usr/share/man/it/man1/vim.1.gz
+  次要 editor.ja.1.gz：/usr/share/man/ja/man1/vim.1.gz
+  次要 editor.pl.1.gz：/usr/share/man/pl/man1/vim.1.gz
+  次要 editor.ru.1.gz：/usr/share/man/ru/man1/vim.1.gz
+/usr/bin/vim.nox - 优先级 40
+  次要 editor.1.gz：/usr/share/man/man1/vim.1.gz
+  次要 editor.fr.1.gz：/usr/share/man/fr/man1/vim.1.gz
+  次要 editor.it.1.gz：/usr/share/man/it/man1/vim.1.gz
+  次要 editor.ja.1.gz：/usr/share/man/ja/man1/vim.1.gz
+  次要 editor.pl.1.gz：/usr/share/man/pl/man1/vim.1.gz
+  次要 editor.ru.1.gz：/usr/share/man/ru/man1/vim.1.gz
+/usr/bin/vim.tiny - 优先级 10
+  次要 editor.1.gz：/usr/share/man/man1/vim.1.gz
+  次要 editor.fr.1.gz：/usr/share/man/fr/man1/vim.1.gz
+  次要 editor.it.1.gz：/usr/share/man/it/man1/vim.1.gz
+  次要 editor.ja.1.gz：/usr/share/man/ja/man1/vim.1.gz
+  次要 editor.pl.1.gz：/usr/share/man/pl/man1/vim.1.gz
+  次要 editor.ru.1.gz：/usr/share/man/ru/man1/vim.1.gz
+[fan 10:48:43]~$ 
+```
+
+涉及到的路径： 
+
+/usr/bin/名称
+
+/etc/alternatives/名称
+
+程序实际路径
+
+查看这些路径： 
+```shell
+[fan 10:48:43]~$ ll /usr/bin/editor 
+lrwxrwxrwx 1 root root 24 7月  20 16:42 /usr/bin/editor -> /etc/alternatives/editor*
+[fan 10:54:21]~$ ll /etc/alternatives/editor
+lrwxrwxrwx 1 root root 18 7月  23 11:11 /etc/alternatives/editor -> /usr/bin/vim.basic*
+[fan 10:54:31]~$ ll /usr/bin/vim.basic 
+-rwxr-xr-x 1 root root 2.4M 11月 25  2016 /usr/bin/vim.basic*
+```
 
 
-parameter参数 | required必须 | default默认值 | choices | comments描述
-------- | ------- | ------- | ------- | -------
-link | no |  |  | The path to the symbolic link that should point to the real executable.(指向实际可执行文件的符号链接的路径)
-name | yes |  |  | The generic name of the link.(链接的通用名称)
-path | yes |  |  | The path to the real executable that the link should point to.(链接应该指向的真实可执行文件的路径)
-priority(added in 2.2) | no | 50 |  | The priority(优先级) of the alternative
+
+/var/lib/dpkg/alternatives目录为管理目录，包含的相关文件就相当于配置文件吧。一个名称占用一个文件。
 
 
-- alternative 指一个可选程序所在的绝对路径  
-- link是符号链接  
-- name则是通用名称  
-- path是执行文件的路径  
-- priority则表示优先级  
+查看配置文件： `less /var/lib/dpkg/alternatives/editor`
 
-> Linux 发展到今天，可用的软件已经非常多了。这样自然会有一些软件的功能大致上相同。例如，同样是编辑器，就有 nvi、vim、emacs、nano，而且我说的这些还只是一部分。大多数情况下，这样的功能相似的软件都是同时安装在系统里的，可以用它们的名称来执行。例如，要执行 vim，只要在终端下输入 vim 并按回车就可以了。不过，有些情况下我们需要用一个相对固定的命令调用这些程序中的一个。例如，当我们写一个脚本程序时，只要写下 editor，而不希望要为“编辑器是哪个”而操心。Debian 提供了一种机制来解决这个问题，而 update-alternatives 就是用来实现这种机制的。  
-[update-alternatives学习笔记 - - CSDN博客](http://blog.csdn.net/HEYUTAO007/article/details/5441482 "update-alternatives学习笔记 - - CSDN博客")
+```shell
+auto
+/usr/bin/editor
+editor.1.gz
+/usr/share/man/man1/editor.1.gz
+editor.fr.1.gz
+/usr/share/man/fr/man1/editor.1.gz
+editor.it.1.gz
+/usr/share/man/it/man1/editor.1.gz
+editor.ja.1.gz
+/usr/share/man/ja/man1/editor.1.gz
+editor.pl.1.gz
+/usr/share/man/pl/man1/editor.1.gz
+editor.ru.1.gz
+/usr/share/man/ru/man1/editor.1.gz
+
+/bin/ed
+-100
+/usr/share/man/man1/ed.1.gz
+
+/bin/nano
+40
+/usr/share/man/man1/nano.1.gz
+
+/usr/bin/code
+0
+
+/usr/bin/emacs24
+0
+/usr/share/man/man1/emacs.emacs24.1.gz
+
+/usr/bin/vim.basic
+60
+/usr/share/man/man1/vim.1.gz
+/usr/share/man/fr/man1/vim.1.gz
+/usr/share/man/it/man1/vim.1.gz
+/usr/share/man/ja/man1/vim.1.gz
+/usr/share/man/pl/man1/vim.1.gz
+/usr/share/man/ru/man1/vim.1.gz
+
+/usr/bin/vim.nox
+40
+/usr/share/man/man1/vim.1.gz
+/usr/share/man/fr/man1/vim.1.gz
+/usr/share/man/it/man1/vim.1.gz
+/usr/share/man/ja/man1/vim.1.gz
+/usr/share/man/pl/man1/vim.1.gz
+/usr/share/man/ru/man1/vim.1.gz
+
+/usr/bin/vim.tiny
+10
+/usr/share/man/man1/vim.1.gz
+/usr/share/man/fr/man1/vim.1.gz
+/usr/share/man/it/man1/vim.1.gz
+/usr/share/man/ja/man1/vim.1.gz
+/usr/share/man/pl/man1/vim.1.gz
+/usr/share/man/ru/man1/vim.1.gz
+```
+
+### 更改editor的候选项
+
+```shell
+[fan 10:48:43]~$ update-alternatives --config editor 
+有 7 个候选项可用于替换 editor (提供 /usr/bin/editor)。
+
+  选择       路径              优先级  状态
+------------------------------------------------------------
+* 0            /usr/bin/vim.basic   60        自动模式
+  1            /bin/ed             -100       手动模式
+  2            /bin/nano            40        手动模式
+  3            /usr/bin/code        0         手动模式
+  4            /usr/bin/emacs24     0         手动模式
+  5            /usr/bin/vim.basic   60        手动模式
+  6            /usr/bin/vim.nox     40        手动模式
+  7            /usr/bin/vim.tiny    10        手动模式
+
+要维持当前值[*]请按<回车键>，或者键入选择的编号：1
+update-alternatives: 使用 /bin/ed 来在手动模式中提供 /usr/bin/editor (editor)
+update-alternatives: 错误: 新建符号链接 /etc/alternatives/editor.dpkg-tmp 时出错: 权限不够 （需添加sudo）
+```
+
+以上说明，它会删除原来的/etc/alternatives/editor软链接，再创建一个新的/etc/alternatives/editor软链接来指向ed程序的实际路径。
+
+
+```shell
+[fan 11:06:36]~$ ll /usr/bin/editor 
+lrwxrwxrwx 1 root root 24 7月  20 16:42 /usr/bin/editor -> /etc/alternatives/editor*
+[fan 11:03:49]~$ ll /etc/alternatives/editor*
+lrwxrwxrwx 1 root root  7 7月  24 11:03 /etc/alternatives/editor -> /bin/ed*
+lrwxrwxrwx 1 root root 27 7月  24 11:03 /etc/alternatives/editor.1.gz -> /usr/share/man/man1/ed.1.gz
+```
+
+/var/lib/dpkg/alternatives/editor 文件的改变：
+
+仅将 auto 改为 manual
+
+
+### 总结 
+
+> 以下为个人理解，如有错误请指正，不胜感激。详见 `man update-alternatives`
+
+通用名称(generic name)和名称(name)的区别：
+
+generic name (or alternative link)：通用名称指的是 `/usr/bin/name` 
+
+
+
+简单的理解update-alternatives的机制： 
+
+```
+            /usr/bin/名称 (软链接)
+                      |
+                      V
+  /etc/alternatives/名称  (软链接)  [每次更改就使它指向另一个程序的实际地址，并在配置文件中说明当前是自动还是手动]
+                      |
+                      V
+                  程序实际路径
+```
+
+还存在一个配置文件：
+
+```
+/var/lib/dpkg/alternatives/名称
+```
+
+配置文件中指出该通用名称包含哪些可用的程序(候选程序)，并指出了每个程序的优先级和可用的附加文件路径。
+
+
+#### 另还有个 slave 的概念
+slave: 从属，次要
+
+slave对应有 slave link（次要链接）。
+
+在上面的editor的配置文件中我们可以看到多个slave其中的一个就是 editor.1.gz 
+
+单从editor来看，sleve link指向的是相关的man手册文档。每当候选项一更改，sleve link也会跟着更改。
+
+更改editor的候选项之前(为vim.basic时)：
+
+```shell
+[fan 11:38:50]~$ ll /etc/alternatives/editor*
+lrwxrwxrwx 1 root root 18 7月  24 11:16 /etc/alternatives/editor -> /usr/bin/vim.basic*
+lrwxrwxrwx 1 root root 28 7月  24 11:16 /etc/alternatives/editor.1.gz -> /usr/share/man/man1/vim.1.gz
+lrwxrwxrwx 1 root root 31 7月  24 11:16 /etc/alternatives/editor.fr.1.gz -> /usr/share/man/fr/man1/vim.1.gz
+lrwxrwxrwx 1 root root 31 7月  24 11:16 /etc/alternatives/editor.it.1.gz -> /usr/share/man/it/man1/vim.1.gz
+lrwxrwxrwx 1 root root 31 7月  24 11:16 /etc/alternatives/editor.ja.1.gz -> /usr/share/man/ja/man1/vim.1.gz
+lrwxrwxrwx 1 root root 31 7月  24 11:16 /etc/alternatives/editor.pl.1.gz -> /usr/share/man/pl/man1/vim.1.gz
+lrwxrwxrwx 1 root root 31 7月  24 11:16 /etc/alternatives/editor.ru.1.gz -> /usr/share/man/ru/man1/vim.1.gz
+
+[fan 11:38:50]~$ man editor 
+# 查看到的是vim的man手册 
+```
+
+更改editor的候选项为ed之后：
+```shell
+[fan 11:03:49]~$ ll /etc/alternatives/editor*
+lrwxrwxrwx 1 root root  7 7月  24 11:03 /etc/alternatives/editor -> /bin/ed*
+lrwxrwxrwx 1 root root 27 7月  24 11:03 /etc/alternatives/editor.1.gz -> /usr/share/man/man1/ed.1.gz
+
+[fan 11:38:50]~$ man editor 
+# 查看到的是ed的man手册 
+```
+
+
+### 安装一个候选项
+
+> 以 vim 为例
+
+使用`--install`
+
+```shell
+# 链接  名称  (实际)路径   优先级
+sudo update-alternatives --install /usr/bin/vim vim /usr/bin/vim.nox 40
+```
+
+man update-alternatives查看手册： `--install link name path priority [--slave link name path]...`
+
+
+使用apt-get安装vim-nox程序时的部分输出:
+```shell
+正在设置 vim-nox (2:7.4.1689-3ubuntu1.2) ...
+update-alternatives: 使用 /usr/bin/vim.nox 来在自动模式中提供 /usr/bin/vim (vim)
+update-alternatives: 使用 /usr/bin/vim.nox 来在自动模式中提供 /usr/bin/vimdiff (vimdiff)
+update-alternatives: 使用 /usr/bin/vim.nox 来在自动模式中提供 /usr/bin/rvim (rvim)
+update-alternatives: 使用 /usr/bin/vim.nox 来在自动模式中提供 /usr/bin/rview (rview)
+update-alternatives: 使用 /usr/bin/vim.nox 来在自动模式中提供 /usr/bin/vi (vi)
+update-alternatives: 使用 /usr/bin/vim.nox 来在自动模式中提供 /usr/bin/view (view)
+update-alternatives: 使用 /usr/bin/vim.nox 来在自动模式中提供 /usr/bin/ex (ex)
+```
+
+使用apt-get卸载 vim-nox的部分输出:
+```shell
+正在卸载 vim-nox (2:7.4.1689-3ubuntu1.2) ...
+update-alternatives: 使用 /usr/bin/vim.basic 来在自动模式中提供 /usr/bin/vi (vi)
+update-alternatives: 使用 /usr/bin/vim.basic 来在自动模式中提供 /usr/bin/view (view)
+update-alternatives: 使用 /usr/bin/vim.basic 来在自动模式中提供 /usr/bin/ex (ex)
+update-alternatives: 使用 /usr/bin/vim.basic 来在自动模式中提供 /usr/bin/rvim (rvim)
+update-alternatives: 使用 /usr/bin/vim.basic 来在自动模式中提供 /usr/bin/rview (rview)
+update-alternatives: 使用 /usr/bin/vim.basic 来在自动模式中提供 /usr/bin/vimdiff (vimdiff)
+update-alternatives: 使用 /usr/bin/vim.basic 来在自动模式中提供 /usr/bin/vim (vim)
+```
+
+安装和卸载时都会执行update-alternatives命令。
+
 
 
 ## Eclipse示例
@@ -178,7 +433,7 @@ java就比较麻烦了点，因为java相关的命令比较多，要改的地方
 
 还好有个`update-java-alternatives`命令。
 
-可以查看另一篇文章: 《ubuntu安装jdk》
+可以查看另一篇文章: [Ubuntu安装java和使用update-java-alternatives进行切换](/blog/2017/07/22/ubuntu%E5%AE%89%E8%A3%85%E5%92%8C%E5%88%87%E6%8D%A2JDK/)
 
 
 
@@ -219,12 +474,6 @@ java就比较麻烦了点，因为java相关的命令比较多，要改的地方
 
 ## 参考
 
-[update-alternatives学习笔记](http://blog.csdn.net/HEYUTAO007/article/details/5441482)   
-[使用update-alternatives工具配置可选系统](http://man.chinaunix.net/linux/debian/debian_learning/ch08s21.html)   
-[使用update-alternatives切换Ubuntu默认java命令](http://blog.csdn.net/xyzxyzxz/article/details/6920346)     
-[update-alternatives命令详解](http://coolnull.com/3339.html)   
+[update-alternatives学习笔记](http://blog.csdn.net/HEYUTAO007/article/details/5441482)    
 [update-alternatives - William DeMeo](http://williamdemeo.github.io/linux/update-alternatives.html "update-alternatives - William DeMeo")    
-[alternatives - Manages alternative programs for common commands — Ansible Documentation](http://docs.ansible.com/ansible/latest/alternatives_module.html "alternatives - Manages alternative programs for common commands — Ansible Documentation")     
-
-
-
+   

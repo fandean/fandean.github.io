@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "ubuntu安装JDK"
-description: "ubuntu安装JDK，设置默认JDK"
+title: "Ubuntu安装java和使用update-java-alternatives进行切换"
+description: "ubuntu安装JDK， 设置默认JDK， 使用update-java-alternatives进行切换"
 date: 2017-07-22
 tags: [开发工具,Linux,Java]
 category: 开发工具
-last_updated: 2017-07-23
+last_updated: 2017-07-24
 comments: true
 chare: true
 ---
@@ -15,14 +15,12 @@ chare: true
 
 
 
-
-
 # Ubuntu 安装 Java JDK
-android studio 和 oracle-jdk都不建议使用ppa的方法安装，因为这两个软件较大，建议下载压缩包到/opt，再进行设置。这样以后更换系统或者电脑时直接把/opt目录复制过去即可。
+
+> 个人觉得：android studio 和 oracle-jdk都不建议使用ppa的方法安装，因为这两个软件较大，建议下载压缩包到/opt，再进行设置。这样以后更换系统或者电脑时直接把/opt目录复制过去即可。
 
 
-
-## 涉及到的命令
+## 切换jdk涉及到的命令
 - update-alternatives
 - update-java-alternatives : 通过`sudo apt install java-common`安装
 
@@ -33,13 +31,16 @@ java -version
 ```
 注意：这里不是`java --version`，被这个坑了。
 
+> update-alternatives命令的学习可参考： [update-alternatives](/blog/2017/07/22/update-alternatives/)
+
 
 ## 安装open-jdk
 ```
 sudo apt-get install openjdk-8-jdk
 ```
 
-安装后自动设置的update-alternatives：
+
+附：安装后自动设置的update-alternatives
 ```
 update-alternatives: 使用 /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/rmid 来在自动模式中提供 /usr/bin/rmid (rmid)
 update-alternatives: 使用 /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java 来在自动模式中提供 /usr/bin/java (java)
@@ -85,27 +86,14 @@ update-alternatives: 使用 /usr/lib/jvm/java-8-openjdk-amd64/bin/jarsigner 来�
 正在设置 openjdk-8-jdk:amd64 (8u131-b11-0ubuntu1.16.04.2) ...
 update-alternatives: 使用 /usr/lib/jvm/java-8-openjdk-amd64/bin/appletviewer 来在自动模式中提供 /usr/bin/appletviewer (appletviewer)
 update-alternatives: 使用 /usr/lib/jvm/java-8-openjdk-amd64/bin/jconsole 来在自动模式中提供 /usr/bin/jconsole (jconsole)
-正在设置 ca-certificates-java (20160321) ...
-Adding debian:SwissSign_Platinum_CA_-_G2.pem
-Adding debian:thawte_Primary_Root_CA_-_G3.pem
-Adding debian:Chambers_of_Commerce_Root_-_2008.pem#######################################..] 
-Adding debian:UTN_USERFirst_Hardware_Root_CA.pem
-Adding debian:Certinomis_-_Root_CA.pem
-Adding debian:Camerfirma_Chambers_of_Commerce_Root.pem
-Adding debian:CNNIC_ROOT.pem
-Adding debian:Comodo_Secure_Services_root.pem
-...
 ```
 
 
 ## 安装orecle-jdk
 
 ### 安装方式一：使用ppa
-使用第三方源：搜索 ppa java8: <https://launchpad.net/~webupd8team/+archive/ubuntu/java>   
 
-参考：
-- [Install Oracle Java 8 In Ubuntu Or Linux Mint Via PPA Repository](http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html)  
-- [Ubuntu 安装 JDK 7 / JDK8 的两种方式 - 水是全海大 - 博客园](http://www.cnblogs.com/a2211009/p/4265225.html "Ubuntu 安装 JDK 7 / JDK8 的两种方式 - 水是全海大 - 博客园") 
+使用第三方源，ppa地址: <https://launchpad.net/~webupd8team/+archive/ubuntu/java>   
 
 ```
 sudo add-apt-repository ppa:webupd8team/java
@@ -126,16 +114,8 @@ echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | su
 ```
 
 
-
-
-
-> 2015-10-17 17:07:13 (41.7 KB/s) - 已保存 “jdk-8u60-linux-x64.tar.gz” [181238643/181238643])
-（2016-7-17的由于系统突然死机，直接灭掉，没有任何征兆，已经丢失）此处只是告诉你它使用了命令 update-alternatives
-
-安装输出：
+附：安装时update-alternatives的输出
 ```
-Download done.
-Removing outdated cached downloads...
 update-alternatives: using /usr/lib/jvm/java-8-oracle/jre/bin/ControlPanel to provide /usr/bin/ControlPanel (ControlPanel) in 自动模式
 update-alternatives: using /usr/lib/jvm/java-8-oracle/jre/bin/java to provide /usr/bin/java (java) in 自动模式
 update-alternatives: using /usr/lib/jvm/java-8-oracle/jre/bin/javaws to provide /usr/bin/javaws (javaws) in 自动模式
@@ -191,21 +171,21 @@ Oracle JRE 8 browser plugin installed
 ```
 
 
-> 如果你因为防火墙或者其他原因,导致installer 下载速度很慢,可以中断操作.然后下载好相应jdk的tar.gz 包,放在:
-/var/cache/oracle-jdk7-installer             (jdk7) 
-/var/cache/oracle-jdk8-installer              (jdk8) 
-下面,然后安装一次installer. installer 则会默认使用 你下载的tar.gz包
+> 如果installer下载速度很慢,可以中断操作，然后去官网下载相应jdk的压缩包,放在:`/var/cache/oracle-jdk7-installer`(jdk7) 或者`/var/cache/oracle-jdk8-installer` (jdk8) 下面,然后再安装一次installer. installer 则会默认使用 你下载的tar.gz包。
 
+> 参考：
+- [Install Oracle Java 8 In Ubuntu Or Linux Mint Via PPA Repository](http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html)  
+- [Ubuntu 安装 JDK 7 / JDK8 的两种方式 - 水是全海大 - 博客园](http://www.cnblogs.com/a2211009/p/4265225.html "Ubuntu 安装 JDK 7 / JDK8 的两种方式 - 水是全海大 - 博客园") 
 
 
 
 ### 安装方式二：下载压缩包
 
 #### 1.下载
-1.下载： jdk-8u××-linux-x64.tar.gz压缩包 [Java SE Development Kit 8 - Downloads](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html "Java SE Development Kit 8 - Downloads")，解压到/opt 。
+下载： jdk-8u××-linux-x64.tar.gz压缩包 [Java SE Development Kit 8 - Downloads](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html "Java SE Development Kit 8 - Downloads")，解压到/opt 。
 
 #### 2.设置环境变量
-2.设置Java所需的系统环境变量：
+设置Java所需的系统环境变量：假设解压后的路径为 `/opt/jdk1.8.0_91`
 ```shell
 export JAVA_HOME=/opt/jdk1.8.0_91
 export JRE_HOME=$JAVA_HOME/jre
@@ -215,29 +195,25 @@ export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 
 #### 3.使用 update-alternatives 切换 java 
 
-3.1 先使用`update-alternatives`设置java    
-这里只设置这几个alternative：  
+这里提前讲解使用update-alternatives切换java，因为它一般只在这里使用；其它情况下推荐使用update-java-alternatives来进行切换。
+
+1.先使用`update-alternatives`安装几个java相关的alternative(就叫它"候选项"吧) 
 ```shell
-JAVAHOME=$JAVA_HOME
+JAVAHOME="压缩包解压后的路径"
 sudo update-alternatives --install /usr/bin/java java $JAVAHOME/bin/java 300
 sudo update-alternatives --install /usr/bin/javac javac $JAVAHOME/bin/javac 300
 sudo update-alternatives --install /usr/bin/javaws javaws $JAVAHOME/bin/javaws 300
-sudo update-alternatives --install /usr/bin/jar jar $JAVAHOME/bin/jar 300   
-sudo update-alternatives --install /usr/bin/javah javah $JAVAHOME/bin/javah 300   
-sudo update-alternatives --install /usr/bin/javap javap $JAVAHOME/bin/javap 300   
-sudo update-alternatives --install /usr/bin/javadoc javadoc $JAVAHOME/bin/javadoc 300
-sudo update-alternatives --install /usr/bin/rmic rmic $JAVAHOME/bin/rmic 300
-sudo update-alternatives --install /usr/bin/serialver serialver $JAVAHOME/bin/serialver 300
 ```
 
+> 还记得上面通过apt-get或者dpkg安装的jdk的deb包时，update-alternatives命令的输出吗？是不是很长，那是自动的，这里手动运行我们就只弄这几个了。
 
-3.2 再使用`update-alternatives`切换jdk    
+
+2.如果想使用该java版本，则通过`update-alternatives`切换该java相关的alternative    
 
 ```shell
 sudo update-alternatives --config javac
 sudo update-alternatives --config java
 sudo update-alternatives --config javaws
-# ...
 ```
 
 
@@ -246,7 +222,7 @@ sudo update-alternatives --config javaws
 
 默认情况下alternatives将自动安装最佳版本的Java作为默认版本。如果使用命令`update-alternatives --config java`更改了alernatives后 (变成了manually select手动选择) 想设置回默认值，可以使用`update-alternatives --auto java`。
 
-> 手动选择 alternatives:   
+手动选择 alternatives:   
 ```shell
 # 先查看
 update-alternatives --display java
@@ -261,63 +237,63 @@ lrwxrwxrwx 1 root root 22 7月  22 19:37 /usr/bin/java -> /etc/alternatives/java
 ```
 
 
-#### 4.使用 update-java-alternatives 切换 jar/jdk
+## 使用update-java-alternatives切换java
 
-如需使用 update-java-alternatives 进行切换，还要进行更多的设置。
+也可选择使用 `update-java-alternatives` 进行切换，但还要进行更多的设置。
 
 
 > `update-java-alternatives`没有提供类似`--install`的选项
-> 也可以通过之前安装时的输出进行设置，不过也太长了。
+> 也可以通过之前安装时的输出进行设置，不过真的很多。
 
-参考：  
+> 参考：  
 [How do I make java default to a manually installed JRE/JDK? - Ask Ubuntu](https://askubuntu.com/questions/159575/how-do-i-make-java-default-to-a-manually-installed-jre-jdk "How do I make java default to a manually installed JRE/JDK? - Ask Ubuntu")   
 [JavaPackage - Debian Wiki](https://wiki.debian.org/JavaPackage "JavaPackage - Debian Wiki")  
 [update-java-alternatives vs update-alternatives --config java - Ask Ubuntu](https://askubuntu.com/questions/315646/update-java-alternatives-vs-update-alternatives-config-java "update-java-alternatives vs update-alternatives --config java - Ask Ubuntu")   
 
 
 
-##### update-java-alternatives介绍
+### update-java-alternatives介绍
 
 你也看到了上面安装一个jdk最后会使用`update-alternatives`设置n多的alternatives。
 
-那么在每次切换时我们需要同时对他们进行切换就非常麻烦，这时可以使用   `update-java-alternatives`进行切换。    
+那么在每次切换java的jre或jdk时我们需要同时对他们进行切换就非常麻烦，这时可以使用`update-java-alternatives`，它允许您一次更新属于一个runtime/development kit的所有alternatives。    
 
-java-common 提供了 `update-java-alternatives` 命令。
-
-它允许您一次更新属于一个runtime/development kit的所有alternatives。
-
+> java-common 提供了 `update-java-alternatives` 命令。
 查看man文档 `man update-java-alternatives`可知，存在一个配置文档`/usr/lib/jvm/.*.jinfo`
 
 
+### 切换使用apt-get或dpkg安装的jdk
 
-##### 切换使用apt-get或dpkg安装的jdk
+这样安装的jdk，默认就设置了`/usr/lib/jvm/.*.jinfo`文件；并使用了`update-alternatives --install`设置安装了所需的候选项；所以可以直接进行切换即可。
 
-这样安装的jdk，默认就设置了`/usr/lib/jvm/.*.jinfo`文件；并使用了`update-alternatives --install`设置安装了所需的候选项。所以可以直接进行切换。
-
-
-1. List the Java alternatives presently installed and available on your system
-   ```shell
-   sudo update-java-alternatives -l
-   ```
-2. Set the default Java and update all alternatives
-   ```shell
-   sudo update-java-alternatives -s <alternative>
-   ```
-   - Where `<alternative>` is the default Java. For example java-1.8.0-openjdk-amd64 or jdk-8-oracle-x64    
-   - This command will register all the java executables. And create symlinks for each of them.
+先查看已经配置好的java版本可供选择（输出的第一列的名称，我们把它叫做jname吧）：
+```shell
+sudo update-java-alternatives -l
+```
+再进行切换：
+```shell
+sudo update-java-alternatives -s <jname>
+```
 
 
-##### 切换通过压缩包安装的jdk
+### 切换通过压缩包安装的jdk
 
-假设 jdk 保存路径为 `/opt/jdk1.8.0_91/`
+相比前面的切换这里还要先进行一些配置。假设 jdk 保存路径为 `/opt/jdk1.8.0_91/`。
 
 步骤：
-- 使用`update-alternatives --install`设置安装所需的候选项(由于候选项太多，所以将其全部写在一个脚本文件中)
-- 创建`/usr/lib/jvm/.*.jinfo`文件（这是一个隐藏文件，以.开头）
+- 使用`update-alternatives --install`设置安装所需的候选项(由于候选项太多，所以将其全部写在一个脚本文件中，[可在此下载该文件](https://github.com/FanDean/fandean.github.io/blob/master/_drafts/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/orecle-jdk-alternatives.sh))
+- 创建`/usr/lib/jvm/.*.jinfo`文件（这是一个隐藏文件以.开头，[下载文件](https://github.com/FanDean/fandean.github.io/blob/master/_drafts/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/opt-java-8-oracle.jinfo)然后将其更改为隐藏文件）
 - 创建链接到`/opt/jdk1.8.0_91/`的软链接
+- 运行`update-java-alternatives -l`命令查看是否已经添加了该候选项。
+- 运行`update-java-alternatives -s <jname>`进行切换。
 
 
-可以参考`/usr/lib/jvm/`目录下的现有配置：
+
+操作演示见：[orecle-jdk-alternatives - asciinema](https://asciinema.org/a/RX1Vw2d90kZmP6wmBmE3deZY4 "orecle-jdk-alternatives - asciinema")
+
+
+
+也可以参考`/usr/lib/jvm/`目录下的现有配置：
 ```
 $ ll /usr/lib/jvm/
 总用量 24K
@@ -329,8 +305,6 @@ drwxr-xr-x   7 root root 4.0K 7月  22 19:37 java-8-openjdk-amd64/
 ```
 由此可知，openjdk-8直接安装到了 `/usr/lib/jvm/java-8-openjdk-amd64`下面；然后添加了一个软链接和一个隐藏的`.jinfo`文件。
 
-
-操作演示见：[orecle-jdk-alternatives - asciinema](https://asciinema.org/a/RX1Vw2d90kZmP6wmBmE3deZY4 "orecle-jdk-alternatives - asciinema")
 
 > 参考：  
 [Generate ".jdk1.8.jinfo" and "alternatives.sh" files to install java 8 using ubuntu alternatives.](https://gist.github.com/olagache/a2eff8b2bbc95e03280b)   

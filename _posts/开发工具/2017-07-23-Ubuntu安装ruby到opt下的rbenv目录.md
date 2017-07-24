@@ -5,7 +5,7 @@ description: "Ubuntu安装ruby到opt下的rbenv目录"
 date: 2017-07-23
 tags: [开发工具,Linux,ruby]
 category: 开发工具
-last_updated: 2017-07-23
+last_updated: 2017-07-24
 comments: true
 chare: true
 ---
@@ -18,6 +18,7 @@ chare: true
 
 # Ubuntu安装ruby到/opt/rbenv
 
+演示地址：[install rbenv to opt - asciinema](https://asciinema.org/a/kMtGVBPR8a0iecxPmmy2JK3ni "install rbenv to opt - asciinema")，由于网速问题，大部分时间浪费在下载和安装ruby的过程中，可以跳过此部分。
 
 ## 安装脚本
 
