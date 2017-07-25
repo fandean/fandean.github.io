@@ -7,35 +7,28 @@ cd /tmp
 
 sudo apt-get update -qq
 #选项 -y 表示同意安装此软件
-#两个著名的编辑器，及其插件
-sudo apt-get install emacs -y
-sudo apt-get install vim vim-doc vim-scripts -y
-#sudo apt-get ingtall gvim -y	#没有这个了？
-#另见vim Teb 之后列出的软件，其中包括，vim-youcompleteme
 
-# 安装vim-youcompleteme会同时安装： vim-nox , ruby...， 
-# 并且会设置 update-alternatives: 使用 /usr/bin/vim.nox 来在自动模式中提供 /usr/bin/vim (vim)
-sudo apt-get install vim-youcompleteme -y
 
-sudo apt-get install cscope -y
-#安装vim的某自动补全插件需要的工具
-sudo apt-get install cmake -y
-#用于支持插件版YouCompleteme的运行，具体的编译依赖见Vim相关笔记。
-sudo apt-get install python-dev -y
-
-#版本控制工具 git    ## 参考另一篇笔记，源码安装最新版。
+#C++编译器
+sudo apt-get install g++ -y
+#版本控制工具 git ## 参考另一篇笔记，源码安装最新版。
 sudo apt-get install git git-doc -y
-
 # curl 与 wget 类似的下载工具
 sudo apt-get install curl -y
-
-#用于vim，或 ... 
-sudo apt-get install exuberant-ctags -y
-
 #关于软件编译... 等
 sudo apt-get install checkinstall -y
 sudo apt-get install autoconf automake -y
 
+
+# vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+
+
+# 用于编译 vim8，并使其支持某些特性所需的依赖
+# lua 
+sudo apt-get install lua5.3 liblua5.3-dev luajit libluajit-5.1-dev  
+# perl
+sudo apt-get install libperl-dev
 
 
 ##########################################################################
@@ -59,7 +52,7 @@ sudo apt-get install autoconf automake -y
 
 # 错误：（也不是默认安装） xubuntu 16.04默认安装 nodejs 但没有安装 npm
 # npm: package manager for Node.js
-sudo apt-get install npm -y
+# sudo apt-get install npm -y
 
 ######### Ruby ########
 # 在安装vim-youcompleteme的时候就同时安装了： libruby2.3 rake ruby ruby2.3 vim-addon-manager vim-nox 
@@ -70,12 +63,13 @@ sudo apt-get install npm -y
 # [How To Install Ruby on Rails with rbenv on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-16-04)
 # 貌似也可通过 sudo apt-get install rbenv，不知此处的rbenv和上文的rbenv有何区别。
 
+# 编译vim所需，安装jekyll所需
 sudo apt-get install ruby-dev -y
 
 ######### Jekyll ########
 # 需在ruby之后安装
-gem install jekyll 
-gem install bundler
+# gem install jekyll 
+# gem install bundler
 
 ######### python ########
 # xubuntu 16.04默认安装了python 但没有安装 pip
@@ -83,7 +77,36 @@ gem install bundler
 # pip : alternative Python package installer
 sudo apt-get install python-pip -y
 
+# 编译vim和支持vim的相关功能
+sudo apt-get install python-dev -y
+sudo apt-get install python3.5-dev 
+
+
 # 感觉 nodejs的npm、Ruby的gem、python的pip 好像都存在相同的功能  package manager
+
+
+
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+#两个著名的编辑器，及其插件
+sudo apt-get install emacs -y
+sudo apt-get install vim vim-doc vim-scripts -y
+#sudo apt-get ingtall gvim -y	#没有这个了？
+#另见vim Teb 之后列出的软件，其中包括，vim-youcompleteme
+
+# 安装vim-youcompleteme会同时安装： vim-nox , ruby...， 
+# 并且会设置 update-alternatives: 使用 /usr/bin/vim.nox 来在自动模式中提供 /usr/bin/vim (vim)
+sudo apt-get install vim-youcompleteme -y
+
+#用于vim，或 ... 
+sudo apt-get install exuberant-ctags -y
+# vim + ctags + cscope 查看源码
+# sudo apt-get install ctags -y
+sudo apt-get install cscope -y
+#安装vim的某自动补全插件需要的工具
+sudo apt-get install cmake -y
+
+
 
 
 #VirtualBox的安装参见官网介绍的添加项目到sources.list的方法安装
@@ -157,8 +180,6 @@ sudo apt-get install convmv -y
 #以树形结构列出目录结构
 sudo apt-get install tree -y
 
-#C++编译器
-sudo apt-get install g++ -y
 
 #取代鼠标的软件
 sudo apt-get install keynav -y
@@ -201,18 +222,6 @@ sudo apt-get install gimp -y
 
 # 无法得知此软件是干啥的   sudo apt-get install anoise -y
 
-
-#闹钟, 需要 下一个GStreamer 插件的支持，获得更好的支持.
-#sudo apt-get install alarm-clock-applet -y
-#GStreamer-??-plugins* 附加 插件 ，是一系列流媒体解码器。
-#GStreamer本身是Gnome环境下用来构建流媒体应用的开源多媒体框架。可以找其编程教程。TODO:该软件可能已经更新
-sudo apt-get install gstreamer0.10-plugins-ugly -y
-
-#Ubuntu 额外的版权受限程序,  可在Ubuntu软件中心查看相关评论，和相关信息。  
-#会有一个错误，原因是： 网站被墙 消息如下：ttf-mscorefonts-installer 无法下载。
-#在软件中心见到： 
-#oxideqt-codecs 和 libavcodec54 两个软件包未能下载。
-#sudo apt-get install ubuntu-restricted-extras -y
 
 
 #Launchy 按键启动器,及其插件和皮肤，没错就是Windows中用的那个
@@ -342,8 +351,34 @@ sudo apt-get install speedtest-cli -y
 
 
 
+#################################################################################
+# 
+#           与特定系统相关的软件
+#
+#################################################################################
+
+# Ubuntu 额外的版权受限程序,  可在Ubuntu软件中心查看相关评论，和相关信息。  
+# 会有一个错误，原因是： 网站被墙 消息如下：ttf-mscorefonts-installer 无法下载。
+# 在安装其包含的安装Microsoft Windows Fonts微软字体库ttf-mscorefonts-installer时会要求同意其协议
+# 安装该字体库后，运行下面的命令 : sudo fc-cache -fv
+# 在软件中心见到： 
+# oxideqt-codecs 和 libavcodec54 两个软件包未能下载。
+# sudo apt-get install ubuntu-restricted-extras -y
+# 有专门针对 xubuntu 的版本
+sudo apt-get install xubuntu-restricted-extras -y
 
 
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+#闹钟, 需要 下一个GStreamer 插件的支持，获得更好的支持.
+# sudo apt-get install alarm-clock-applet -y
+
+#GStreamer-??-plugins* 附加 插件 ，是一系列流媒体解码器。
+# GStreamer本身是Gnome环境下用来构建流媒体应用的开源多媒体框架。可以找其编程教程。该软件可能已经更新
+# 安装 xubuntu-restricted-extras 时，也会安装gstreamer1.0-plugins的相应版本
+# sudo apt-get install gstreamer0.10-plugins-ugly -y
+# sudo apt-get install gstreamer1.0-plugins-ugly -y
+sudo apt-get install gstreamer1.0-plugins-good -y
 
 ########################################################################
 #

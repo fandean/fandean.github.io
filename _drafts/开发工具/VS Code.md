@@ -5,7 +5,7 @@ description: "VS Code"
 date: 2017-07-17
 tags: 
 category: 
-last_updated: 2017-07-23
+last_updated: 2017-07-24
 comments: true
 chare: true
 ---
@@ -50,7 +50,7 @@ chare: true
 
 扩大选中区域：
 
-- 每次扩选一个单词：`Ctrl+Shift+L`
+- (选中文件中所有相同的字符串)每次扩选一个单词：`Ctrl+Shift+L`。（可能被markdown shortcuts插件占用）
 - 每次扩选一行：`Shift+Alt+Left`或`Shift+Alt+Right`  
 
 ![](https://code.visualstudio.com/images/editingevolved_expandselection.gif)
@@ -63,13 +63,12 @@ chare: true
 
 
 
-> 技巧：  
-复制时使用的是通过 ctrl + d 选择的项目，粘贴时所选的项目也必须是通过ctrl + d选择的   
-vs code的使用    
-包含块后面的空格：先使用 Ctrl + d 选中相同的单词，再按 Ctrl + shift  + 左/右箭头调整（它能够按单词调整）  
-按住Ctrl再按 左/右箭头 可同时调整所有光标位置。    
-从/usr/bin/xjc 复制一个 xjc 出来这种形式，也是可以通过vscode批量实现的    
-
+> vs code的使用技巧：  
+- 复制时使用的是通过 ctrl + d 选择的项目，粘贴时所选的项目也必须是通过ctrl + d选择的。（粘贴-复制时的选择文本的方法必须一样，才能正确对应）   
+- 包含块后面的空格：先使用 Ctrl + d 选中部分相同的单词，再按 Ctrl + shift  + 左/右箭头调整（它能够按单词调整）  
+- 在多光标的情况下，按住Ctrl再按 左/右箭头 可同时调整所有光标位置。    
+- 从 `/usr/bin/xjc 几个相同的字符`复制一个 xjc 出来变成 `/usr/bin/xjc xjc`这种形式，也是可以通过vscode批量实现的    
+- 默认按 alt加鼠标点击即可产生多个光标，但是我将其改为了 ctrl + 鼠标点击
 
 ### 命令面板
 
@@ -201,6 +200,10 @@ Insert File-Header-Comment
 
 #### EditorConfig for VS Code
 
+支持 EditorConfig 的一个插件，用来在不同编辑器中保持代码格式的一致性。
+
+[代码风格统一工具 EditorConfig](https://mp.weixin.qq.com/s?__biz=MzAwMTYwNzE2Mg==&mid=2651036611&idx=1&sn=65c9f4c95132ef4e704d165d74cea1ec#rd "代码风格统一工具 EditorConfig")
+
 
 #### Path Intellisense
 
@@ -224,9 +227,23 @@ Insert File-Header-Comment
 与VIM中的类似。
 
 
+#### amVim
+
+VS Code 中目前最好用的 vim 插件。
+
+
+#### change-case
+
+支持快速的选中的文本的命名格式，例如支持驼峰命名，Pascal命名，下划线分隔命名，常量命名等。
+
+
 #### Auto Rename Tag
 
 ![](https://github.com/formulahendry/vscode-auto-rename-tag/raw/master/images/usage.gif)
+
+
+#### Align
+这个插件支持对选中的代码进行对齐操作
 
 
 #### Auto Close Tag

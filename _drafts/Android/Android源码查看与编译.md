@@ -40,3 +40,25 @@
 ## 编译源码
 
 电脑硬件要求：
+
+
+## 源码查看工具
+
+### vim + ctags + cscope
+
+[Linux 平台下阅读源码的工具 | ShareHub](http://blog.xiaohansong.com/2015/08/24/Linux%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7%E9%93%BE/# "Linux 平台下阅读源码的工具 | ShareHub")
+
+ctags的添加：  
+```
+set tags=/home/RT288x_SDK/source/linux-2.6.36.x/tags  
+```
+
+[【转】使用 vim + ctags + cscope + taglist 阅读源码 - 相关文章](https://www.bbsmax.com/R/ZOJPjg7Pdv/ "【转】使用 vim + ctags + cscope + taglist 阅读源码 - 相关文章")    
+通过这篇文章来了解Ctags和taglist [vim Ctags 和taglist安装和使用](https://www.bbsmax.com/A/KE5QOWj4zL/ "vim Ctags 和taglist安装和使用")
+
+
+### Source Insight
+
+[Android源码阅读工具——在Ubuntu下使用Source Insight-IT大道](http://www.itdadao.com/articles/c15a455979p0.html "Android源码阅读工具——在Ubuntu下使用Source Insight-IT大道")
+
+
