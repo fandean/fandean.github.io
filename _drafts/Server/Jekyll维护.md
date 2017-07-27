@@ -5,7 +5,7 @@ description: "Jekyll维护"
 date: 2017-07-17
 tags: [jekyll]
 category: Server
-last_updated: 2017-07-17
+last_updated: 2017-07-27
 comments: true
 chare: true
 ---
@@ -38,7 +38,10 @@ Jekyll网站功能维护涉及到的内容：
 
 中文网站 [Jekyll • 简单静态博客网站生成器 - 将纯文本转换为静态博客网站](http://jekyllcn.com/ "Jekyll • 简单静态博客网站生成器 - 将纯文本转换为静态博客网站")  
 
-**一些基本概念，在此了解**：[搭建一个免费的，无限流量的Blog----github Pages和Jekyll入门 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html "搭建一个免费的，无限流量的Blog----github Pages和Jekyll入门 - 阮一峰的网络日志")   
+**一些基本概念，在此了解**：[搭建一个免费的，无限流量的Blog----github Pages和Jekyll入门](http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html "搭建一个免费的，无限流量的Blog----github Pages和Jekyll入门 - 阮一峰的网络日志")   
+
+[YAML 语言教程](http://www.ruanyifeng.com/blog/2016/07/yaml.html "YAML 语言教程 - 阮一峰的网络日志")  
+YAML 是专门用来写配置文件的语言，非常简洁和强大，远比 JSON 格式方便。 
 
 ## Jekyll网站目录结构
 

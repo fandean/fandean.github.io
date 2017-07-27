@@ -9,16 +9,63 @@
 3. fictx-rime 会导致 fictx 出错，先使用fictx-googlepingpin ; 该问题只能后期解决，(后面不知为什么又能用了)
 
 
+## rime输入法
+官网：[RIME 中州韻輸入法引擎](http://rime.im/ "RIME 中州韻輸入法引擎")
+
+
+## rime繁簡狀態切換
+
+按Ctrl+`或F4切換繁簡狀態
+
+
+[Ubuntu 16.10依赖libopencc 1.0.4，导致简体无法转换 · Issue #18 · rime/ibus-rime](https://github.com/rime/ibus-rime/issues/18 "Ubuntu 16.10依赖libopencc 1.0.4，导致简体无法转换 · Issue #18 · rime/ibus-rime") 
+
+輸入emoji表情
+
+參考 https://gist.github.com/2309739 把 emoji 加入輸入方案選單；
+
+**切換到 emoji 輸入方案**，即可通過拼音代碼輸入表情符號。查看[符號表](https://github.com/rime/home/raw/master/images/emoji-chart.png)
+
+輸入 all 可以列出全部符號，符號後面的括弧裏標記其拼音代碼。
+
+若要**直接**在【朙月拼音】裏輸入表情符號，請按此文設定：
+
+http://gist.github.com/3705586
+
+
+## ibus框架
+
+
+由于之前在ubuntu14上使用ibus感觉不好用，转而使用了搜狗输入法。而现在在xubuntu上发现ibus还不错，并且还在积极开发新版本。
+
+
+```shell
+sudo apt install  ibus  ibus-rime ibus-gtk ibus-gtk3 ibus-qt4 librime-data-emoji
+```
+此时ibus-rime 繁简切换没有问题。
+
+安装演示见： [ibus-rime安装](https://asciinema.org/a/Z3fAd9QStyWlTVfKYRzvsHXFU)
 
 
 
-### fcitx
+
+> 参考:  
+[IBus (简体中文) - ArchWiki](https://wiki.archlinux.org/index.php/IBus_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87) "IBus (简体中文) - ArchWiki")  
+[linux中文输入法，ibus光标不跟随](http://www.chongchonggou.com/g_484011402.html)  
+[wps 中 ibus 输入法光标跟随](http://speculator.leanote.com/post/wps-%E4%B8%AD-ibus-%E8%BE%93%E5%85%A5%E6%B3%95%E5%85%89%E6%A0%87%E8%B7%9F%E9%9A%8F)  
+[Ubuntu 16.04 安装 Rime 输入法](http://speculator.leanote.com/post/Ubuntu-16.04-%E5%AE%89%E8%A3%85-Rime-%E8%BE%93%E5%85%A5%E6%B3%95)  
+
+
+## fcitx框架
+
+安装fcitx主要是为了安装搜狗输入法。 目前 fcitx-rime 基本无法使用。fcitx-rime不是由rime开发者维护(而ibus-rime是)而是由fcitx团队维护，没有那么尽心。
+
 
 参考：  
-<https://wiki.archlinux.org/index.php/Fcitx_(简体中文)>  
-<http://wiki.ubuntu.org.cn/Fcitx>  
-<https://fcitx-im.org/wiki/Fcitx/zh-cn>  
-<http://my.oschina.net/eechen/blog/224291>  
+<https://wiki.archlinux.org/index.php/Fcitx_(简体中文)>   
+<http://wiki.ubuntu.org.cn/Fcitx>   
+<https://fcitx-im.org/wiki/Fcitx/zh-cn>   
+<http://my.oschina.net/eechen/blog/224291>   
 
 参考：中文环境下安装fcitx一般不会有什么问题，在英文环境下安装需进行配置，参见第二个链接。
 	
@@ -76,7 +123,7 @@ ubuntu <http://blog.csdn.net/gopain/article/details/17412057>
 2. 运行下列命令关闭ibus启动fcitx： 
    killall ibus-daemon
    fcitx -d                                     
-3. 设置可以通过shif键，切换中英文输入：   
+3. 设置可以通过shift键，切换中英文输入：   
    执行命令：fcitx-configtool    出现fictx的设置窗口；
    在`输入法`选项卡中设置的顺序为：  键盘-英语（美国）    google拼音    中州韻  
    在`全局配置`选项卡中设置： `额外的激活输入法快捷键` 为 `左shift` 

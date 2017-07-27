@@ -281,13 +281,13 @@ sudo update-java-alternatives -s <jname>
 相比前面的切换这里还要先进行一些配置。假设 jdk 保存路径为 `/opt/jdk1.8.0_91/`。
 
 步骤：
-- 使用`update-alternatives --install`设置安装所需的候选项(由于候选项太多，所以将其全部写在一个脚本文件中，[可在此下载该文件](https://github.com/FanDean/fandean.github.io/blob/master/_drafts/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/orecle-jdk-alternatives.sh))
-- 创建`/usr/lib/jvm/.*.jinfo`文件（这是一个隐藏文件以.开头，[下载文件](https://github.com/FanDean/fandean.github.io/blob/master/_drafts/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/opt-java-8-oracle.jinfo)然后将其更改为隐藏文件）
+- 使用`update-alternatives --install`设置安装所需的候选项(由于候选项太多，所以将其全部写在一个脚本文件中)
+- 创建`/usr/lib/jvm/.*.jinfo`文件（这是一个隐藏文件以.开头）
 - 创建链接到`/opt/jdk1.8.0_91/`的软链接
 - 运行`update-java-alternatives -l`命令查看是否已经添加了该候选项。
 - 运行`update-java-alternatives -s <jname>`进行切换。
 
-
+使用到的两个脚本文件见： [Ubuntu安装oracle jdk alternatives和配置update-java-alternatives的脚本](https://gist.github.com/FanDean/4f2bad05d638e1bfec6421748c64d732)
 
 操作演示见：[orecle-jdk-alternatives - asciinema](https://asciinema.org/a/RX1Vw2d90kZmP6wmBmE3deZY4 "orecle-jdk-alternatives - asciinema")
 
