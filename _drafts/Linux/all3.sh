@@ -13,6 +13,8 @@ sudo apt-get update -qq
 sudo apt-get install g++ -y
 #版本控制工具 git ## 参考另一篇笔记，源码安装最新版。
 sudo apt-get install git git-doc -y
+# git-flow  
+sudo apt-get install git-flow -y
 # curl 与 wget 类似的下载工具
 sudo apt-get install curl -y
 #关于软件编译... 等
@@ -33,7 +35,7 @@ sudo apt-get install libperl-dev
 
 ##########################################################################
 #
-#                   编程语言相关（开发环境）
+#                   编程语言相关（开发环境）尽量先安装
 #
 ##########################################################################
 
@@ -64,7 +66,10 @@ sudo apt-get install libperl-dev
 # 貌似也可通过 sudo apt-get install rbenv，不知此处的rbenv和上文的rbenv有何区别。
 
 # 编译vim所需，安装jekyll所需
-sudo apt-get install ruby-dev -y
+# sudo apt-get install ruby-dev -y
+
+# ruby语言相关的程序，建议通过 rbenv 来安装，见blog
+
 
 ######### Jekyll ########
 # 需在ruby之后安装
@@ -204,9 +209,14 @@ sudo apt-get install fbterm -y
 # Dia 是一款矢量图形绘制程序，跨平台,可用于创建流程图、网络图、电路图。 
 # Inkscape 矢量图像编辑软件，跨平台。  ,感觉挺棒的。必装
 # Gimp 跨平台的图像处理程序，包括几乎所有图像处理所需的功能，号称Linux下的PhotoShop。    
-sudo apt-get install dia -y
+# sudo apt-get install dia -y
 sudo apt-get install inkscape -y
 sudo apt-get install gimp -y
+
+# 很强大的绘图软件，比较复杂, 通过 ppa 下载最新版
+# sudo apt-get install krita -y 
+# 简单易用的绘图软件，不支持中文输入
+# sudo apt-get install pinta
 ############################################################################################
 
 #gwenview较方便的图片查看软件(安装后自行设置，以方便使用)但一进入全屏显示就卡死。

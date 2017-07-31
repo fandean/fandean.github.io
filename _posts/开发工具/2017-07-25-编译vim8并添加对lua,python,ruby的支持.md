@@ -5,7 +5,7 @@ description: "在ubuntu 16.04上编译vim8并支持lua,python,ruby等"
 date: 2017-07-25
 tags: [vim,Linux]
 category: 开发工具
-last_updated: 2017-07-25
+last_updated: 2017-07-30
 comments: true
 chare: true
 ---
@@ -13,6 +13,16 @@ chare: true
 * Kramdown table of contents
 {:toc .toc}
 
+
+## 卸载原有vim
+
+```shell
+sudo apt-get remove --purge vim vim-runtime vim-gnome vim-tiny vim-gui-common
+
+sudo rm -rf /usr/local/share/vim /usr/bin/vim
+```
+
+> 建议卸载原有 vim 版本
 
 ## 下载并解压源码包
 
@@ -24,7 +34,7 @@ chare: true
 ## 安装相关依赖
 
 ```
-sudo apt-get install lua5.1 liblua5.1-dev luajit libluajit-5.1 python-dev python3.5-dev ruby-dev ruby2.3 ruby2.3-dev libperl-dev libncurses5-dev libatk1.0-dev libx11-dev libxpm-dev libxt-dev
+sudo apt-get install lua5.1 liblua5.1-dev luajit libluajit-5.1 python-dev python3-dev ruby-dev  libperl-dev libncurses5-dev libatk1.0-dev libx11-dev libxpm-dev libxt-dev
 ```
 
 ## 编译vim8
@@ -33,7 +43,6 @@ sudo apt-get install lua5.1 liblua5.1-dev luajit libluajit-5.1 python-dev python
 
 ```shell
 ./configure \
---with-vim-name=vim8 \
 --enable-multibyte \
 --enable-perlinterp=dynamic \
 --enable-rubyinterp=dynamic \
@@ -51,9 +60,11 @@ sudo apt-get install lua5.1 liblua5.1-dev luajit libluajit-5.1 python-dev python
 --enable-fontset \
 --enable-largefile \
 --disable-netbeans \
---with-compiledby="YourName" \
+--with-compiledby="Fan" \
 --enable-fail-if-missing
 ```
+
+> 建 议：将上面的命令添加到目录下的 `configure` 文件中，替换掉文件中原有的 `./configure ?@`。
 
 使用make进行编译：  
 ```
@@ -66,7 +77,7 @@ make
 
 > 编译失败的脚本  
 > ```shell
-> ./configure --with-vim-name=vim8 \
+> ./configure --with-vim-name=vim \
 > --with-features=huge \
 > --enable-gui=auto \
 > --with-x \
@@ -104,13 +115,13 @@ sudo checkinstall --install=no
 
 安装
 ```
-sudo dpkg -i vim8-***.deb
+sudo dpkg -i vim-***.deb
 ```
 
 查看安装：
 
 ```shell
-[fan 12:28:37]/tmp/vim-8.0.0768$ vim8 --version
+[fan 12:28:37]/tmp/vim-8.0.0768$ vim --version
 VIM - Vi IMproved 8.0 (2016 Sep 12, compiled Jul 25 2017 12:21:19)
 包含补丁: 1-768
 编译者 fan

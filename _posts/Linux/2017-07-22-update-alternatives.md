@@ -5,7 +5,7 @@ description: "update-alternatives命令的使用；更改Ubuntu默认程序"
 date: 2017-07-22
 tags: [Linux命令]
 category: Linux
-last_updated: 2017-07-24
+last_updated: 2017-07-30
 comments: true
 chare: true
 ---
@@ -121,11 +121,9 @@ editor - 自动模式
 
 涉及到的路径： 
 
-/usr/bin/名称
-
-/etc/alternatives/名称
-
-程序实际路径
+- `/usr/bin/名称`
+- `/etc/alternatives/名称`
+- 程序实际可执行文件的路径
 
 查看这些路径： 
 ```shell
@@ -139,7 +137,7 @@ lrwxrwxrwx 1 root root 18 7月  23 11:11 /etc/alternatives/editor -> /usr/bin/vi
 
 
 
-/var/lib/dpkg/alternatives目录为管理目录，包含的相关文件就相当于配置文件吧。一个名称占用一个文件。
+`/var/lib/dpkg/alternatives`目录为管理目录，包含的相关文件就相当于配置文件吧。一个名称占用一个文件。
 
 
 查看配置文件： `less /var/lib/dpkg/alternatives/editor`
