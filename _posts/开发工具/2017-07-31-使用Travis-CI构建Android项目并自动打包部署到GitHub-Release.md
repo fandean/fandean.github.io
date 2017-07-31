@@ -37,7 +37,7 @@ Travis CI对Github上的开源Repo是免费的，私有Repo收费。
 Travis CI使用YAML文件作为构建脚本。
 
 
-我们可以利用Travis CI来自动根据我们打的Git Tag来构建APK并Push到自己的Github Release上（也可设置分发到fir.im）。
+这里我们利用Travis CI来自动根据我们打的Git Tag来构建APK并Push到自己的Github Release上（也可设置分发到fir.im）。
 
 
 使GitHub帐号登录Travis CI；点击右上将脚的头像，点击"Sync account"按钮，然后打开对自己项目的Hook开关；最后在对应的项目中添加`.travis.yml`文件来配置 Travis CI即可。
@@ -306,12 +306,14 @@ before_install:
 
 > 事先创建好key和keystore文件。 这里我把keystore文件的后缀名变为了.keystore，大家使用的都是 .jks
 
-1. 加密keystore文件`my.keystore`:  `travis encrypt-file my.keystore -r FanDean/android_Travis_CI_Test`。根据命令输出的提示，将加密后的keystore文件 my.keystore.enc 放入Android工程的根目录；并在 `.travis.yml` 文件中添加如下内容：
-  ```yml
-  before_install:
-    - openssl aes-256-cbc -K $encrypted_f6c9a5f058a8_key -iv $encrypted_f6c6a5f053a8_iv -in my.keystore.enc -out my.keystore -d
-  ```
-2. 加密keystore password 、 key password 和 keyAlias。方法和加密 GitHub Token 一样；也可使用添加环境变量的方式。
+1、 加密keystore文件`my.keystore`:  `travis encrypt-file my.keystore -r FanDean/android_Travis_CI_Test`。根据命令输出的提示，将加密后的keystore文件 my.keystore.enc 放入Android工程的根目录；并在 `.travis.yml` 文件中添加如下内容：    
+  
+```yml
+before_install:
+  - openssl aes-256-cbc -K $encrypted_f6c9a5f058a8_key -iv $encrypted_f6c6a5f053a8_iv -in my.keystore.enc -out my.keystore -d
+```
+  
+2、 加密keystore password 、 key password 和 keyAlias。方法和加密 GitHub Token 一样；也可使用添加环境变量的方式。
 
 这里我们准备下面三个环境变量，并通过在travis网站添加环境变量的形式进行添加：   
 
@@ -421,7 +423,7 @@ keystore.properties
 > 示例文件： [android_Travis_CI_Test/.travis.yml](https://github.com/FanDean/android_Travis_CI_Test/blob/master/.travis.yml "android_Travis_CI_Test/.travis.yml")
 
 
-### 一些配置
+## 一些配置
 
 ```yml
 script: ./gradlew testRelease assembleRelease
