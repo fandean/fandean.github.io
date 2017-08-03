@@ -15,6 +15,8 @@ sudo apt-get install g++ -y
 sudo apt-get install git git-doc -y
 # git-flow  
 sudo apt-get install git-flow -y
+# gitg : 非常适合查看 git log
+sudo apt-get install gitg -y
 # curl 与 wget 类似的下载工具
 sudo apt-get install curl -y
 #关于软件编译... 等

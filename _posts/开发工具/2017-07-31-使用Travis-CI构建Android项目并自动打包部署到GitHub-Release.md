@@ -270,20 +270,16 @@ token可以重复使用，但是对于特定的仓库必须重新运行上面的
 - 或者使用命令`travis encrypt GITHUB_TOKEN=<之前生成的token>  -r <owner>/<repo>`,**加密环境变量GITHUB_TOKEN**。其中 `-r`用于指定仓库。这里解密之后得到`GITHUB_TOKEN=<之前生成的token>`而并非`<之前生成的token>`。
 
 
-对于加密环境变量GITHUB_TOKEN的形式，需这样使用：
+对于加密环境变量`GITHUB_TOKEN`的形式，需这样使用：
 ```yml
 env:
   global:
     secure: "XR0ZYSp+eWOhHwO0az80nEZoOOyaOIeV7brTekEdl7APUfPziQHrV4G/xPxPZB2Fcn13efyiwpPbmXpSVkIqJJZg2Ok/efBviUIwgl5pqGrddgXEskW8+lebHJA/17JjmXoo2ZT9BcmMlVrT0Dj5WCJXH2QOSAXzVy/9DO7e3pEijAImCHgh0oH/hQzlO86IMBn3Fzlb520bplEI4fnuJNU/nKZrl05dTRCso2ZB2/MXt1X5vfYm4zrwjTgZXOpfSVur6kv/EMNQFDiGLa3F22m1FDQULDfHY7evT79hYlcRKVGx7hoQRrOxXr0Ag6wcb+4buvwaxutNPjaEXkH3FfocrIGxZtox1kE19ebqjc6fT/CH85Lf+AqT2rR86Wr5aaEQcKAxNZxUJtir5MAIo0j7vkx1PUi0MCb9K6JHca9lkFsoYP1L0pjDztD8w4J15rv5TCV/JjMxhCGQkGwDH+M3Z7dQOgikoRaO11o6C5/fC8qfCeGKT3GzL9966dy0UY9ZDQbB7y3donlWgoTZHn6xahGNlP4CYiP6Ax94egDmbSmyiJud5Y0NmwXMY0IEuJPWEFkmBdGEbZuqqsL3mxqxebox7q7gz613ToZSsfbNhKw3ouETftjXoMnlfRFIl7LSAOwAtL5Wig5zlwCMafGTFaGpLH0zl02Udjy3UbU="
 
-before_install:
-  - composer config --global github-oauth.github.com "$GITHUB_TOKEN"
+deploy:
+  api_key:
+    secure: ${GITHUB_TOKEN}
 ```
-
-使用了`composer config --global github-oauth.github.com "$GITHUB_TOKEN"` 后就无需为 `deploy:` 指定 `api_key:`。
-
-
-其中`composer`命令应该是PHP用来进行依赖管理的程序。与 node的 npm 和 ruby 的 bundler 相似。
 
 
 > 这里可以对 `secure: 字串`的作用做一个猜测： Travis读取到 secure 时便会解密该字串，并将解密后得到的值替换 secure 这行内容。比如如果加密的是 `变量=值`，那么当其出现在上文的 `global: ` 时，就是定义了一个全局的环境变量，然后就可在后面使用该变量。
@@ -460,6 +456,8 @@ script:
 * [用Travis CI给Android项目部署Github Release · Kesco Lin](http://kescoode.com/travis-ci-android-github-release/)   
 * [基于Travis CI搭建Android自动打包发布工作流（支持Github Release及fir.im）](http://avnpc.com/pages/android-auto-deploy-workflow-on-travis-ci)   
 * [Travis CI Android example – Matti – Medium](https://medium.com/@harmittaa/travis-ci-android-example-357f6e632fc4 "Travis CI Android example – Matti – Medium")  完整示例，并且提供了对应的 GitHub 示例。推荐。  
+* [Adding GitHub token to Travis CI configuration](http://blog.code4hire.com/2016/06/Adding-GitHub-token-to-Travis-CI-configuration/ "Adding GitHub token to Travis CI configuration")  
+[Github auth token on TravisCI — Cees-Jan Kiewiet's blog](https://blog.wyrihaximus.net/2015/09/github-auth-token-on-travis/ "Github auth token on TravisCI — Cees-Jan Kiewiet's blog")  
 * [Environment Variables - Travis CI](https://docs.travis-ci.com/user/environment-variables/ "Environment Variables - Travis CI")
 
 > Jenkins学习资料 [Jenkins Overview](https://www.tutorialspoint.com/jenkins/jenkins_overview.htm "Jenkins Overview")

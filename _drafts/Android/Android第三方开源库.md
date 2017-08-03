@@ -1,4 +1,4 @@
-# Android相关框架
+# Android第三方开源库
 
 标签（空格分隔）： Android
 
@@ -356,6 +356,11 @@ LitePal是一款开源的Android数据库框架，它采用了对象关系映射
 sqlbrite是对Android中SQLiteOpenHelper的轻量级包装，可以响应式的对SQL语句进行操作。
 
 
+
+### GreenDao
+
+
+
 ## 地图
 
 如何使用百度地图的API，来完成导航、搜索、路径规划
@@ -441,7 +446,7 @@ Android推出了LruCache这个内存缓存类。Android提供的类。
 [android轻量级缓存框架ASimpleCache分析](http://blog.csdn.net/superjunjin/article/details/45096805 )      
 [ASimpleCache使用感受](http://www.cnblogs.com/weidiao/p/5378942.html "ASimpleCache使用感受 - weiyinfu - 博客园")     
 
-
+不流行...
 
 
 ## 测试框架
@@ -461,6 +466,32 @@ Android推出了LruCache这个内存缓存类。Android提供的类。
 
 - Greenrobot EventBus
 - Otto Bus
+
+
+
+
+> 建议先学习 RxJava，再考虑EventBus；在很多项目中都可见 RxJava的使用，并且在当下也比较流行。功能也很强大。
+
+
+### RxJava
+
+一个在 Java VM 上使用可观测的序列来组成异步的、基于事件的程序的库。
+
+异步，观察者模式，响应式编程（响应式代码的基本组成部分是Observables和Subscribers）
+
+Rxjava 也能用来实现事件广播机制，可以发布和订阅各类事件，并且还有很多工具来管理这些事件。
+
+
+
+- [给 Android 开发者的 RxJava 详解](https://gank.io/post/560e15be2dca930e00da1083 "给 Android 开发者的 RxJava 详解")
+- [彻底了解RxJava（一）基础知识 | 更上一层楼－Android研发工程师高级进阶](https://asce1885.gitbooks.io/android-rd-senior-advanced/content/che_di_le_jie_rxjava_ff08_yi_ff09_ji_chu_zhi_shi.html "彻底了解RxJava（一）基础知识 | 更上一层楼－Android研发工程师高级进阶")
+
+
+
+
+>  MVP + Retrofit + Rxjava 
+
+
 
 
 
@@ -522,25 +553,24 @@ log4j这类的日志系统
 
 
 
+### essentials 实用工具
 
-## RxJava
+[greenrobot/essentials](https://github.com/greenrobot/essentials )
 
+Android和Java的通用实用程序和散列函数（又名java-common）
 
+包含了各种使用工具；比如 
 
-异步，观察者模式，响应式编程（响应式代码的基本组成部分是Observables和Subscribers）
-
-
-
-- [给 Android 开发者的 RxJava 详解](https://gank.io/post/560e15be2dca930e00da1083 "给 Android 开发者的 RxJava 详解")
-- [彻底了解RxJava（一）基础知识 | 更上一层楼－Android研发工程师高级进阶](https://asce1885.gitbooks.io/android-rd-senior-advanced/content/che_di_le_jie_rxjava_ff08_yi_ff09_ji_chu_zhi_shi.html "彻底了解RxJava（一）基础知识 | 更上一层楼－Android研发工程师高级进阶")
-
-
-
-
-
+- I/O utilities：help with streams (byte and character based) and digests (e.g. MD5 and SHA-1).
+- File utilities：简化从文件读取和写入字符串/字节/对象。还包括从文件和复制文件获取哈希值。
+- String utilities：允许有效的分割和连接字符串，十六进制和MD5创建，以及其他有用的字符串功能。
+- Date utilities
+- Object cache：具有强大配置选项的对象缓存：软/弱/强引用，最大大小和基于时间的限定
+- ...
 
 
->  MVP + Retrofit + Rxjava 
+
+
 
 
 
