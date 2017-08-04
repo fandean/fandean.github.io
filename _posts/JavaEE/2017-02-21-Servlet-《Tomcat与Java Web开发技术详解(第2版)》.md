@@ -1,51 +1,69 @@
-﻿# Servlet-《TaJWdt》
-
-标签（空格分隔）： JavaEE
-
 ---
+layout: post
+title: "Servlet《Tomcat与Java Web开发技术详解(第2版)》"
+description: "Servlet学习"
+date: 2017-02-21
+tags: [Servlet,JavaEE]
+category: JavaEE
+last_updated: 2017-08-04
+comments: true
+chare: true
+---
+
+* Kramdown table of contents
+{:toc .toc}
+
+
+
+
+# Servlet
+
 
 Servlet 是 Server Applet 的缩写，也称为服务端小程序。
 
 
-> 《Tomcat与Java Web开发技术详解(第2版)》.(孙卫琴).pdf
-《Tomcat and Java Web development technology》本书翻译的英文名，将本书简称为 -《TaJWdt》
-
 Java EE 以前称为 J2EE
 
-[Servlet 教程](http://www.runoob.com/servlet/servlet-tutorial.html)
+[Servlet 教程](http://www.runoob.com/servlet/servlet-tutorial.html)     
+
 [Java Tutorials](https://www.tutorialspoint.com/java_technology_tutorials.htm)
 
 菜鸟教程网站的一些教程是翻译了tutorialspoint网站的相关教程。比如Servlet、JSP两篇。
 
 JSP: 
-JSP标准标记库: JSP Standard Tag Library, **JSTL** 
+
+JSP标准标记库: JSP Standard Tag Library, **JSTL**      
 表达式语言：Expression Language, EL
 
 > JavaEE学习路径：
 >
-1. ~~《从零开始学Java Web开发》入门~~；《Head First Servlet JSP》详细【可选】
-2. 《Tomcat与Java Web开发技术详解》[必看]：Log4J、Velocity模板语言。《轻量级Java EE企业应用实战》
-3. 《JavaEE核心框架实战》
-4. 《深入分析Java Web技术内幕》
+> 1. ~~《从零开始学Java Web开发》入门~~；《Head First Servlet JSP》详细【可选】
+> 2. 《Tomcat与Java Web开发技术详解》[必看]：Log4J、Velocity模板语言。《轻量级Java EE企业应用实战》
+> 3. 《JavaEE核心框架实战》
+> 4. 《深入分析Java Web技术内幕》
+
 
 
 
 [Tomcat与Java Web开发技术详解（第2版）源码](http://vdisk.weibo.com/s/cGsKxlqPHcM)
 
 ## Eclipse开发Web项目
-"New Project" | "Dynamic Web Project" | "Next" |"Project Name"(项目名称) | "Next" | "Next" | "Context Root"应该是指"Web应用的名称";Content directory:应该是指该Web应用包含的内容文件在Eclipse中对应的文件夹  | 勾选"Generate web.xml deployment descriptor" 即为该Web应用创建web.xml配置文件 | 
 
-右键选择WebContent文件夹 | 新建index.jsp 
-右键选择Java Resources下的src 选择 | 新建一个 package | 然后新建一个class(作为servlet)
+"New Project" -> "Dynamic Web Project" -> "Next" ->"Project Name"(项目名称) -> "Next" -> "Next" -> "Context Root"应该是指"Web应用的名称";Content directory:应该是指该Web应用包含的内容文件在Eclipse中对应的文件夹  -> 勾选"Generate web.xml deployment descriptor" 即为该Web应用创建web.xml配置文件 -> 
+
+右键选择WebContent文件夹 -> 新建index.jsp 
+右键选择Java Resources下的src 选择 -> 新建一个 package -> 然后新建一个class(作为servlet)
 
 
 > 如果Eclipse中的Web项目是自动部署到Tomcat的，则src源文件下的class，最终会放入该web应用的WEB-INF目录下的classes目录下。（使其符合Tomcat所要求的Web应用的目录结构）
 
-编译运行部署Web应用：选择"Run As" | "Run on Server" | ... | "Next" | Configured列表中的Web应用为要运行的应用 
+
+编译运行部署Web应用：选择"Run As" -> "Run on Server" -> ... -> "Next" -> Configured列表中的Web应用为要运行的应用 
 
 ### Eclipse中的Web项目自动部署到Tomcat
 
 [Eclipse中的Web项目自动部署到Tomcat](http://blog.csdn.net/qh_java/article/details/46844567)
+
 [Eclipse中web项目部署至Tomcat步骤](http://www.cnblogs.com/cxtczzy/archive/2013/03/30/2991096.html)
 
 
@@ -54,13 +72,16 @@ JSP标准标记库: JSP Standard Tag Library, **JSTL**
 
 
 ## Servlet 生命周期
-[Servlet生命周期与工作原理](https://my.oschina.net/xianggao/blog/395327)：入门
+
+[Servlet生命周期与工作原理](https://my.oschina.net/xianggao/blog/395327) ：入门
 
 
 
-[Servlet 工作原理解析](https://www.ibm.com/developerworks/cn/java/j-lo-servlet/) ：进阶
+[Servlet 工作原理解析](https://www.ibm.com/developerworks/cn/java/j-lo-servlet/)  ：进阶
+
 
 Servlet 与 Servlet容器（Tomcat）的关系。
+
 Tomcat 的容器等级中，Context 容器是直接管理 Servlet 在容器中的包装类 Wrapper，所以 Context 容器如何运行将直接影响 Servlet 的工作方式。
 
 > 提高Java和Java Web技术的参考书籍《深入分析Java Web技术内幕》
@@ -81,6 +102,7 @@ Web 应用程序开发人员通常编写 Servlet 来扩展 javax.servlet.http.Ht
 
 
 ## Servlet视频学习
+
 传智播客Java Web视频教程：“05-Servlet开发的一些重要细节.avi” 
 
 #### Servlet的一些细节(1)
@@ -88,6 +110,7 @@ Web 应用程序开发人员通常编写 Servlet 来扩展 javax.servlet.http.Ht
 - 由于客户端是通过URL地址访问Web服务器中的资源，所以Servlet程序若想被外界访问，必须把Servlet程序映射到一个URL地址上，这个工作在web.xml文件中使用`<servlet>`元素和`<servlet-mapping>`元素完成
 - `<servlet>`元素用于注册Servlet，它包含两个主要的子元素：`<servlet-name>`和`<servlet-class>`，分别用于设置Servlet的注册名称和Servlet的完整类名。
 - 一个`<servlet-mapping>`元素用于映射一个已注册的Servlet的一个对外访问路径，它包含有两个子元素：`<servlet-name>`和`<url-pattern>`，分别用于指定Servlet的注册名称和Servlet的对外访问路径。例如：
+
 
 ```xml
 <web-app>
@@ -117,6 +140,7 @@ Web 应用程序开发人员通常编写 Servlet 来扩展 javax.servlet.http.Ht
 - 在Servlet映射到的URL中也可使用 `*` 通配符，但是只能有两种固定的格式：一种格式是`*.扩展名`(比如`*.html`)，另一种格式是以正斜杠(/)开头并以`/*`结尾（比如: `/demo/*` 表示匹配该路径下的所有Servlet）。
 
 #### Servlet的一些细节(3)
+
 使用通配符后的优先级问题；若同时存在以下配置，分析在给出的URL地址中使用那个Servlet进行响应处理。
 
 - Servlet1映射到 `/abc/*`
@@ -168,6 +192,7 @@ Web 应用程序开发人员通常编写 Servlet 来扩展 javax.servlet.http.Ht
 
 
 #### Servlet的一些细节(7)
+
 Servlet线程安全问题：
 
 > 线程安全问题只有在操作共享资源时才会出现。
@@ -178,6 +203,7 @@ Servlet线程安全问题：
 
 
 ## Servlet技术上
+
 Servlet最常用到的对象：
 
 - 请求对象（ServletRequest和HTTPServletRequest）
@@ -187,7 +213,9 @@ Servlet最常用到的对象：
 
 
 ### Servlet API
+
 Servlet API中的主要接口与类的类框架图： 
+
 ![enter image description here](https://i.imgur.com/conUBha.png)
 
 
@@ -249,6 +277,7 @@ ServletConfig对象在开发中的应用场景：
 
 
 #### ServletContext接口(重要)
+
 ServletContext是Servlet与Servlet容器直接直接通信的接口。Servlet容器在启动一个Web应用时，会为它创建一个ServletContext对象。每个**Web应用**都有唯一的ServletContext对象，同一个Web应用中的所有Servlet对象都共享一个总管家，Servlet对象们可以通过这个总管家来访问容器中的各种资源。
 
 ServletContext接口提供的方法可以分为以下几种类型：
@@ -276,14 +305,14 @@ ServletContext接口提供的方法可以分为以下几种类型：
 
 
 > 转发与重定向的区别：
-转发：你向我借钱我说没有，我帮你去找另一个有钱的人。（用得多）
-重定向：是你向我借钱我说没有，然后叫你自己去找另一个有钱的人。
+> 转发：你向我借钱我说没有，我帮你去找另一个有钱的人。（用得多）
+> 重定向：是你向我借钱我说没有，然后叫你自己去找另一个有钱的人。
 
 
 
 #### 操作资源文件
 
-```Java
+```java
 //获取资源文件db.properties方式 1
 InputStream in = this.getServletContext().getResourceAsStream("/db.properties");
 Properties props = new Properties();  //实际为map
@@ -318,6 +347,7 @@ JavaWeb应用的生命周期是由Servlet容器来控制的。它包含3个阶�
 
 
 #### 同Tomcat的管理平台管理Web应用的生命周期
+
 Tomcat还提供了一个管理平台，通过该平台，用户可以在tomcat运行时，手工管理单个Web应用的生命周期。
 
 **默认情况下**，当一个Web应用处于运行状态时，如果他的web.xml文件做了修改，这种修改不会立即生效，必须重新启动Web应用才能生效。
@@ -330,6 +360,7 @@ Tomcat还提供了一个管理平台，通过该平台，用户可以在tomcat�
 
 
 ### Servlet的生命周期(重要)
+
 JavaWeb应用的生命周期由Servlet容器来控制，而Servlet作为JavaWeb应用的最核心的组件，其生命周期也由Servlet容器来控制。
 
 - 初始化阶段：加载类，创建ServletConfig对象(此外Servlet容器还会使得ServletConfig对象与当前Web应用的ServletContext对象关联)，创建Servlet对象，调用其init(ServletConfig config)方法（init()方法只被调用一次）。（几种进入初始化阶段的情况）
@@ -359,10 +390,12 @@ Web应用范围具有两层含义：
 
 
 ### Servlet的服务方法抛出异常
+
 Servlet的service()方法抛出的异常由Servlet容器捕获，Servlet容器在捕获到异常后，会向客户端发送相应的错误信息。
 
 
 ### 防止页面被客户端缓存
+
 浏览器的缓存技术适用于保存服务器端的静态网页，以及不包含敏感数据的网页。
 
 ```java
@@ -377,10 +410,12 @@ response.setHeader("Expires","0"); //设置网页的过期时间；适用于http
 ## Servlet技术下
 
 ### 下载文件
+
 把响应正文的MIME类型设置为`application/force-download`，当浏览器收到这种MIME类型的响应正文时，会以下载的方式来处理响应正文。
 
 
 ### 上传文件
+
 设置请求正文采用"multipart/form-data"数据类型，在页面中使用表单并指定文件于
 
 当请求正文为"multipart/form-data"数据类型时，Servlet直接从HttpServletRequest对象中解析出复合表单的每个子部分仍然是一项非常复杂的工作。可以利用Apache开源软件组织提供的两个软件包来实现文件上传。
@@ -393,9 +428,11 @@ Servlet主要利用fileupload软件包中的接口和类来实现文件上传，
 
 
 ### ImageServlet类
+
 Servlet不仅能动态生成HTML文档，还能动态生成图像。
 
 ### Cookie
+
 服务器可以根据Cookie来跟踪客户状态，这对于需要区别客户的场合特别有用。
 
 当客户端首次请求访问服务器时，服务器先在客户端存放包含该客户的相关信息的Cookie，以后客户端每次请求访问服务器时，都会在HTTP请求数据中包含Cookie，服务器解析HTTP请求中的Cookie，就可获得关于客户的相关信息。
@@ -404,9 +441,12 @@ Servlet不仅能动态生成HTML文档，还能动态生成图像。
 
 
 ### 工作目录
+
 每个Web应用都有一个工作目录，Servlet容器会把这个Web相关的临时文件保存在工作目录下。
 
+```
     /work/[enginename]/[hostname]/[contextpath]
+```
 
 该工作目录不仅可以被Servlet容器访问，还可被Web应用的Servlet访问。
 
@@ -416,6 +456,7 @@ File workDir = (File)context.getAttribute("javax.servlet.context.tempdir");
 ```
 
 ### 转发和包含
+
 经管一个Servlet对象无法直接调用另一个Servlet对象的service()方法，但Servlet规范为Web组件之间的协作提供了两种途径。
 
 - 请求转发(forward)：Servlet（源组件）先对客户请求做一些预处理操作，然后把请求转发给其他Web组件（目标组件）来完成包括生成响应结果在内的后续操作。
@@ -429,6 +470,7 @@ Servlet可通过ServletContext和ServletRequest的getReqestDispatcher(String pat
 
 
 #### 请求范围（重要）
+
 请求范围是指服务器端响应一次客户请求的过程，从Servlet容器接收到一个客户请求开始，到返回响应结果结束。请求访问与ServletRequest对象和ServletResponse对象的生命周期对应。
 
 ServletRequest接口中也提供了get/setAttribute()方法，因此请求范围内的共享数据可作为ServletRequest对象的属性存在。
@@ -440,6 +482,7 @@ ServletRequest接口中也提供了get/setAttribute()方法，因此请求范围
 
 
 ### 重定向
+
 重定向的运作流程：
 
 - 访问某Web组件
@@ -463,7 +506,7 @@ HTTPServletResponse接口的sendRedirect(String location)方法用于重定向�
 
 
 > 更多Servlet技术见 传智播客方老师的JavaWeb视频教程
-比如中文编码问题...
+> 比如中文编码问题...
 
 
 

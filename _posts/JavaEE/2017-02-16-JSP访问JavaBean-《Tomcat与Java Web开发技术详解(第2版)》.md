@@ -1,11 +1,27 @@
-﻿# JSP访问JavaBean-《TaJWdt》
-
-标签（空格分隔）： JavaEE
-
+---
+layout: post
+title: "JSP访问JavaBean-《Tomcat与Java Web开发技术详解(第2版)》"
+description: "JSP访问JavaBean"
+date: 2017-02-16
+tags: [JSP]
+category: JavaEE
+last_updated: 2017-08-04
+comments: true
+chare: true
 ---
 
-> 《Tomcat与Java Web开发技术详解(第2版)》.(孙卫琴).pdf
-《Tomcat and Java Web development technology》本书翻译的英文名，将本书简称为 -《TaJWdt》
+* Kramdown table of contents
+{:toc .toc}
+
+
+
+
+
+# JSP访问JavaBean
+
+
+
+> 《Tomcat与Java Web开发技术详解(第2版)》.(孙卫琴)
 
 
 把Java程序代码放到JavaBean中，然后在JSP文件中通过简洁的JSP标签来访问JavaBean，这是简化JSP代码的重要手段。
@@ -29,6 +45,7 @@
 
 
 ## JSP访问JavaBean的语法
+
 在**JSP网页**中，既可通过**程序代码**来访问JavaBean，也可通过特定的**JSP标签**来访问JavaBean。
 采用JSP标签，可以减少JSP网页中的程序代码，**使它更接近于HTML页面**。
 
@@ -37,14 +54,15 @@
 - 1.导入JavaBean类：`<%@ page import>`
 - 2.声明JavaBean对象：`<jsp:useBean id='局部变量名，且必须在所有范围内唯一' class='' scope='' />`，它表示声明一个局部变量，并尝试通过**设置属性的方式**将其添加到某范围内。(必须先声明才能进行后续操作)
 - 3.访问JavaBean属性：`<jsp:getProperty name='' property='' />`调用该bean的get方法获取该属性(无需指定范围，因为id是唯一的)，再打印。
-- 4.给JavaBean的某个属性赋值，可以使用`<jsp:setProperty name='' property='' value=''`
+- 4.给JavaBean的某个属性赋值，可以使用`<jsp:setProperty name='' property='' value='' />`
 
 
 > 开发人员创建的JavaBean类严格遵守JavaBean的规范，才能保证JSP中的访问JavaBean的标签能正确运行。
-另使用EL语言能够更加简洁的完成上面的功能。
+> 另使用EL语言能够更加简洁的完成上面的功能。
 
 
 ## JavaBean的范围
+
 JavaBean的scope属性决定了JavaBean对象存在的范围。scope的可选值包括以下几种：
 
 - page：表示页面范围，默认值
@@ -72,6 +90,7 @@ pageCounter1.jsp和pageCounter2.jsp都使用了
 
 
 ### JavaBean在请求(request)范围内
+
 请求范围对应的时间段为：从客户请求访问一个JSP文件开始，到这个JSP文件返回响应结果结束；**如果**这个JSP文件把**请求转发**给其他Web组件，那么直到其他Web组件返回响应结果结束。
 ```
 <jsp:useBean id="myPageBean" scope="request" class="mypack.CounterBean" />

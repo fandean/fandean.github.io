@@ -1,8 +1,25 @@
-﻿# Hibernate入门视频
-
-标签（空格分隔）： JavaEE
-
 ---
+layout: post
+title: "Hibernate入门学习"
+description: "Hibernate入门学习"
+date: 2017-03-02
+tags: [Hibernate]
+category: JavaEE
+last_updated: 2017-08-04
+comments: true
+chare: true
+---
+
+* Kramdown table of contents
+{:toc .toc}
+
+
+
+
+
+
+# Hibernate入门学习
+
 
 Hibernate [haibe neite]：冬眠
 
@@ -42,7 +59,8 @@ Hibernate [haibe neite]：冬眠
 
 
 
-### 编写第一个Hibernate例子：
+### 编写第一个Hibernate例子
+
 步骤：
 
 1. 创建Hibernate的配置文件
@@ -82,9 +100,10 @@ Hibernate [haibe neite]：冬眠
 **3.创建Hibernate的配置文件:**
 
 该配置文件可以利用之前安装的插件自动生成。如果文档生成之后，用Eclipse编辑该文档时没有出现代码提示功能，则需要还需要在Eclipse当中导入相关.dtd文档；该文档的位置：
-hibernate-release-×.×.×/project/hibernate-core/src/main/resources/org/hibernate/hibernate-mapping-×.×.dtd
+`hibernate-release-×.×.×/project/hibernate-core/src/main/resources/org/hibernate/hibernate-mapping-×.×.dtd`
 
 新建配置文件： 右击该工程选择"New"-->"Other" --> "Hibernate" --> "Hibernate Configuration File"--> "Next" --> "Next"  选择对应Hibernate版本，其他暂时不填。
+
 ```
 hibernate.cfg.xml 文件
 ```
@@ -106,7 +125,8 @@ hibernate.cfg.xml 文件
 
 
 **5.创建关系映射文件**
-右击该工程选择"New"-->"Other" --> "Hibernate" --> "Hibernate XML Mapping  File" 选择要映射的类为上一步创建的久化类。
+
+右击该工程选择 "New"-->"Other" --> "Hibernate" --> "Hibernate XML Mapping  File" 选择要映射的类为上一步创建的久化类。
 
 类名 -->  表名
 属性 --> 表中字段
@@ -125,8 +145,11 @@ hibernate.cfg.xml 文件
 
 
 ## 映射类型
+
 映射文件中type类型为，Hibernate 映射类型**或Java类型(带包名)**。
-`      <property name="类属性" column="数据表_列" type="映射类型或Java类型(带包名)"/>`
+`<property name="类属性" column="数据表_列" type="映射类型或Java类型(带包名)"/>`
+
+
 
 ```
 Java 数据类型   Hibernate 映射类型     SQL 数据库类型
@@ -135,13 +158,16 @@ Java 数据类型   Hibernate 映射类型     SQL 数据库类型
 ```
 
 
-|映射类型|	Java 类型|	ANSI SQL 类型|描述|
-|-----------|--------|------------|---------|
-|date |	java.util.Date 或 java.sql.Date|	DATE|代表日期：yyyy-MM-dd|
-|time|	java.util.Date 或 java.sql.Time	|TIME|代表时间： hh:mi:ss|
-|timestamp|	java.util.Date 或 java.sql.Timestamp|	TIMESTAMP|时间撮：yyyymmddhhmiss|
-|calendar	|java.util.Calendar|	TIMESTAMP|同上|
-|calendar_date|	java.util.Calendar|	DATE|代表日期：yyyy-MM-dd|
+
+| 映射类型          | Java 类型                             | ANSI SQL 类型 | 描述                 |
+| :------------ | :---------------------------------- | :---------- | :----------------- |
+| date          | java.util.Date 或 java.sql.Date      | DATE        | 代表日期：yyyy-MM-dd    |
+| time          | java.util.Date 或 java.sql.Time      | TIME        | 代表时间： `hh:mi:ss`   |
+| timestamp     | java.util.Date 或 java.sql.Timestamp | TIMESTAMP   | 时间撮：yyyymmddhhmiss |
+| calendar      | java.util.Calendar                  | TIMESTAMP   | 同上                 |
+| calendar_date | java.util.Calendar                  | DATE        | 代表日期：yyyy-MM-dd    |
+
+
 
 >只要日期时可以在映射文件中的类型使用date而非java.util.Date即可。
 
@@ -149,21 +175,22 @@ Java 数据类型   Hibernate 映射类型     SQL 数据库类型
 
 ## 集合的映射
 
-|集合类型|	映射和描述|
-|--------|-------------------|
-|java.util.Set	|它和 `<set> `元素匹配并且用 java.util.HashSet 初化。|
-|java.util.SortedSt|	它和 `<set>` 元素匹配并且用 java.util.TreeSet 初始化。sort 属性可以设置成比较器或者自然排序。|
-|java.util.List|	它和 `<list>` 元素匹配并且用 java.util.ArrayList 初始。|
-|java.util.Collection|	它和 `<bag>` 或者 \<ibag> 元素匹配以及用 java.util.ArrayList 初始化。|
-|java.util.Map|	它和 `<map>` 元素匹配并且用 java.util.HashMap 初始化。|
-|java.util.SortedMap")|	它和 `<map>` 元素匹配并且用 java.util.TreeMap 初始化。sort 属性可以设置成比较器或者 自然排序。|
-| 基本类型数组 | `<primitive-array>`|
-| 其它类型数组 | `<array>` |
+| 集合类型                  | 映射和描述                                    |
+| --------------------- | ---------------------------------------- |
+| java.util.Set         | 它和 `<set> `元素匹配并且用 java.util.HashSet 初化。 |
+| java.util.SortedSt    | 它和 `<set>` 元素匹配并且用 java.util.TreeSet 初始化。sort 属性可以设置成比较器或者自然排序。 |
+| java.util.List        | 它和 `<list>` 元素匹配并且用 java.util.ArrayList 初始。 |
+| java.util.Collection  | 它和 `<bag>` 或者 `<ibag>` 元素匹配以及用 java.util.ArrayList 初始化。 |
+| java.util.Map         | 它和 `<map>` 元素匹配并且用 java.util.HashMap 初始化。 |
+| java.util.SortedMap") | 它和 `<map>` 元素匹配并且用 java.util.TreeMap 初始化。sort 属性可以设置成比较器或者 自然排序。 |
+| 基本类型数组                | `<primitive-array>`                      |
+| 其它类型数组                | `<array>`                                |
 
 
 
 
 ## 实体类之间的关联映射
+
 实体类之间的关联映射以及表之间的关系。关联映射可以是单向的也可以是双向的。
 关联映射可以是单向的也可以是双向的。
 
@@ -171,22 +198,24 @@ Java 数据类型   Hibernate 映射类型     SQL 数据库类型
 
 
 
-|映射类型 |	描述|
-|---------|------------|
-|Many-to-One|	使用 Hibernate 映射多对一关系|
-|One-to-One|	使用 Hibernate 映射一对一关系|
-|One-to-Many|	使用 Hibernate 映射一对多关系|
-|Many-to-Many|	使用 Hibernate 映射多对多关系|
+| 映射类型         | 描述                   |
+| ------------ | -------------------- |
+| Many-to-One  | 使用 Hibernate 映射多对一关系 |
+| One-to-One   | 使用 Hibernate 映射一对一关系 |
+| One-to-Many  | 使用 Hibernate 映射一对多关系 |
+| Many-to-Many | 使用 Hibernate 映射多对多关系 |
 
 
 
 
 
 ## 组件映射
+
 实体类中的某个属性属于用户自定义的类的对象。
 
 比如：自定义的类Address
-```
+
+```java
 <component name="address" class="Address">
     <property name="postcode" column="POSTCODE"></property>
     <property name="address" column="ADDRESS"></property>
@@ -195,6 +224,7 @@ Java 数据类型   Hibernate 映射类型     SQL 数据库类型
 
 
 ## 注解
+
 Hibernate 注解是无需使用 XML 文件来定义映射的最新方法。
 
 Hibernate 注释是一种强大的来给对象和关系映射表提供元数据的方法。所有的元数据被添加到 POJO java 文件代码中，这有利于用户在开发时更好的理解表的结构和 POJO。
@@ -262,7 +292,7 @@ Hibernate 查询语言（HQL）是一种**面向对象**的查询语言；面向
 
 几个示例：
 
-```
+```java
 //FROM、SELECT、WHERE、ORDER BY示例
 String hql = "SELECT E.firstName From Employee E WHERE E.id >10 ORDER BY E.salary DESC,E.firstName DESC";
 Query query = session.createQuery(hql);
@@ -271,7 +301,7 @@ List results = query.list();
 值得注意的是 Employee.firstName 是 Employee 对象的属性，而不是一个 EMPLOYEE 表的字段。
 
 
-```
+```java
 //GROUP BY语句
 String hql = "SELECT SUM(E.salary), E.firtName FROM Employee E " +
              "GROUP BY E.firstName";
@@ -281,9 +311,10 @@ List results = query.list();
 
 
 **使用命名参数：**
+
 Hibernate 的 HQL 查询功能支持命名参数。这使得 HQL 查询功能既能接受来自用户的简单输入，又无需防御 SQL 注入攻击。
 
-```
+```java
 //命名参数
 String hql = "FROM Employee E WHERE E.id = :employee_id";
 Query query = session.createQuery(hql);
@@ -293,7 +324,7 @@ List results = query.list();
 
 
 UPDATE、DELETE、INSERT语句：
-```
+```java
 String hql = "UPDATE Employee set salary = :salary "  +  //两个命名参数
              "WHERE id = :employee_id";
 Query query = session.createQuery(hql);
@@ -306,20 +337,22 @@ System.out.println("Rows affected: " + result);
 ```
 
 **聚合方法：**
+
 HQL 类似于 SQL，支持一系列的聚合方法,它们以同样的方式在 HQL 和 SQL 中工作。
 
 
 **使用分页查询**
+
 两个方法：
 
-|S.N.|	方法&描述|
-|-------|--------------|
-|1|	Query setFirstResult(int startPosition) <br>该方法以一个整数表示结果中的第一行,从 0 行开始。|
-|2|	Query setMaxResults(int maxResult) <br>这个方法告诉 Hibernate 来检索固定数量，即 maxResults 个对象。|
+| S.N. | 方法&描述                                    |
+| ---- | ---------------------------------------- |
+| 1    | Query setFirstResult(int startPosition) <br>该方法以一个整数表示结果中的第一行,从 0 行开始。 |
+| 2    | Query setMaxResults(int maxResult) <br>这个方法告诉 Hibernate 来检索固定数量，即 maxResults 个对象。 |
 
 
 
-```
+```java
 String hql = "FROM Employee";
 Query query = session.createQuery(hql);
 query.setFirstResult(1);
@@ -330,6 +363,7 @@ List results = query.list();
 
 
 ## 标准查询
+
 Hibernate 提供了操纵对象和相应的 RDBMS 表中可用的数据的替代方法。一种方法是标准的 API，它允许你建立一个标准的可编程查询对象来应用**过滤规则**和**逻辑条件**。
 
 Hibernate Session 接口提供了 createCriteria() 方法，可用于创建一个 Criteria 对象。
@@ -341,14 +375,16 @@ Hibernate Session 接口提供了 createCriteria() 方法，可用于创建一�
 
 
 
-##原生SQL
+## 原生SQL
+
 如果你想使用数据库特定的功能如查询提示或 Oracle 中的 CONNECT 关键字的话，你可以使用原生 SQL 数据库来表达查询。
 
 
 
 
 ## 一对多映射
+
 一对多映射：
 
 1. 在数据库中，可以通过添加主外键的关联，表现一对多的关系。
-2. 在Java类中，通过在一方持有多方的集合实现，即在“一”的一端中使用<set>元素表示持有“多”的一端的对象。
+2. 在Java类中，通过在一方持有多方的集合实现，即在“一”的一端中使用`<set>`元素表示持有“多”的一端的对象。

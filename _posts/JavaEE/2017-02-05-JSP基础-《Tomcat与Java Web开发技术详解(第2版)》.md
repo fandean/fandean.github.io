@@ -1,11 +1,27 @@
-﻿# JSP基础-《TaJWdt》
-
-标签（空格分隔）： JavaEE
-
+---
+layout: post
+title: "JSP基础-《Tomcat与Java Web开发技术详解(第2版)》"
+description: "JSP基础"
+date: 2017-02-05
+tags: [JSP]
+category: JavaEE
+last_updated: 2017-08-04
+comments: true
+chare: true
 ---
 
+* Kramdown table of contents
+{:toc .toc}
+
+
+
+
+# JSP基础-《Tomcat与Java Web开发技术详解(第2版)》
+
+
+
 > 《Tomcat与Java Web开发技术详解(第2版)》.(孙卫琴).pdf
-《Tomcat and Java Web development technology》本书翻译的英文名，将本书简称为 TaJWdt
+
 
 当Servlet容器接收到客户端的要求访问特定JSP文件时，容器按照以下流程来处理客户请求：
 
@@ -42,13 +58,13 @@ out.write("</html>\r\n");
 通过**page指令**来引入Java包：
 
     <%@ page import="java.io.*,java.util.Hashtable" %>
-    
+​    
 
-| 功能 |Servlet  | JSP |
-|---------- |--------- |-------------- |
-|引入Java包 | `import java.io.*;`| `<%@ page import="java.io.*,java.util.Hashtable" %>`|
-|设置响应正文格式 | response.setContentType("text/html");|`<%@ page contentType="text/html; charset=utf-8" %>` |
-||||
+| 功能       | Servlet                               | JSP                                      |
+| :------- | :------------------------------------ | :--------------------------------------- |
+| 引入Java包  | `import java.io.*;`                   | `<%@ page import="java.io.*,java.util.Hashtable" %>` |
+| 设置响应正文格式 | response.setContentType("text/html"); | `<%@ page contentType="text/html; charset=utf-8" %>` |
+
 
 
 ### JSP指令(Directive)
@@ -62,15 +78,15 @@ JSP指令用来设置和整个JSP网页相关的属性，如页面的编码方�
 
 #### Page指令
 
-|page指令的属性 | 描述 | 举例 |
-|------- |-------- |---------- |
-|language | 目前仅java为有效和默认值 | |
-|method | 指定Java程序片段(Scriptlet)所属的方法的名称，Java程序片段会成为指定方法的主体，默认方法是service()方法。有效值包括:service、doGet 和 doPost等| `<%@ page method="doPost"`|
-|import | 指定导入的Java软件包名或类名列表，该列表用逗号分隔。(可多次导入)||
-|content_type|指定响应结果的MIME类型，默认为text/html,默认字符编码为ISO-8859-1||
-|session="true\|false" | 指定JSP是否使用Session，默认为true ||
-|errorPage="error_url"|当发送异常时，客户请求被转发到哪个网页||
-|isErrorPage="true\|false"|表示此JSP页是否为处理异常的网页||
+| page指令的属性                | 描述                                       | 举例                         |
+| :----------------------- | :--------------------------------------- | :------------------------- |
+| language                 | 目前仅java为有效和默认值                           |                            |
+| method                   | 指定Java程序片段(Scriptlet)所属的方法的名称，Java程序片段会成为指定方法的主体，默认方法是service()方法。有效值包括:service、doGet 和 doPost等 | `<%@ page method="doPost"` |
+| import                   | 指定导入的Java软件包名或类名列表，该列表用逗号分隔。(可多次导入)      |                            |
+| content_type             | 指定响应结果的MIME类型，默认为text/html,默认字符编码为ISO-8859-1 |                            |
+| session="true或false"     | 指定JSP是否使用Session，默认为true                 |                            |
+| errorPage="error_url"    | 当发送异常时，客户请求被转发到哪个网页                      |                            |
+| isErrorPage="true或false" | 表示此JSP页是否为处理异常的网页                        |                            |
 
 
 #### include指令
@@ -80,7 +96,8 @@ JSP可以通过include指令来包含其他文件的内容，被包含的文件�
 ```
 
 比如在每个网页上都有相同的logo，因此可以把生成logo的代码放在一个JSP文件中，其他JSP就可通过include指令在相应的位置把它包含进来。比如该JSP内容如下：
-```
+
+```html
 <body>
 <img src="logo.bmp">
 <hr>
@@ -91,12 +108,13 @@ JSP可以通过include指令来包含其他文件的内容，被包含的文件�
 
 ### JSP声明
 JSP声明用于声明与JSP对应的Servlet类的**成员变量**和**方法**，语法如下：
-```
+
+```jsp
 <%! declaration; [declaration;] %>
 ```
 
 示例：
-```
+```jsp
 //声明对应Servlet的成员变量
 <%! int v1=0; String v2="hello"; %>
 //声明对应Servlet的方法
@@ -108,10 +126,11 @@ public String amethod(int i){
 
 
 ### Java程序片段(Scriptlet)
+
 在JSP文件中，可以在`<%`和`%>`标记之间直接嵌入任何有效的Java程序代码，这种嵌入的程序片段称为Scriptlet。如果在page指令中没有指定**method属性**，那么这些程序片段默认会与JSP **对应**的Servlet类的**service()方法中**的代码块。
 
 示例：
-```
+```jsp
 <% 
     String gender="female"; //局部变量
     if(gender.equals("female")){
@@ -127,7 +146,8 @@ He is a boy.         <%-- 模板文本 --%>
 ```
 
 以上JSP代码等价于以下Servlet的service()方法：
-```
+
+```java
 public void service(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
     PrintWriter out = response.getWriter();
     String gender = "female";  //局部变量
@@ -142,13 +162,14 @@ public void service(HttpServletRequest request,HttpServletResponse response) thr
 `<%--` 和 `--%>`为JSP的注释标记。
 
 > 在JSP声明中定义的变量，为**实例变量**。
-在程序片段中定义的变量，为**局部变量**。
+> 在程序片段中定义的变量，为**局部变量**。
 
 
 ### Java表达式
+
 Java表达式的标记为`<%=` 和 `%>`。如果在JSP文件的模板文本中使用该标记，那么它能把表达式的值输出到网页上。表达式中的int或float类型的值都自动转换成字符串再进行输出。
 
-```
+```jsp
 You hit the page:
 <%! int hitcount=1; %>
 <%
@@ -160,22 +181,23 @@ times
 ```
 
 ### 隐含对象
+
 Servlet可以访问由Servlet容器提供的ServletContext、ServletRequest 和 ServletResponse等对象。
 而对于在JSP的**程序片段**中，这些对象称为隐含对象，每个对象都被固定的引用变量引用。
 
 > 切记它们是局部变量
 
-|隐含对象的引用变量 | 隐含对象的类型 |
-|--------- |------------------ |
-|request | javax.servlet.HttpServletRequest|
-|response | javax.servlet.HttpServletResponse|
-|pageContext | javax.servlet.jsp.PageContext|
-|application | javax.servlet.ServletContext|
-|out | javax.servlet.jsp.JspWriter|
-|config | javax.servlet.ServletConfig|
-|page | java.lang.Object (相当于Java中的this关键字)|
-|session | javax.servlet.http.HttpSession |
-|exception | java.lang.Exception |
+| 隐含对象的引用变量   | 隐含对象的类型                             |
+| :---------- | :---------------------------------- |
+| request     | javax.servlet.HttpServletRequest    |
+| response    | javax.servlet.HttpServletResponse   |
+| pageContext | javax.servlet.jsp.PageContext       |
+| application | javax.servlet.ServletContext        |
+| out         | javax.servlet.jsp.JspWriter         |
+| config      | javax.servlet.ServletConfig         |
+| page        | java.lang.Object (相当于Java中的this关键字) |
+| session     | javax.servlet.http.HttpSession      |
+| exception   | java.lang.Exception                 |
 
 
 ## JSP的生命周期
@@ -197,19 +219,21 @@ Servlet可以访问由Servlet容器提供的ServletContext、ServletRequest 和 
 
 ## 请求转发
 JSP采用`<jsp:forward>`标签来实现请求转发，转发的目标可以是HTML、JSP、Servlet。
+
 ```
 <jsp:forward page="目标组件的绝对/相对URL" />
 ```
 
 JSP源组件和目标组件共享HttpServletRequest对象和HttpServletResponse对象，JSP源组件中的所有输出数据都不会被发送到客户端。
 
-> 绝对路径：以 / 开头；相对路径：不以 / 开头。
+> 绝对路径：以 `/` 开头；相对路径：不以 `/` 开头。
 
 **注意：**
 Servlet源组件调用response.sendRedirect(String location)方法进行请求转发之后的代码也**会被执行**。
 而JSP源组件中`<jsp:forward>`标签之后的代码**不会被执行**。
 
 示例：源组件source.jsp，在与其对应的Servlet源文件source_jsp.java中，与`<jsp:forward>`标签对应的程序代码为：
+
 ```
 if(true){
     _jspx_page_context.forward("target.jsp"); //请求转发
@@ -217,7 +241,7 @@ if(true){
 }
 ```
 
-> 标签实际上也属于标记。本书把JSP中以`<%`开头的标记称为JSP标记，而把`<jsp:forward>`等称为JSP标签。把`<%!` `<%` `<%=`这3种以`<%`开头的JSP标记也称为JSP脚本元素，以`jsp`作为前缀的标签称为JSP动作元素。
+> 标签实际上也属于标记。本书把JSP中以 `<%` 开头的标记称为JSP标记，而把 `<jsp:forward>` 等称为JSP标签。把 `<%!`  `<%`  `<%=` 这3种以 `<%` 开头的JSP标记也称为JSP脚本元素，以`jsp`作为前缀的标签称为JSP动作元素。
 
 
 转发源组件还可以通过`<jsp:param>`标签来向转发目标组件传递**额外的请求参数**。
@@ -258,6 +282,7 @@ JSP源组件中的 `<jsp:include page="content.jsp" />`被翻译为如下程序�
 ```
 org.apache.jasper.runtime.JspFuntimeLibrary.include(request,response,"content.jsp",out,false);
 ```
+
 客户端请求 --> Servlet容器调用 --> JSP源组件的service()方法 --> 调用上述include()方法时: Servlet容器执行该方法时，先解析目标组件content.jsp，如果没有语法错误，翻译成Servlet源文件，编译Servlet源文件，生成Servlet类，初始化该Servlet并调用它的service()方法。
 Servlet容器执行完include()方法后，继续执行JSP源组件的service()方法中的后续代码。（如果目标组件有错，在实际请求时会出现）
 
@@ -270,7 +295,7 @@ Servlet容器执行完include()方法后，继续执行JSP源组件的service()�
 
 
 > 书中的一个示例：
-`<jsp:include page="<%=bodyfile %>">`，page由变量bodyfile指定（不能再静态包含中这样使用）。
+> `<jsp:include page="<%=bodyfile %>">`，page由变量bodyfile指定（不能再静态包含中这样使用）。
 
 ## JSP异常处理
 在发生异常的场合，可以通过下面的指令将请求转发给另一个专门处理异常的网页：

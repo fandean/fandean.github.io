@@ -1,8 +1,9 @@
-﻿# 访问数据库-《TaJWdt》
+﻿
 
-标签（空格分隔）： JavaEE
 
----
+# 访问数据库-《Tomcat与Java Web开发技术详解(第2版)》
+
+
 
 > 《Tomcat与Java Web开发技术详解(第2版)》.(孙卫琴).pdf
 《Tomcat and Java Web development technology》本书翻译的英文名，将本书简称为 TaJWdt

@@ -382,7 +382,13 @@ Content Provider面试技巧
 
 
 
+
+[Android常用开源工具（1）-Dagger2入门 - 远古大钟 - CSDN博客](http://blog.csdn.net/duo2005duo/article/details/50618171 "Android常用开源工具（1）-Dagger2入门 - 远古大钟 - CSDN博客")
+
+
+
 ### [Butter Knife](http://jakewharton.github.io/butterknife/ "Butter Knife")
+
 用于View注入的ButterKnife也是属于DI的一种。专业解决各种findViewById
 
 [Android Butter Knife 框架——最好用的View注入](http://www.jianshu.com/p/9ad21e548b69)
@@ -454,6 +460,12 @@ Android推出了LruCache这个内存缓存类。Android提供的类。
 ### JUnit
 
 
+
+
+
+
+
+[Testing on Android part 1: Unit Testing](http://www.tinmegali.com/en/testing-part1-unit-testing/ "Testing on Android part 1: Unit Testing")
 
 
 

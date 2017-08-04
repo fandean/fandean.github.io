@@ -1,13 +1,27 @@
-﻿# Http会话与管理-《TaJWdt》
-
-标签（空格分隔）： JavaEE
-
+---
+layout: post
+title: "Http会话与管理-《Tomcat与Java Web开发技术详解(第2版)》"
+description: "Http会话与管理"
+date: 2017-02-13
+tags: [JavaEE]
+category: JavaEE
+last_updated: 2017-08-04
+comments: true
+chare: true
 ---
 
+* Kramdown table of contents
+{:toc .toc}
+
+
+
+
+# Http会话与管理-《Tomcat与Java Web开发技术详解(第2版)》
+
+
 > 《Tomcat与Java Web开发技术详解(第2版)》.(孙卫琴).pdf
-《Tomcat and Java Web development technology》本书翻译的英文名，将本书简称为 -《TaJWdt》
- 
- > 作者的另一本书《Java网络编程精解》
+
+> 作者的另一本书《Java网络编程精解》
 
 Web服务器跟踪客户的状态通常有4种方法：
 
@@ -61,16 +75,8 @@ Servlet容器在某些情况下会把HttpSession对象从内存中转移到永�
 
 
 
-```seq
-Title: 会话状态转变
-运行时状态->持久化状态: 搁置(持久化)
-Note left of 持久化状态: 1.服务器/单个Web应用终止
-Note left of 持久化状态: 2.会话处于不活动状态太长
-Note left of 持久化状态: 3.Web应用中处于运行时状态的会话量达到限制值
-持久化状态->运行时状态: 激活(加载)
-Note right of 运行时状态: 1.服务器/单个Web应用重启
-Note right of 运行时状态: 2.处于会话中的客户端向Web应用发出http请求
-```
+
+![](https://faner.gitlab.io/assets/images/post-images/2017-08-04-16-55-00.png)
 
 
 会话的持久化没有标准的接口；对于Tomcat它采用会话管理器来管理会话：
@@ -101,7 +107,9 @@ Note right of 运行时状态: 2.处于会话中的客户端向Web应用发出ht
 
 
 ## token（令牌）
-[基于 Token 的身份验证](https://ninghao.net/blog/2834)
+
+[基于 Token 的身份验证](https://ninghao.net/blog/2834)    
+
 [基于Token的WEB后台认证机制](http://www.cnblogs.com/xiekeli/p/5607107.html)
 
 
