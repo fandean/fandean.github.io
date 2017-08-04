@@ -359,6 +359,23 @@ sqlbrite是对Android中SQLiteOpenHelper的轻量级包装，可以响应式的�
 
 ### GreenDao
 
+greenDAO is a light & fast ORM for Android that maps objects to SQLite databases. Being highly optimized for Android, greenDAO offers great performance and consumes minimal memory.
+
+
+
+Add `mavenCentral()` to your `build.gradle` project repositories.
+
+For example in your root `build.gradle`:
+
+```java
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+}
+```
+
 
 
 ## 地图

@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "「转」(译)Android MVP架构必要知识：第一部分"
-description: "「转」(译)Android MVP架构必要知识：第一部分"
+title: "「转」(译)Android MVP架构必要知识：第1部分"
+description: "「转」(译)Android MVP架构必要知识：第1部分"
 date: 2017-08-04
-tags: [MVP,Android]
+tags: [MVP,Android,译文]
 category: Android
-last_updated: 2017-08-04
+last_updated: 2017-08-05
 comments: true
 chare: true
 ---

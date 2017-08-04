@@ -17,11 +17,11 @@
 
 - [ ] 理解StartActivity()
 
-- [ ] 理解PendingIntent
+- [x] 理解PendingIntent
 
-- [ ] 理解广播
+- [x] 理解广播
 
-- [ ] 理解Handler
+- [x] 理解Handler
 
 - [ ] 理解内容提供者
 
@@ -56,6 +56,7 @@
 
 
 - [ ] 依赖注入学习
+- [ ] 数据绑定
 
 
 
