@@ -361,6 +361,12 @@ sqlbrite是对Android中SQLiteOpenHelper的轻量级包装，可以响应式的�
 
 greenDAO is a light & fast ORM for Android that maps objects to SQLite databases. Being highly optimized for Android, greenDAO offers great performance and consumes minimal memory.
 
+[GreenDao数据库集成 - 简书](http://www.jianshu.com/p/1ceea4b3f94f)
+
+[Android 你必须了解的ORM框架GreenDao - 简书](http://www.jianshu.com/p/85f5831cfab6)
+
+[史上最高效的 ORM 方案——GreenDao3.0 详解 - Android - 掘金](https://juejin.im/entry/583bd4800ce463006ba5b8fe)
+
 
 
 Add `mavenCentral()` to your `build.gradle` project repositories.
@@ -582,7 +588,7 @@ log4j这类的日志系统
 
 
 
-### essentials 实用工具
+### Essentials 实用工具
 
 [greenrobot/essentials](https://github.com/greenrobot/essentials )
 
@@ -597,6 +603,16 @@ Android和Java的通用实用程序和散列函数（又名java-common）
 - Object cache：具有强大配置选项的对象缓存：软/弱/强引用，最大大小和基于时间的限定
 - ...
 
+
+
+
+### Guava
+
+[google/guava: Google Core Libraries for Java](https://github.com/google/guava "google/guava: Google Core Libraries for Java")
+
+Guava是一组核心库，包括新的集合类型（如multimap和multiset），immutable collections，图形库，功能类型，内存中缓存和用于并发的API /实用程序，I / O，散列，基元 ，反射，字符串处理等等！
+
+这个库比较大，而一个Android程序中的方法数有限制，也可以复制源码出来使用。
 
 
 

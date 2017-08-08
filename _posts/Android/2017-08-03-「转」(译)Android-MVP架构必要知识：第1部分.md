@@ -88,6 +88,9 @@ MVP 在单 Activity 的例子中看起来很简单。但是当我们尝试将一
 
 ![](https://pic1.zhimg.com/v2-da300ec7d04e1398558f3d1451d019c8_r.png)
 
+![](https://faner.gitlab.io/assets/images/post-images/2017-08-05-Android-mvp-01.png)
+
+
 
 
 **让我们理解这个架构草图的每一部分：**

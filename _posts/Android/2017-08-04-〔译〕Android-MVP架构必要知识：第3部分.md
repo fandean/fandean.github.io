@@ -36,7 +36,8 @@ chare: true
 > - [Android MVP Architecture Extension with Interactors and Repositories](https://blog.mindorks.com/android-mvp-architecture-extension-with-interactors-and-repositories-bd4b51972339) 这看起来又像一篇不错的文章。
 >
 > 项目主页：[**android-mvp-architecture**: This repository contains a detailed sample app that implements MVP architecture using Dagger2, GreenDao, RxJava2, FastAndroidNetworking and PlaceholderView](https://github.com/MindorksOpenSource/android-mvp-architecture)
->
+
+
 > 翻译的比较差，部分句子还没翻译出来。
 
 
@@ -44,7 +45,7 @@ chare: true
 
 让我非常高兴的是，本系列文章的第一部分和第二部分创建的基于MVP架构的项目非常受欢迎，在Github上获得了很多人的关注。
 
-在开发过程中，很多人询问在这个架构中实现对话框和适配器的视图。所以，我写了这篇文章来介绍它们。
+在这此期间，很多人寻求在这个架构中实现对话框和适配器的所需的基本视图。所以，我写了这篇文章来介绍它们。
 
 如果你没有阅读过前两篇文章那么我强烈建议你去阅读。下面是它们的链接：
 
@@ -181,7 +182,7 @@ OpenSourceAdapter和BlogAdapter实现了`RecyclerView.Adapter<BaseViewHolder>`�
 
 
 
-**现在是研究该项目代码时候了，专注于代码中的该部分内容的编码方式以及如何在XML中定义视图。**
+**现在是研究该项目代码时候了，请专注于代码中的该部分内容的编码方式以及如何在XML中定义视图。**
 
 
 

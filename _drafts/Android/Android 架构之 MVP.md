@@ -9,12 +9,12 @@
 
 The Model-View-Presenter Pattern 
 
-- 模型 - 数据层。负责处理与网络和数据库层的**业务逻辑**和**通信**。
-- View - UI层。显示数据并通知Presenter用户操作。
-- Presenter - 从模型中检索数据，应用UI逻辑并管理视图的状态，决定从视图中显示和对用户输入通知做出的响应。
+- Model - 数据层。负责处理与网络和数据库层的**业务逻辑**和**通信**。
+- View - UI层。显示数据并向Presenter传递用户操作。
+- Presenter - 从模型中检索数据，实现UI逻辑并管理视图的状态，决定视图的显示内容和对用户的交互作出反应。
 
 
-![](https://upday.github.io/images/blog/model_view_presenter/mvp.png)
+![](https://faner.gitlab.io/assets/images/post-images/2017-08-05-model-view-presenter-mvp.png)
 
 
 
@@ -22,8 +22,9 @@ The Model-View-Presenter Pattern
 
 >  这里需要参考：[Android官方MVP架构示例项目解析](http://www.infoq.com/cn/articles/android-official-mvp-architecture-sample-project-analysis)  中对它的解析。相比于其它地方见到的 MVP实现这里多了个 `＊Contract()`接口〔单词Contrach：合同，契约〕，见图中的 `TaskDetailContract`：
 >
->  ![](http://cdn1.infoqstatic.com/statics_s2_20170801-0326/resource/articles/android-official-mvp-architecture-sample-project-analysis/zh/resources/0013.jpg)
+>  ![](https://faner.gitlab.io/assets/images/post-images/2017-08-05-taskDetail-mvp.png)
 >
+>   图中箭头画反了
 
 
 
@@ -85,13 +86,34 @@ The Presenter and its corresponding View are created by the Activity.
 
 
 
+#### View
+
+view（Activities、Fragments等）
+
+例如，如果你有一个username/password的表单和一个提交按钮，你不需要在view中写验证逻辑而是将它写在presenter中。你的view只管接受用户名和密码的输入然后将他们传递给presenter即可。
+
+#### Presenter
+
+view接口是要被Activity或者Fragment实现的。presenter必须依赖于view接口而不是直接依赖于Activity：通过这种方式，你可以将presenter从视图实现解耦，遵循SOLID原则的D：“依赖抽象，不要依赖具体实现）。
+
+确保presenter不能依赖Android类文件。presenter用纯java代码实现。
+
+> 如果我需要在Presenter中用到 Context呢？
+>
+> 在这种情况下，你应该问一下自己为什么需要context呢。我猜你可能想要存储数据或者获取资源。但是你不需要在presenter中做这些：你可以在view中获取资源，在model中存储数据；所以不需要用到 Context。
+
+
+
+#### View和Presenter之间的交互
 
 写一个contract类来描述View和Presenter之间的交互，与Google的做法一致。
 contract描述了view和presenter之间的交互，它帮助你以更干净的方式设计交互。
 
 如果有多对 View 和 Presenter 则创建多个 Contract 。
 
-view接口是要被Activity或者Fragment实现的。presenter必须依赖于view接口而不是直接依赖于Activity：通过这种方式，你可以将presenter从视图实现解耦，遵循SOLID原则的D：“依赖抽象，不要依赖具体实现）。
+
+
+> View接口中的方法是提供给Presenter调用的。
 
 
 
@@ -207,6 +229,20 @@ Google某员工提供的三篇文章
 
 
 
+
+[GitHub上star超过2k的安卓MVP架构指南](http://www.suqishuo.cn/android-architecture-guideline-for-mvp/ "GitHub上star超过2k的安卓MVP架构指南 - Ernest的Blog") 看到下面各种 Observables 就有点激动：
+
+- **DatabaseHelper**: 它处理插入，更新，以及获取来自本地SQLite数据库的数据。它的方法返回 Rx Observables ，发射(译者注：Rx术语)简单java对象 (models)。
+- **PreferencesHelper**: 它保存以及获取来自 `SharedPreferences` 的数据，他可以返回 Observables 或者直接返回简单java对象。
+- **Retrofit services** : [Retrofit](http://square.github.io/retrofit) 接口 使用Restful API 通信，每个不同的API拥有自己的 Retrofit 服务. 它们返回 Rx Observables.
+
+
+- **Data Manager (Model)**: 这是MVP架构的关键部分。它持有每一个工具类的引用，使用这些工具类满足来自Presenter的请求。 它的方法广泛的使用 Rx 操作符来组合，转换或过滤来自工具类的输出，以便生成Presenter想要的输出。它返回发射数据模型（data models）的 observables。
+- **Presenters**: 订阅由 `DataManager` 提供的observables，处理这些数据以便调用View中合适的方法。
+- **Activities, Fragments, ViewGroups (View)**: 实现了一组Presenter可以调用的方法的标准安卓组件。它们也处理用户的交互如点击等，然后调用Presenter中合适的方法来采取相应的行动。这些控件也实现框架相关的任务，如管理安卓生命周期，渲染视图（Views）等。
+- **Event Bus**: 它使得View控件得到发生在Model的特定事件通知。通常 `DataManager` 发出事件，然后这些事件可以被Activities 和 Fragments 订阅。 event bus **仅仅** 用于非常特别的动作——这些事件不是仅与一个界面相关的，要通知多方，如：用户已经退出登录。  Event Bus 存在的原因。
+
+![](http://www.suqishuo.cn/images/mvp_architecture_diagram.png)
 
 
 

@@ -169,6 +169,8 @@ Android Studio也可在AndroidDevTools下载。
 
 
 
+
+
 ### 使用Enter和Tab进行代码补全的差别
 （Enter vs Tab for Code Completion）
 
@@ -522,7 +524,14 @@ Import the downloaded source into your app project as an Android library module 
 - 点击设置(齿轮)，设置LogCat Header，可以调整每行要显示的信息。
 
 
+## 打开开发者选项
 
+在运行 Android 4.2 及更新版本的设备上，Developer options 默认情况下处于隐藏状态。如需将其显示出来，请转到 Settings > About phone 并点按 Build number 七次。返回上一屏幕即可找到 Developer options。
+
+
+## Android Studio Live Templates
+
+[Android Studio Live Templates使用详解，提高敲代码的速度 - 大力哥的博客 - CSDN博客](http://blog.csdn.net/qq137722697/article/details/74085789 "Android Studio Live Templates使用详解，提高敲代码的速度 - 大力哥的博客 - CSDN博客")
 
 
 

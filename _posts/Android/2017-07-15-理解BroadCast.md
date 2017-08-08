@@ -78,7 +78,7 @@ LocalBroadCastManager缺点：
 
 - 不支持有序广播；虽然它有个sendBroadcastSync()方法，但是不灵。
 - sendBroadcastSync()方法不支持在独立线程上发送和接收广播。（sendBroadcast()应该就没有此限制）
-）
+  ）
 
 看 LocalBroadCastManager 一般常用于发送标准的本地广播；比如可以用来代替Handler更新UI。  
 如果需要发送有序广播就需要使用将全局广播改造为本地广播的方法。
@@ -89,7 +89,7 @@ LocalBroadCastManager缺点：
 > 如果仅需应用内的消息**事件**广播，可以使用事件总线。
 
 > **使用Rxjava:**  
-Rxjaye也可以用来实现事件广播机制。
+> Rxjaye也可以用来实现事件广播机制。
 
 
 
@@ -148,7 +148,7 @@ Manifest Receiver就是在manifest文件中静态注册的Receiver。
 ## 注意事项
 
 ### onReceiv方法
-不要在onRecive()方法中添加过多的逻辑或者进行任何的耗时操作，因为在广播接收器中是不允许开启线程的，当onRecive()方法运行了较长时间而没有结束程序就会报错。
+不要在onReceive()方法中添加过多的逻辑或者进行任何的耗时操作，因为在广播接收器中是不允许开启线程的，当onReceive()方法运行了较长时间而没有结束程序就会报错。
 
 一般而言onReceive()方法是在主线程中运行的（没有调用goAsync()方法）。
 
@@ -168,7 +168,7 @@ Manifest Receiver就是在manifest文件中静态注册的Receiver。
 
 
 > 对进程状态的影响 [Broadcasts - Android Developers](https://developer.android.com/guide/components/broadcasts.html#effects_on_process_state "Broadcasts - Android Developers")   
-goAsync()方法：<https://developer.android.com/reference/android/content/BroadcastReceiver.html#goAsync()>
+> goAsync()方法：<https://developer.android.com/reference/android/content/BroadcastReceiver.html#goAsync()>
 
 
 ## 广播进阶
