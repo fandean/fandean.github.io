@@ -75,6 +75,12 @@ startActivity(intent);
 
 
 
+
+
+> 还有一个 Bundle  
+
+
+
 ## 显式Intent
 
 显式Intent：指定了component属性的Intent（调用`setComponent(ComponentName)`或者`setClass(Context, Class)`来指定）。通过指定具体的组件类，通知应用启动对应的组件。 

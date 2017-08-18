@@ -49,7 +49,7 @@ This API key can be used in this project and with any API that supports it. To u
 > Google的提示是：我们建议您在生产中使用该键之前限制此键。限制限制哪些网站，IP地址或应用程序可以使用此密钥调用API。
 > 而之前申请凭据的时候需要生成ssh key的指纹，和你的包名的。建议设置只有某应用程序可以使用该凭据。使用包名：com.fandean.zhihudaily
 
-关于证书，参考：[签署您的应用 | Android Studio](https://developer.android.com/studio/publish/app-signing.html?hl=zh-cn#certificates-keystores "签署您的应用 | Android Studio")
+关于证书，参考：[签署您的应用 - Android Studio](https://developer.android.com/studio/publish/app-signing.html?hl=zh-cn#certificates-keystores "签署您的应用 - Android Studio")
 
 这里讲到可以使用Google Play签名或自行管理您的密钥和密钥库。
 
@@ -62,9 +62,15 @@ This API key can be used in this project and with any API that supports it. To u
 
 [利用高德地图API打造基于LBS的Android应用 - 简书](http://www.jianshu.com/p/6a4d17a342b7 "利用高德地图API打造基于LBS的Android应用 - 简书")
 
+[高德地图-定位SDK使用 - 简书](http://www.jianshu.com/p/31ec2c6a4b58 "高德地图-定位SDK使用 - 简书")
+
+
+
+
+
 官网文档很详细：
 
-[入门指南-Android 定位SDK | 高德地图API](http://lbs.amap.com/api/android-location-sdk/gettingstarted "入门指南-Android 定位SDK | 高德地图API")
+[入门指南-Android 定位SDK - 高德地图API](http://lbs.amap.com/api/android-location-sdk/gettingstarted "入门指南-Android 定位SDK - 高德地图API")
 
 
 先测试2D地图SDK和定位SDK，在开发包定制下载处选择好这两个功能，然后下载合并代码的定制开发包，这样可以减小包的体积。
@@ -84,16 +90,18 @@ This API key can be used in this project and with any API that supports it. To u
 
 长按地图时可以弹出对话框显示长按的位置点的详细信息。这里需要说明一下，长按地图时会得到长按的位置的经纬度，这里需要高德地图的搜索SDK，进行逆地理编码。      
 
+
+
 天气查询：     
 
 通过天气查询，可获取城市的实时天气、今天和未来3天的预报天气，可结合定位和逆地理编码功能使用，查询定位点所在城市的天气情况。    
 
-[获取天气数据-获取地图数据-开发指南-Android 地图SDK | 高德地图API](http://lbs.amap.com/api/android-sdk/guide/map-data/weather )     
+[获取天气数据-获取地图数据-开发指南-Android 地图SDK - 高德地图API](http://lbs.amap.com/api/android-sdk/guide/map-data/weather )     
 
 请注意：使用上述功能需要下载地图SDK，导入搜索功能的jar包。       
 
 高德地图中的天气返回的数据较少： 
- [天气对照表-实用工具-开发指南-Android 地图SDK | 高德地图API](http://lbs.amap.com/api/android-sdk/guide/map-tools/weather-code "天气对照表-实用工具-开发指南-Android 地图SDK | 高德地图API")
+ [天气对照表-实用工具-开发指南-Android 地图SDK - 高德地图API](http://lbs.amap.com/api/android-sdk/guide/map-tools/weather-code "天气对照表-实用工具-开发指南-Android 地图SDK - 高德地图API")
 
 
 

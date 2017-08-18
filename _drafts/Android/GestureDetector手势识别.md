@@ -41,3 +41,5 @@ GestureDetector类：
 
 [Android 手势监测GestureDetector - 超级Peng - 博客园](http://www.cnblogs.com/PengLee/p/4149171.html "Android 手势监测GestureDetector - 超级Peng - 博客园")
 
+
+[Gestures(手势) - 菜鸟教程](http://www.runoob.com/w3cnote/android-tutorial-gestures.html "3.8 Gestures(手势) - 菜鸟教程")

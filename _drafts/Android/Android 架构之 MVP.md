@@ -143,6 +143,11 @@ Android中的模型视图和演示者(MVP) 第一部分
 
 
 
+## MVP实现流程
+
+
+1. 创建各顶级接口：IView、IPresenter和数据相关的DbHelper, PreferencesHelper, ApiHelper以及继承它们的DataManager接口。
+
 
 
 
@@ -260,11 +265,6 @@ Google某员工提供的三篇文章
 9. [Android MVP模式 简单易懂的介绍方式](https://segmentfault.com/a/1190000003927200)  
 10. [Android框架模式（1）-MVP入门 - 远古大钟 - CSDN博客](http://blog.csdn.net/duo2005duo/article/details/50594757 "Android框架模式（1）-MVP入门 - 远古大钟 - CSDN博客")
 
-
-
-
-
-[Mindorks 的最佳文章都在这里](https://mindorks.com/blogs)
 
 
 

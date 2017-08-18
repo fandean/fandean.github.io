@@ -4,6 +4,39 @@
 
 
 
+## Service生命周期
+
+
+
+启动Service的方式有两种，各自的生命周期也有所不同。   
+
+一、通过startService启动Service：onCreate、onStartCommand、onDestory。  
+
+二、通过bindService绑定Service：onCreate、onBind、onUnbind、onDestory。
+
+
+
+
+
+## Service与Activity通信
+
+* 通过 Binder
+* 通过 Broadcast
+
+
+
+
+
+## 如何保证Service在后台不被kill
+
+
+
+
+
+
+
+## 系统服务类
+
 
 
 [Android Service——系统服务类的使用 - 超级Peng - 博客园](http://www.cnblogs.com/PengLee/p/4092712.html "Android Service——系统服务类的使用 - 超级Peng - 博客园")
