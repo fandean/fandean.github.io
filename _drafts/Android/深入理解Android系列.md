@@ -9,9 +9,5 @@
 [深入理解Android（一）：Gradle详解](http://www.infoq.com/cn/articles/android-in-depth-gradle)  
 [深入理解Android（二）：Java虚拟机Dalvik](http://www.infoq.com/cn/articles/android-in-depth-dalvik)  
 [深入理解Android（三）：Xposed详解](http://www.infoq.com/cn/articles/android-in-depth-xposed)  
-[]()
-[]()
-[]()
-[]()
-[]()
+
 

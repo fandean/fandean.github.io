@@ -50,13 +50,12 @@ sudo apt-get install libperl-dev
 # Groovy版本太低，选择官网下载
 #sudo apt-get install groovy groovy-doc -y
 
-######### Web ########
+######### Node.js########
 # Node.js安装：直接在网站下载最新版，里面包含了npm。位置存放在/opt 目录
 # 此时安装 nodejs 是为了安装gitbook；另可下载 gitbook editer
 
-# 错误：（也不是默认安装） xubuntu 16.04默认安装 nodejs 但没有安装 npm
 # npm: package manager for Node.js
-# sudo apt-get install npm -y
+# 安装后对应的命令分别为    node 和 npm 
 
 ######### Ruby ########
 # 在安装vim-youcompleteme的时候就同时安装了： libruby2.3 rake ruby ruby2.3 vim-addon-manager vim-nox 
@@ -89,7 +88,8 @@ sudo apt-get install python-dev -y
 sudo apt-get install python3.5-dev 
 
 
-# 感觉 nodejs的npm、Ruby的gem、python的pip 好像都存在相同的功能  package manager
+#  感觉 nodejs的npm、Ruby的gem、python的pip 好像都存在相同的功能  package manager
+# 并且安装完成后都需要修改仓库地址为国内镜像地址。
 
 
 

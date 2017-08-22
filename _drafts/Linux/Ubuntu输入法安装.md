@@ -15,7 +15,7 @@
 
 ## rime繁簡狀態切換
 
-按Ctrl+`或F4切換繁簡狀態
+按Ctrl+\`或F4切換繁簡狀態
 
 
 [Ubuntu 16.10依赖libopencc 1.0.4，导致简体无法转换 · Issue #18 · rime/ibus-rime](https://github.com/rime/ibus-rime/issues/18 "Ubuntu 16.10依赖libopencc 1.0.4，导致简体无法转换 · Issue #18 · rime/ibus-rime") 
@@ -50,10 +50,12 @@ sudo apt install  ibus  ibus-rime ibus-gtk ibus-gtk3 ibus-qt4 librime-data-emoji
 
 
 > 参考:  
-[IBus (简体中文) - ArchWiki](https://wiki.archlinux.org/index.php/IBus_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87) "IBus (简体中文) - ArchWiki")  
-[linux中文输入法，ibus光标不跟随](http://www.chongchonggou.com/g_484011402.html)  
-[wps 中 ibus 输入法光标跟随](http://speculator.leanote.com/post/wps-%E4%B8%AD-ibus-%E8%BE%93%E5%85%A5%E6%B3%95%E5%85%89%E6%A0%87%E8%B7%9F%E9%9A%8F)  
-[Ubuntu 16.04 安装 Rime 输入法](http://speculator.leanote.com/post/Ubuntu-16.04-%E5%AE%89%E8%A3%85-Rime-%E8%BE%93%E5%85%A5%E6%B3%95)  
+> [IBus (简体中文) - ArchWiki](https://wiki.archlinux.org/index.php/IBus_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87) "IBus (简体中文) - ArchWiki")  
+> [linux中文输入法，ibus光标不跟随](http://www.chongchonggou.com/g_484011402.html)  
+> [wps 中 ibus 输入法光标跟随](http://speculator.leanote.com/post/wps-%E4%B8%AD-ibus-%E8%BE%93%E5%85%A5%E6%B3%95%E5%85%89%E6%A0%87%E8%B7%9F%E9%9A%8F)  
+> [Ubuntu 16.04 安装 Rime 输入法](http://speculator.leanote.com/post/Ubuntu-16.04-%E5%AE%89%E8%A3%85-Rime-%E8%BE%93%E5%85%A5%E6%B3%95)  
+>
+> [Ubuntu 14.10编译安装中州韵Rime输入法 - 扩软博客](https://blog.kuoruan.com/22.html "Ubuntu 14.10编译安装中州韵Rime输入法 - 扩软博客")
 
 
 ## fcitx框架
@@ -68,7 +70,7 @@ sudo apt install  ibus  ibus-rime ibus-gtk ibus-gtk3 ibus-qt4 librime-data-emoji
 <http://my.oschina.net/eechen/blog/224291>   
 
 参考：中文环境下安装fcitx一般不会有什么问题，在英文环境下安装需进行配置，参见第二个链接。
-	
+​	
 经历：在英文环境下安装fcitx后不知道如何配置，按shift键无法实现中英文临时切换。
 	问题在于配置上，在 快捷键--> 额外的激活输入法快捷键选择“左shift”  不过这并不是想像中的那种。
 
@@ -137,9 +139,9 @@ ubuntu <http://blog.csdn.net/gopain/article/details/17412057>
 
 切换顺序问题再次补充：   
      在`输入法`选项卡中，下方会有如下提示：  “第一个输入法将作为非激活状态，通常您需要将`键盘`或`键盘-布局名称`放在地一个”  
-	 因此之前的配置中，`google拼音` 和 `中州韻`就处于激活状态；而`键盘-英语（美国）`则处于非激活状态。   
-	 这有助于理解`全局配置中`的相关选项。   
-	 
+     因此之前的配置中，`google拼音` 和 `中州韻`就处于激活状态；而`键盘-英语（美国）`则处于非激活状态。   
+     这有助于理解`全局配置中`的相关选项。   
+
 如果要安装 fictx-sogoupinyin 请上 搜狗 官网下载。   
 
 
@@ -147,11 +149,11 @@ ubuntu <http://blog.csdn.net/gopain/article/details/17412057>
 
 > 安装 rime 在 ibus 输入法平台 
 >
-`sudo apt-get install ibus-rime`
+> `sudo apt-get install ibus-rime`
 >
-之后还要进行相关设置 `ibus-setup`
-打开设置窗口 选择rime
-或者有可能只要在 系统设置 --> 文本设置 
+> 之后还要进行相关设置 `ibus-setup`
+> 打开设置窗口 选择rime
+> 或者有可能只要在 系统设置 --> 文本设置 
 
 
 

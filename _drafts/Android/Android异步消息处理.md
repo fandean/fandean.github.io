@@ -5,7 +5,7 @@
 - 《第一行代码——Android》服务相关章节  
 - [Android 异步消息处理机制（Handler 、 Looper 、MessageQueue）源码解析](http://blog.csdn.net/amazing7/article/details/51424038)  
 - [Android 消息处理机制（Looper、Handler、MessageQueue,Message）](http://www.jianshu.com/p/02962454adf7)  
-  -
+  ​
 
 
 ## 与服务的关系
@@ -83,8 +83,30 @@ ThreadLocal并不是线程，它的作用是可以在每个线程中存储数据
 
 > 官网文档：
 > http://developer.android.com/intl/zh-cn/reference/android/app/LoaderManager.html   
-http://developer.android.com/intl/zh-cn/reference/android/content/AsyncTaskLoader.html   
-http://developer.android.com/intl/zh-cn/guide/components/loaders.html   
+> http://developer.android.com/intl/zh-cn/reference/android/content/AsyncTaskLoader.html   
+> http://developer.android.com/intl/zh-cn/guide/components/loaders.html   
+
+
+
+
+
+##  JobScheduler和JobService
+
+为了更好的实现后台服务、Android引入了一个叫作JobScheduler的权限API。除了实现常规后台服务之外，JobScheduler还支持按场景、按条件运行后台服务。
+
+自Android 5.0发布以来，JobScheduler已成为执行后台工作的首选方式。
+
+
+
+
+
+> 《Android权威编程指南》
+
+
+
+
+
+
 
 
 
@@ -108,7 +130,17 @@ http://developer.android.com/intl/zh-cn/guide/components/loaders.html
 > 《Android开发艺术探索》第2章：IPC机制
 
 
+
+
+
+
+
+
+
+
+
 ### Android中的多进程模式
+
 > 《Android开发艺术探索》第2章：IPC机制
 
 正常情况下，Android中多进程指一个应用中存在多个进程的情况，所以这里不讨论两个应用之间的多进程情况。

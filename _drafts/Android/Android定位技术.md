@@ -64,6 +64,12 @@ This API key can be used in this project and with any API that supports it. To u
 
 [高德地图-定位SDK使用 - 简书](http://www.jianshu.com/p/31ec2c6a4b58 "高德地图-定位SDK使用 - 简书")
 
+[如何使用高德Android SDK进行LBS的开发-慕课网](http://www.imooc.com/learn/339 "如何使用高德Android SDK进行LBS的开发-慕课网")
+
+[高德地图组件快速入门-慕课网](http://www.imooc.com/learn/340 "高德地图组件快速入门-慕课网")
+
+[如何使用高德定位进行开发-慕课网](http://www.imooc.com/learn/341 "如何使用高德定位进行开发-慕课网")
+
 
 
 

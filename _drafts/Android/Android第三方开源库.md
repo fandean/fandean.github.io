@@ -369,6 +369,10 @@ greenDAO is a light & fast ORM for Android that maps objects to SQLite databases
 
 
 
+[Android框架-GreenDao-慕课网](http://www.imooc.com/learn/760 "Android框架-GreenDao-慕课网")
+
+
+
 Add `mavenCentral()` to your `build.gradle` project repositories.
 
 For example in your root `build.gradle`:
@@ -606,6 +610,10 @@ Android和Java的通用实用程序和散列函数（又名java-common）
 
 
 
+## 实用工具
+
+
+
 ### Guava
 
 [google/guava: Google Core Libraries for Java](https://github.com/google/guava "google/guava: Google Core Libraries for Java")
@@ -622,6 +630,86 @@ Guava是一组核心库，包括新的集合类型（如multimap和multiset）�
 ## Android 版 Google Analytics 
 
 [高级配置  - Android 版 Google Analytics（分析）](https://developers.google.com/analytics/devguides/collection/android/v4/advanced?hl=zh-cn )
+
+
+
+
+
+## 统计工具
+
+
+
+### 友盟统计
+
+
+
+### Bugly
+
+腾讯的Bugly是一个错误日志分析工具。
+
+[错误日志分析工具Bugly-慕课网](http://www.imooc.com/video/14746 "错误日志分析工具Bugly-慕课网")
+
+[腾讯Bugly - 一种愉悦的开发方式 _android anr_android anr分析_iOS崩溃日志分析平台](https://bugly.qq.com/v2/index "腾讯Bugly - 一种愉悦的开发方式 _android anr_android anr分析_iOS崩溃日志分析平台")
+
+
+## 换肤
+
+[Android-实用的App换肤功能-慕课网](http://www.imooc.com/learn/782 "Android-实用的App换肤功能-慕课网")
+
+
+
+## 消息推送
+
+[见证Android消息推送时刻-慕课网](http://www.imooc.com/learn/223 "见证Android消息推送时刻-慕课网")
+
+[Android-见证消息推送时刻进阶篇-慕课网](http://www.imooc.com/learn/358 "Android-见证消息推送时刻进阶篇-慕课网")
+
+
+
+
+
+## 多平台分享
+
+
+
+### ShareSDK
+
+[Android-多平台分享(新浪微博)-慕课网](http://www.imooc.com/learn/513 "Android-多平台分享(新浪微博)-慕课网")
+
+
+
+
+
+
+
+## 后端服务
+
+
+
+### Bmob后端云
+
+第三方服务之Bmob后端云的集成、用户登陆、用户注册、获取用户、用户注销（一）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

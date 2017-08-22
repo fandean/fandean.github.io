@@ -7,7 +7,14 @@
 3. [用户手势检测-GestureDetector使用详解](http://blog.csdn.net/harvic880925/article/details/39520901 "推荐")
 
 
+[打造个性的图片预览与多点触控-慕课网](http://www.imooc.com/learn/239 "打造个性的图片预览与多点触控-慕课网")
+
+[图形手势识别-慕课网](http://www.imooc.com/learn/131 "图形手势识别-慕课网")
+
+
+
 ## GestureDetector类
+
 GestureDetector类：
 
 使用提供的MotionEvents检测各种手势和事件。 GestureDetector.OnGestureListener回调将在特定运动事件发生时通知用户。 该类只能用于通过触摸报告的MotionEvents（不要用于轨迹球事件）。

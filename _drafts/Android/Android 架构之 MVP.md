@@ -146,7 +146,13 @@ Android中的模型视图和演示者(MVP) 第一部分
 ## MVP实现流程
 
 
-1. 创建各顶级接口：IView、IPresenter和数据相关的DbHelper, PreferencesHelper, ApiHelper以及继承它们的DataManager接口。
+1. 设计App界面（大概的轮廓）
+2. 在xml文件中实现大致布局
+3. 按功能创建package实现大致的工程结构
+4. 选择需要使用的第三方开源库
+5. 创建各顶级接口：IView、IPresenter 和数据相关的 DbHelper, PreferencesHelper, ApiHelper以及继承它们的DataManager接口。之后再补充各接口中需要添加的方法。
+6. 再一个界面一个界面的实现
+
 
 
 

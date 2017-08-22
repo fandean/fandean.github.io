@@ -104,3 +104,9 @@ Android：**Robolectric、AndroidJUnitRunner、Espresso**等
 
 
 
+视频：  
+
+[Android 自动化测试教程-慕课网](http://www.imooc.com/topic/aztest "Android 自动化测试教程-慕课网")
+
+
+
