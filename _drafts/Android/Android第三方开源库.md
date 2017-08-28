@@ -145,6 +145,8 @@ Facebook出品，的强大的图片加载组件。
 
 khttp是高性能的http库，支持同步、异步，而且实现了spdy、http2、websocket协议，api很简洁易用，和volley一样实现了http协议的缓存。
 
+[OkHttp3使用指南_清屏网_在线知识学习平台](http://www.qingpingshan.com/rjbc/az/110232.html "OkHttp3使用指南_清屏网_在线知识学习平台")
+
 
 
 #### OkHttp理解
@@ -359,7 +361,9 @@ sqlbrite是对Android中SQLiteOpenHelper的轻量级包装，可以响应式的�
 
 ### GreenDao
 
-greenDAO is a light & fast ORM for Android that maps objects to SQLite databases. Being highly optimized for Android, greenDAO offers great performance and consumes minimal memory.
+DAO(Data Access Object) 数据访问对象是一个[面向对象](https://baike.baidu.com/item/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1)的数据库接口
+
+greenDAO is a **light & fast** ORM for Android that maps objects to SQLite databases. Being highly optimized for Android, greenDAO offers great performance and consumes minimal memory.
 
 [GreenDao数据库集成 - 简书](http://www.jianshu.com/p/1ceea4b3f94f)
 
@@ -370,6 +374,10 @@ greenDAO is a light & fast ORM for Android that maps objects to SQLite databases
 
 
 [Android框架-GreenDao-慕课网](http://www.imooc.com/learn/760 "Android框架-GreenDao-慕课网")
+
+[老罗Android开发视频第二季【育知同创】_腾讯课堂](https://ke.qq.com/course/170202 "老罗Android开发视频第二季【育知同创】_腾讯课堂")
+
+
 
 
 
@@ -385,6 +393,10 @@ allprojects {
     }
 }
 ```
+
+通过[greenDAO](http://greenrobot.org/greendao/ "greenDAO: Android ORM for your SQLite database - Open Source by greenrobot")官网学习，看 How to get started with greenDAO, Documentation 这个章节下的介绍。它会利用DaoGenerator为我们生成部分类，官方给出的[examples](https://github.com/greenrobot/greenDAO/tree/master/examples/DaoExample/src/main/java/org/greenrobot/greendao/example)中部分java文件是由DaoGenerator自动生成。
+
+
 
 
 

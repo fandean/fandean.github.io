@@ -56,6 +56,8 @@ sudo apt-get install libperl-dev
 
 # npm: package manager for Node.js
 # 安装后对应的命令分别为    node 和 npm 
+# 使用 npm 安装gtop这个软件：  npm install gtop -g
+
 
 ######### Ruby ########
 # 在安装vim-youcompleteme的时候就同时安装了： libruby2.3 rake ruby ruby2.3 vim-addon-manager vim-nox 

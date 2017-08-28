@@ -16,6 +16,10 @@ chare: true
 
 # VS Code使用笔记
 
+
+## 在我的XUbuntu 16.04中VS Code在使用过程中会出现关标乱跳的情况，已被舍弃
+
+
 ## 学习文档
 [VScode中文文档](https://www.gitbook.com/book/jeasonstudio/vscode-cn-doc/details)  
 [VS Code Tips and Tricks](https://github.com/Microsoft/vscode-tips-and-tricks)  
@@ -245,11 +249,14 @@ VS Code 中目前最好用的 vim 插件。
 #### Align
 这个插件支持对选中的代码进行对齐操作
 
-
 #### Auto Close Tag
 
 
-### git相关插件
+
+
+
+
+### Git相关插件
 
 #### Git History(git log)
 Open the file to view the history, and then Press F1 and select/type "Git: View History (git log)", "Git: View File History" or "Git: View Line History".
@@ -363,4 +370,13 @@ VSCode extension to manage hexo commands.
 
 vscode 插件：  Translator plus, markdown shortcuts,  psioniq File Header，
 
-似乎发现问题了，确实。 原因可能是手误触到笔记本的触摸板。
+似乎发现问题了。 原因可能是手误触到笔记本的触摸板。
+
+
+
+### Web开发相关插件
+
+
+
+
+

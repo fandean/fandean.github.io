@@ -10,4 +10,19 @@
 
 
 
+### fromCallable
+
+返回一个Observable，当观察者订阅它时，调用您指定的函数，然后发出从该函数返回的值。
+
+```java
+public static <T> Observable<T> fromCallable(@NotNull java.util.concurrent.Callable<? extends T> supplier)
+```
+
+
+
+这允许您推迟您指定的函数的执行，直到观察者订阅ObservableSource。也就是说，它使功能“懒惰”。
+
+
+
+
 

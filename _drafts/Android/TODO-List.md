@@ -66,10 +66,10 @@
 
 ## 异步消息处理机制
 
--[ ] Handler
+-[x] Handler
 -[ ] AsyncTask： [Android必学-异步加载-慕课网](http://www.imooc.com/learn/406 "Android必学-异步加载-慕课网")  
 -[ ] IntentService
--[ ] HandlerThread
+-[x] HandlerThread
 
 
 
@@ -141,4 +141,79 @@
 有付费课程可以学习，不要浪费时间了。
 
 
+08.31
+学习自定义view
+http://blog.csdn.net/lmj623565791/article/details/24252901
 
+
+09.01
+学习事件分发
+http://www.infoq.com/cn/articles/android-event-delivery-mechanism/
+
+http://blog.csdn.net/lavor_zl/article/details/51198634
+
+
+
+09.02
+学习自定义viewGroup
+SwipeRefreshLayout 下拉刷新
+
+
+接下来的学习:  
+--------------------------------------
+自定义view
+事件分发
+事件处理如 onKeyDown() 方法 onTouchEvent()方法
+WebView
+图形. 动画
+
+
+
+WebView:  
+---------------------------
+首先简述 WebView、WebViewClient、WebChromeClient 之间的区别:
+在 WebView 的设计中,不是什么事都要 WebView类干的,有些杂事是分给其他人的,这样 WebView 专心干好 自己的解析、渲染工作就行了.WebViewClient 就是帮助 WebView 处理各种通知、请求事件等 ,WebChromeClient 是辅助 WebView 处理 Javascript 的对话框,网站图标,网站 title.
+
+Android SDK提供了WebView组件。它继承自AbsoluteLayout，展示网页的同时，也可以在其中放入其他的子View。
+
+1. WebSettings是用来管理WebView配置的类。当WebView第一次创建时，内部会包含一个默认配置的集合。若我们想更改这些配置，便可以通过WebSettings里的方法来进行设置。
+2. WebViewClient是帮助WebView处理各种通知、请求事件的“内政大臣”的话
+3. WebChromeClient就是辅助WebView处理Javascript的对话框，网站图标，网站title，加载进度等偏外部事件的“外交大臣”。
+
+
+Environment class
+------------------------------------
+Provides access to environment variables.  用于访问环境变量.
+
+
+4个月 11200元工资
+
+麦子学院8800元
+
+android 
+毕业学员
+3235人
+
+ios
+毕业学员
+5786人
+
+web
+毕业学员
+5975人
+
+Python
+毕业学员
+6874人
+
+PHP 
+毕业学员
+5673人
+
+嵌入式
+毕业学员
+4368人
+
+物联网 
+毕业学员
+9852人
