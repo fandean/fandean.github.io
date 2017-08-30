@@ -59,16 +59,36 @@ packages安装位置： `~/.atom/packages`
 这里维护一个安装脚本：
 
 > 这里需要注意，大多数的package无法正常下载，请事先设置代理，比如：
-	```shell
-	# https必须设置
-	https_proxy=127.0.0.1:1080
-	http_proxy=127.0.0.1:1080
-	```
-> 或者与npm一样更改镜像地址
-```
-echo 'registry = https://registry.npm.taobao.org' > ~/.atom/.apmrc
-```
-同时也把系统中的 npm 也设置一下。
+>
+> 1. 在 ~/.bashrc 文件中设置
+>
+> ```shell
+> # 在 ~/.bashrc 文件中设置代理，之后用 apm 命令进行插件下载安装
+> # https必须设置
+> https_proxy=127.0.0.1:1080
+> http_proxy=127.0.0.1:1080
+> ```
+> 2. 在 .apmrc 文件中配置
+>
+> ```shell
+> # 创建配置文件
+> touch ~/.atom/.apmrc
+>
+> # 设置代理
+> https_proxy=127.0.0.1:1080
+> http_proxy=127.0.0.1:1080
+> strict-ssl=false
+> ```
+>
+> 3. 或者与npm一样更改镜像地址；
+>
+> ```shell
+> echo 'registry = https://registry.npm.taobao.org' > ~/.atom/.apmrc
+> ```
+> 同时也把系统中的 npm 也设置一下。
+
+
+
 
 
 ```shell
@@ -186,12 +206,11 @@ regex-railroad-diagram
 ######## 局部选择插件 ######
 apm install sublime-style-column-selection
 
-
 ```
 
 
 
-![](https://i.github-camo.com/e7ec43b8277d8df81cbf022702cae44031dce997/68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f736f6d652d61746f6d2f696e6c696e652d6d61726b646f776e2d696d616765732f6d61737465722f707265766965772e676966)
+
 
 ### MarkDown插件
 
@@ -212,6 +231,10 @@ apm install sublime-style-column-selection
 
 ### Web开发插件
 
+[react-native开发工具-atom及插件 - 简书](http://www.jianshu.com/p/d005c2cd17fb "react-native开发工具-atom及插件 - 简书")
+
+
+
 
 ## 主题
 
@@ -219,3 +242,16 @@ apm install sublime-style-column-selection
 
 
 ### monokai-flat主题
+
+
+## Atom快捷键
+
+
+
+| 快捷键        | 描述     |
+| ---------- | ------ |
+| `ctrl + ,` | 打开设置界面 |
+|            |        |
+|            |        |
+|            |        |
+|            |        |

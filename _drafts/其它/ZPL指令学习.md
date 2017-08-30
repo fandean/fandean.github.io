@@ -4,6 +4,8 @@
 
 
 
+
+
 参考：[ZPL II 简易指令集](http://blog.sina.com.cn/s/blog_5b7ee1730100hlx5.html)
 
 [zpl指令中文参考_完整版](http://wenku.baidu.com/link?url=2RSNIE0A_AbN9SItv6xDxWsX8OmBWku-jzk3ldzO2Eqsw9cysseb57-eecrmnE22_tou1qneTFSFV1IE1rhUouam2AJOVGbgkuXVZP77JV3)
@@ -21,7 +23,6 @@
 [zplii-pm-vol2-en.pdf](https://www.zebra.com/content/dam/zebra/manuals/en-us/software/zplii-pm-vol2-en.pdf)
 
 [zpl_guide.pdf](http://research.cs.washington.edu/zpl/zpl_guide.pdf)
-
 
 ---
 

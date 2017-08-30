@@ -17,16 +17,18 @@ Android App 开发环境搭建和配置
 
 
 
+
+
 >如果要在命令行下使用Java的相关命令则需配置环境变量；如果直接使用eclipse等IDE，则它们具有足够的智能而无需配置。
 
 
 **环境变量配置：** （新建3个环境变量）    
 
-|环境变量名  	 | 描述                    |  值 |
-|------------|-------------------------|-----|
-|JAVA_HOME 	 | 指定JDK安装的根目录   		| 略 |
-|PATH        | 指定JDK安装目录下的bin目录, | %JAVA_HOME%\bin  |
-|CLASSPATH	 | 指定从什么位置取查找 class 文件 | .;%JAVA_HOME%\lib\tools.jar;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib |
+| 环境变量名     | 描述                  | 值                                        |
+| --------- | ------------------- | ---------------------------------------- |
+| JAVA_HOME | 指定JDK安装的根目录         | 略                                        |
+| PATH      | 指定JDK安装目录下的bin目录,   | %JAVA_HOME%\bin                          |
+| CLASSPATH | 指定从什么位置取查找 class 文件 | .;%JAVA_HOME%\lib\tools.jar;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib |
 
 配置好环境变量后需重新启动一个cmd，并在里面测试配置是否正确。
 
@@ -54,5 +56,4 @@ https://dl.google.com/dl/android/studio/ide-zips/1.5.1.0/android-studio-ide-141.
 
 
 
- 
  
