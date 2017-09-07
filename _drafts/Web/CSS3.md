@@ -60,3 +60,51 @@ HSL和HSLA：色相hue、饱和度saturation、亮度lightness
 
 
 
+
+
+## 操作样式表
+
+
+
+**外部样式表(首选方法)**
+
+在HTML页面的 head 部分,输入 `<link rel="stylesheet href="url.css" />`
+
+> 浏览器可以缓存该文件。
+
+
+
+**嵌入样式表**
+
+在 head 部分创建一个 style 元素，其中包含了我们的样式表。
+
+```html
+# 在head中插入
+<style>
+  img {
+      border:4px solid red;
+  }
+</style>
+```
+
+
+
+
+
+**内联样式(不可取)**
+
+在某个 元素中加上 `style="border: 4px solid red"`，来为该元素设置样式。
+
+```html
+<img src="img/palau.jpg" width="250" height="163" alt="El Palau de la" 
+     style = "border: 4px solid red"/>
+```
+
+
+
+
+
+
+
+
+

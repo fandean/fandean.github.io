@@ -123,3 +123,11 @@ apic#0: Config mismatch - uApicMode: saved=3 config=2 [ver=5 pass=final] (VERR_S
 
 解决办法：点击清除虚拟机状态。重启就好了。
 
+
+
+### VirtualBox安装扩展包
+
+[在此](https://www.virtualbox.org/wiki/Downloads)下载对应版本的扩展包（版本一定要对应），扩展包后缀名为 ` .vbox-extpack`，直接双击扩展包进行安装即可。
+
+[VirtualBox扩展包安装教程](http://www.xitongcheng.com/jiaocheng/xtazjc_article_24066.html "VirtualBox扩展包安装教程")
+

@@ -128,8 +128,12 @@ apm install pigments
 ####### 工程管理 #######
 apm install project-manager
 
+######### 自动保存 #######
+apm install autosave
+
 ####### 图标工具栏 #######
 apm install tool-bar
+
 # 自定义工具栏图标点击事件
 apm install flex-tool-bar
 
@@ -150,7 +154,7 @@ apm install markdown-table-editor
 apm install markdown-img-paste
 # 为markdown配置工具栏，需要安装三个package。之后还需要进行配置
 apm install tool-bar markdown-writer
-apm install tool-bar-markdown-writer
+
 # markdown语法检查
 #apm install linter-markdown
 
@@ -170,11 +174,30 @@ apm install atom-ternjs
 # 跳转到js函数定义处
 apm install hyperclick js-hyperclick
 
+apm install es6-javascript
+
+apm install esformatter
+
+apm install js-func-viewer
+
+apm install language-javascript-jsx
+
+
+##########  react 相关 ##########
+# apm install react
+apm install react-es6-snippets
+apm install react-native-snippets
+apm install react-snippets
+# facebook 提供的 nuclide 包含了众多插件
+apm install nuclide
 
 
 ########### html 相关插件 ###########
 # emmet
 apm install emmet
+
+apm install emmet-jsx-css-modules
+
 # autoprefixer：用来补充 css 前缀，会自动生成多个浏览器的前缀
 apm install autoperfixer
 # 编辑器内置浏览器
@@ -205,7 +228,6 @@ regex-railroad-diagram
 
 ######## 局部选择插件 ######
 apm install sublime-style-column-selection
-
 ```
 
 

@@ -107,6 +107,10 @@ Jsoup不就是我之前ZhihuDaily项目中介绍过的用来像 html 文件中�
 
 [ruanyf/react-demos: a collection of simple demos of React.js](https://github.com/ruanyf/react-demos "ruanyf/react-demos: a collection of simple demos of React.js")
 
+[ruanyf/jstraining: 全栈工程师培训材料](https://github.com/ruanyf/jstraining "ruanyf/jstraining: 全栈工程师培训材料")
+
+[分类：JavaScript - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/javascript/ "分类：JavaScript - 阮一峰的网络日志")
+
 
 
 **安装方法：**
@@ -158,6 +162,147 @@ If you checked out the source from GitHub make sure to run grunt.
 ReactDOM.render()：
 
 render：给予, 粉刷, 呈送
+
+
+
+第二天：
+
+
+
+### React组件
+
+创建一个组件类，用于输出Hello React
+
+1. React中创建的组件类以大写字母开头，驼峰命名法（用于区分html自带的标签）
+2. 在React中使用`React.createClass`方法创建一个组件类
+3. 核心代码：每个组件类都必须实现自己的`render`方法。输出定义好的组件模板。返回值：null、false、组件模板。
+4. 注意：组件类只能包含一个顶层标签
+
+
+
+###  React组件样式
+
+组件的样式：
+
+- 内联样式
+- 对象样式
+- 选择器样式
+
+书写格式：
+
+1. 以 , 结尾
+2. HTML5中key、value都不加引号。React中属于JavaScript对象，key的名字不能出现 - ，需要使用驼峰命名法。如果value为字符串，则需要加引号。
+3. HTML5中，value如果是数字，需要带单位。React中不需要带单位。
+
+
+
+
+### 复合组件
+
+
+
+### props属性
+
+props 是组件自身的属性，一般用于嵌套的内外层组件中，负责传递信息（通常是由父层组件向子层组件传递）
+
+注意：props 对象中的属性与组件的属性一一对应，不要直接修改props中属性的值。
+
+
+
+`...this.props`： props提供的语法糖，可以将父组件中的全部属性都复制给子组件。
+
+需求：定义一个组件Link；Link组件中只包含一个 `<a>`，我们不给`<a>`设置任何属性，所有属性全部从父组件复制得到。
+
+
+
+`this.props.children`：表示组件的所有子节点。
+
+
+
+属性验证： propTypes
+
+用于验证组件实例的属性是否复合要求。
+
+
+
+设置组件属性的默认值：
+
+通过实现组件的getDefaultProps方法，对属性设置默认值。
+
+
+
+事件处理
+
+react中的事件名称，首字母小写，驼峰命名法。
+
+
+
+## state
+
+状态机
+
+当state发生变换时，会调用组件内部的render方法。
+
+
+
+## 组件的生命周期
+
+### 实例化
+
+首次实例化
+
+- getDefaultProps
+- getInitialState
+- componentWillMount
+- render
+- componentDidMount
+
+实例化完成后的更新
+
+- getInitialState
+- componentWillMount
+- render
+- componentDidMount
+
+### 存在期
+
+组件已存在时的状态改变
+
+- componentWillReceiveProps
+- shouldComponentUpdate
+- componentWillUpdate
+- render
+- componentDidUpdate
+
+### 销毁&清理期
+
+- componentWillUnmount
+
+
+
+
+
+
+## React Native
+
+
+
+[React Native 开发之IDE - 简书](http://www.jianshu.com/p/dfec60a479ec "3) React Native 开发之IDE - 简书")
+
+[Nuclide](https://nuclide.io/) 是由Facebook提供的基于atom的集成开发环境，可用于编写、运行和 调试React Native应用。点击这里阅读 [Nuclide的入门文档](https://nuclide.io/docs/quick-start/getting-started/)。
+
+
+
+
+
+3分钟带你玩转React Native研发所有调试技巧
+
+
+
+
+
+
+
 
 
 

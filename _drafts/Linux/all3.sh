@@ -364,6 +364,8 @@ sudo apt-get install colordiff -y
 sudo apt-get install speedtest-cli -y
 
 
+# pv: Pipe Viewer(管道查看器)。它可以监测Linux管道中数据流通的进度
+sudo apt-get install pv -y
 
 #################################################################################
 # 
@@ -393,6 +395,7 @@ sudo apt-get install xubuntu-restricted-extras -y
 # sudo apt-get install gstreamer0.10-plugins-ugly -y
 # sudo apt-get install gstreamer1.0-plugins-ugly -y
 sudo apt-get install gstreamer1.0-plugins-good -y
+
 
 ########################################################################
 #
@@ -475,6 +478,9 @@ sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode s
 # 15. Atom： 一个与vscode类似的编辑器
 # sudo add-apt-repository ppa:webupd8team/atom  
 
+# 16. MultiSystem 多系统启动U盘制作
+sudo apt-add-repository 'deb http://liveusb.info/multisystem/depot all main'
+wget -q -O - http://liveusb.info/multisystem/depot/multisystem.asc | sudo apt-key add -
 
 ##################统一在在此更新############################
 sudo apt-get update  -qq
@@ -517,13 +523,16 @@ sudo apt-get install asciinema -y
 sudo apt-get install typora -y
 
 # 12. shadowsocks-qt5
-sudo apt-get install shadowsocks-qt5
+sudo apt-get install shadowsocks-qt5 -y
 
 # 13. google-chrome
-sudo apt-get install google-chrome-stable
+sudo apt-get install google-chrome-stable -y
 
 # 14. vscode
-sudo apt-get install code
+sudo apt-get install code -y
 
 # 15. Atom
-# sudo apt-get install atom
+# sudo apt-get install atom -y
+
+# 16. MultiSystem
+sudo apt-get install multisystem -y
