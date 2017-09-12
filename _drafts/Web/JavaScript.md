@@ -1,4 +1,4 @@
-## JavaScript
+JavaScript
 
 《JavaScript编程全解》介绍了一些实用方法。  
 
@@ -31,7 +31,43 @@ DOM (**D**ocument **O**bject **M**odel)（文档对象模型）是用于访问 H
 
 
 
-JavaScript 可以通过不同的方式来输出数据：
+## 在HTML中使用JavaScript
+
+向 HTML 页面中插入 JavaScript 的主要方法,就是使用`<script>`元素。
+
+在使用`<script>`元素**嵌入 JavaScript 代码时**,只须为`<script>`指定 type 属性。
+
+在解释器对`<script>` 元素内部的所有代码求值完毕以前,页面中的其余内容都不会被浏览器加载或显示。
+
+如果要通过<script>元素来**包含外部 JavaScript 文件**,那么 src 属性就是必需的。这个属性的值是一个指向外部 JavaScript 文件的链接。
+
+与解析嵌入式 JavaScript 代码一样,在解析外部 JavaScript 文件(包括下载该文件)时,页面的处理也会暂时停止。
+
+需要注意的是,带有 src 属性的`<script>`元素不应该在其`<script>`和 `</script>`标签之间再
+包含额外的 JavaScript 代码。如果包含了嵌入的代码,则只会下载并执行外部脚本文件,嵌入的代码
+会被忽略。
+
+
+
+**标签的位置：**
+
+按照**传统的做法**,所有`<script>`元素都应该放在页面的`<head>`元素中
+
+这种做法的**目的**就是把所有外部文件(包括 CSS 文件和 JavaScript 文件)的引用都放在相同的地方。
+可是,在文档的`<head>`元素中包含所有 JavaScript 文件,意味着必须等到全部 JavaScript 代码都被下载、
+解析和执行完成以后,才能开始呈现页面的内容(
+
+
+
+为了避免这个问题，**现代 Web 应用程序**一般都把全部 JavaScript 引用放在`<body>`元素中**页面内容的后面**。
+
+
+
+### 输出数据
+
+
+
+JavaScript 可以通过不同的方式来**输出数据**：
 
 - 使用 **window.alert()** 弹出警告框。
 - 使用 **document.write()** 方法将内容写到 HTML 文档中。
@@ -45,6 +81,18 @@ JavaScript 可以通过不同的方式来输出数据：
 > 如果在文档已完成加载后执行 document.write，整个 HTML 页面将被覆盖。
 >
 > document.write是直接写入到页面的**内容流**，如果在写之前没有调用document.open, 浏览器会自动调用open。每次写完关闭之后重新调用该函数，会导致页面被重写。
+
+
+
+### 调试工具
+
+DevTools
+
+[Chrome 开发者工具  -  Web  -  Google Developers](https://developers.google.com/web/tools/chrome-devtools/)
+
+插件DevTools的新功能 [What's New In DevTools (Chrome 61)  -  Web  -  Google Developers](https://developers.google.com/web/updates/2017/07/devtools-release-notes)
+
+
 
 
 
@@ -174,6 +222,8 @@ for (var k in obj){ //这里并不保证枚举的顺序
 
 
 ### 函数
+
+JS中函数也是对象。
 
 函数声明：
 
@@ -421,6 +471,8 @@ JavaScript 具有自动垃圾收集机制,也就是说,执行环境会负责管�
 
 #### 访问对象属性
 
+
+
 访问对象属性的两种方法：
 
 - 使用点表示法。`person.name`
@@ -435,6 +487,22 @@ var userName = person[propertyName];
 ```
 
 通常,除非必须使用变量来访问属性,否则我们建议使用**点表示法**。
+
+
+
+属性的枚举：
+
+可以使用for in语句对属性名进行枚举。并且可以借助中括号间接的实现对属性值的枚举。
+
+```javascript
+var obj = {x:3, y:4, z:5};
+for (var key in obj){
+    print('key = ', key);  //属性名的枚举
+    print('val = ', obj[key]); //同时利用[]实现对属性值的枚举
+}
+```
+
+
 
 
 
@@ -556,7 +624,36 @@ var sum = function(num1,num2){
 
 **函数内部属性：**
 
-在函数内部，有两个特殊的对象：**arguments** 和 **this**。
+在函数内部，有两个特殊的**对象**：**arguments** 和 **this**(对象有this)。
+
+
+
+**函数属性和方法：**
+
+**每个函数都包含两个属性**： length和prototype。（那么其它对象是否包含这两个属性？答：**没有**）
+
+length表示接收到的命名参数的个数。prototype在自定义引用类型和实现继承时是非常重要的。
+
+
+
+**apply()和call()方法：**用途都是在特定的作用域中**调用函数**，实际上等于**设置函数体内this对象**的值。传递参数并非 apply()和 call()真正的用武之地;它们真正强大的地方是能够扩充函数赖以运行的作用域（通过设置函数体内this对象来实现）。
+
+
+
+```javascript
+window.color = "red";
+var o = { color: "blue" };
+function sayColor(){
+alert(this.color);
+}
+sayColor();  			//red
+//这里没有传入除第一个参数以外的参数
+sayColor.call(this);  	//red
+sayColor.call(window);  //red
+sayColor.call(o);  		//blue
+```
+
+
 
 
 
@@ -573,6 +670,10 @@ ECMAScript中**没有类**的概念。从形式上来看 JavaScript 的对象就
 从本质上来说，**面向对象**这一术语只不过是一种在高于内部实现的语境中所使用的、较为抽象的概念而已。
 
 在JavaScript中，一切都是对象。对象之间的协作通过属性访问来实现。而对象之间的共性，则通过继承同一个对象的性质的方式来实现；**而JavaScript通过基于原型的形式来实现继承**。
+
+
+
+### 创建对象
 
 
 
@@ -621,15 +722,782 @@ var person = {
 
 
 
+### 构造函数
+
+定义一个函数，我们想在之后只使用new来调用它（此时它就是构造函数）。一般我们让该函数遵守下面的规则：
+
+- 以大写字母开头
+- 没有显示的创建对象
+- 直接将属性和方法赋值给了this对象
+- 没有return语句
 
 
 
 
-## 函数表达式
+
+使用new操作符调用构造函数，经历的4个步骤：
+
+1. 创建一个新对象
+2. 将构造函数的作用域赋给新对象(因此该函数对象的 this 就指向了这个新对象)
+3. 执行构造函数中的代码(为这个新对象添加属性)
+4. 返回新对象。（隐式的执行`return this`）
+
+任何函数只要通过new表达式调用，该函数就可以作为构造函数。
 
 
 
 
+
+### 原型模式
+
+**每个函数**都有一个 prototype(原型)属性,这个属性是一个指针，**指向一个对象**，而这个对象的用途是包含可以由**特定类型**的*所有实例* **共享**的属性和方法。
+
+
+
+```javascript
+function Person(){}
+
+Person.prototype.name = "Jian";
+Person.prototype.age = "10";
+Person.prototype.sayName = function(){
+    alert(this.name);
+};
+
+var person1 = new Person();
+person1.sayName();		// Jian
+var person2 = new Person();
+person2.sayName(); 		// Jian
+alert(person1.sayName == person2.sayName);	// true
+```
+
+使用场景：
+
+```javascript
+function MyClass(x,y){
+    this.x = x;
+  	this.y = y;
+}
+
+MyClass.prototype.show = function(){
+    print(this.x, this.y);
+}
+
+```
+
+
+
+**更简单的原型语法：**
+
+常见的做法是用一个包含所有属性和方法的对象字面量来重写整个原型对象。
+
+```javascript
+function Preson(){
+    name: "Jian",
+    age: 10,
+    sayName : function(){
+        alert(this.name);
+    }
+};
+```
+
+
+
+**原型的动态性：**
+
+可以随时为原型添加属性和方法,并且修改能够立即在所有对象实例中反映出来。
+
+但如果是重写整个原型对象,那么情况就不一样了。,调用构造函数时会为**实例**添加一个指向最初原型的
+`[[Prototype]]` 指针,而把原型修改为另外一个对象就等于切断了构造函数与最初原型之间的联系。
+
+
+
+
+
+### 继承与原型链
+
+JavaScript通过基于原型的形式来**实现继承**。同时可以使用原型的模式来**解决构造函数带来的问题**。
+
+ECMAScript 中描述了原型链的概念,并将原型链作为实现继承的主要方法。其基本思想是利用原
+型让一个引用类型继承另一个引用类型的属性和方法。
+
+
+
+**构造函数、原型和实例的关系:**
+
+每个构造函数都有一个原型对象(构造函数的prototype指向原型)，原型对象都包含一个指向构造函数的指针(constructor指向构造函数)，而实例都包含一个指向原型对象的内部指针(隐式链接 `__proto__`)。如图：
+
+![](https://github.com/mqyqingfeng/Blog/raw/master/Images/prototype3.png)
+
+
+
+原型链：
+
+原型链最终是通过“隐式链接”连接而成。在一些JavaScript实现中具有`__proto__`这样一个属性，它指向了隐式链接所引用的对象。不过在ECMAScript的标准中并没有`__proto__`属性。
+
+<img src="https://farm5.staticflickr.com/4405/36290989613_e756d7ffdd_o.png" width="616" height="302" alt="JS原型链">
+
+
+
+
+
+
+
+[JavaScript深入之从原型到原型链 · Issue #2 · mqyqingfeng/Blog](https://github.com/mqyqingfeng/Blog/issues/2 "JavaScript深入之从原型到原型链 · Issue #2 · mqyqingfeng/Blog")
+
+
+
+## 函数与闭包
+
+通过闭包来实现对属性值进行**访问控制**（private 或 public 等）。
+
+
+
+
+
+
+
+## Window对象
+
+Window对象具有的一些属性。
+
+navigator：是一个Navigaor对象，包含了浏览器的版本、浏览器所支持的插件等各种与浏览器相关的信息。
+
+location：Location对象，包含了与当前显示的URL相关的一些信息。
+
+history：History对象，可以通过它的back()方法和forward()方法实现浏览器历史记录中的后退和前进。
+
+screen：Screen对象包含了画面的大小与发色数等信息。
+
+frames：框架
+
+document：可以通过Document对象的cookie属性对Cookie进行读写操作
+
+parent, top, self：与框架相关
+
+
+
+## DOM
+
+
+
+DOM(Document Object Model，文档对象模型)。
+
+
+
+**标签、元素、节点：**
+
+标签：标签是一种用于标记的字符串，其作用为对文档的结构进行指定。
+
+**节点和元素**：元素和节点之间略有写继承关系，其中**节点**是**父**概念。节点具有nodeType属性，当其值是ELEMENT_NODE(1)，该节点则是一个元素。
+
+
+
+DOM共有12种节点它们都实现了Node接口，在HTML中文档中使用的有如下节点：
+
+| 节点   | 节点类型常量         | 节点类型的值 | 接口       |
+| ---- | -------------- | ------ | -------- |
+| 元素节点 | ELEMENT_NODE   | 1      | Element  |
+| 属性节点 | ATTRIBUTE_NODE | 2      | Attr     |
+| 文本节点 | TEXT_NODE      | 3      | Text     |
+| 注释节点 | COMMENT_NODE   | 8      | Comment  |
+| 文档节点 | DOCUMENT_NODE  | 9      | Document |
+
+
+
+### Document
+
+
+
+Document表示DOM树的根节点，用于表示整个HTML**文档**的对象。在js中可以通过window对象的document来访问。
+
+
+
+**Document的内置的几个提高效率的属性：**
+
+documentElement属性：它始终指向HTML页面中的`<html>`元素。
+
+```javascript
+var html = document.documentElement;	//取得对<html>的引用
+```
+
+body属性：它直接指向`<body>`元素(使用频率高)
+
+```javascript
+var body = document.body;	//取得对<body>的引用
+```
+
+
+
+
+
+### Element
+
+
+
+要访问元素的标签名可以使用 nodeName 属性或tagName属性。
+
+
+
+#### 特性
+
+取得特性（属性）：
+
+* getAttribute()
+* setAttribute()
+* removeAttribute()
+
+
+
+
+**通过getAttribute()来访问特性：**
+
+注意，传递给getAttribute()的特性名与实际的特性名相同。通过该方法还可获得自定义的特性(根据HTML5规范，自定义特性应该加上data-前缀以便验证)。另外特性的名称是不区分大小写的。
+
+
+```html
+<div id="myDiv" my_special_attribute="hello!"></div>
+```
+
+获取上面元素的特性
+
+```javascript
+var div = document.getElementById("myDiv");
+
+alert(div.getAttribute("id"));
+alert(div.getAttribute("my_special_attribute")); //获取自定义的特性
+```
+
+
+
+元素的特性也可以**通过DOM元素本身的属性来访问**。不过，只有非自定义的特性才会以属性的形式添加到DOM对象中。
+
+```javascript
+alert(div.id); //直接通过属性获取特性
+```
+
+
+
+有两类特殊的特性：
+
+第一类就是style，用于通过CSS为元素指定样式：
+
+* 通过getAttribute()访问时，返回的style特性值中包含的是**CSS文本**
+* 通过属性来访问时返回的是一个对象。
+
+第二类是onclick这样的事件处理程序：
+
+* 通过 getAttribute()访问,则会返回相应代码的**字符串**。
+* 通过属性来访问时返回一个JavaScript函数
+
+
+
+由于存在这些差别，开发人员**经常使用对象的属性**，而不是getAttribute()。只有在取得自定义特性值的情况下，才会使用getAttribute()方法。
+
+
+
+**attributes属性：**
+
+ attributes 属性中包含一个NamedNodeMap,与 NodeList 类似,也是一个“动态”的集合。元素的每一个特性都由一个 Attr 节点表示,每个节点都保存在 NamedNodeMap 对象中。attributes 属性中包含一系列节点,每个节点的 nodeName 就是特性的名称,而节点的 **nodeValue** 就是特性的值。
+
+```javascript
+var id = element.attributes.getNamedItem("id").nodeValue; //获取id的特性值
+//使用方括号的简写形式
+var id = element.attributes["id"].nodeValue;
+```
+
+
+
+
+
+### 节点的选择
+
+查找元素element：Document类型为此提供了两个方法；getElementById()和getElement**s**ByTagName()。
+
+#### 通过ID检索
+
+通过Document.getElementById()选择HTML文档中的指定节点。其中id必须唯一。
+
+```javascript
+var element = document.getElementById('foo');
+```
+
+
+
+#### 通过标签名检索
+
+Element.getElementsByTagName()方法来取得具有该标签名的所有节点，该方法返回包含零个或多个元素的NodeList，在HTML文档中，返回的是一个HTMLCollection对象。另外它还可以使用通配符`*`。
+
+```javascript
+var spanElements = document.getElementsByTagName('span'); //仅获取span元素
+var allElements = document.getElementsByTagName('*');	  //获取所有的元素
+```
+
+
+
+> getElementsByTagName()方法同时存在于 Element和Document中。
+
+> NodeList对象是一种Live对象。
+>
+> 对于Live对象，需要注意的一点是：Live对象始终具有DOM树实体的引用。因此，对DOM树作出的变更也会在Live对象中得到体现。
+
+
+
+
+
+#### 通过名称检索
+
+HTMLDocument.getElementsByName()方法。
+
+
+
+#### 通过类名检索
+
+HTMLDocument.getElementByClassName()方法是HTML5新增的最受人欢迎的一个方法。该方法接收一个包含一个或多个类名的字符串，返回一个NodeList。
+
+```javascript
+//取得所有类中包含 username 和 current 的元素
+var allCurrentUsernames = document.getElementsByClassName("username current");
+```
+
+
+
+
+
+#### 父节点、子节点、兄弟节点
+
+
+
+| 属性名             | 能够获取的节点              |
+| --------------- | -------------------- |
+| parentNode      | 父节点                  |
+| childNode       | 子节点**列表** (NodeList) |
+| firstChild      | 第一个子节点               |
+| lastChild       | 最后一个子节点              |
+| nextSibling     | 下一个兄弟节点              |
+| previousSibling | 上一个兄弟节点              |
+
+
+
+#### XPath
+
+通过XPath可以实现复杂的节点指定操作。但是用法比较复杂。
+
+
+
+#### Selector API 
+
+Selector API是一种比XPath更加简单，同时又保持了相当灵活的元素获取方式。
+
+querySelector()方法接收一个CSS选择符，返回第一个与条件相符的元素。如果没有找到则返回null。
+
+querySelectorAll()方法返回一个 NodeList的实例。
+
+
+
+### 节点的创建与新增
+
+Document.createElement()方法或Document.createTextNode()方法来创建节点。然后通过Node.appendChild()、Node.insertBefore()方法将创建的节点加入DOM树中。
+
+
+
+### 节点的内容更改
+
+略
+
+### 节点的删除
+
+Node.removeChild()方法来删除节点。
+
+
+
+
+
+### innerHTML/textContent
+
+HTMLElement的innerHTML属性，可以简单的给文档插入大量新 HTML 标记。
+
+在**读模式**下,innerHTML 属性返回与调用元素的所有子节点(包括元素、注释和文本节点)对应的 HTML 标记。在**写模式**下, innerHTML 会根据指定的值创建新的 DOM 树,然后用这个 DOM 树完全替换调用元素原先的所有子节点。
+
+
+
+innerHTML属性可以以HTML字符串的形式被引用，而textContent属性则可以取得包含子元素在内的纯文本部分。因此，如果设定 textContent 属性，就能够将子元素全部删除，并将其替换为一个文本节点。
+
+```javascript
+var elem = document.getElementById('foo');
+elem.innerHTML = '<div>This is a new div element.</div>';
+```
+
+
+
+```javascript
+var elem = document.getElementById('foo');
+//不会创建 div元素。在浏览器中将会直接显示该字符串
+elem.textContent = '<div>This is a new div element.</div>';
+```
+
+
+
+使用 innerHTML 属性也有一些限制。比如,在大多数浏览器中,通过 innerHTML 插入`<script>`
+元素**并不会执行其中的脚本**。
+
+
+
+
+
+### 焦点管理
+
+
+
+```javascript
+var button = document.getElementById("myButton");
+// 通过调用方法获取焦点
+button.focus();
+// activeElement属性引用当前获取焦点的元素
+alert(document.activeElement === button); //true
+```
+
+
+
+
+
+## 事件
+
+
+
+document对象的readyState属性的属性值：
+
+* loading，正在加载文档
+* complete，已经加载完文档
+
+
+
+使用 document.readyState 的最恰当方式,就是通过它来实现一个指示文档已经加载完成的指示器。在这个属性得到广泛支持之前,要实现这样一个指示器,必须借助 onload 事件处理程序设置一个标签,表明文档已经加载完毕。
+
+基本用法：
+
+```javascript
+if (document.readyState == "complete"){
+	//执行操作
+}
+
+```
+
+
+
+### 事件流
+
+如果你单击了某个按钮,他们都认为单击事件不仅仅发生在按钮上。换句话说,在单击按钮的同时,你也单击了按钮的容器元素,甚至也单击了整个页面。
+
+**事件流**描述的是从页面中接收事件的顺序。事件流分为事件冒泡和事件捕获。
+
+**事件冒泡：**即事件开始时由最具体的元素(文档中嵌套层次最深的那个节点)接收,然后**逐级向上传播**到较为不具体的节点(文档)。
+
+**事件捕获：**事件捕获的思想是不太具体的节点应该更早接收到事件,而最具体的节点应该最后接收到事件。事件捕获的用意在于在事件**到达预定目标之前**捕获它。
+
+
+
+“**DOM2级事件**”规定的事件流包括**三个阶段**: 
+
+* 事件捕获阶段
+* 处于目标阶段
+* 事件冒泡阶段
+
+首先发生的是事件捕获,为截获事件提供了机会。然后是实际的目标接收到事件。最后一个阶段是冒泡阶段,可以在这个阶段对事件做出响应。
+
+<img src="https://farm5.staticflickr.com/4395/36346038434_0e0cac235b_o.png" width="345" height="215" alt="DOM2级事件">
+
+
+
+
+
+### 事件处理程序
+
+事件处理程序的名字以 `on` 开头。为事件指定处理程序的方式有好几种。
+
+比如事件程序：onclick
+
+#### HTML事件处理程序
+
+某个元素支持的每种事件,都可以使用一个**_与相应事件处理程序同名_**的 HTML 特性(属性)来指定。该特性的**值**是js代码。(指定为HTML元素的属性)
+
+通过与事件程序onclick相同的html特性来指定点击事件的处理程序：
+
+```javascript
+<input type="button" value="Click Me" onclick="alert('Clicked')" />
+```
+
+
+
+> 注意：这里onclick全部都是小写字母。html不会区分大小写字母，但是为了提高代码的兼容性建议全部使用小写字母。
+
+
+
+**也可以调用在页面其他地方定义的脚本：**
+
+```javascript
+<script type="text/javascript">
+	function showMessage(){
+		alert("Hello world!");
+	}
+</script>
+
+<input type="button" value="Click Me" onclick="showMessage()" />
+```
+
+**事件处理程序中的代码在执行时，有权访问全局作用域中的任何代码**。
+
+首先,这样会创建一个封装着元素属性值的函数。这个函数中有一个局部变量 event,也就是**事件对象**
+
+通过 event 变量,可以直接访问**事件对象**。
+
+
+
+在这个函数内部，this值等于事件的目标元素：
+
+```html
+<!-- 输出: 目标元素是我input -->
+<input type="button" value="目标元素是我input" onclick="alert(this.value)">
+```
+
+
+
+在 HTML 中指定事件处理程序的缺点：
+
+* 首先,存在一个时差问题。因为用户可能会在HTML 元素一出现在页面上就触发相应的事件,但当时的事件处理程序有可能尚不具备执行条件。
+* 另一个缺点是,这样扩展事件处理程序的作用域链在不同浏览器中会导致不同结果。
+* 通过 HTML 指定事件处理程序的最后一个缺点是 HTML 与 JavaScript 代码紧密耦合。
+
+而这正是许多开发人员摒弃 HTML 事件处理程序,**转而使用 JavaScript 指定事件处理程序**的原因所在。
+
+
+
+#### DOM0级事件处理程序
+
+通过 JavaScript 指定事件处理程序的传统方式,就是将一个函数赋值给一个事件处理程序属性。(指定为DOM元素的属性)
+
+要使用 JavaScript 指定事件处理程序,首先必须取得一个要操作的对象的引用。每个元素(包括 window 和 document)都有自己的事件处理程序属性,这些属性通常全部小写,例如 onclick。将这种属性的值设置为一个函数,就可以指定事件处理程序
+
+```javascript
+//获取要操作对象的引用
+var btn = document.getElementById("myBtn");
+//为该对象的事件按处理程序属性设置为一个函数
+btn.onclick = function(){
+	alert("Clicked");
+};
+
+//可以这样删除事件处理程序
+btn.onclick = null;
+```
+
+使用 DOM0 级方法指定的事件处理程序被认为是元素的方法。因此,这时候的事件处理程序是在元素的作用域中运行;换句话说,程序中的 this 引用当前元素。
+
+**以这种方式添加的事件处理程序会在事件流的冒泡阶段被处理。**
+
+
+
+
+
+#### DOM2级事件处理程序
+
+“DOM2 级事件”定义了两个方法，用于处理指定和删除事件处理程序的操作: `addEventListener()`
+和 `removeEventListener()`。
+
+所有 **DOM 节点**中都包含这两个方法,并且它们都接受 3 个参数:
+
+* 要处理的事件名
+* 作为事件处理程序的函数
+* 一个布尔值。如果是 true，表示在捕获阶段调用事件处理程序；如果是 false，表示在冒泡阶段调用事件处理程序。
+
+示例：
+
+```javascript
+var btn = document.getElementById("myBtn");
+
+btn.addEventListener("click", function(){
+	alert(this.id);
+}, false);
+
+//第二个事件处理程序
+btn.addEventListener("click", function(){
+	alert("Hello world!");
+}, false);
+```
+
+与 DOM0 级方法一样,这里添加的事件处理程序也是在其依附的元素的作用域中运行。
+
+使用 DOM2 级方法添加事件处理程序的主要好处是 **可以添加多个事件处理程序**。并且会按顺序触发。
+
+
+
+通过 addEventListener()添加的事件处理程序只能使用 removeEventListener()来移除;移除时传入的参数与添加处理程序时使用的参数相同。**这也意味着通过 addEventListener()添加的匿名函数将无法移除**。
+
+
+
+
+
+#### 跨浏览器的事件处理程序
+
+
+
+
+
+### 事件对象
+
+在触发 DOM 上的某个事件时,会产生一个事件对象 event,这个对象中包含着所有与事件有关的
+信息。包括导致事件的元素、事件的类型以及其他与特定事件相关的信息。
+
+
+
+### 事件类型
+
+“DOM3级事件”规定了以下几类事件：
+
+* UI(User Interface,用户界面)事件，当用户与页面上的元素交互时触发;
+* 焦点事件，当元素获得或失去焦点时触发;
+* 鼠标事件，当用户通过鼠标在页面上执行操作时触发;
+* 滚轮事件，当使用鼠标滚轮(或类似设备)时触发;
+* 文本事件，当在文档中输入文本时触发;
+* 键盘事件，当用户通过键盘在页面上执行操作时触发;
+* 合成事件，当为 IME(Input Method Editor,输入法编辑器)输入字符时触发;
+* 变动(mutation)事件，当底层 DOM 结构发生变化时触发。
+* 变动名称事件，当元素或属性名变动时触发。此类事件已经被废弃,没有任何浏览器实现它们,因此本章不做介绍。
+
+
+
+
+常见的UI事件：
+
+* load：当**页面**完全加载后在 window 上面触发,当所有框架都加载完毕时在框架集上面触发,
+  当**图像**加载完毕时在	`<img>`元素上面触发,或者当**嵌入的内容**加载完毕时在`<object>`元素上面
+  触发。
+* unload：
+* select
+
+
+
+> 一般来说,在 window 上面发生的任何事件都可以在<body>元素中通过相应的特性来指定,因为在 HTML 中无法访问 window 元素。
+
+
+
+
+## 客户端JavaScript实践↓
+
+
+
+## 访问和变更样式
+
+JavaScript实现了动态的样式变更，其目的是为用户提供视觉反馈。
+
+**样式变更的方法：**
+
+* 通过 className 属性更改class名
+* 通过 classList 属性更改 class 名
+* 更改style 属性
+* 直接切换样式表
+
+
+
+
+
+
+
+### 通过 className 属性更改class名
+
+即实现通过 CSS 定义好对应于变更前与更改好的 class 名的样式，然后通过 className 属性来设置 class。
+
+注意：在变更 class 名后相关元素的样式也会改变。
+
+
+
+### 通过 classList 属性更改 class 名
+
+与 classList 类似。
+
+| 方法名             | 说明                                       |
+| --------------- | ---------------------------------------- |
+| contains(clazz) | 判断在class名中是否含有 clazz                     |
+| add(clazz)      | 向class名中添加clazz                          |
+| remove(clazz)   | 从class名中删除clazz                          |
+| toggle(clazz)   | 如果在class名中含有clazz则将它删除，否则向class名中添加clazz |
+
+
+
+
+
+### 更改style 属性
+
+通过这种方法，样式的更改范围明确的限定在这个元素。
+
+
+
+**属性格式转换：**
+
+在 style 特性中指定的任何 CSS 属性都将表现为这个**style对象**的相应**属性**。对于使用短划线`-`(分隔不同的词汇,例如 background-image)的 CSS 属性名，必须将其转换成驼峰大小写形式,才能通过 JavaScript 来访问；因为 `-` 在JS中被视为减号。
+
+
+
+| CSS属性            | 对应的JavaScript属性格式     |
+| ---------------- | --------------------- |
+| background-image | style.backaroundImage |
+| color            | style.color           |
+| display          | style.display         |
+| font-family      | style.fontFamily      |
+
+
+
+但对于CSS的 float 属性比较特殊，因为float是JS中的保留字，因此不能用作属性名；但是规定了其对应的属性为cssFloat。
+
+只要取得一个有效的 DOM 元素的引用,就可以随时使用 JavaScript 为其设置样式。
+
+```javascript
+var myDiv = document.getElementById("myDiv");
+//设置背景颜色
+myDiv.style.backgroundColor = "red";
+
+//改变大小
+myDiv.style.width = "100px";
+myDiv.style.height = "200px";
+//指定边框
+myDiv.style.border = "1px solid black";
+```
+
+在以这种方式改变样式时，元素的外观会自动被更新。
+
+如果没有为元素设置 style 特性,那么 style 对象中可能会包含一些默认的值
+
+> 在标准模式下,所有度量值都必须指定一个度量单位。在混杂模式下,可以将
+> style.width 设置为 "20" ,浏览器会 假设它是 "20px"。在实践中,最好始
+> 终都指定度量单位。
+
+
+
+style对象的一些属性和方法：
+
+* **cssText**；可以访问和设置style特性中的CSS代码。设置 cssText 是为元素应用多项变化最快捷的方式,因为可以一次性地应用所有变化。
+* length；元素的 CSS 属性的数量
+* item()；返回给定位置的 CSS 属性的名称。
+* getPropertyValue(propertyName) :  返回给定**属性的**字符串**值**。
+* ...
+
+
+
+
+### 直接切换样式表
+
+如果将 link 元素与 style 元素的 disabled 属性设置为 true，相应的样式表就将被禁用。
+
+对于已经事先准备了一些样式主题，需要让用户选择自己喜欢的主题以显示页面内容的情况，就可以通过这种方式实现。
+
+
+## AJAX
+
+ Ajax,是对 Asynchronous JavaScript + XML 的简写。这一技术能够向服务器请求额外的数据而无须卸载页面,会带来更好的用户体验。
+
+Ajax 技术的核心是 XMLHttpRequest 对象(简称 **XHR**)。XHR 为向服务器发送请求和解析服务器响应提供了流畅的接口。能够以异步方式从服务器取得更多信息。Ajax 通信与数据格式无关;这种技术就是无须刷新页面即可从服务器取得数据，但不一定是 XML 数据。
+
+
+
+## 表单
 
 
 
@@ -644,7 +1512,7 @@ var person = {
 
 《JavaScript高级程序设计》
 
-
+使用QUnit测试JavaScript。
 
 
 

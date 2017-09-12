@@ -154,12 +154,12 @@ Cannot register the hard disk '/source/backup/VirtualBox VMs/Sierra/macOS 10.12 
 
 复制和拷贝"文件"的区别：
 
-* 复制文件是在当前文件夹中制作一个副本
-* 拷贝文件就与Windows中的复制相同
+* 右键，复制文件是在当前文件夹中制作一个副本
+* 右键，拷贝文件就与Windows中的复制相同
 
 
 
-拷贝、粘贴、剪切**文本**和Windows中类似。
+拷贝、粘贴、剪切**文本**的快捷键和Windows中类似，只不过是使用 Command 替换了 Ctrl。
 
 
 
@@ -193,7 +193,19 @@ Cannot register the hard disk '/source/backup/VirtualBox VMs/Sierra/macOS 10.12 
 
 在"输入法"中添加简体拼音；并设置字体大小为18
 
-在"快捷键"中设置"选择上一个输入法"的快捷键。`^空格` 表示 Ctrl + 空格。
+在"快捷键"中设置"选择上一个输入法"的快捷键。`^空格` 表示 Ctrl + 空格。双击快捷键即可更改该快捷键。
+
+
+
+Caps Lock键的讨论：
+
+中文输入法模式下，点击caps lock可以输入小写英文。
+
+**CapsLock键，短按切换中英文，长按切换大小写。**
+
+macOS Sierra 可用 Caps Lock 切换自带的中文输入法和英文。
+
+不是调用中文输入法的英文模式，而是调用最近使用的西文输入法。
 
 
 
@@ -202,6 +214,12 @@ Cannot register the hard disk '/source/backup/VirtualBox VMs/Sierra/macOS 10.12 
 发现虚拟机中鼠标滚动方向与常规的不一样，方向是相反的。解决办法：
 
 系统偏好设置 -> 鼠标 -> 取消勾选“滚动方向：自然” 
+
+
+
+### 声音调节
+
+系统偏好设置 -> 声音 -> 输出 ，在此勾选"在菜单栏中显示音量"
 
 
 
