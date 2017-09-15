@@ -113,6 +113,16 @@ Jsoup不就是我之前ZhihuDaily项目中介绍过的用来像 html 文件中�
 
 
 
+[JavaScript 全栈工程师培训教程 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2016/11/javascript.html "JavaScript 全栈工程师培训教程 - 阮一峰的网络日志")
+
+[React 技术栈系列教程 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2016/09/react-technology-stack.html "React 技术栈系列教程 - 阮一峰的网络日志")
+
+[React 入门实例教程 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2015/03/react.html "React 入门实例教程 - 阮一峰的网络日志")
+
+
+
+
+
 **安装方法：**
 
 [Installation - React](https://facebook.github.io/react/docs/installation.html#using-a-cdn "Installation - React") 

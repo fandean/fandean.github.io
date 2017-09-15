@@ -588,6 +588,12 @@ ICO 文件允许在**同一个文件中包含多个不同尺寸的同名文件**
 
 
 
+## HTML5绘图
+
+[HTML5绘图-HTML5绘图教程-麦子学院](http://www.maiziedu.com/course/596/ "HTML5绘图-HTML5绘图教程-麦子学院")
+
+
+
 
 
 ## JS 

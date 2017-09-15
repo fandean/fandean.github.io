@@ -482,6 +482,12 @@ sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode s
 sudo apt-add-repository 'deb http://liveusb.info/multisystem/depot all main'
 wget -q -O - http://liveusb.info/multisystem/depot/multisystem.asc | sudo apt-key add -
 
+# 17. Sublime Text 3, 一个著名的编辑器
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+
+
+
 ##################统一在在此更新############################
 sudo apt-get update  -qq
 
@@ -536,3 +542,6 @@ sudo apt-get install code -y
 
 # 16. MultiSystem
 sudo apt-get install multisystem -y
+
+# 17. Sublime Text 3
+sudo apt-get install sublime-text

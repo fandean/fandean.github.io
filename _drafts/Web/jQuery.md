@@ -1,13 +1,3 @@
-
-
-《JQuery基础教程(第4版)》
-
-[jQuery 教程 - 菜鸟教程](http://www.runoob.com/jquery/jquery-tutorial.html "jQuery 教程 - 菜鸟教程")
-
-
-
-
-
 ## jQuery介绍
 
 
@@ -169,15 +159,17 @@ $(document).ready(function() {
 
 使用场景：可能需要为另一个JavaScript库提供一组元素的结果集合。
 
-为此jQuery提供了 `.get()`方法。比如 .get(0)，表示要访问jQuery对象所引用的第一个DOM元素，可以使用.get(0)。
+为此jQuery提供了 `.get()`方法。比如 `.get(0)`，表示要访问jQuery对象所引用的第一个DOM元素，可以使用`.get(0)`。
 
-jQuery为 .get() 方法提供了一种简写方式。比如 .get(0) 可以写成 [0]。
+jQuery为 `.get()` 方法提供了一种简写方式。比如 `.get(0)` 可以写成 `[0]`。
 
 
 
 ## 事件
 
-让jQuery响应网页的加载事件,`$(document).ready()`事件处理程序可以用来触发函数中的代码。原生的window.onload事件也可以实现相同的效果。但是,它们在触发操作的时间上存在着微妙的差异,这种差异只有在加载的资源多到一定程度时才会体现出来。
+### 响应网页加载事件
+
+让jQuery**响应网页的加载事件**,`$(document).ready()`事件处理程序可以用来触发函数中的代码。原生的window.onload事件也可以实现相同的效果。但是,它们在触发操作的时间上存在着微妙的差异,这种差异只有在加载的资源多到一定程度时才会体现出来。
 
 当文档完全下载到浏览器中时,会触发window.onload事件。
 
@@ -185,13 +177,28 @@ jQuery为 .get() 方法提供了一种简写方式。比如 .get(0) 可以写成
 
 
 
+并且可以通过 `$(document).ready()`**添加多个处理函数**，这些函数会按照注册它们的顺序依次执行。
+
 > 为了保证JavaScript代码执行以前页面已经应用了样式,最好是在`<head>`
 > 元素中把 `<link rel="stylesheet">` 标签和`<style>` 标签放在 `<script>`标
 > 签前面。
 
+> ```javascript
+> function doStuff() {
+> 	//执行某种任务......
+> }
+>
+> window.onload = doStuff;
+> ```
+>
+> **引用函数与调用函数：**
+> 这里在将函数指定为处理程序时,省略了后面的圆括号,只使用了函数名。如果带着圆括号,函数会被立即调用;没有圆括号,函数名就只是函数的标识符或函数引用,可以用于在将来再调用函数。
 
 
 
+### 处理简单的事件
+
+通过`.on()`方法，可以指定任何DOM事件，并为该事件添加一种行为。多次调用`.on()`也没有任何问题，即可以按需为同一个事件追加更多的行为。
 
 
 
@@ -212,4 +219,12 @@ jQuery为 .get() 方法提供了一种简写方式。比如 .get(0) 可以写成
 
 
 
+
+## 学习资料
+
+《JQuery基础教程(第4版)》
+
+[jQuery 教程 - 菜鸟教程](http://www.runoob.com/jquery/jquery-tutorial.html "jQuery 教程 - 菜鸟教程")
+
+[jquery基础应用视频教程-麦子学院](http://www.maiziedu.com/course/789/ "jquery教程-jquery视频教程-jquery基础应用视频教程-麦子学院")
 

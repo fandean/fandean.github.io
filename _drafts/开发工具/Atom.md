@@ -15,7 +15,7 @@ Atom 是基于 Electron，这是一个帮助开发者使用 Web 技术构建跨�
 
 上官网下载 Atom 安装包进行安装。
 
-或者在 Atom安装包国内镜像 <https://npm.taobao.org/mirrors/atom>这里进行下载。
+或者在 Atom安装包国内镜像 <https://npm.taobao.org/mirrors/atom> 这里进行下载。
 
 查看Atom的版本：
 ```shell
@@ -260,10 +260,10 @@ apm install sublime-style-column-selection
 
 ## 主题
 
-### seti-ui主题
+seti-ui主题
 
 
-### monokai-flat主题
+monokai-flat主题
 
 
 ## Atom快捷键

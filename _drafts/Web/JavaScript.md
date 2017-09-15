@@ -1,13 +1,5 @@
-JavaScript
 
-《JavaScript编程全解》介绍了一些实用方法。  
-
-《JavaScript高级程序设计》  
-
-
-
-
-
+## 基础学习
 
 
 传统意义上，JavaScript 是由下列三部分组成：
@@ -21,19 +13,17 @@ JavaScript
 
 而 Mozilla 则指出 JavaScript 由**Core** JavaScript 和 **Client** JavaScript 组成。
 
-
-
-## 基础学习
-
-[JavaScript 简介 - 菜鸟教程](http://www.runoob.com/js/js-intro.html "JavaScript 简介 - 菜鸟教程")
-
 DOM (**D**ocument **O**bject **M**odel)（文档对象模型）是用于访问 HTML 元素的正式 W3C 标准。
 
 
 
 ## 在HTML中使用JavaScript
 
+
+
 向 HTML 页面中插入 JavaScript 的主要方法,就是使用`<script>`元素。
+
+
 
 在使用`<script>`元素**嵌入 JavaScript 代码时**,只须为`<script>`指定 type 属性。
 
@@ -76,11 +66,11 @@ JavaScript 可以通过不同的方式来**输出数据**：
 
 
 
-> 请使用 document.write() 仅仅向文档输出写内容。
+> 使用 document.write() 仅仅向文档输出内容。
 >
-> 如果在文档已完成加载后执行 document.write，整个 HTML 页面将被覆盖。
+> 如果在文档已完成加载后执行 document.write()，整个 HTML 页面将被覆盖。
 >
-> document.write是直接写入到页面的**内容流**，如果在写之前没有调用document.open, 浏览器会自动调用open。每次写完关闭之后重新调用该函数，会导致页面被重写。
+> document.write()是直接写入到页面的**内容流**，如果在写之前没有调用document.open(), 浏览器会自动调用open()。每次写完关闭之后重新调用该函数，会导致页面被重写。
 
 
 
@@ -98,18 +88,16 @@ DevTools
 
 ### 字面量
 
-| 数值         | 100                         |
-| ---------- | --------------------------- |
-| 字符串值       | "foobar"                    |
-| 布尔值        | true                        |
-| null值      | null                        |
-| **Object** | {x:1,y:2}                   |
-| 数列         | [3,1,2]  //这里使用的是方括号，而不是大括号 |
-| **函数**     | function(){return ;}        |
-| 正则表达式      | /foo/                       |
-|            |                             |
+| 100                         | 数值         |
+| --------------------------- | ---------- |
+| "foobar"                    | 字符串值       |
+| true                        | 布尔值        |
+| null                        | null值      |
+| {x:1,y:2}                   | **Object** |
+| [3,1,2]  //这里使用的是方括号，而不是大括号 | 数列         |
+| function(){return ;}        | **函数**     |
+| /foo/                       | 正则表达式      |
 
-相等运算符： `===`
 
 
 
@@ -263,10 +251,6 @@ obj.fn = function(a,b){
 
 
 
-
-
-
-
 不必声明返回值：
 
 ```javascript
@@ -291,8 +275,7 @@ function sayHi(name, message) {
 ECMAScript 函数不介意传递进来多少个参数,也不在乎传进来参数是什么数据类型。也就是说,即便你定义的函数只接收两个参数,在调用这个函数时也未必一定要传递两个参数。可以传递一个、三个甚至不传递参数。
 
 之所以会这样,原因是 ECMAScript 中的参数在内部是用一个数组来表示的。函数接收
-到的始终都是这个数组,而不关心数组中包含哪些参数(如果有参数的话)。如果这个数组中不包含任
-何元素,无所谓;如果包含多个元素,也没有问题。
+到的始终都是这个数组,而不关心数组中包含哪些参数(如果有参数的话)。如果这个数组中不包含任何元素,无所谓;如果包含多个元素,也没有问题。
 
 实际上,在函数体内可以通过 arguments 对象来访问这个参数数组,从而获取传递给函数的每一个参数。
 
@@ -516,6 +499,23 @@ ECMAScript 中的数组与其他多数语言中的数组有着相当大的区别
 
 
 
+创建数组：
+
+```javascript
+var colors = new Array();
+var colors = new Array(20);
+// 也可省略 new 
+var colors = Array("red", "blue", "green");
+// 使用数组字面量
+var colors = ["red", "blue", "green"]; 
+```
+
+
+
+
+
+
+
 Array 的特性较多，这里不再说明。
 
 判断某个变量是否是数组： Array.isArray() 方法。
@@ -578,7 +578,7 @@ ECMAScript 5 为数组定义了 5 个迭代方法：
 
 #### Date类型
 
-
+略
 
 
 
@@ -850,13 +850,13 @@ ECMAScript 中描述了原型链的概念,并将原型链作为实现继承的�
 
 通过闭包来实现对属性值进行**访问控制**（private 或 public 等）。
 
+[学习Javascript闭包（Closure） - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html "学习Javascript闭包（Closure） - 阮一峰的网络日志")
 
 
 
 
 
-
-## Window对象
+## Window和框架
 
 Window对象具有的一些属性。
 
@@ -875,6 +875,12 @@ document：可以通过Document对象的cookie属性对Cookie进行读写操作
 parent, top, self：与框架相关
 
 
+
+
+
+然而在过去的几年中，框架不再流行，甚至从 HTML5 中完全移除(iframe 除外)。
+
+《JavaScript基础教程》第8版，第5章：窗口与框架。
 
 ## DOM
 
@@ -1289,11 +1295,13 @@ btn.onclick = function(){
 btn.onclick = null;
 ```
 
-使用 DOM0 级方法指定的事件处理程序被认为是元素的方法。因此,这时候的事件处理程序是在元素的作用域中运行;换句话说,程序中的 this 引用当前元素。
+使用 DOM0 级方法指定的事件处理程序被认为是元素的方法。因此,这时候的事件处理程序是在元素的作用域中运行；换句话说，程序中的 **this 引用当前元素**。
 
 **以这种方式添加的事件处理程序会在事件流的冒泡阶段被处理。**
 
 
+
+> 在某些情况下，利用事件的执行上下文(即this)，可以简化代码。
 
 
 
@@ -1337,7 +1345,7 @@ btn.addEventListener("click", function(){
 
 #### 跨浏览器的事件处理程序
 
-
+略
 
 
 
@@ -1352,7 +1360,7 @@ btn.addEventListener("click", function(){
 
 “DOM3级事件”规定了以下几类事件：
 
-* UI(User Interface,用户界面)事件，当用户与页面上的元素交互时触发;
+* UI(User Interface，用户界面)事件，当用户与页面上的元素交互时触发;
 * 焦点事件，当元素获得或失去焦点时触发;
 * 鼠标事件，当用户通过鼠标在页面上执行操作时触发;
 * 滚轮事件，当使用鼠标滚轮(或类似设备)时触发;
@@ -1370,7 +1378,7 @@ btn.addEventListener("click", function(){
 * load：当**页面**完全加载后在 window 上面触发,当所有框架都加载完毕时在框架集上面触发,
   当**图像**加载完毕时在	`<img>`元素上面触发,或者当**嵌入的内容**加载完毕时在`<object>`元素上面
   触发。
-* unload：
+* unload
 * select
 
 
@@ -1403,7 +1411,9 @@ JavaScript实现了动态的样式变更，其目的是为用户提供视觉反�
 
 ### 通过 className 属性更改class名
 
-即实现通过 CSS 定义好对应于变更前与更改好的 class 名的样式，然后通过 className 属性来设置 class。
+即事先通过 CSS 定义好对应于**变更前**与**更改后**的 class 名的样式，然后通过 className 属性来设置 class。
+
+同时也可利用移除 class 这一技巧。
 
 注意：在变更 class 名后相关元素的样式也会改变。
 
@@ -1513,6 +1523,20 @@ Ajax 技术的核心是 XMLHttpRequest 对象(简称 **XHR**)。XHR 为向服务
 《JavaScript高级程序设计》
 
 使用QUnit测试JavaScript。
+
+
+
+
+
+
+
+## 学习资料
+
+[JavaScript 简介 - 菜鸟教程](http://www.runoob.com/js/js-intro.html "JavaScript 简介 - 菜鸟教程")
+
+《JavaScript编程全解》介绍了一些实用方法。  
+
+《JavaScript高级程序设计》  
 
 
 

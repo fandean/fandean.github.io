@@ -97,6 +97,16 @@ WebStorm 是收费软件，不过这不是大问题，我们有一些免费使�
 
 
 
+设置 JavaScript 语言版本 ：File -> Setting -> Languages & Frameworks -> JavaScript ，选择语言版本。
+
+
+
+在本地运行js文件，右键点击 `run **.js`。事先需要安装好node.js并在webstorm中进行配置（File -> Setting -> Languages & Frameworks -> node.js）
+
+
+
+
+
 一些技巧：
 
 可以直接拖动文件到编辑器中。比如引入jquery.js，我们先将该文件添加到项目中，再直接拖动该文件到html文档中就会直接生成类似下面的语句`<script src="../build/jquery.js"></script>`。
