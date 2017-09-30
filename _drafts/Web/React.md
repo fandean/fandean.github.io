@@ -35,19 +35,6 @@
 
 
 
-学习资料：
-
-[React 中文](http://react-china.org/ "React 中文")
-
-[React中国](http://www.react-cn.com/)
-
-[主页 -论坛 - React Native中文社区](http://bbs.reactnative.cn/ "主页  论坛 - React Native中文社区")
-
-
-
-
-
-[【资料汇总】React (中文) · Issue #1 · dingyiming/example-react](https://github.com/dingyiming/example-react/issues/1 "【资料汇总】React (中文) · Issue #1 · dingyiming/example-react")
 
 
 
@@ -311,8 +298,24 @@ react中的事件名称，首字母小写，驼峰命名法。
 
 
 
+## 学习资料
+
+中文官网：[React - 用于构建用户界面的 JavaScript 库](https://doc.react-china.org/ "React - 用于构建用户界面的 JavaScript 库")
 
 
 
+[React 中文](http://react-china.org/ "React 中文")
+
+[React中国](http://www.react-cn.com/)
+
+[主页 -论坛 - React Native中文社区](http://bbs.reactnative.cn/ "主页  论坛 - React Native中文社区")
+
+[react-redux-tutorial](https://github.com/lewis617/react-redux-tutorial/blob/master/README.md "react-redux-tutorial/README.md at master · lewis617/react-redux-tutorial")
+
+[redux-in-chinese: Redux 中文文档](https://github.com/camsong/redux-in-chinese "camsong/redux-in-chinese: Redux 中文文档")
+
+
+
+[【资料汇总】React (中文) · Issue #1 · dingyiming/example-react](https://github.com/dingyiming/example-react/issues/1 "【资料汇总】React (中文) · Issue #1 · dingyiming/example-react")
 
 

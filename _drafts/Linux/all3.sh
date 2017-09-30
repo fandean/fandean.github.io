@@ -223,15 +223,17 @@ sudo apt-get install gimp -y
 # sudo apt-get install pinta
 ############################################################################################
 
-#gwenview较方便的图片查看软件(安装后自行设置，以方便使用)但一进入全屏显示就卡死。
-#另见 Xubuntu 中的默认看图软件相对来说非常好
-#sudo apt-get install gwenview -y
+#图片查看软件
+# Xubuntu 中的默认看图软件Ristretto相对来说非常好
+sudo apt-get install ristretto -y
 
 
-# kazam Ubuntu上一款简易的桌面屏幕录制工具， 带截图功能.
+# kazam Ubuntu上一款桌面屏幕录制工具， 带截图功能；视频录制
  sudo apt-get install kazam -y
 
-# simplescreenrecorder另一个录屏软件，在Ubuntu 17.04中可以直接安装
+# recordMyDesktop   屏幕录制，视频录制
+# sudo apt-get install gtk-recordmydesktop
+
 
 
 # 无法得知此软件是干啥的   sudo apt-get install anoise -y
@@ -253,11 +255,22 @@ sudo apt-get install traceroute -y
 #FileZila 通过FTP、FTPS 和 SFTP 上传下载文件 
 sudo apt-get install filezilla -y
 
+# Remmina一个功能丰富的远程桌面共享工具(VNC),并带有SFTP, SSH等功能。同时安装所有插件。
+sudo apt-get install remmina remmina-plugin-*
+
 #GnuPG 加密软件，非对称加密 
 
-#著名的视频编辑器。另有两款出名视频编辑器Cinelerra可将图片添加到视频；Kino可将静态图形导出成gif。
-#暂时用不到
-#sudo apt-get install openshot -y
+
+# 视频编辑
+# [2016 年 Linux 下五个最佳视频编辑软件](https://linux.cn/article-7955-1.html )
+# 视频编辑器。另有视频编辑器Cinelerra可将图片添加到视频；Kino可将静态图形导出成gif。好莱坞级别的Lightworks但其对硬件要求极高。
+# Blender也可以用来编辑视频
+# 暂时用不到
+# 一个觉得不错的视频编辑软件
+# sudo apt-get install kdenlive -y
+
+
+
 
 #FeedReader 阅读器，即RSS阅读器，有相关插件，
 sudo apt-get install liferea -y 
@@ -483,9 +496,12 @@ sudo apt-add-repository 'deb http://liveusb.info/multisystem/depot all main'
 wget -q -O - http://liveusb.info/multisystem/depot/multisystem.asc | sudo apt-key add -
 
 # 17. Sublime Text 3, 一个著名的编辑器
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+# 还是不能输入中文，就算解决中文输入问题，输入框还是无法跟随光标
+# wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+# echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 
+# 18.  Blender   3D模型动画制作，也有视频编辑功能。要求有独立显卡，并安装了独立显卡驱动。
+sudo add-apt-repository ppa:thomas-schiex/blender
 
 
 ##################统一在在此更新############################
@@ -544,4 +560,4 @@ sudo apt-get install code -y
 sudo apt-get install multisystem -y
 
 # 17. Sublime Text 3
-sudo apt-get install sublime-text
+# sudo apt-get install sublime-text

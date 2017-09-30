@@ -79,7 +79,53 @@ ARIA：无障碍的富互联网应用
 | role="contentinfo" (内容信息)    | 页脚footer元素            |
 
 
+
+### meta标签
+
+
+
+viewport：
+
+scale：比例
+
+
+
+**viewport属性：**
+
+viewport 有尺寸、响应、缩放三层含义
+
+[**meta标签中viewport属性的含义**](http://www.sjzphp.com/webdis/viewport.html "meta标签中viewport属性的含义")
+
+[移动端 viewport 标签背后的三层含义 - 前端 - 掘金](https://juejin.im/entry/581efd690ce46300588d44f6 "移动端 viewport 标签背后的三层含义 - 前端 - 掘金")
+
+
+
+一个示例：
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+```
+
+该meta标签的作用是让当前viewport的宽度等于设备的宽度，同时不允许用户手动缩放。
+
+
+
+
+| 属性            | 说明                                       |
+| ------------- | ---------------------------------------- |
+| width         | 设置**layout viewport**  的宽度，为一个正整数，或字符串"width-device" |
+| initial-scale | 设置页面的初始缩放值，为一个数字，可以带小数                   |
+| minimum-scale | 允许用户的最小缩放值，为一个数字，可以带小数                   |
+| maximum-scale | 允许用户的最大缩放值，为一个数字，可以带小数                   |
+| height        | 设置**layout viewport**  的高度，这个属性对我们并不重要，很少使用 |
+| user-scalable | 是否允许用户进行缩放，值为"no"或"yes", no 代表不允许，yes代表允许 |
+
+
+
+
+
 #### 添加注释
+
 `<!-- -->`
 
 #### 创建分级标题
@@ -451,6 +497,10 @@ HTML5 为 br 引入了一个相近的元素, 称为 wbr。它代表“一个可�
 
 #### meter元素
 
+
+
+
+
 #### progress元素
 进度条
 
@@ -588,6 +638,14 @@ ICO 文件允许在**同一个文件中包含多个不同尺寸的同名文件**
 
 
 
+## 跨浏览器问题
+
+
+
+
+
+> Bootstrap 使用 [Normalize](http://necolas.github.io/normalize.css/) 来建立跨浏览器的一致性。Normalize.css 是一个很小的 CSS 文件，在 HTML 元素的默认样式中提供了更好的跨浏览器一致性。
+
 ## HTML5绘图
 
 [HTML5绘图-HTML5绘图教程-麦子学院](http://www.maiziedu.com/course/596/ "HTML5绘图-HTML5绘图教程-麦子学院")
@@ -596,13 +654,4 @@ ICO 文件允许在**同一个文件中包含多个不同尺寸的同名文件**
 
 
 
-## JS 
-
-讨论下面这条语句
-
-```javasc
-<script src="vue.js"> alert("OK"); </script>
-```
-
-在这里并不会弹出警告框，原因是如果指定了`src`那么将会使用src里面的内容替换标签中的内容(也就是alert("OK"))。
 

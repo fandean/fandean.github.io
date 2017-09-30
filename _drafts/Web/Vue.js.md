@@ -95,5 +95,25 @@ vue.js 文件与 vue.min.js文件之间有什么不同？
 
 
 
+下载到本地可以直接下载相关文件，或通过npm下载。
 
+
+
+通过npm下载vue.js的脚手架：
+
+即Vue.js的命令行工具 CLI，它可用于快速搭建大型单页应用。该工具提供开箱即用的构建工具配置，带来现代化的前端开发流程
+
+
+
+
+
+
+
+
+
+## 学习资料
+
+[Vue.js中文](https://cn.vuejs.org/index.html "Vue.js")
+
+[Vue.js 2.x 中文文档 - vuefe.cn](https://vuefe.cn/ "Vue.js 2.x 中文文档 - vuefe.cn")
 

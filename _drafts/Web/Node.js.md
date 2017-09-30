@@ -17,7 +17,7 @@ Node.js 内建了 HTTP 服务器支持，所以不需要安装Apache之类的HTT
 
 **异步式 I/O 与事件驱动：**
 
-**Node.js 最大的特点就是采用异步式 I/O 与事件驱动的架构设计**。对于高并发的解决方案,传统的架构是多线程模型。Node.js 使用的是单线程模型,对于所有 I/O 都采用异步式的请求方式,避免了频繁的上下文切换Node.js 在执行的过程中会维护一个事件队列,程序在执行时进入事件循环等待下一个事件到来,每个异步式 I/O 请求完成后会被推送到事件队列,等待程序进程进行处理。
+**Node.js 最大的特点就是采用异步式 I/O 与事件驱动的架构设计**。对于高并发的解决方案，传统的架构是多线程模型。Node.js 使用的是单线程模型,对于所有 I/O 都采用异步式的请求方式，避免了频繁的上下文切换Node.js 在执行的过程中会维护一个事件队列，程序在执行时进入事件循环等待下一个事件到来，每个异步式 I/O 请求完成后会被推送到事件队列，等待程序进程进行处理。
 
 查询数据库示例：
 
@@ -106,7 +106,7 @@ Node.js REPL(Read Eval Print Loop:交互式解释器)
 
 如何在其他文件中获取这个模块？
 
-Node.js 提供了 exports 和 require 两个对象,其中 exports 是模块公开的接口,require 用于从外部获取一个模块的接口,即所获取模块的 exports 对象。
+Node.js 提供了 exports 和 require 两个对象,其中 exports 是模块公开的接口，require 用于从外部获取一个模块的接口,即所获取模块的 exports 对象。
 
 示例：
 
@@ -255,11 +255,94 @@ package.json 是 CommonJS 规定的用来描述包的文件
 
 
 
+## express
+
+
+
+```shell
+# 先安装 
+$ npm install -g express-generator
+# 查看帮助
+$ express -h
+# 使用 ejs 模板引擎初始化一个项目
+$ express -v ejs microblog
+
+   create : microblog
+   create : microblog/package.json
+   create : microblog/app.js
+   create : microblog/public
+   create : microblog/routes
+   create : microblog/routes/index.js
+   create : microblog/routes/users.js
+   create : microblog/views
+   create : microblog/views/index.ejs
+   create : microblog/views/error.ejs
+   create : microblog/bin
+   create : microblog/bin/www
+   create : microblog/public/javascripts
+   create : microblog/public/images
+   create : microblog/public/stylesheets
+   create : microblog/public/stylesheets/style.css
+
+   install dependencies:
+     $ cd microblog && npm install
+
+   run the app:
+     $ DEBUG=microblog:* npm start
+
+$ cd microblog && npm install
+$ DEBUG=microblog:* npm start
+
+# 然后在浏览器中打开 http://localhost:3000 
+```
+
+
+
+这里做一些解释:
+
+* routes是一个文件夹形式的本地模块，它的功能是为指定路径组织返回内容，相当于MVC架构中的控制器。在该模块中用到的方法：
+  * `app.get(path,callback)`是一个路由控制器，路由规则创建函数，这里的 `get`表示使用get请求，另外还有 app.post()等函数。
+  * `res.render('index', {title:'Express'})`功能是调用模板解析引擎，渲染名为index的模板，并传入一个对象作为参数。
+* `app.set`是Express的参数设置工具，接受一个键和一个值。
+* `app.use`用来启用中间件。
+* `.ejs`为模板文件；比如 index.ejs
+* 对于像style.css这样的静态文件，当浏览器像服务器发出请求该文件时app.js 中并没有一个路由规则指派到 /stylesheets/style.css，但 app 通过`app.use(express.static(__dirname + '/public'))`配置了静态文件服务器。这样也能进行正确的路由。
+
+
+
+
+
+> ejs(Embedded JavaScript)是一个标签替换引擎,其语法与 ASP、 PHP 相似,易于学习,目前被广泛应用。 Express默认提供的引擎是 jade,它颠覆了传统的模板引擎,制定了一套完整的语法用来生成 HTML 的每个标签结构,功能强大但不易学习。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 学习资料
 
 通过这里快速了解：
 
 [NPM 使用介绍 - 菜鸟教程](http://www.runoob.com/nodejs/nodejs-npm.html "NPM 使用介绍 - 菜鸟教程")
+
+[Node.js 中文网](http://nodejs.cn/ "Node.js 中文网")
 
 [Node入门 » 一本全面的Node.js教程](https://www.nodebeginner.org/index-zh-cn.html#javascript-and-nodejs "Node入门 » 一本全面的Node.js教程")
 

@@ -183,6 +183,10 @@ apm install js-func-viewer
 apm install language-javascript-jsx
 
 
+####### Bootstrap #########
+apm install atom-bootstrap
+
+
 ##########  react 相关 ##########
 # apm install react
 apm install react-es6-snippets

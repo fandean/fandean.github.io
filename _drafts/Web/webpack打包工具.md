@@ -1,7 +1,5 @@
 
 
-
-
 ## 了解模块和组件
 
 建议先通过 《React全栈》了解模块打包的发展过程。
@@ -55,6 +53,8 @@ webpack已成为当下最流行的打包解决方案。
 
 ### webpack安装
 
+**全局安装**：不推荐
+
 安装webpack：
 
 ```shell
@@ -65,12 +65,8 @@ npm install -g webpack
 
 webpack-dev-server 是一个基于 Express 框架的 Node.js服务器。我们可以用它来辅助开发与调试。它除了提供最基本的自动刷新，还提供了如模块热替换这样的强大功能。
 
-
-
-安装一个服务能够实时监听代码状态：
-
 ```shell
-npm install webpack-dev-server
+npm install webpack-dev-server -g
 ```
 
 > webpack-dev-server@2.8.1   (此次安装版本) 
@@ -103,6 +99,32 @@ npm install webpack-dev-server
 > 解决办法：重新安装 webpack
 >
 > 新安装的版本 webpack@3.5.6
+
+
+
+**局部安装**：推荐
+
+```shell
+npm install webpack --save-dev
+# 或者安装某特定版本的 webpack
+npm install webpack@<version> --save-dev
+```
+
+如果你的项目使用了 npm script，npm 会在项目本地目录下查找已安装的 webpack。
+
+```shell
+"scripts": {
+    "start": "webpack --config mywebpack.config.js"
+}
+```
+
+**局部安装是标准且推荐的安装方式**。
+
+> 如果需要使用本地安装的 webpack，可以通过如下路径 `node_modules/.bin/webpack`。
+>
+> 全局安装会把你锁定在某个 webpack 版本上，如果遇到其他项目使用了不同版本的 webpack 就可能导致运行失败。
+
+
 
 
 
@@ -221,6 +243,8 @@ require("!style-loader!css-loader!./style.css");
 
 
 
+
+
 配置 webpack.config.js 文件后        ---------  只需运行命令  webpack 而不需要额外的参数
 
 配置 package.json 后  ---------  则使用 npm  run build 替代 webpack 命令，（任务名称为build，任务内容为 webpack 命令） 
@@ -263,7 +287,13 @@ require("!style-loader!css-loader!./style.css");
 
 ## 学习资料
 
-[Webpack前端必备模块打包机_腾讯课堂](https://ke.qq.com/course/238556#term_id=100281453 "Webpack前端必备模块打包机_腾讯课堂")
+入门：[Webpack前端必备模块打包机_腾讯课堂](https://ke.qq.com/course/238556#term_id=100281453 "Webpack前端必备模块打包机_腾讯课堂")
 
-Webpack演示 [ruanyf/webpack-demos: a collection of simple demos of Webpack](https://github.com/ruanyf/webpack-demos "ruanyf/webpack-demos: a collection of simple demos of Webpack")
+Webpack示例：
+
+ [阮大侠/webpack-demos](https://github.com/ruanyf/webpack-demos "ruanyf/webpack-demos: a collection of simple demos of Webpack") 推荐。
+
+[官方示例 webpack-examples](https://github.com/webpack/webpack/tree/master/examples "webpack/examples at master · webpack/webpack")
+
+[中文官网：核心概念](https://doc.webpack-china.org/concepts/ "核心概念") 推荐。
 

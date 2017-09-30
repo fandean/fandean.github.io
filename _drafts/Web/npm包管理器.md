@@ -2,13 +2,9 @@
 
 ## npm介绍
 
-
-
-
-
 包管理器(Package Manager)
 
-npm 在不断的升级，最初它只是被称为 Node Package Manager，用来解决Node.js的包管理器。但是随着其它构建工具(webpack、browserify)的发展，npm已经变成了 "the package manager for JavaScript"，它用来安装、管理和分享JavaScript包，同时会自动处理多个包之间的依赖。
+npm 最初它只是被称为 Node Package Manager，用来解决Node.js的包管理器。但是随着其它构建工具(webpack、browserify)的发展，npm已经变成了 "the package manager for JavaScript"，它用来安装、管理和分享JavaScript包，同时会自动处理多个包之间的依赖。
 
 ## 安装npm
 
@@ -30,8 +26,6 @@ Linux中安装nodejs的方法：
 ```javascript
 npm install npm -g
 ```
-
-
 
 
 
@@ -115,6 +109,10 @@ npm link express
 
 
 
+如果你的项目不再需要该模块，可以在项目目录内使用npm unlink命令，删除符号链接。
+
+
+
 > 像gem 或 pip 总是以全局模式安装，使包可以供所有的程序使用，而 npm 默认会把包安装到当前目录下。这反映了 npm 不同的设计哲学。如果把包安装到全局，可以提高程序的重复利用程度,避免同样的内容的多份副本，但坏处是难以处理不同的版本依赖。
 
 
@@ -130,10 +128,17 @@ npm help <某命令>
 
 
 
+### 列出各命令
+
+```shell
+npm -l
+```
 
 
 
 ### 查看安装信息
+
+安装信息和它们的依赖
 
 ```shell
 //全局安装信息
@@ -173,11 +178,19 @@ npm search <关键字>
 
 
 
+### 列出npm的配置
+
+```shell
+npm config list -l
+```
 
 
-npm start
 
-npm stop
+### 列出bin目录
+
+```shell
+npm bin
+```
 
 
 
@@ -201,7 +214,7 @@ npm stop
 
 
 - 手动创建
-- 或者 通过 npm init 命令填入各种信息
+- 或者 通过 `npm init` 命令生成遵守规范的 package.json文件
 
 
 
@@ -213,14 +226,54 @@ npm stop
 
 两种依赖包：
 
-* dependencies: 在生产环境中需要依赖的包。通过`npm install <packge> --save`命令自动添加依赖到文件。
-* devDependencies：仅在开发和测试环节中需要依赖的包。通过`npm install <packge> --save-dev`命令自动添加依赖到文件。
+* dependencies: 在生产环境中需要依赖的包。通过`npm install <packge> --save`命令自动添加依赖到文件（或者使用简写的参数 `-S`）。
+* devDependencies：仅在开发和测试环节中需要依赖的包。通过`npm install <packge> --save-dev`命令自动添加依赖到文件（或者使用简写的参数 `-D`）。
 
 > 当然你也可以在文件中手动添加依赖
 
 
 
 如果其他人也需要这个项目，只需要把这个 package.json 文件给他，然后进行简单的 `npm install` 即可。
+
+
+
+## 设置默认配置
+
+使用 `npm set` 命令用来设置环境变量。
+
+也可以用它来为 `npm init`设置默认值，这些值会保存在 `~/.npmrc `文件中。
+
+```shell
+$ npm set init-author-name 'Your name'
+$ npm set init-author-email 'Your email'
+$ npm set init-author-url 'http://yourdomain.com'
+$ npm set init-license 'MIT'
+```
+
+
+
+## 更改全局安装目录
+
+使用`npm config`命令可以达到此目的。
+
+```shell
+npm config set prefix <目录>
+```
+
+或者手动在 `~/.npmrc`文件中进行配置：
+
+```
+prefix = /home/yourUsername/npm
+```
+
+更改目录后记得在系统环境变量 `PATH`中添加该路径：
+
+```shell
+# .bashrc 文件
+export PATH=~/npm/bin:$PATH
+```
+
+
 
 
 
@@ -262,6 +315,8 @@ Is this ok? (yes)
 
 该文件就是一个符合 npm 规范的 package.json 文件。这里的 index.js 作为包的接口。
 
+> 也可简单的使用 `npm init -y`。其中`-y`（代表yes）
+
 
 
 创建帐号： 
@@ -300,6 +355,38 @@ npm unpublish
 
 
 
+## npm run
+
+`package.json`文件有一个`scripts`字段，可以用于指定脚本命令，供`npm`直接调用。
+
+```json
+  "scripts": {
+    "lint": "jshint **.js",
+    "test": "mocha test/"
+  }
+```
+
+`npm run lint`可以运行脚本中的 lint 命令。`npm run test`可以运行脚本中的 test 命令。
+
+`npm run`命令会自动在环境变量`$PATH`添加`node_modules/.bin`目录，所以`scripts`字段里面调用命令时不用加上路径，这就避免了全局安装NPM模块。
+
+`start`和`test`属于特殊命令，可以省略`run`：
+
+```shell
+npm start 
+npm test
+```
+
+如果仅仅使用`npm run`会列出scripts属性下所有的命令：
+
+```shell
+npm run
+```
+
+
+
+
+
 
 
 ## npm模块安装机制
@@ -316,8 +403,11 @@ npm unpublish
 
 [npm Documentation](https://docs.npmjs.com/ "npm Documentation")
 
+[如何卸载使用npm链接安装的软件包？](https://gxnotes.com/article/45185.html "如何卸载使用npm链接安装的软件包？ - 共享笔记")
 
+[package.json文件 -- JavaScript 标准参考教程（alpha）](http://javascript.ruanyifeng.com/nodejs/packagejson.html "package.json文件 -- JavaScript 标准参考教程（alpha）")
 
+[npm模块管理器 -- JavaScript 标准参考教程（alpha）](http://javascript.ruanyifeng.com/nodejs/npm.html "npm模块管理器 -- JavaScript 标准参考教程（alpha）")
 
 
 

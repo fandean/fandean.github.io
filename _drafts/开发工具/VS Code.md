@@ -263,6 +263,8 @@ Open the file to view the history, and then Press F1 and select/type "Git: View 
 
 
 
+#### Git Lens
+
 
 
 
@@ -378,5 +380,39 @@ vscode 插件：  Translator plus, markdown shortcuts,  psioniq File Header，
 
 
 
+#### ESLint
 
+Integrates ESLint into VS Code
+
+
+
+#### Beautify
+
+Beautify javascript, JSON, CSS, Sass, and HTML in Visual Studio Code.
+
+
+
+#### npm
+
+npm support for VS Code
+
+
+
+#### npm Intellisense
+
+
+
+#### veu.js相关
+
+Vetur和Vue Snippets JS/HTML/PU...两个必装。
+
+#### Vetur
+
+vue tooling for vscode
+
+
+
+#### Vue Snippets JS/HTML/PU...
+
+依赖： vetur
 

@@ -97,6 +97,8 @@ WebStorm 是收费软件，不过这不是大问题，我们有一些免费使�
 
 
 
+### 设置 JavaScript 语言版本
+
 设置 JavaScript 语言版本 ：File -> Setting -> Languages & Frameworks -> JavaScript ，选择语言版本。
 
 
@@ -105,9 +107,53 @@ WebStorm 是收费软件，不过这不是大问题，我们有一些免费使�
 
 
 
+### 打开内嵌的终端
+
+ open the built-in WebStorm Terminal 
+
+press `Alt+F12` （不管用）or choose `View | Tool Windows | Terminal` （可以打开）on the main menu。
 
 
-一些技巧：
+
+### Vue.js支持
+
+WebStorm默认已经支持Vue.js，请确保 Vue.js 插件处于开启状态。
+
+额外设置：
+
+[intellij idea - How to integrate WebStorm with Vue.js - Stack Overflow](https://stackoverflow.com/questions/36929395/how-to-integrate-webstorm-with-vue-js "intellij idea - How to integrate WebStorm with Vue.js - Stack Overflow")
+
+
+**Improve HTML-tag's attributes highlighting**
+
+Open `Settings(Preferences)` => `Editor` => `Inspection` => `HTML` => select `Unknown HTML tag attributes` => click `Custom HTML tag attributes`. Add your attributes.
+
+For example, my list:
+
+```
+v-on,v-on:click,v-on:change,v-on:focus,v-on:blur,v-on:keyup,:click,@click,v-model,v-text,v-bind,:disabled,@submit,v-class,:class,v-if,:value,v-for,scoped,@click.prevent,number,:readonly,@input,@click,v-show,v-else,readonly,v-link,:title,:for,tab-index,:name,:id,:checked,transition,@submit.prevent,autocapitalize,autocorrect,slot,v-html,:style
+```
+
+
+
+### Node.js支持
+
+**Enable Node.js Coding Assistance:**
+
+Open `Settings(Preferences)` => `Languages & Frameworks` => `Node.js and NPM`
+
+> If "Node.js core library is not enabled", click button `Enabled`
+
+
+
+
+
+
+
+
+
+
+## 一些技巧
 
 可以直接拖动文件到编辑器中。比如引入jquery.js，我们先将该文件添加到项目中，再直接拖动该文件到html文档中就会直接生成类似下面的语句`<script src="../build/jquery.js"></script>`。
 
