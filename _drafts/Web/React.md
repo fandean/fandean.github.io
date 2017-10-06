@@ -70,6 +70,14 @@ Jsoup不就是我之前ZhihuDaily项目中介绍过的用来像 html 文件中�
 
 
 
+[jsoup 解析HTML信息 - OPEN 开发经验库](http://www.open-open.com/lib/view/open1455717177855.html "jsoup 解析HTML信息 - OPEN 开发经验库")
+
+
+
+
+
+
+
 
 
 ## 计划 

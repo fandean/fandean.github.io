@@ -17,20 +17,8 @@ chare: true
 # VS Code使用笔记
 
 
-## 在我的XUbuntu 16.04中VS Code在使用过程中会出现关标乱跳的情况，已被舍弃
+## 在我的XUbuntu 16.04中VS Code在使用过程中会出现光标乱跳的情况，已被舍弃
 
-
-## 学习文档
-[VScode中文文档](https://www.gitbook.com/book/jeasonstudio/vscode-cn-doc/details)  
-[VS Code Tips and Tricks](https://github.com/Microsoft/vscode-tips-and-tricks)  
-[Visual Studio Code 配置指南](https://github.com/kaiye/kaiye.github.com/issues/14 "强烈推荐")  
-[Key Bindings for Visual Studio Code](https://github.com/kaiye/kaiye.github.com/issues/14)  
-
-查看VS Code的自带帮助，来学习它。比如： `帮助 --> 欢迎使用`
-
-[Visual Studio Code User and Workspace Settings](https://code.visualstudio.com/docs/getstarted/settings "Visual Studio Code User and Workspace Settings")
-
-[Microsoft/vscode-tips-and-tricks: Collection of helpful tips and tricks for VS Code.](https://github.com/Microsoft/vscode-tips-and-tricks "Microsoft/vscode-tips-and-tricks: Collection of helpful tips and tricks for VS Code.")
 
 ## User Guide  
 [Basic Editing in Visual Studio Code](https://code.visualstudio.com/docs/editor/codebasics "Basic Editing in Visual Studio Code")
@@ -202,6 +190,8 @@ Insert File-Header-Comment
 
 
 
+### 其它工具
+
 #### EditorConfig for VS Code
 
 支持 EditorConfig 的一个插件，用来在不同编辑器中保持代码格式的一致性。
@@ -209,9 +199,12 @@ Insert File-Header-Comment
 [代码风格统一工具 EditorConfig](https://mp.weixin.qq.com/s?__biz=MzAwMTYwNzE2Mg==&mid=2651036611&idx=1&sn=65c9f4c95132ef4e704d165d74cea1ec#rd "代码风格统一工具 EditorConfig")
 
 
+
 #### Path Intellisense
 
-自动补全路径
+自动补全路径。(必装)
+
+
 
 
 #### Project Manager
@@ -219,6 +212,8 @@ Insert File-Header-Comment
 可以保存工程和在工程间切换
 
 先将当前打开的文件夹以工程保存，之后就可以在命令面板中列出并打开。
+
+
 
 #### vscode-icons
 
@@ -392,6 +387,26 @@ Beautify javascript, JSON, CSS, Sass, and HTML in Visual Studio Code.
 
 
 
+### Debugger for Chrome
+
+Debug your JavaScript code running in Google Chrome from VS Code.
+
+![](https://cdn.rawgit.com/Microsoft/vscode-chrome-debug/master/images/demo.gif)
+
+
+
+### Live Server
+
+该插件有 **在浏览器中打开文件** 和 **实时同步**功能。安装了该插件后就无需安装类似 open-in-browser 的插件。
+
+![](https://github.com/ritwickdey/vscode-live-server/raw/master/images/Screenshot/vscode-live-server-editor-menu-3.jpg)
+
+![](https://github.com/ritwickdey/vscode-live-server/raw/master/images/Screenshot/vscode-live-server-explorer-menu-demo-1.gif)
+
+
+
+### Node相关
+
 #### npm
 
 npm support for VS Code
@@ -402,9 +417,15 @@ npm support for VS Code
 
 
 
-#### veu.js相关
+#### Node.js Modules Intellisense
 
-Vetur和Vue Snippets JS/HTML/PU...两个必装。
+该插件受启发于 npm Intellisense和AutoFileName
+
+
+
+### veu.js相关
+
+Vetur 和 Vue Snippets JS/HTML/PU...两个必装。
 
 #### Vetur
 
@@ -415,4 +436,35 @@ vue tooling for vscode
 #### Vue Snippets JS/HTML/PU...
 
 依赖： vetur
+
+
+### React相关
+
+
+
+
+## 主题
+
+* One Dark Pro ：Atom's iconic One Dark theme, and one of the most downloaded themes for VS Code.
+* rocket-ui
+
+
+
+## 学习文档
+[VScode中文文档](https://www.gitbook.com/book/jeasonstudio/vscode-cn-doc/details)  
+[VS Code Tips and Tricks](https://github.com/Microsoft/vscode-tips-and-tricks)  
+[Visual Studio Code 配置指南](https://github.com/kaiye/kaiye.github.com/issues/14 "强烈推荐")  
+[Key Bindings for Visual Studio Code](https://github.com/kaiye/kaiye.github.com/issues/14)  
+
+查看VS Code的自带帮助，来学习它。比如： `帮助 --> 欢迎使用`
+
+[Visual Studio Code User and Workspace Settings](https://code.visualstudio.com/docs/getstarted/settings "Visual Studio Code User and Workspace Settings")
+
+[Microsoft/vscode-tips-and-tricks: Collection of helpful tips and tricks for VS Code.](https://github.com/Microsoft/vscode-tips-and-tricks "Microsoft/vscode-tips-and-tricks: Collection of helpful tips and tricks for VS Code.")
+
+
+
+插件：
+
+[掘金VS Code 收藏集](https://juejin.im/collection/58d9c70b1e35c9353d934e93 "https://juejin.im/collection/58d9c70b1e35c9353d934e93")
 

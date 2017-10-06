@@ -44,3 +44,17 @@
 
 
 
+
+
+
+## 开源框架
+
+
+
+[Android 中基于物理特性的动画简介 - OPEN 开发经验库](http://www.open-open.com/lib/view/open1501666268791.html "Android 中基于物理特性的动画简介 - OPEN 开发经验库")
+
+
+
+
+
+

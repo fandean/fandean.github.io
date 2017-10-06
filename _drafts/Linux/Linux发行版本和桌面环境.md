@@ -1,12 +1,22 @@
-﻿# Linux系统升级、版本和桌面环境介绍
+# Linux发行版本和桌面环境
 
 标签：Linux
 
----
 
-## 迁移文章到 作业部落  
 
-## 1. Linux系统升级
+兼容Ubuntu系统的软件要多于其他系统，安装软件更加容易。遇到软件安装不上真的很烦。所以尽量考虑Ubuntu及其衍生版系统。
+
+
+
+
+
+## 笔记本选购
+
+[Linux 笔记本电脑选购指南-观点](https://linux.cn/article-8110-1.html )
+
+
+
+## Linux系统升级
 
 ### Ubuntu14.04升级到16.04    
 
@@ -16,26 +26,32 @@ Ubuntu 16.04 LTS (Xenial Xerus)各种版本官网，升级更新方法，见Ubun
 
 > 前期查阅：
 > 参考：<http://forum.ubuntu.com.cn/viewtopic.php?f=180&t=477472>  
-<https://www.sysgeek.cn/upgrade-ubuntu-16-04-lts/>  
+> <https://www.sysgeek.cn/upgrade-ubuntu-16-04-lts/>  
 >
 > **注意事项**   
->     
->使用命令：`sudo update-manager` 升级,另还需添加选项；当使用不同的选项时升级到不同的
-版本，比如`-d`升级到研发版（devel version)；而一般选择升级到（lts release)版。  -p 选项，升级到推荐版(提前释放的更新)，见man帮助。
+> ​    
+> 使用命令：`sudo update-manager` 升级,另还需添加选项；当使用不同的选项时升级到不同的
+> 版本，比如`-d`升级到研发版（devel version)；而一般选择升级到（lts release)版。  -p 选项，升级到推荐版(提前释放的更新)，见man帮助。
 >
->如：
->`sudo update-manager -c -d`
+> 如：
+> `sudo update-manager -c -d`
 >
->可能存在的问题：当不使用`-d`选项时，可能无法检测到新版本。 [14.04 -> 16.04 问题与解决](http://forum.ubuntu.org.cn/viewtopic.php?f=48&t=477478&p=3162191#p3162191)
+> 可能存在的问题：当不使用`-d`选项时，可能无法检测到新版本。 [14.04 -> 16.04 问题与解决](http://forum.ubuntu.org.cn/viewtopic.php?f=48&t=477478&p=3162191#p3162191)
 
 
 
-## 2. 各Linux发行版介绍
+## Ubuntu的几种版本
 
-Ubuntu的几种版本（应以流畅性，可用性为标准）
-------------------------------
+
+（应以流畅性，可用性为标准）
+
+
 参考：https://wiki.ubuntu.com/DerivativeTeam/Derivatives
 Ubuntu的衍生版分为两类： 官方衍生产品和非官方衍版。
+
+
+
+
 
 ### 官方支持的衍生版包括： 
 
@@ -49,7 +65,10 @@ Ubuntu的衍生版分为两类： 官方衍生产品和非官方衍版。
 
 ### 认可的衍生版包括：
 
-　(1):Xubuntu： xubuntu使用的是XFCE的桌面环境，不同于ubuntu的gnome环境和kubuntu的kde桌面环境。由于xfce主要是一套用于配置低的电脑的桌面环境，所以使到xubuntu系统的主要特点是系统需求配置非常低，适用于旧电脑（例如装有老单核，内存小和老集成显卡的电脑），而且安装后速度很快。假如你的电脑运行ubuntu不顺畅可以尝试安装xubuntu
+### Xubuntu
+
+xubuntu使用的是XFCE的桌面环境，不同于ubuntu的gnome环境和kubuntu的kde桌面环境。由于xfce主要是一套用于配置低的电脑的桌面环境，所以使到xubuntu系统的主要特点是系统需求配置非常低，适用于旧电脑（例如装有老单核，内存小和老集成显卡的电脑），而且安装后速度很快。假如你的电脑运行ubuntu不顺畅可以尝试安装xubuntu
+
 安装软件： 
 　　xubuntu主要运行基于GTK+的程序，可以用ubuntu的所有程序和KDE程序 
 http://xubuntu.org/
@@ -58,28 +77,164 @@ http://xubuntu.org/
 http://ubuntugnome.org/
 
 
-### Lubuntu 採用了比Xfce更輕量的桌面環境 Lxde
+
+### Lubuntu
+
+Lubuntu 採用了比Xfce更輕量的桌面環境 Lxde
 
 Xubuntu 和 Lubuntu 轻量但可能可安装的软件有些许限制
+
+
 
 
 ### Linux Mint
 [Linux Mint](https://linuxmint.com)更简单、更优雅、更完备的Ubuntu。它拥有大量Ubuntu所没有的编解码器、驱动器、源、应用程序；
 它拥有专为管理系统各个部分而创建的程序，例如，程序安装、程序运行、软件更新、桌面自定义。
 在这里，你完全见不到病毒与间谍软件的踪影，Linux发行版所提供的安全保障，也是应当纳入考虑的因素。
-它分为两个版本：Cinnamon 版（Cinnamon desktop 也不错）、 MATE版（MATE desktop）两者都基于GNOME 2
-**可以考虑试用 Linux Mint** 
+它分为两个版本：**Cinnamon 版**（Cinnamon desktop 也不错）、 **MATE版**（MATE desktop）两者都基于GNOME 2
 
-
->可以考虑安装的Linux发行版有：  
->Fedora 、Linux Mint、Archlinux、XUbuntu、LUbuntu、或者考虑 Fedora + xfce 的形式
->
->对于Fedora，该网站有对应的不同桌面版本：[spins of fedora](https://spins.fedoraproject.org/) Note that you can always install different official spins of Fedora. They include different desktop environments by default.
+Linux Mint 与 Ubuntu软件仓库完全兼容，采用**apt**管理和.deb软件包。
 
 
 
+**可以考虑试用 Linux Mint** 的 Cinnamon 版。
 
-## 3. 各桌面环境介绍
+- Cinnamon：是 Unix-like 系统下的一个用户界面。是 GNOME Shell 的一个派生版本，最初是为 Linux Mint 所开发，其提供了如同 GNOME 2 般，易于使用的拟真接口。Cinnamon 使用 Muffin，一个 GNOME 3 的窗口管理器 Mutter 的派生版本，作为自 1.2 版起的默认窗口管理器。
+- MATE：由已经停止官方维护的 GNOME 2 源代码派生而来。
+
+
+
+[Linux Mint 18.1 (Serena)-Linux 发行版](https://linux.cn/article-3260-1.html "Linux Mint 18.1 (Serena)-Linux 发行版")
+
+
+
+
+
+## 其他发行版
+
+
+
+### Fedora
+
+Fedora是技术先进的Linux，所以你需要小心一点，以免遇到不必要的麻烦。如果你还不是Linux专家或者不想成为Linux专家，还是别用Fedora为好。
+
+真的遇到很多麻烦。 可能使用centos更方便。
+
+
+
+### CentOS和Debian
+
+它们更适合于服务器，而不是桌面。那倒不是说你不能把它们用作桌面，而是我建议使用其他更加针对桌面的发行版。
+
+
+
+### OpenSUSE
+
+它有两个版本，一个是滚动发布发行版Tumbleweed，另一个是较为传统的Linux发行版Leap。滚动发布的Linux不断更新。如果你觉得这听起来像是开发运维领域的持续部署概念，那就对了，就是这样。
+
+这些openSUSE变种酷似Fedora。它们面向从事软件或云项目的Linux专业人员。
+
+[openSUSE 42.1-Linux 发行版](https://linux.cn/article-4143-1.html "openSUSE 42.1-Linux 发行版")
+
+
+
+### Arch Linux
+
+[Arch Linux](https://www.archlinux.org/)是另一种滚动发布发行版。Arch是一款轻量级、对用户友好的发行版。其设计理念是“力求简单”，其开发人员兑现了之前的承诺。**不过安装是例外**。
+
+消耗的资源少。
+
+基于最新 Arch Linux 技术的 ArchEX Build 160724 发布，在这个发行版中包括了最新的软件包，比如Linux内核4.6.4。据该操作系统开发者 Arne Exton 称，这一版本在几乎所有机器上运行是最快的，鉴于Arch Linux是最轻量级、高度定制并且拥有一大批用户的操作系统，采用的**LXDE**桌面环境即便是在旧的PC机上也是运行最快的，我们有理由相信Arne Exton的话。
+
+
+
+### ZorinOS
+
+ ZorinOS 完全基于 Ubuntu 系统。
+
+ZorinOS 就是专门作为 Windows 和 Mac 系统的替代品而设计的，所以它下了很大的功夫来模仿 Windows 和 Mac 桌面的外观和感觉。
+
+然而， ZorinOS 有两个版本： Zorin Ultimate 和 Zorin Core 。 Zorin Core 是免费的，但它不包含几乎所有你能够在 Zorin Ultimate 中找到的软件。当然，如果你不想花钱购买 Ultimate 版本，你也可以从 Core 版本包含的软件包管理工具中安装几乎所有你需要的东西。
+
+[Install Apps - Zorin OS](https://zorinos.com/help/install-apps/ "Install Apps - Zorin OS")
+
+built-in Wine runtime。系统中默认就安装了 Wine。
+
+
+
+### Elementary OS
+
+[Elementary OS](http://www.iplaysoft.com/elementary-os.html) 系统它是一款基于 [Ubuntu](http://www.iplaysoft.com/ubuntu.html) 精心打磨美化的桌面 [Linux](http://www.iplaysoft.com/tag/linux) 发行版，号称 “**最美的 Linux**”。 Elementary 最早是 Ubuntu 的一个[美化](http://www.iplaysoft.com/tag/%E7%BE%8E%E5%8C%96)主题项目，后来太受欢迎演变成了独立的发行版。
+
+Elementary OS 在外观和感觉上所达到的效果和 OS X 桌面非常相似。Elementary OS 的开发者们很好的保持了桌面的一致性。从 dock， 到面板、菜单、到包括的应用，你找不到任何一个看起来或感觉没有归属感的单一元素。
+
+Elementary OS 对整体的外观和感觉相当严格。开发人员已经创建了自己的组件，包括桌面环境。此外，他们**只选择**适合设计范例的应用程序。
+
+因为 elementary OS 的核心还是 [Ubuntu](http://www.iplaysoft.com/ubuntu.html)，因此它与 Ubuntu 的仓库和包完全兼容，它也是使用 Ubuntu 自己的软件中心来处理软件的安装和卸载。
+
+
+
+> 试用了一下感觉一般，都没有我的 xfce4 好。
+
+
+
+### WattOS
+
+WattOS 主要为老旧硬件设计，运行速度飞快。但是会有些小问题。
+
+[WattOS：一个稳如磐石、快如闪电、面向所有人的轻量级 Linux 发行版-观点](https://linux.cn/article-8012-1.html "WattOS：一个稳如磐石、快如闪电、面向所有人的轻量级 Linux 发行版")
+
+
+
+### Crossover Linux
+
+如果你仍需要一些Windows程序，可以试一试Crossover Linux，在Linux上运行这些程序。虽然它无法运行所有的Windows应用程序，但是效果确实很好。
+
+
+
+Linux for Gaming: **Steam OS**
+
+[How to choose the best Linux distro for your laptop](http://www.techradar.com/news/how-to-choose-the-best-linux-distro-for-your-laptop )
+
+
+
+
+
+[Linux 最佳选择：总有一款桌面发行版适合你](https://linux.cn/article-7172-1.html "Linux 最佳选择：总有一款桌面发行版适合你-")
+
+[给 Linux 新手的最佳发行版 ](https://linux.cn/article-8138-1.html)
+
+[The Best Linux Distros for 2017](https://www.linux.com/news/learn/sysadmin/best-linux-distributions-2017)
+
+
+
+### 个人感受
+
+
+
+可以考虑安装的Linux发行版有：  
+
+
+* Linux Mint ：可以配置的很好。
+* XUbuntu
+* ZorinOS   
+* Archlinux  
+* Fedora  
+
+
+
+
+
+对于Fedora，该网站有对应的不同桌面版本：[spins of fedora](https://spins.fedoraproject.org/) Note that you can always install different official spins of Fedora. They include different desktop environments by default.
+
+
+
+
+
+
+
+
+## 各桌面环境介绍
 
 ### 要体验各种桌面环境请分别浏览其官方网站
 
@@ -234,23 +389,23 @@ sudo apt-get remove gnome-shell ubuntu-gnome-desktop
 
 >**[另参考](http://www.it165.net/os/html/201207/2834.html "即上面的另参考部分")**   
 >按如下命令执行；
-安装gnome3
-sudo add-apt-repository ppa:gnome3-team/gnome3
-sudo apt-get update
-sudo apt-get install gnome-shell
-需要安装主题执行这一条；
-sudo apt-get install gnome-themes*
-**删除unity:**
-sudo apt-get -y --auto-remove purge unity
-sudo apt-get -y --auto-remove purge unity-common
-sudo apt-get -y --auto-remove purge unity-lens*
-sudo apt-get -y --auto-remove purge unity-services
-sudo apt-get -y --auto-remove purge unity-asset-pool
-设置默认登陆桌面；
-sudo /usr/lib/lightdm/lightdm-set-defaults -s gnome-shell
-如果默认进入gnome classic,执行以下指令；
-sudo /usr/lib/lightdm/lightdm-set-defaults -s gnome-classic
-完事儿之后**注销**，登陆试试，应该不会有什么问题的。
+>安装gnome3
+>sudo add-apt-repository ppa:gnome3-team/gnome3
+>sudo apt-get update
+>sudo apt-get install gnome-shell
+>需要安装主题执行这一条；
+>sudo apt-get install gnome-themes*
+>**删除unity:**
+>sudo apt-get -y --auto-remove purge unity
+>sudo apt-get -y --auto-remove purge unity-common
+>sudo apt-get -y --auto-remove purge unity-lens*
+>sudo apt-get -y --auto-remove purge unity-services
+>sudo apt-get -y --auto-remove purge unity-asset-pool
+>设置默认登陆桌面；
+>sudo /usr/lib/lightdm/lightdm-set-defaults -s gnome-shell
+>如果默认进入gnome classic,执行以下指令；
+>sudo /usr/lib/lightdm/lightdm-set-defaults -s gnome-classic
+>完事儿之后**注销**，登陆试试，应该不会有什么问题的。
 
 ### Ubuntu下安装使用Xfce4
 
@@ -264,9 +419,9 @@ xfce有一个电源管理器，可以装上，允许您快速的控制您的屏�
 [Ubuntu下安装使用Xfce4](http://forum.ubuntu.com.cn/viewtopic.php?t=1160)
 
 1. 方式1：  
-`sudo  apt-get  install  xfce4`  
+  `sudo  apt-get  install  xfce4`  
 2. 方式2 会多一些软件： 
-`sudo apt-get install xubuntu-desktop`
+  `sudo apt-get install xubuntu-desktop`
 
 **Ubuntu 14.4请注意**：由于默认安装的是xfce 4.10，若想安装 xfce 4.12 
 则参考[ubuntu14.04LTS命令行安装xfce4桌面](http://blog.csdn.net/zhaihaifei/article/details/50562748)

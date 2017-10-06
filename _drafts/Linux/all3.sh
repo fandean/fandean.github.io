@@ -143,7 +143,7 @@ sudo apt-get install gparted -y
 #sudo apt-get install freelane  (版本旧)
 
 # freeplane思维导图，最新版
-#直接下载编译过的压缩文件，解压，直接命令行运行，固定到启动器。
+# 直接下载编译过的压缩文件，解压，直接命令行运行，固定到启动器。
 
 
 #记单词... 软件
@@ -158,9 +158,6 @@ sudo apt-get install mplayer -y
 
 #另安装最新版mpv或者smplayer视频播放器，通过添加ppa的形式
 
-
-#电子书阅读器
-#sudo apt-get install fbreader -y
 
 #命令行下，避免错误删除的软件
 sudo apt-get install trash-cli -y
@@ -275,13 +272,22 @@ sudo apt-get install remmina remmina-plugin-*
 #FeedReader 阅读器，即RSS阅读器，有相关插件，
 sudo apt-get install liferea -y 
 
-#E-book 查看器、书库管理、格式转换、电子书阅读 暂时用不到
-#sudo apt-get install calibre -y
+#电子书阅读器。缺点不能生成目录。
+#sudo apt-get install fbreader -y
+
+
+# Calibre 致力于提供完整的电子书库解决方案。它拥有书库管理、格式转换、新闻转换为电子书、电子书 阅读器同步等功能。
+# 缺点： 软件体积大，不喜欢它的书库管理功能
+# 优点： epub、mobi的查看效果最好，能够随时查看目录。
+# Calibre 有一个内置的阅读器（E-book viewer），支持所有主要的电子书格式。我们可以所有程序中找到该阅读器。
+sudo apt-get install calibre -y
 
 #基于KDE的PDF浏览器，支持加亮、标注；另有相关插件;利用打印选项可保存标注到PDF文件中
 sudo apt-get install okular -y  
 
-# 另一个PDF编辑器  Master PDF Editor ，有免费版
+# 另一个PDF编辑器  Master PDF Editor ，有免费版；需手动下载安装
+
+
 
 #C/C++ 调试器 
 #sudo apt-get install nemiver -y
@@ -446,7 +452,7 @@ sudo apt-add-repository ppa:shutter/ppa
 # sudo apt-add-repository ppa:midori/ppa 
 # 直接用 firefox 就好，已经添加了8G内存，直接用Chrome
 
-# 4. uget
+# 4. uget 下载工具
 sudo apt-add-repository ppa:plushuang-tw/uget-stable
 
 # 5. mpv 很棒的媒体播放器，快速播放声音和视频都无卡顿，音色正常。
@@ -503,6 +509,9 @@ wget -q -O - http://liveusb.info/multisystem/depot/multisystem.asc | sudo apt-ke
 # 18.  Blender   3D模型动画制作，也有视频编辑功能。要求有独立显卡，并安装了独立显卡驱动。
 sudo add-apt-repository ppa:thomas-schiex/blender
 
+# 19. Persepolis Download Manager (简称 PDM)  Aria2图形界面免费开源下载软件
+sudo add-apt-repository ppa:persepolis/ppa
+
 
 ##################统一在在此更新############################
 sudo apt-get update  -qq
@@ -517,7 +526,7 @@ sudo apt-get install shutter -y
 # 3. midori浏览器
 # sudo apt-get install midori -y
 
-#下载软件 uget 及其插件,另可以通过添加PPA (Personal Package Archives, 个人软件包档案。见百科 Ubuntu PPA)安装最新版。
+#4.下载软件 uget 及其插件,另可以通过添加PPA (Personal Package Archives, 个人软件包档案。见百科 Ubuntu PPA)安装最新版。
 #uget官网有最新版下载，并且介绍如何添加ppa
 sudo apt-get install aria2 -y
 sudo apt-get install uget -y
@@ -561,3 +570,12 @@ sudo apt-get install multisystem -y
 
 # 17. Sublime Text 3
 # sudo apt-get install sublime-text
+
+
+# 18.  Blender
+
+
+# 19. Persepolis Download Manager (简称 PDM)
+sudo apt install persepolis -y
+
+

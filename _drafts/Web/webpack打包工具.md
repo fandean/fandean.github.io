@@ -136,7 +136,7 @@ npm install webpack@<version> --save-dev
 
 3. 新建 index.html，app.js两个文件。文件内容：
 
-   ```javascript
+   ```html
    <!DOCTYPE html>
    <html lang="en">
    <head>

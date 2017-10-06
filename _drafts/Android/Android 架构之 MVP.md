@@ -25,6 +25,8 @@ The Model-View-Presenter Pattern
 >  ![](https://faner.gitlab.io/assets/images/post-images/2017-08-05-taskDetail-mvp.png)
 >
 >   图中箭头画反了
+>
+>  另见：[（新瓶旧酒）谷歌官方MVP项目学习--浅入源码 - 简书](http://www.jianshu.com/p/4f24a42b58f5 "（新瓶旧酒）谷歌官方MVP项目学习--浅入源码 - 简书")
 
 
 
