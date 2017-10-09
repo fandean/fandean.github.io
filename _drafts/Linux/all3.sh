@@ -495,7 +495,7 @@ sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
 sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 
 # 15. Atom： 一个与vscode类似的编辑器
-# sudo add-apt-repository ppa:webupd8team/atom  
+sudo add-apt-repository ppa:webupd8team/atom  
 
 # 16. MultiSystem 多系统启动U盘制作
 sudo apt-add-repository 'deb http://liveusb.info/multisystem/depot all main'
@@ -563,7 +563,7 @@ sudo apt-get install google-chrome-stable -y
 sudo apt-get install code -y
 
 # 15. Atom
-# sudo apt-get install atom -y
+sudo apt-get install atom -y
 
 # 16. MultiSystem
 sudo apt-get install multisystem -y

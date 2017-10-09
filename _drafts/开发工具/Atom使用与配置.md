@@ -5,15 +5,30 @@ Atom 是 GitHub 在 2014 年发布的一款基于 Web 技术构建的文本编�
 Atom 是基于 Electron，这是一个帮助开发者使用 Web 技术构建跨平台的桌面应用的工具，实际上 Electron 原本叫 Atom Shell，是专门为 Atom 设计的，后来才成为了一个独立的项目。Electron 将 Chromium 和 Node.js 结合到了一起：Chromium 提供了渲染页面和响应用户交互的能力，而 Node.js 提供了访问本地文件系统和网络的能力，也可以使用 NPM 上的几十万个第三方包。
 
 
-[Atom 背后的故事 - 工具资源 - 掘金](https://juejin.im/entry/5822f4b867f3560058bc3a41 "Atom 背后的故事 - 工具资源 - 掘金")
 
-[Atom飞行手册（中文版） · GitBook](https://www.gitbook.com/book/wizardforcel/atom-flight-manual-zh-cn/details "Atom飞行手册（中文版） · GitBook")
+> [Atom 背后的故事 - 工具资源 - 掘金](https://juejin.im/entry/5822f4b867f3560058bc3a41 "Atom 背后的故事 - 工具资源 - 掘金")
+>
+> [Atom飞行手册（中文版） · GitBook](https://www.gitbook.com/book/wizardforcel/atom-flight-manual-zh-cn/details "Atom飞行手册（中文版） · GitBook")
+>
+> [现在可以将 Atom 编辑器变成 IDE 啦！](https://linux.cn/article-8909-1.html)
+
+
 
 ## Atom 安装
 
 上官网下载 Atom 安装包进行安装。
 
 或者在 Atom安装包的国内镜像站点 <https://npm.taobao.org/mirrors/atom> 进行下载。
+
+通过PPA在Ubuntu上安装Atom：
+
+```shell
+sudo add-apt-repository ppa:webupd8team/atom  
+sudo apt-get update   
+sudo apt-get install atom
+```
+
+
 
 查看Atom的版本：
 ```shell
@@ -34,6 +49,8 @@ node 6.9.5 x64
 python 2.7.12
 git 2.7.4
 ```
+
+
 
 ## Atom基本用法
 
@@ -94,6 +111,12 @@ git 2.7.4
 
 * UI主题：UI主题会修改UI元素的颜色
 * 语法主题：语法主题会修改你加载进编辑器的文本的语法高亮。
+
+
+
+
+
+
 
 
 

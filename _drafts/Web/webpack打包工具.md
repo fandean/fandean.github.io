@@ -1,3 +1,5 @@
+## webpack
+
 
 
 ## 了解模块和组件
@@ -8,9 +10,9 @@
 
 
 
-模块(module)：是语言层面的。在前端领域一般指 JavaScript module，往往表现为一个单独的JS文件，对外暴露一些属性或者方法。
+**模块(module)：**是语言层面的。在前端领域一般指 JavaScript module，往往表现为一个单独的JS文件，对外暴露一些属性或者方法。
 
-组件(component)：则更多的是业务层面的概念。比如一个可独立使用的功能实现。
+**组件(component)：**则更多的是业务层面的概念。比如一个可独立使用的功能实现。
 
 
 
@@ -36,10 +38,12 @@
 
 
 > React推荐通过webpack或browserify进行应用的构建，搭配对应的loader或plugin可以实现通过JavaScript入口文件实现同一管理依赖资源。从整体上看，这是一个典型的“单JavaScript入口组件”方案。
+>
+> 另：一些知名的脚手架工具，也大多基于`webpack`(比如`create-react-app`)。
 
 
 
-
+> 对大多数前端开发者而言，以往我们接触的各种库，要么类似`jQuery`,通过`$`符在前端项目中直接运行，所做的事情只在前端生效，要么类似`express.js`,在`node.js`项目中直接`require`后就可以使用，所做的事情只在后端生效。`webpack`的不同之处就在于，虽然我们的配置文件位于前端项目中，但实际上它却运行于`node.js`，之后的处理结果又供前端使用（也可能供node使用）。所以学习之前，我们转变一下思维，从`node.js`的角度来看`webpack`，很多事情就会简单起来。
 
 
 
@@ -296,4 +300,6 @@ Webpack示例：
 [官方示例 webpack-examples](https://github.com/webpack/webpack/tree/master/examples "webpack/examples at master · webpack/webpack")
 
 [中文官网：核心概念](https://doc.webpack-china.org/concepts/ "核心概念") 推荐。
+
+[webpack 从入门到工程实践](http://gitbook.cn/books/599270d5625e0436309466c7/index.html "webpack 从入门到工程实践")
 

@@ -17,11 +17,52 @@ chare: true
 # VS Code使用笔记
 
 
-## 在我的XUbuntu 16.04中VS Code在使用过程中会出现光标乱跳的情况，已被舍弃
-
+> 在我的XUbuntu 16.04中VS Code在使用过程中会出现光标乱跳的情况，已被舍弃
 
 ## User Guide  
+
+
+
+1. 代码行缩进 `Ctrl+[` 、 `Ctrl+]`
+2. `Ctrl+C` 、 `Ctrl+V` 复制或剪切当前行/当前选中内容
+3. 代码格式化： `Shift+Alt+F`，或 `Ctrl+Shift+P` 后输入 `format code`
+4. **上下移动一行**： `Alt+Up` 或 `Alt+Down`
+5. **向上向下复制一行**： `Shift+Alt+Up` 或 `Shift+Alt+Down`
+6. 在当前行下边插入一行 `Ctrl+Enter`
+7. 在当前行上方插入一行 `Ctrl+Shift+Enter`
+
+
+
+1. 移动到定义处： `F12`
+2. 定义处缩略图：只看一眼而不跳转过去 `Alt+F12`
+3. 多行编辑(列编辑)：`Alt+Shift+鼠标左键`，`Ctrl+Alt+Down/Up`
+4. 同时选中所有匹配： `Ctrl+Shift+L`
+5. `Ctrl+D` 下一个匹配的也被选中 
+6. **回退上一个光标操作**： `Ctrl+U`
+
+
+
+
+
+1. 找到所有的引用： `Shift+F12`
+2. 同时修改本文件中所有匹配的： `Ctrl+F12`
+3. 重命名：比如要修改一个方法名，可以选中后按 `F2`，输入新的名字，回车，会发现所有的文件都修改了
+4. 跳转到下一个 `Error` 或 `Warning`：当有多个错误时可以按 `F8` 逐个跳转
+5. 查看 `diff`： 在 `explorer` 里选择文件右键 `Set file to compare`，然后需要对比的文件上右键选择 `Compare with file_name_you_chose`
+
+
+
+
+
+
+
+
+
 [Basic Editing in Visual Studio Code](https://code.visualstudio.com/docs/editor/codebasics "Basic Editing in Visual Studio Code")
+
+
+
+
 
 ### Multiple selections (multi-cursor)
 
@@ -439,6 +480,33 @@ vue tooling for vscode
 
 
 ### React相关
+
+
+
+
+
+> ## 前端开发必备插件
+>
+> - PostCSS Sorting
+> - stylelint
+> - stylefmt
+> - ESLint
+> - javascript standard format
+> - beautify
+> - Babel ES6/ES7
+> - Debugger for Chrome
+> - Add jsdoc comments
+> - javascript(ES6) code snippets
+> - vue
+> - weex
+> - Reactjs code snippets
+> - React Native Tools
+> - Npm Intellisense
+> - Instant Markdown
+> - Markdown Shortcuts
+> - TextTransform
+
+
 
 
 

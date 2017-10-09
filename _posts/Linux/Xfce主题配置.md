@@ -1,20 +1,43 @@
+---
+layout: post
+title: "Xfce主题配置"
+description: "Xfce主题配置"
+date: 2017-10-09
+tags: [xfce]
+category: Linux
+last_updated: 2017-10-09
+comments: true
+chare: true
+---
+
+* Kramdown table of contents
+{:toc .toc}
+
+
+
+
 ## Xfce Desktop Environment主题配置
 
-> 以下是对Ubuntu 16.04中Xfce 4.12版本的描述
-> **限制亮度划块的最小亮度**
-> 在一些显示器下亮度等级设为0后背光会完全关掉。xfce4-power-manager 1.3.2 有一个新的隐藏选项可以调节最小亮度。用 xfconf4 添加一个名为 brightness-slider-min-level 的整数键，将其改为合适的最小亮度值。
+> 系统环境： Xubuntu 16.04 中的 Xfce 4.12
 
 
 
-### Thunar
+## 主题下载
+[Eyecandy for your XFCE-Desktop - xfce-look.org](https://www.xfce-look.org/ "Eyecandy for your XFCE-Desktop - xfce-look.org")  
 
-**侧边栏添加项目：**在Thunar可右击文件夹并将其发送到侧边栏当作快捷方式，并可调整位置。
+如果系统中没有文中介绍到的主题，可在以上网站搜索下载。
+
+可下载的主题种类：
+
+* GTK主题：控制窗口内容外观
+* 窗口标题栏主题：即xfwm4主题
+* 图标主题
+* 字体
+* 背景图片
+* ...
 
 
-
-
-
-### 主题配置示例
+## 主题配置示例
 
 外观 样式： Adwaita 。  图标：elementary Xfce
 
@@ -30,7 +53,7 @@
 
 
 
-### 桌面设置
+## 桌面设置
 
 禁止在桌面显示任何东西。这样看起来真的会很舒服。
 
@@ -42,7 +65,7 @@
 
 
 
-### 面板设置
+## 面板设置
 
 底部面板0的项目列表：
 
@@ -92,7 +115,7 @@
 
 
 
-#### Whisker菜单
+### Whisker菜单
 
 ![](https://gitlab.com/faner/Git-Pictures/raw/master/%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/Whisker%E8%8F%9C%E5%8D%95-%E5%A4%96%E8%A7%82.png)
 
@@ -102,7 +125,7 @@
 
 
 
-### 通知设置
+## 通知设置
 
 通知主题： Greybird
 
@@ -112,7 +135,7 @@
 
 
 
-### 窗口管理器
+## 窗口管理器
 
 ![](https://gitlab.com/faner/Git-Pictures/raw/master/%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8-%E6%A0%B7%E5%BC%8F.png)
 
@@ -122,7 +145,7 @@
 
 
 
-### uGet配置
+## uGet配置
 
 取消勾选“使用Ubuntu的App Indicator”。让uGet显示在通知区域而非显示在指示器中。
 
