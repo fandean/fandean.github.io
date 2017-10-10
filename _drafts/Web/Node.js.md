@@ -1,3 +1,27 @@
+你购买的商品如下: 
+订单:70795878248318648 
+
+亲，小店自动发货百度网盘下载地址： 
+2017整理妙味合集 在群组文件库里 
+**<https://pan.baidu.com/mbox/homepage?short=c23xvDe> 
+妙味远程班-官方明码标价的课目-总价值超2000元 
+链接： **<http://pan.baidu.com/s/1pLftX8Z> 密码：i1lc 
+请及时转存到您自己的网盘，方便今后永久学习。 
+
+赠品一 传智播客Web大前端-北京就业班
+链接： **<http://pan.baidu.com/s/1jICBS9o> 密码：5val 
+赠品二 最新某内web前端教程 
+链接： **<http://pan.baidu.com/s/1dFjadBr> 密码：t04r 
+
+提醒：五星好评自动送大礼包： 
+《赠品三 上百个实战项目视频教程600G》 
+《赠品四 极客学院WEB前端教程+后端》 
+《赠品五 麦子学院web前端开发工程师》 
+
+注意: 资源文件数量过多。百度限制一次只能保存1000个文件。需要分多次保存, 不能一次性存过去
+
+
+
 ## Node.js介绍
 
 
@@ -453,13 +477,43 @@ fs.read(fd,buffer,offer,length,position,[callback(err,bytesRead,buffer)])
 http模块中封装了一个高效的HTTP服务器和一个简易的HTTP客户端。http.Server是一个基于事件的HTTP服务器。
 
 
+http.Server: Http服务器   
+http.request：Http客户端工具   
+
+#### http.Server
+
+响应对象(res)的 end方法：该方法用于结束发送。
+
+http.Server的事件：
+
+* request：当客户端请求到来时
+* connection: 当TCP连接建立时
+* close：当服务器关闭时
+
+其中 request 最常用，所以提供了一个捷径：
+```javascript
+http.createServer([requestListener])
+```
+其功能是创建一个Http服务器并将 requestListener 作为request事件的监听函数。
+
+
+
+**http.ServerRequest：**     
+
+
+
+
+
+
+
+#### http.request
+
 
 
 
 
 
 ## express
-
 
 
 > [基于 Node.js 平台的下一代 web 开发框架 **Koa**](http://www.jikexueyuan.com/course/1518.html)
@@ -527,22 +581,6 @@ $ DEBUG=microblog:* npm start
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## 学习资料
 
 通过这里快速了解：
@@ -559,6 +597,6 @@ $ DEBUG=microblog:* npm start
 
 《Node.js开发指南》
 
-
+[60分钟学会使用Node.js+Express+Ejs+mongoDB - 从零到壹全栈部落](https://segmentfault.com/a/1190000010145057 )
 
 

@@ -1,7 +1,7 @@
 # Ubuntu中输入法安装
 
 
-## Ubuntu 中输入发安装是第一个大问题     
+## Ubuntu 中输入法安装     
 
 
 1. ibus 卸载问题(可以选择不卸载)
@@ -9,35 +9,12 @@
 3. fictx-rime 会导致 fictx 出错，先使用fictx-googlepingpin ; 该问题只能后期解决，(后面不知为什么又能用了)
 
 
-## rime输入法
-官网：[RIME 中州韻輸入法引擎](http://rime.im/ "RIME 中州韻輸入法引擎")
-
-
-## rime繁簡狀態切換
-
-按Ctrl+\`或F4切換繁簡狀態
-
-
-[Ubuntu 16.10依赖libopencc 1.0.4，导致简体无法转换 · Issue #18 · rime/ibus-rime](https://github.com/rime/ibus-rime/issues/18 "Ubuntu 16.10依赖libopencc 1.0.4，导致简体无法转换 · Issue #18 · rime/ibus-rime") 
-
-輸入emoji表情
-
-參考 https://gist.github.com/2309739 把 emoji 加入輸入方案選單；
-
-**切換到 emoji 輸入方案**，即可通過拼音代碼輸入表情符號。查看[符號表](https://github.com/rime/home/raw/master/images/emoji-chart.png)
-
-輸入 all 可以列出全部符號，符號後面的括弧裏標記其拼音代碼。
-
-若要**直接**在【朙月拼音】裏輸入表情符號，請按此文設定：
-
-http://gist.github.com/3705586
-
-
 ## ibus框架
 
 
 由于之前在ubuntu14上使用ibus感觉不好用，转而使用了搜狗输入法。而现在在xubuntu上发现ibus还不错，并且还在积极开发新版本。
 
+### 安装ibus
 
 ```shell
 sudo apt install  ibus  ibus-rime ibus-gtk ibus-gtk3 ibus-qt4 librime-data-emoji
@@ -46,6 +23,11 @@ sudo apt install  ibus  ibus-rime ibus-gtk ibus-gtk3 ibus-qt4 librime-data-emoji
 
 安装演示见： [ibus-rime安装](https://asciinema.org/a/Z3fAd9QStyWlTVfKYRzvsHXFU)
 
+
+### 配置ibus
+
+ibus 首选项窗口：  
+这里重点讲解一下“在应用程序窗口中启用内嵌编辑模式”的效果。如果勾选此项，则在输入文字时在光标处显示当前第一个候选词。这可能在某些无法使输入法跟随光标的程序(比如webstorm)中有所帮助。
 
 
 
@@ -101,7 +83,7 @@ ubuntu <http://blog.csdn.net/gopain/article/details/17412057>
 
 
 
-#### 1. 安装
+### 1. 安装
 
 
 `sudo apt-get install fcitx fcitx-googlepinyin fcitx-rime`
@@ -118,7 +100,7 @@ ubuntu <http://blog.csdn.net/gopain/article/details/17412057>
 	如果卸载 ibus 也会卸载重要的系统程序; 所以在不懂的情况下不要卸载。
 
 
-#### 2.设置
+### 2.设置
 
 
 1. im-config 设置 fcitx 为默认输入法
@@ -154,6 +136,65 @@ ubuntu <http://blog.csdn.net/gopain/article/details/17412057>
 > 之后还要进行相关设置 `ibus-setup`
 > 打开设置窗口 选择rime
 > 或者有可能只要在 系统设置 --> 文本设置 
+
+
+## 输入法安装
+
+
+### rime输入法
+官网：[RIME 中州韻輸入法引擎](http://rime.im/ "RIME 中州韻輸入法引擎")
+
+
+### rime繁簡狀態切換
+
+按Ctrl+\`或F4切換繁簡狀態
+
+
+[Ubuntu 16.10依赖libopencc 1.0.4，导致简体无法转换 · Issue #18 · rime/ibus-rime](https://github.com/rime/ibus-rime/issues/18 "Ubuntu 16.10依赖libopencc 1.0.4，导致简体无法转换 · Issue #18 · rime/ibus-rime") 
+
+輸入emoji表情
+
+參考 https://gist.github.com/2309739 把 emoji 加入輸入方案選單；
+
+**切換到 emoji 輸入方案**，即可通過拼音代碼輸入表情符號。查看[符號表](https://github.com/rime/home/raw/master/images/emoji-chart.png)
+
+輸入 all 可以列出全部符號，符號後面的括弧裏標記其拼音代碼。
+
+若要**直接**在【朙月拼音】裏輸入表情符號，請按此文設定：
+
+http://gist.github.com/3705586
+
+
+
+
+## 输入法配置 im-config
+
+
+
+```
+
+
+```
+
+
+
+
+
+
+
+## 输入法问题
+
+[ubuntu 16.04下搜狗输入法不能输入中文解决（linux下常见软件崩溃问题解决方案）](http://blog.csdn.net/jilijelon/article/details/53759965)
+
+搜狗的配置文件在 ~/.config下的3个文件夹里：   
+SogouPY、SogouPY.users、sogou-qimpanel   
+删除这3个文件夹，然后重启搜狗。   
+
+
+
+[Ubuntu系统拼音无法正确打字怎么解决？](http://www.xitongzhijia.net/xtjc/20160229/68044.html)
+
+运行： `ibus-daemon -drx`
 
 
 

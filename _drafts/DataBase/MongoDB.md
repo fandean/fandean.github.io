@@ -4,7 +4,7 @@ MongoDB是面向文档的数据库，而非关系型数据库。它扩展了关�
 
 它将原来的行的概念换成更加灵活的文档模型。它没有模式：文档的键不会事先定义也不会固定不变。
 
-MongoDB 将数据存储为一个文档，数据结构由键值(key=>value)对组成。MongoDB 文档类似于 JSON 对象。字段值可以包含其他文档，数组及文档数组。
+MongoDB 将数据存储为一个文档，数据结构由键值(`key=>value`)对组成。MongoDB 文档类似于 JSON 对象。字段值可以包含其他文档，数组及文档数组。
 
 有些关系型数据库的常见功能MongoDB并不具备，比如联接(join)和复杂的多行事务。
 
@@ -22,6 +22,8 @@ MongoDB的管理理念就是尽可能的让服务器自动配置，简化数据�
 
 
 ## MongoDB安装启动和卸载
+
+安装方法见： 
 
 [Install MongoDB Community Edition ](https://docs.mongodb.com/manual/administration/install-community/ "Install MongoDB Community Edition — MongoDB Manual 3.4")
 
@@ -69,7 +71,7 @@ use <database>
 sudo service mongod stop
 ```
 
-或者：
+或者使用下面更加稳妥的方式停止MongoDB：
 
 ```
 # 切换到admin数据库（让自己具有管理员权限）
@@ -79,7 +81,7 @@ db.shutdownServer()
 
 
 
-> 刚安装的mongodb并没有开启用户权限验证；所以进入时不需要认证。
+> 刚安装的mongodb并没有开启用户权限验证；所以连接时不需要认证。
 
 
 
@@ -178,8 +180,49 @@ blog.post和blog.authors，这样做只是了使组织结构更好些，也就�
 MongoDB的文档类似于JSON，在概念上和JavaScript中的对象神似。MongoDB在保留JSON基本的键/值对特性的基础上，添加了其它一些数据类型。在不同的编程语言下这些类型表示有些许差异。
 
 
+* null: 
 
+* 布尔：
 
+* 32位整数：
+
+* 64位整数：
+
+* 64位浮点数：
+
+* 字符串
+
+* 符号
+
+* 对象id：ObjectId()。（文档必须有一个"_id"键；这个键的值可以是任意类型，默认是ObjectId对象。）  
+
+* 日期： new Date()  
+
+* 正则表达式：采用JavaScript的正则表达式语法   
+
+* 代码： 文档中还可以包含JavaScript代码  
+  ```javascript
+  {"x" : function(){/* */}}
+  ```
+
+* 二进制数据：
+
+* 最大值
+
+* 最小值
+
+* undefined
+
+* 数组：值的集合或者列表可以表示成数组
+  ```javascript
+  {"x" : ["a","b","c"]}
+  ```
+
+* 内嵌文档：  
+  文档可以包含别的文档，也可以作为值嵌入到父文档中
+  ```javascript
+  {"x" : {"foo" : "bar"}}
+  ```
 
 
 
@@ -216,34 +259,155 @@ db.dropDatabase()
 ## 增删改查
 
 
+### 插入文档
+
+对目标集使用insert方法，插入一个文档：
+```javascript
+db.foo.insert({"bar":"baz"})
+```
+> 该操作会自动增加一个 "_id" 键（要是原来没有）再保存到数据库
+
+批量插入：  
+批量插入能传递一个由文档构成的数组给数据库。
+
+
+插入数据时：数据库只会验证是否包含"_id"键，然后就简单的将文档原样的存入数据库。
+
+MongoDB在插入时并不执行代码，所以这块没有注入式攻击的可能。
+
+
+### 删除文档
+
+删除users集合中的所有文档，但不删除集合本身：
+```javascript
+db.users.remove()
+```
+
+remove函数可以接受一个查询文档作为可选参数。这样只有符合条件的文档才能被删除。   
+示例：所有"optout"为true的将被删除：
+```javascript
+db.mailing.list.remove({"opt-out" : true})
+```
+
+> 直接删除集合： `db.drop_collection("bar")`
+
+
+### 更新文档
+使用update方法。该方法由两个参数，一个是**查询文档**，用来找出要更新的文档；另一个是**修改器(modifier)文档**，描述对找到的文档做哪些更改。
+
+更新操作是原子的：若是两个更新同时发生，先到达服务器的先执行，接着执行另外一个。
+
+**更新修改器**：是一种特殊的键，用来指定复杂的更新操作。
+
+#### `"$set"`修改器  
+`"$set"`修改器用来指定一个键的值。如果这个键不存在，则创建它。   
+示例：添加喜欢的书籍到某用户信息
+```javascript
+db.users.update(
+  {"_id":ObjectId("4fksdftudkf4964trub")}, //查询文档 
+  {"$set":{"favorite book" : "war and peace"}} //修改器文档
+  )
+```
+
+对应的可以使用 `"$unset"` 将键完全删除。
+
+
+#### `"$inc"`修改器
+`"$inc"`修改器：用来增加已有的值，如果键不存在则创建一个键。
+
+它只能用于整数、长整数活浮点数。
+
+
+#### `"$push"`修改器
+用于数组。`"$push"`修改器会向已有的数组末尾加入一个元素，若是该键不存在则会创建一个新的数组。
 
 
 
+### 查询文档
+使用 find 或者 findOne 函数和查询文档对数据库执行查询。
+
+查询简单的类型，只要指定想要查找的值就好了。示例，查找所有"age"的值为27的文档：
+```javascript
+db.users.find({"age":27})
+```
+
+**查询条件：**
+
+相关操作符 | 描述
+------|-----
+`$lt` | < 
+`$lte` | <= 
+`$gt` | > 
+`$gte` | >= 
+`$ne` | 不等于  
+`$in` | 用来查询一个键的多个值 
+`$nin` | 返回与数组中所有条件都不匹配的文档 
+`$or` | 用来完成多个键值的任意给定值 
+`$not` | 是元语句，可以用在任何其他条件之上  
 
 
+
+查询在 18 ~ 30岁的用户:
+```javascript
+db.users.find({"age": {"$gte": 18, "$lte": 30} })
+```
+
+使用`$in`对单个键做OR查询
+```javascript
+db.raffle.find({"ticket_no" : {"$in" : [725,542,390]}})
+```
+
+使用`$or`可以对多个键做OR查询。示例，找到 ticket_no 为 725或者winner为true的文档：
+```javascript
+db.raffle.find({"$or" : [{"ticket_no" : 725}, {"winner", true}]})
+```
+
+
+#### 查询数组
+
+
+
+## 管理MongoDB
+
+### 从命令行启动MongoDB
+直接执行 `mongod`，即可简单的启动服务器。该命令还有很多可配置的启动选项：
+
+选项 | 描述
+---|---
+--help | 查看所有选项
+--dbpath | 指定数据目录。默认值是`/data/db` 
+--port | 指定服务器监听的端口号
+--fork | 以守护进程的方式运行MongoDB，创建服务器进程
+--logpath | 指定日志输出路径，而不是输出到命令行
+--config | 指定配置文件。配置文件中 `#`是注释符号；语法形式是"选项-值"的形似。
+
+
+每个mongod进程都需要独立的数据目录。当mongod启动时，会在数据目录中创建mongod.lock文件，该文件用于防止其他mongod进程使用该数据目录。并且要给它们指定不同的端口号。
+
+
+
+### 停止MongoDB
+这里只介绍一个稳妥的停止数据库的方法：使用shutdown命令，`{"shutdown" : 1}`，这是管理命令，要在 admin 数据库下使用。 **MongoDB shell** 提供了辅助函数，来简化这一过程：
+```shell
+> use admin
+switched to db admin
+> db.shutdownServer();
+server should be down...
+```
 
 
 
 
 ## 学习资料
 
-《MongoDB权威指南》 
-
-[MongoDB 教程 - 菜鸟教程](http://www.runoob.com/mongodb/mongodb-tutorial.html "MongoDB 教程 - 菜鸟教程")
-
-官方手册：[The MongoDB  Manual ](https://docs.mongodb.com/manual/)
-
-[MongoDB中文社区 - 中文社区](http://www.mongoing.com/)
-
-[MongoDB中文网](http://www.mongodb.org.cn/)
-
-
-
-[Mongodb最佳实践-麦子学院](http://www.maiziedu.com/course/395/ "Mongodb最佳实践-Mongodb最佳实践教程-麦子学院")
-
-[MongoDB基础教程-慕课网课程](http://www.imooc.com/course/list?c=mongodb)
-
-
+《MongoDB权威指南》   
+[MongoDB 教程 - 菜鸟教程](http://www.runoob.com/mongodb/mongodb-tutorial.html "MongoDB 教程 - 菜鸟教程")  
+官方手册：[The MongoDB  Manual ](https://docs.mongodb.com/manual/)   
+[MongoDB中文社区](http://www.mongoing.com/)   
+[MongoDB中文网](http://www.mongodb.org.cn/)   
+[Mongodb最佳实践-麦子学院](http://www.maiziedu.com/course/395/)   
+[MongoDB基础教程-慕课网课程](http://www.imooc.com/course/list?c=mongodb)   
+图形工具： [Robo 3T - formerly Robomongo — native MongoDB management tool (Admin UI)](https://robomongo.org/)   
 
 
 
