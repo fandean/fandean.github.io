@@ -21,15 +21,13 @@ MongoDB的管理理念就是尽可能的让服务器自动配置，简化数据�
 
 
 
-## MongoDB安装启动和卸载
+## MongoDB安装启动和停止
 
 安装方法见： 
 
-[Install MongoDB Community Edition ](https://docs.mongodb.com/manual/administration/install-community/ "Install MongoDB Community Edition — MongoDB Manual 3.4")
-
-[How to Install MongoDB on Ubuntu 16.04 - DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-16-04 )
-
-[How to Install and Configure MongoDB on Ubuntu 16.04](https://www.howtoforge.com/tutorial/install-mongodb-on-ubuntu-16.04/ "How to Install and Configure MongoDB on Ubuntu 16.04")
+* [Install MongoDB Community Edition ](https://docs.mongodb.com/manual/administration/install-community/ "Install MongoDB Community Edition — MongoDB Manual 3.4")   
+* [How to Install MongoDB on Ubuntu 16.04 - DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-16-04 )   
+* [How to Install and Configure MongoDB on Ubuntu 16.04](https://www.howtoforge.com/tutorial/install-mongodb-on-ubuntu-16.04/ "How to Install and Configure MongoDB on Ubuntu 16.04")  
 
 
 
@@ -331,6 +329,9 @@ db.users.update(
 db.users.find({"age":27})
 ```
 
+
+
+
 **查询条件：**
 
 相关操作符 | 描述
@@ -364,6 +365,63 @@ db.raffle.find({"$or" : [{"ticket_no" : 725}, {"winner", true}]})
 
 
 #### 查询数组
+
+例如：数组是一个水果清单
+```javascript
+db.food.insert({"fruit" : ["apple","banana","peach"]})
+```
+下面的查询会匹配该文档：
+```javascript
+db.food.find({"fruit","banana"})
+```
+
+`$all`：通过多个元素来匹配数组。  
+找到既有 apple 又有 banana 的文档：
+```javascript
+db.food.find({fruit: {$all : ["apple","banana"]}})
+```
+
+`$size`用于查询指定长度的数组。
+```javascript
+db.food.find({fruit: {$size : 3}})
+```
+
+
+#### 查询内嵌文档
+
+如果允许通常只针对内嵌文档的特定键值进行查询才是比较好的做法，这样即便数据模式改变，也不会有太大问题。 
+
+我们可以使用"点表示法"查询内嵌的键：
+```javascript
+db.people.find({"name.first" : "Joe", "name.last" : "Schome"})
+```
+
+
+### `"$where"`查询
+
+`"$where"`子句可以执行任意JavaScipt作为查询的一部分。由了它的补充，使得查询能做任何事情。
+
+最典型的应用就算比较文档中的两个键的值是否相等。
+
+```javascript
+db.foo.find({"$where" : "function(){return this.x + this.y == 10; }" })
+```
+
+注意：`"$where"`查询在速度上要比其他常规查询慢很多。
+
+
+### 游标
+数据库使用 游标 来返回find的执行结果。find返回的对象就是一个游标。
+
+游标的方法：
+
+* next()：获取下一个结果
+* hasNext()：检查是否有后续结果存在
+* limit()：限制结果数量
+* skip()：忽略一定数量的结果
+* sort()：对结果排序
+
+> 几乎所有的游标的方法返回值也是游标，这样就可以组成方法链。
 
 
 

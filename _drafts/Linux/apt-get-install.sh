@@ -1,13 +1,6 @@
-#100款开源软件：http://server.it168.com/a2010/0811/1089/000001089290_7.shtml
-#
-#Linux上四个最佳的现代开源代码编辑器：
-#1.Brackets（专注与web设计）2.ATOM 3.Lime Text 它是Sublime Text的开源克隆版 4.Light Table 【另vs code也不错】
-# 安装一些第三方软件时可能会下载临时文件，切换到/tmp目录。比如按照vscode时会下载临时的公钥。
-cd /tmp
-
 sudo apt-get update -qq
-#选项 -y 表示同意安装此软件
 
+#选项 -y 表示同意安装此软件
 
 #C++编译器
 sudo apt-get install g++ -y
@@ -27,7 +20,6 @@ sudo apt-get install autoconf automake -y
 # vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 
 
-
 # 用于编译 vim8，并使其支持某些特性所需的依赖
 # lua 
 sudo apt-get install lua5.3 liblua5.3-dev luajit libluajit-5.1-dev  
@@ -44,15 +36,9 @@ sudo apt-get install libperl-dev
 ######### Java ########
 # Java JDK 安装见后面的第三方软件安装
 
-######### Android ########
-#Java,Android相关工具，另可参见javaAndAndroid.md文件
-#sudo apt-get install ant ant-doc -y
-# Groovy版本太低，选择官网下载
-#sudo apt-get install groovy groovy-doc -y
 
 ######### Node.js########
 # Node.js安装：直接在网站下载最新版，里面包含了npm。位置存放在/opt 目录
-# 此时安装 nodejs 是为了安装gitbook；另可下载 gitbook editer
 
 # npm: package manager for Node.js
 # 安装后对应的命令分别为    node 和 npm 
@@ -61,17 +47,11 @@ sudo apt-get install libperl-dev
 
 ######### Ruby ########
 # 在安装vim-youcompleteme的时候就同时安装了： libruby2.3 rake ruby ruby2.3 vim-addon-manager vim-nox 
-# 错误：xubuntu 16.04默认安装 ruby  和 gem
-
-# 可通过 rbenv 安装 ruby，它会将相关文件安装在用户本地的`~/.rbenv/`目录下。
-# [Groom your app’s Ruby environment](https://github.com/rbenv/rbenv)
-# [How To Install Ruby on Rails with rbenv on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-16-04)
-# 貌似也可通过 sudo apt-get install rbenv，不知此处的rbenv和上文的rbenv有何区别。
 
 # 编译vim所需，安装jekyll所需
 # sudo apt-get install ruby-dev -y
 
-# ruby语言相关的程序，建议通过 rbenv 来安装，见blog
+# ruby语言相关的程序，建议通过 rbenv 来安装，见我的  blog
 
 
 ######### Jekyll ########
@@ -90,12 +70,13 @@ sudo apt-get install python-dev -y
 sudo apt-get install python3.5-dev 
 
 
-#  感觉 nodejs的npm、Ruby的gem、python的pip 好像都存在相同的功能  package manager
+#  nodejs的npm、Ruby的gem、python的pip 都存在相同的功能  package manager
 # 并且安装完成后都需要修改仓库地址为国内镜像地址。
 
 
 
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 #两个著名的编辑器，及其插件
 sudo apt-get install emacs -y
@@ -116,23 +97,10 @@ sudo apt-get install cscope -y
 sudo apt-get install cmake -y
 
 
-
-
 #VirtualBox的安装参见官网介绍的添加项目到sources.list的方法安装
 
 #fcitx输入法框架，及输入法
 sudo apt-get install fcitx fcitx-googlepinyin fcitx-frontend-fbterm -y
-
-
-# ubuntu-make 可以用来安装软件。
-#allows you to download the latest version of popular developer tools on your installation 
-# 安装形式如 umake ide lighttable 安装Android-Studio只需: umake android-studio 
-# 卸载软件： umask -r ide lighttable
-# ubuntu 16之前的版本 最新版下载安装
-# sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make
-#
-# . ubuntu make  ; ubuntu 16 可直接使用 apt 命令安装
-# sudo apt install ubuntu-make -y
 
 #分区工具GParted 支持动态调整分区大小
 sudo apt-get install gparted -y
@@ -142,13 +110,12 @@ sudo apt-get install gparted -y
 #可以考虑使用freemind开发者的另一个软件 freeplane
 #sudo apt-get install freelane  (版本旧)
 
-# freeplane思维导图，最新版
+# freeplane思维导图，最新版。 推荐
 # 直接下载编译过的压缩文件，解压，直接命令行运行，固定到启动器。
 
 
 #记单词... 软件
 sudo apt-get install anki -y
-
 
 #视频播放器，存在视频卡顿、花屏、图像跟不上的现象
 #sudo apt-get install vlc -y 
@@ -158,7 +125,6 @@ sudo apt-get install mplayer -y
 
 #另安装最新版mpv或者smplayer视频播放器，通过添加ppa的形式
 
-
 #命令行下，避免错误删除的软件
 sudo apt-get install trash-cli -y
 
@@ -167,7 +133,6 @@ sudo apt-get install at -y
 
 #闹钟
 #sudo apt-get install alarm-clock-applet -y
-
 
 #分屏软件
 sudo apt-get install tmux -y
@@ -192,7 +157,6 @@ sudo apt-get install keynav -y
 
 #用于在终端下正确显示输入中文
 sudo apt-get install fbterm -y
-
 
 
 #入侵检测软件 aide , 暂时不会用。  
@@ -232,11 +196,6 @@ sudo apt-get install ristretto -y
 # sudo apt-get install gtk-recordmydesktop
 
 
-
-# 无法得知此软件是干啥的   sudo apt-get install anoise -y
-
-
-
 #Launchy 按键启动器,及其插件和皮肤，没错就是Windows中用的那个
 #sudo apt-get install launchy launchy-plugins launchy-skins -y
 
@@ -267,8 +226,6 @@ sudo apt-get install remmina remmina-plugin-*
 # sudo apt-get install kdenlive -y
 
 
-
-
 #FeedReader 阅读器，即RSS阅读器，有相关插件，
 sudo apt-get install liferea -y 
 
@@ -282,11 +239,10 @@ sudo apt-get install liferea -y
 # Calibre 有一个内置的阅读器（E-book viewer），支持所有主要的电子书格式。我们可以所有程序中找到该阅读器。
 sudo apt-get install calibre -y
 
-#基于KDE的PDF浏览器，支持加亮、标注；另有相关插件;利用打印选项可保存标注到PDF文件中
+# 基于KDE的PDF浏览器，支持加亮、标注；另有相关插件; 利用打印选项可保存标注到PDF文件中。推荐
 sudo apt-get install okular -y  
 
-# 另一个PDF编辑器  Master PDF Editor ，有免费版；需手动下载安装
-
+# 另一个PDF编辑器  Master PDF Editor ，有免费版；需手动下载安装。推荐。
 
 
 #C/C++ 调试器 
@@ -298,16 +254,23 @@ sudo apt-get install okular -y
 #Bleachbit是类似windows中的CCleaner的清理软件
 sudo apt-get install bleachbit -y
 
-
-
 #OpenVPN
 sudo apt-get install openvpn -y
-
 
 #alien 用于各种安装包之间的转换，包括 rmp --> deb，
 #alien 可将RPM包转换成.deb 包,他会安装几个额外的软件，包括rmp
 #转换了一个vym软件但不成功.
 #sudo apt-get install alien -y
+
+# ubuntu-make 可以用来安装软件。
+#allows you to download the latest version of popular developer tools on your installation 
+# 安装形式如 umake ide lighttable 安装Android-Studio只需: umake android-studio 
+# 卸载软件： umask -r ide lighttable
+# ubuntu 16之前的版本 最新版下载安装
+# sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make
+#
+# . ubuntu make  ; ubuntu 16 可直接使用 apt 命令安装
+# sudo apt install ubuntu-make -y
 
 
 # Visual Studio Code
@@ -324,7 +287,6 @@ sudo apt-get install xclip -y
 
 # ClamAV 一款跨平台的杀毒软件
 
-# CopyQ is advanced clipboard manager with editing and scripting features.
 
 # TLP 电源管理软件，减慢耗电速度，见官网
 # 安装后，使用: sudo tlp start 启动， 使用： sudo tlp-stat 查看状态, tlp-stat -c 显示配置信息。
@@ -333,14 +295,9 @@ sudo apt-get install xclip -y
 # "注意"：安装后关闭屏幕等配置可能就要在这个软件中配置.
 # sudo apt-get install tlp -y
 
-# Remarkable，Linux下的Markdown编辑器，
+# Remarkable，Linux下的Markdown编辑器
+# 推荐Typora ，该编辑器非常好用。
 
-# Typora，Markdown编辑器也很不错，只是现在还没有正式版发行，能够导出PDF，HTML...等各种格式
-# 能够直接在实时预览界面直接编辑，也可切换到源码模式进行编辑，能通过自动生成的目录进行跳转
-# 能够切换5种主题或自定义主题，能够保存历史文件的文件夹位置。
-# 安装教程见官网：https://www.typora.io/#linux
-# 安装时需先导入公钥，即下面的命令，添加仓库和安装软件在后面集体安装
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE 
 
 # lolcat它能通过类似cat命令的方式将某个命令的默认屏幕出错颜色，彩虹效果。示例：ls -l | lolcat -as 25
 sudo apt-get install lolcat -y
@@ -425,6 +382,7 @@ sudo apt-get install gstreamer1.0-plugins-good -y
 ########################################################################
 
 # 推荐：
+# 100款开源软件：http://server.it168.com/a2010/0811/1089/000001089290_7.shtml  
 # [How To Install The Latest Nvidia Drivers In Ubuntu or Linux Mint Via PPA](http://www.webupd8.org/2016/06/how-to-install-latest-nvidia-drivers-in.html)
 # [Use GNOME 3.18+ Google Drive Integration Feature In Unity, Xfce And Other Desktop Environments](http://www.webupd8.org/2016/03/use-gnome-318-google-drive-integration.html)
 # [Mount Google Drive In Linux With google-drive-ocamlfuse](http://www.webupd8.org/2013/09/mount-google-drive-in-linux-with-google.html "挂载Google Drive")
@@ -449,8 +407,9 @@ sudo apt-add-repository ppa:shutter/ppa
 
 # 3. Midori主要侧重速度的浏览器，更加轻量。（相比QupZilla占用的内存更少，
 # 可正常加载复杂页面，而Ubuntu自带的浏览器这方面有些欠缺，自行编译的NetSurf也一样）
+# 不推荐。直接用 firefox 就好。已经添加了8G内存，直接用Chrome
 # sudo apt-add-repository ppa:midori/ppa 
-# 直接用 firefox 就好，已经添加了8G内存，直接用Chrome
+
 
 # 4. uget 下载工具
 sudo apt-add-repository ppa:plushuang-tw/uget-stable
@@ -467,6 +426,7 @@ sudo add-apt-repository ppa:rvm/smplayer-qt4
 sudo add-apt-repository ppa:nathan-renniewaldock/flux
 
 # 8. KDE Connect将Android手机连接到Linux的程序，另需在手机上也安装该程序,不能进行屏幕共享
+# 不推荐
 # sudo add-apt-repository ppa:vikoadi/ppa
 
 
@@ -477,7 +437,12 @@ sudo add-apt-repository ppa:hluk/copyq
 sudo add-apt-repository ppa:zanchey/asciinema
 
 
-# 11.  typora，介绍见上文
+# 11.  typora
+# Linux中最好用的Markdown编辑器
+# 能够直接在实时预览界面直接编辑，也可切换到源码模式进行编辑，能通过自动生成的目录进行跳转。
+# 能够切换5种主题或自定义主题，能够保存历史文件的文件夹位置。
+# 安装教程见官网：https://www.typora.io/#linux
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE 
 sudo add-apt-repository 'deb https://typora.io ./linux/'
 
 
@@ -485,16 +450,16 @@ sudo add-apt-repository 'deb https://typora.io ./linux/'
 sudo add-apt-repository ppa:hzwhuang/ss-qt5
 
 
-# 13.  google-chrome
+# 13.  google-chrome：浏览器
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
 sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 
-# 14. vscode
+# 14. vscode： 一个编辑器
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
 sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 
-# 15. Atom： 一个与vscode类似的编辑器
+# 15. Atom： 一个编辑器
 sudo add-apt-repository ppa:webupd8team/atom  
 
 # 16. MultiSystem 多系统启动U盘制作
@@ -526,7 +491,7 @@ sudo apt-get install shutter -y
 # 3. midori浏览器
 # sudo apt-get install midori -y
 
-#4.下载软件 uget 及其插件,另可以通过添加PPA (Personal Package Archives, 个人软件包档案。见百科 Ubuntu PPA)安装最新版。
+#4.下载软件 uget 及其插件,另可以通过添加PPA (Personal Package Archives, 个人软件包档案。见百度百科 Ubuntu PPA)安装最新版。
 #uget官网有最新版下载，并且介绍如何添加ppa
 sudo apt-get install aria2 -y
 sudo apt-get install uget -y
@@ -569,13 +534,14 @@ sudo apt-get install atom -y
 sudo apt-get install multisystem -y
 
 # 17. Sublime Text 3
-# sudo apt-get install sublime-text
+# sudo apt-get install sublime-text -y
 
 
 # 18.  Blender
-
+# sudo apt-get install blender -y
 
 # 19. Persepolis Download Manager (简称 PDM)
 sudo apt install persepolis -y
+
 
 
