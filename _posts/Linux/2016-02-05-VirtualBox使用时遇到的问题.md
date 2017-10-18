@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Virtual Box使用中遇到的问题"
-description: "Virtual Box使用中遇到的问题"
+title: "Virtual Box使用时遇到的问题"
+description: "Virtual Box使用时遇到的问题"
 date: 2016-02-05
 tags: [Linux软件]
 category: Linux
@@ -14,14 +14,14 @@ share: true
 {:toc .toc}
 
 
-# Virtual Box使用中遇到的问题
+# Virtual Box使用时遇到的问题
 
 > Virtual Box虚拟机简称Vbox。
 
 > Vbox网卡配置，Vbox与主机通信，见《使用SSH连接VirtualBox虚拟机.md》
 
 
-## 在客户机中安装Vbox的增强程序
+## 在客户机时中安装Vbox的增强程序
 
 手动安装VBoxAdditon ，即在虚拟机中安装Vbox的增强程序。
 
@@ -46,7 +46,7 @@ yum install kernel-devel -y
 
 ### Debian 中安装增强插件错误
 
-在Debian 8中它是被挂载到 /media/cdrom0/ 目录下，进入该目录，以root身份执行autorun.sh；如产生错误一定要去看/var/log/下的日志文件，以寻找解决办法。
+在Debian 8中它是被挂载到 `/media/cdrom0/` 目录下，进入该目录，以root身份执行 autorun.sh；如产生错误一定要去看/var/log/下的日志文件，以寻找解决办法。
 
 
 在安装了gcc g++ make 后 /var/log/vboxadd-install.log中显示，
@@ -73,9 +73,9 @@ mount -t vboxsf shared /mnt/vbox_shared
 
 如需每次开机自动挂载，则先要在添加共享文件夹时勾选“固定分配”，然后参考如下网站： 
 
-[1](http://forum.ubuntu.org.cn/viewtopic.php?t=294734)   
-[2](https://help.ubuntu.com/community/VirtualBox/SharedFolders)   
-[参考3](http://www.cnblogs.com/52linux/archive/2012/03/07/2384381.html)   
+[参考1](http://forum.ubuntu.org.cn/viewtopic.php?t=294734)   
+[参考2](https://help.ubuntu.com/community/VirtualBox/SharedFolders)   
+[参考3](http://www.cnblogs.com/52linux/archive/2012/03/07/2384381.html)    
 
 
 
@@ -107,9 +107,10 @@ Please reinstall the kernel module by executing
 sudo /etc/init.d/vboxdrv setup  
 ```
 
-[参考如下](http://www.cnblogs.com/WormCanFly/archive/2012/05/23/2514338.html)
+[参考](http://www.cnblogs.com/WormCanFly/archive/2012/05/23/2514338.html)
 
 > 处理方法已经写入 `~/.local/bin/`  下的相关sh文件中。
+
 
 ## 不能为虚拟机XXX打开一个新任务
 

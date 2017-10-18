@@ -206,6 +206,8 @@ Linux for Gaming: **Steam OS**
 
 [The Best Linux Distros for 2017](https://www.linux.com/news/learn/sysadmin/best-linux-distributions-2017)
 
+[**八款值得尝试的精美的 Linux 发行版（2017 版）**](http://mp.weixin.qq.com/s?timestamp=1508205792&src=3&ver=1&signature=LD5Gs4d3SbEX9*Uh66q0yP2osCg-gh0dU6RUupXH9eJLWdHfXXYy9oueR3dEh3SgbwiwgbNGzXs1u-aaCXOwI7QF9lm5luqBXmS-XT5uz8sI5XGOlpXEqsdWEaEtfklVYxm58605K*tkRqbvMCi9-4SArKcRhVKRB5LAXFhxeXQ= "八款值得尝试的精美的 Linux 发行版（2017 版）")
+
 
 
 ### 个人感受

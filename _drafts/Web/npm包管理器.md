@@ -1,5 +1,3 @@
-
-
 ## npm介绍
 
 包管理器(Package Manager)
@@ -23,10 +21,13 @@ Linux中安装nodejs的方法：
 
 ## 升级现有npm版本
 
-```javascript
+```shell
 npm install npm -g
 ```
 
+
+
+> 貌似也可使用这种方法安装node，但是安装的是当前版本的node而非长期支持版本的node。
 
 
 
@@ -87,7 +88,7 @@ npm install <包> -g   # 全局安装
 
 使用下面的命令来查看全局的包安装的位置：
 
-```javascript
+```shell
 npm prefix -g
 ```
 
@@ -101,7 +102,7 @@ npm prefix -g
 npm link的功能是在本地包和全局包之间创建符号链接。我们说过使用全局模式安装的包不能直接通过 require 使用,但通过 npm link 命令可以打破这一限制。
 
 比如我们将 express安装到了全局环境，使用下面的命令可以将其链接到本地环境：
-```
+```shell
 npm link express
 ```
 
@@ -161,8 +162,11 @@ npm uninstall <包名>
 ### 更新包
 
 ```shell
-//更新当前项目中安装的包
+//更新当前项目中安装的某个包
 npm update <包名>
+
+//更新当前项目中安装的所有包
+npm update
 
 //更新全局安装的包
 npm update <包名> -g
@@ -197,8 +201,6 @@ npm bin
 
 
 ## 使用 package.json
-
-
 
 当你的项目需要依赖多个包时，推荐使用 package.json。其优点为：
 
@@ -272,6 +274,58 @@ prefix = /home/yourUsername/npm
 # .bashrc 文件
 export PATH=~/npm/bin:$PATH
 ```
+
+
+
+
+
+## 多版本管理器
+
+Node.js 的社区开发了多版本管理器，用于在一台机器上维护多个版本的 Node.js 实例，方便按需切换。Node 多版本管理器(Node Version Manager，nvm)是一个通用的叫法，它目前有许多不同的实现。这里使用visionmedia/**n**。n 是一个十分简洁的 Node 多版本管理器。
+
+如果已经安装好npm则可以简单的使用 `npm install -g n`来安装n。事实上，n 并不需要 Node.js 驱动，它只是 bash 脚本；我们可以在 <https://github.com/visionmedia/n> 下载它的代码，然后使用 `make install` 命令安装。
+
+n的常用命令：
+
+```shell
+# 查看帮助 
+n --help
+
+# 安装 6.9.5版本的nodejs。 
+# 通过 n 获取的 Node.js 实例都会安装在 /usr/local/n/versions/ 目录中（看情况吧）
+n 6.9.5
+
+# 列出已经安装的 Node.js 。结果中 * 表示默认版本
+n
+
+# 版本切换，与安装node.js一样
+n 6.9.5
+
+# 指明使用某版本的 node.js 执行某脚本(比如 script.js)
+n use 6.9.5 script.js
+```
+
+
+
+* `PREFIX=$CUSTOM_LOCATION make install`； 自定义 `n` 的安装路径（避免使用sudo）
+* 自定义node.js的安装路径(通过n安装)；通过设置环境变量 `export N_PREFIX=$HOME`
+* 自定义 source。（镜像站点）
+* 自定义 架构(architecture)
+* 如果使用n切换了node.js的版本后，npm没有正确运行，通过运行相关脚本解决。（见 [n: working-with-npm](https://github.com/tj/n#working-with-npm )）
+
+
+
+**详细用法见 ：** [n: Node version management](https://github.com/tj/n)   
+
+
+
+**注意：**n 无法管理通过其他方式安装的 Node.js 版本实例(如官方提供的安装包、发行版软件源、手动编译)，也就说无法管理不是用 n 安装的node.js。
+
+
+
+> n 不支持在Windows上使用：“Unfortunately `n` is not supported on Windows yet”。
+>
+> [GNVM](https://github.com/kenshin/gnvm)   是一个简单的 `Windows` 下 Node.js 多版本管理器。
 
 
 
@@ -382,8 +436,6 @@ npm test
 ```shell
 npm run
 ```
-
-
 
 
 

@@ -12,12 +12,100 @@ Bootstrap 来自 Twitter，是 2011 年八月在 GitHub 上发布的开源产品
 
 Bootstrap 的 JavaScript 插件需要引入 jQuery。所以需要与JQuery一起使用。
 
+请注意，**Bootstrap 的所有 JavaScript 插件都依赖 jQuery，**因此 jQuery 必须在 Bootstrap 之前引入。
+
 自 Bootstrap 3 起，框架包含了贯穿于整个库的**移动设备优先**的样式。
 
 
 
 * Bootstrap 使用了一些 HTML5 元素和 CSS 属性。为了让这些正常工作，您需要使用 HTML5 文档类型（Doctype）。
 * 为了让 Bootstrap 开发的网站对移动设备友好，确保适当的绘制和触屏缩放，需要在网页的 head 之中添加 **viewport meta** 标签
+* JQuery引入
+* BootStrap css引入
+* BootStrap js引入
+
+
+
+
+Bootstrap各文件介绍：
+
+* bootstrap.css：Bootstrap 核心 CSS 文件
+* bootstrap-theme.css：可选的BootStrap主题文件（一般不用引入）
+* bootstrap.js：Bootstrap核心js文件
+
+
+
+预编译版：
+
+```
+bootstrap/
+├── css/
+│   ├── bootstrap.css
+│   ├── bootstrap.css.map
+│   ├── bootstrap.min.css
+│   ├── bootstrap.min.css.map
+│   ├── bootstrap-theme.css
+│   ├── bootstrap-theme.css.map
+│   ├── bootstrap-theme.min.css
+│   └── bootstrap-theme.min.css.map
+├── js/
+│   ├── bootstrap.js
+│   └── bootstrap.min.js
+└── fonts/
+    ├── glyphicons-halflings-regular.eot
+    ├── glyphicons-halflings-regular.svg
+    ├── glyphicons-halflings-regular.ttf
+    ├── glyphicons-halflings-regular.woff
+    └── glyphicons-halflings-regular.woff2
+```
+
+预编译文件可以直接使用到任何 web 项目中。我们提供了编译好的 CSS 和 JS (`bootstrap.*`) 文件，还有经过压缩的 CSS 和 JS (`bootstrap.min.*`) 文件。同时还提供了 CSS [源码映射表](https://developer.chrome.com/devtools/docs/css-preprocessors) (`bootstrap.*.map`) ，可以在某些浏览器的开发工具中使用。同时还包含了来自 Glyphicons 的**图标字体**，在附带的 **Bootstrap 主题中**使用到了这些图标。
+
+## 
+
+
+
+
+
+Bootstrap网站提供了一个**基本模板**：
+
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <h1>你好，世界！</h1>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
+```
+
+
+
+另可以通过Bootstrap网站提供的各种精选实例来入门Bootsrap： [起步 · Bootstrap v3 中文文档](http://v3.bootcss.com/getting-started/#examples)
+
+
+
 
 
 
@@ -29,7 +117,7 @@ Bootstrap 的 JavaScript 插件需要引入 jQuery。所以需要与JQuery一起
 
 > Bootstrap 使用 [Normalize](http://necolas.github.io/normalize.css/) 来建立跨浏览器的一致性。
 >
-> Normalize.css 是一个很小的 CSS 文件，在 HTML 元素的默认样式中提供了更好的跨浏览器一致性。
+> Normalize.css 是一个很小的 CSS 文件，在 HTML 元素的默认样式中提供了更好的跨浏览器一致性。用于清除浏览器默认样式。
 
 
 
@@ -130,6 +218,10 @@ Grid System(网格系统，栅格系统)。Bootstrap 提供了一套响应式、
 [印记中文 - 最权威的中文开发文档](https://docschina.org/ "印记中文 - 最权威的中文开发文档")
 
 
+
+[bootstrap入门-bootstrap入门教程-web前端开发-麦子学院](http://www.maiziedu.com/course/304/ "bootstrap入门-bootstrap入门教程-web前端开发-麦子学院")
+
+[bootstrap综合实战-bootstrap综合实战-麦子学院](http://www.maiziedu.com/course/543/ "bootstrap综合实战-bootstrap综合实战-麦子学院")
 
 [Bootstrap响应式网站开发 移动端手机站制作视频教程_腾讯课堂](https://ke.qq.com/course/228137)
 

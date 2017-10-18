@@ -510,11 +510,36 @@ vue tooling for vscode
 
 
 
-
 ## 主题
+
+
+
+**颜色主题：**
 
 * One Dark Pro ：Atom's iconic One Dark theme, and one of the most downloaded themes for VS Code.
 * rocket-ui
+* Material Theme
+* Material Syntax - Dark
+* Dark+ Material
+* Material Dark Soda
+* Fresh Material
+* Solarized Dark (推荐，与VS code最配)
+
+
+
+
+推荐： Material Theme
+
+> 搜索 "Material"  (材料)相关的主题
+
+**主题图标：**
+
+VS code默认为 "seti"
+
+可以考虑：Material Icon Theme
+
+
+
 
 
 

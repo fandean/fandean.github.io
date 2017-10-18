@@ -528,10 +528,6 @@ var colors = ["red", "blue", "green"];
 
 
 
-
-
-
-
 Array 的特性较多，这里不再说明。
 
 判断某个变量是否是数组： Array.isArray() 方法。
@@ -668,10 +664,6 @@ sayColor.call(this);  	//red
 sayColor.call(window);  //red
 sayColor.call(o);  		//blue
 ```
-
-
-
-
 
 
 
@@ -1517,9 +1509,9 @@ style对象的一些属性和方法：
 
 ## AJAX
 
- Ajax,是对 Asynchronous JavaScript + XML 的简写。这一技术能够向服务器请求额外的数据而无须卸载页面,会带来更好的用户体验。
+ Ajax，是对 Asynchronous JavaScript + XML 的简写。这一技术能够向服务器请求额外的数据而无须卸载页面，会带来更好的用户体验。
 
-Ajax 技术的核心是 XMLHttpRequest 对象(简称 **XHR**)。XHR 为向服务器发送请求和解析服务器响应提供了流畅的接口。能够以异步方式从服务器取得更多信息。Ajax 通信与数据格式无关;这种技术就是无须刷新页面即可从服务器取得数据，但不一定是 XML 数据。
+Ajax 技术的核心是 XMLHttpRequest 对象(简称 **XHR**)。XHR 为向服务器发送请求和解析服务器响应提供了流畅的接口。能够**以异步方式**从服务器取得更多信息。Ajax 通信与数据格式无关；这种技术就是无须刷新页面即可从服务器取得数据，但不一定是 XML 数据。
 
 
 

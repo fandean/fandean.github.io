@@ -179,15 +179,18 @@ ORACLE_HOME_LISTNER is not SET, unable to auto-start Oracle Net Listener
 > **不知这个是否有效？**  可以  
 > 设置 HOSTNAME:    
 > 修改 /etc/sysconfig/network 文件中的 HOSTNAME 参数，在本例中假设为 orcl.example.com，需要根据实际情况来更改。   
-```
-HOSTNAME=orcl.example.com
-```
 >
+> ```
+> HOSTNAME=orcl.example.com
+> ```
+
 >修改 hosts 文件
 >修改 /etc/hosts 文件，为该域名添加本地解析。
-```
-10.10.10.100 orcl.example.com orcl
-```
+>
+>```
+>10.10.10.100 orcl.example.com orcl
+>```
+
 >根据实际情况，把 IP 地址改为对应网卡的地址。
 >
 > 参考该网站配置开机自动启动数据库

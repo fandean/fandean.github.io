@@ -131,8 +131,9 @@ Live Template中有大量的模板，比如输入fbc回车生成`() findViewById
 ### 代码补全
 参考:    [Code Completion](https://www.jetbrains.com/help/idea/2016.1/code-completion-2.html)    
 
-
 代码提示：  在 Editor标签中选择Code Completion选项，在"Code Sensitive completion"后的下拉列表中选择"None"，即提示不区分大小写。
+
+
 
 
 ### 更新SDK

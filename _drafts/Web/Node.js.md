@@ -1,5 +1,4 @@
-你购买的商品如下: 
-订单:70795878248318648 
+
 
 亲，小店自动发货百度网盘下载地址： 
 2017整理妙味合集 在群组文件库里 
@@ -579,6 +578,22 @@ $ DEBUG=microblog:* npm start
 
 
 
+## koa
+
+[基于 Node.js 平台的下一代 web 开发框架 **Koa**](http://www.jikexueyuan.com/course/1518.html)
+
+**Koa** 是由 Express 原班人马打造的，致力于成为一个更小、更富有表现力、更健壮的 Web 框架。
+
+
+
+
+
+## Meteor
+
+node.js上最新HTML5开发框架-**Meteor** 是一组新的技术用于构建高质量的 Web 应用，提供很多现成的包，可直接在浏览器或者云平台中运行。
+
+
+
 
 
 ## 学习资料
@@ -595,8 +610,15 @@ $ DEBUG=microblog:* npm start
 
 [node.js从入门到进阶-node.js从入门到进阶教程-麦子学院](http://www.maiziedu.com/course/515/ "node.js从入门到进阶-node.js从入门到进阶教程-麦子学院")
 
+[玩转node.js全栈开发之博客系统-玩转node.js全栈开发之博客系统教程-麦子学院](http://www.maiziedu.com/course/627/ "玩转node.js全栈开发之博客系统-玩转node.js全栈开发之博客系统教程-麦子学院")
+
 《Node.js开发指南》
 
 [60分钟学会使用Node.js+Express+Ejs+mongoDB - 从零到壹全栈部落](https://segmentfault.com/a/1190000010145057 )
+
+
+
+[node.js上最新HTML5开发框架 Meteor-node.js教程-麦子学院](http://www.maiziedu.com/course/342/ "node.js上最新HTML5开发框架 Meteor-node.js教程-麦子学院")
+
 
 

@@ -269,8 +269,11 @@ apm install tool-bar markdown-writer
 #apm install linter-markdown
 
 ########### 主题 ##############
+# 推荐
+apm install atom-material-ui
+apm install atom-material-syntax-dark
+
 apm install monokai-flat
-apm install seti-ui
 apm install monokay
 
 # 文件图标

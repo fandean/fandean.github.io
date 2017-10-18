@@ -1,8 +1,4 @@
-
-
-## 激活
-
-
+## 通用设置
 
 ### 通过授权服务器激活
 
@@ -19,8 +15,7 @@ JetBrains 授权服务器(License Server URL): http://idea.imsxm.com
 
 
 
-
-## 同步设置
+### 同步设置
 
 
 > 发现 Android Studio 中也有这个功能
@@ -55,20 +50,102 @@ JetBrains 授权服务器(License Server URL): http://idea.imsxm.com
 
 
 
-
-
-
 设置相关：
 
 导出设置时的默认导出文件 `~/.AndroidStudio2.3/config/settings.jar`
 
 
 
+### 代码提示(补全)
 
-## PyCharm
+参考: [Code Completion](https://www.jetbrains.com/help/idea/2016.1/code-completion-2.html)
 
-PyCharm有免费社区版。PyCharm Community Edition
+代码提示： 在 Editor标签中选择 Code Completion 选项，在"Code Sensitive completion"后的下拉列表中选择"None"，即提示不区分大小写（好吧在Webstorm中设置为None时没有提示，还是设置为First letter）。(默认为First letter)。
 
+
+
+### 字体设置
+
+**编辑器字体设置：** Editor > Font : 
+
+最棒的字体 mononoki
+
+Size ：16、18、17(感觉大小合适)
+
+Line Spacing：1.1
+
+
+
+其它字体还有： Monospaced，Consolas，
+
+
+
+**界面字体设置：**Appearance & Behavior > Appearance： Name: "Arial Unicode MS"  Size: 12
+
+
+
+### 主题
+
+可选的自带主题：Monokai 
+
+
+
+下载 "Material Theme UI" 主题插件，然后进行修改：
+
+在 Editor > Color Scheme > Color Scheme Font > 选择 Material Default > 然后选择 Duplicate...  复制该主题，将复制后的主题命名为 "DIY Material Default copy"；按此方法将所有Material相关的主题都复制下来。
+
+接下来禁用"Material Theme UI" 主题插件。
+
+最后修改字体。
+
+> 这里主要就是为了复制"Material Theme UI" 主题插件的代码配色方案，然后更改为自己想要的字体。〔强烈推荐〕
+
+
+
+
+
+
+
+
+
+
+
+### 自动保存
+
+**使用星号标记未保存的文件：** Editor > General > Editor Tabls > 勾选“Mark modified tabs with asterisk”
+
+**自动保存：** Appearance & Behavior > System Settings > Synchronization 
+
+下面讲解该处的4个选项：
+
+* Synchronize file on frame or editor tab activation：激活当前窗口时保存
+* Save files on frame deactivation：切换到其它窗口时保存
+* Save files automatically if application is idle for [15] sec.：程序闲置15秒后保存
+* Use "safe write"(save changes to a temporary file first)：...
+
+
+
+
+### 通用插件
+
+
+
+* .ignore：生成各种.ignore文件
+* keypromoter：你用鼠标进行某项操作时，如果有快捷键，会提示你快捷键，如果没有，操作超过三次以后会提示你设置快捷键。
+* CodeGlance：minimap
+
+
+
+
+
+
+
+
+webstorm minimap对应的插件：
+
+- CodeGlance
+
+* Code Outline 2
 
 
 
@@ -94,6 +171,9 @@ WebStorm 是收费软件，不过这不是大问题，我们有一些免费使�
 [JavaScript开发工具WebStorm教程：用户界面简介](https://www.evget.com/article/2013/6/24/19100.html "JavaScript开发工具WebStorm教程：用户界面简介-控件新闻-慧都控件网")
 
 [Introduction - webstorm 入门指南](http://book.apebook.org/minghe/webstorm/index.html "Introduction - webstorm 入门指南")
+
+
+
 
 
 
@@ -138,7 +218,7 @@ IDE自带了些默认的配置，在打开的对话框中点击左边的 “+”
 
  open the built-in WebStorm Terminal 
 
-press `Alt+F12` （不管用）or choose `View | Tool Windows | Terminal` （可以打开）on the main menu。
+press `Alt+F12` （不管用）or choose `View > Tool Windows > Terminal` （可以打开）on the main menu。
 
 
 
@@ -148,9 +228,9 @@ press `Alt+F12` （不管用）or choose `View | Tool Windows | Terminal` （可
 
 `File -> settings -> Javascript Libraries -> Add`
 
-在files中添加路径，在documentations urls中添加文档支持。这里边需要注意一下的是，要添加原始未压缩的代码，*.min.js版的方法是不会被提示。
+在files中添加路径，在documentations urls中添加文档支持。这里边需要注意一下的是，要添加原始未压缩的代码，`*.min.js`版的方法是不会被提示。
 
-添加完成后，右边菜单中还有一 download 按钮，单击之后，他会自动选择最新版的js库进行搜索，然后在弹出的列表中，再单击选择一个后，点击Download and Install之后，才会被下载。这块体验不是太好，没有checkbox,也没有radio，只是选中后整行变暗。 
+添加完成后，右边菜单中还有一 download 按钮，单击之后，他会自动选择最新版的js库进行搜索，然后在弹出的列表中，再单击选择一个后，点击Download and Install之后，才会被下载。这块体验不是太好，没有checkbox，也没有radio，只是选中后整行变暗。 
 
 如果添加多个版本的jQuery，就可以直观的看到各个版本之间新方法的差别了。
 
@@ -203,6 +283,7 @@ Coding Assistance：点击 enable 来下载Node.js的 。如有必要再点击 U
 
 
 
+[WebStorm开发工具设置React Native智能提示 - CSDN博客](http://blog.csdn.net/xiangzhihong8/article/details/52224527 "WebStorm开发工具设置React Native智能提示 - CSDN博客")
 
 
 
@@ -210,9 +291,17 @@ Coding Assistance：点击 enable 来下载Node.js的 。如有必要再点击 U
 
 ## 一些技巧
 
-可以直接拖动文件到编辑器中。比如引入jquery.js，我们先将该文件添加到项目中，再直接拖动该文件到html文档中就会直接生成类似下面的语句`<script src="../build/jquery.js"></script>`。
+* 可以直接拖动文件到编辑器中。比如引入jquery.js，我们先将该文件添加到项目中，再直接拖动该文件到html文档中就会直接生成类似下面的语句`<script src="../build/jquery.js"></script>`。
+* 善用“Settings”对话框中的**搜索**功能（直接搜索相关设置）。
 
 
 
+
+
+
+
+## PyCharm
+
+PyCharm有免费社区版。PyCharm Community Edition
 
 
