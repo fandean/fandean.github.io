@@ -17,7 +17,11 @@ chare: true
 # VS Code使用笔记
 
 
-> 在我的XUbuntu 16.04中VS Code在使用过程中会出现光标乱跳的情况，已被舍弃
+> 在我的XUbuntu 16.04中VS Code在使用过程中会出现光标乱跳的情况。
+>
+> 但在禁用所有vs code 的插件的时候，又没有发现问题。
+
+
 
 ## User Guide  
 

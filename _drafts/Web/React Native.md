@@ -174,10 +174,6 @@ run
 
 
 
-
-
-
-
 ```
 
 To get started, edit index.android.js

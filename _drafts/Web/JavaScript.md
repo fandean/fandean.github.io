@@ -1540,6 +1540,8 @@ Ajax 技术的核心是 XMLHttpRequest 对象(简称 **XHR**)。XHR 为向服务
 
 ## 学习资料
 
+阮大侠当前(2017)正在创造的一部教程：[JavaScript 标准参考教程（alpha）](http://javascript.ruanyifeng.com/)
+
 [JavaScript 简介 - 菜鸟教程](http://www.runoob.com/js/js-intro.html "JavaScript 简介 - 菜鸟教程")
 
 《JavaScript编程全解》介绍了一些实用方法。  
