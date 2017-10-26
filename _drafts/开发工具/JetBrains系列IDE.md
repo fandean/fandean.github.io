@@ -126,6 +126,23 @@ Line Spacing：1.1
 
 
 
+
+
+### 部署到远程服务器
+
+我们可以在IDE中配置FTP，以手动或自动上传代码到远程服务器。
+
+1. 先设置远程服务器主机：Tools > Deployment > Browse Remote Host > 点击`...`来添加Server > Type可选：FTP、SFTP、FTPS、Local or mounted folder
+2. 如果出现目录一直递归显示的情况，更改一下 Advanced Options ，勾选Passive mode 和 Compatibility mode
+3. 手动上传：右键选中文件 > Deployment > Upload to xxx
+4. 自动上传：Tools > Deployment > Options 更改“Upload changed files automatically to the default server”为非Never的其它选项。
+
+
+
+
+
+
+
 ### 通用插件
 
 

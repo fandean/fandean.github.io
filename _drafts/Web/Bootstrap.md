@@ -6,6 +6,12 @@ Bootstrap 来自 Twitter，是 2011 年八月在 GitHub 上发布的开源产品
 
 
 
+官方地址： <http://getbootstrap.com>
+
+中文地址：<www.bootcss.com>
+
+
+
 > Bootstrap可视化布局工具
 
 
@@ -139,6 +145,15 @@ Bootstrap网站提供了一个**基本模板**：
 Bootstrap 3 的 *container* class 用于包裹页面上的内容。
 
 请注意，由于内边距（padding）是固定宽度，默认情况下容器container是不可嵌套的。
+
+
+
+### Bootstrap开发工具
+
+- 任意前端开发工具
+- 专门针对Bootstrap的开发工具：Jetstrap（收费）
+
+
 
 
 
