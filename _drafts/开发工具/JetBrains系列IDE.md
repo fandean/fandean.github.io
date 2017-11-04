@@ -106,10 +106,6 @@ Line Spacing：1.1
 
 
 
-
-
-
-
 ### 自动保存
 
 **使用星号标记未保存的文件：** Editor > General > Editor Tabls > 勾选“Mark modified tabs with asterisk”
@@ -122,6 +118,27 @@ Line Spacing：1.1
 * Save files on frame deactivation：切换到其它窗口时保存
 * Save files automatically if application is idle for [15] sec.：程序闲置15秒后保存
 * Use "safe write"(save changes to a temporary file first)：...
+
+
+
+
+
+
+### 格式化代码
+
+[Reformatting Source Code - Help | WebStorm](https://www.jetbrains.com/help/webstorm/reformatting-source-code.html "Reformatting Source Code - Help | WebStorm")
+
+
+
+**对目录进行格式化：**
+
+1. 左键选中某目录
+2. 菜单：Code > Reformat Code；将会打开一个对话框
+3. 选择你想要勾选的 options 和 filters
+4. 点击 Run
+
+
+
 
 
 
@@ -169,19 +186,13 @@ webstorm minimap对应的插件：
 
 ## WebStorm
 
-WebStorm 是收费软件，不过这不是大问题，我们有一些免费使用的方案：
+WebStorm 是收费软件，不过这不是大问题，我们有一些免费使用的方案：**好像该方法不管用了**。 
 
 
 
 [WebStorm，你一直在寻找的前端开发 IDE · Issue #6 · cssmagic/blog](https://github.com/cssmagic/blog/issues/6 "WebStorm，你一直在寻找的前端开发 IDE · Issue #6 · cssmagic/blog")
 
 官方下载的版本都是可以 30 天免费试用的。到期之后还可以继续安装更新的 **EAP** 预览版  <http://confluence.jetbrains.com/display/WI/WebStorm+EAP>  ，继续合法免费试用。只要自己勤快一点儿，备份好个人设置，基本上可以一直免费用下去。所以，我完全不建议你去找什么破解版或盗版序列号。
-
-**好像该方法不管用了**。
-
-
-
-[【程序员小助手】免费获得WebStorm正式版 - 程序员联盟 frogoscar - 51CTO技术博客](http://4526621.blog.51cto.com/4516621/1597570)
 
 
 
@@ -190,6 +201,14 @@ WebStorm 是收费软件，不过这不是大问题，我们有一些免费使�
 [Introduction - webstorm 入门指南](http://book.apebook.org/minghe/webstorm/index.html "Introduction - webstorm 入门指南")
 
 
+
+### 代码格式化
+
+结合ESLint进行格式化。ESLint inspections combined with the power of WebStorm code formatting。[利用webstrom的宏，使用eslint规则保存文件自动格式化代码(mac版) - CSDN博客](http://blog.csdn.net/wk3368/article/details/50981767 "利用webstrom的宏，使用eslint规则保存文件自动格式化代码(mac版) - CSDN博客")
+
+
+
+[Reformatting Source Code - Help - WebStorm](https://www.jetbrains.com/help/webstorm/reformatting-source-code.html "Reformatting Source Code - Help - WebStorm")
 
 
 

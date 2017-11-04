@@ -42,6 +42,8 @@ React 可以在浏览器运行，也可以在服务器运行
 
 [分享一个用ReactNative写的仿微信客户端的APP（带截图） - 论坛 - React Native中文社区](http://bbs.reactnative.cn/topic/3956/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E7%94%A8reactnative%E5%86%99%E7%9A%84%E4%BB%BF%E5%BE%AE%E4%BF%A1%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84app-%E5%B8%A6%E6%88%AA%E5%9B%BE)
 
+[React Native 模仿网易云音乐手机客户端，兼容安卓和IOS两个平台。](https://zhuanlan.zhihu.com/p/30393453 "React Native 模仿网易云音乐手机客户端，兼容安卓和IOS两个平台。")
+
 [Unity3D+React Native+原生代码 十万个为什么AR版上线 - 论坛 - React Native中文社区](http://bbs.reactnative.cn/topic/4439/unity3d-react-native-%E5%8E%9F%E7%94%9F%E4%BB%A3%E7%A0%81-%E5%8D%81%E4%B8%87%E4%B8%AA%E4%B8%BA%E4%BB%80%E4%B9%88ar%E7%89%88%E4%B8%8A%E7%BA%BF "Unity3D+React Native+原生代码 十万个为什么AR版上线 )
 
 [分享一个感觉不错的react-native入门项目配视频 - 论坛 - React Native中文社区](http://bbs.reactnative.cn/topic/4362/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E6%84%9F%E8%A7%89%E4%B8%8D%E9%94%99%E7%9A%84react-native%E5%85%A5%E9%97%A8%E9%A1%B9%E7%9B%AE%E9%85%8D%E8%A7%86%E9%A2%91 "分享一个感觉不错的react-native入门项目配视频 ")  这个不错
@@ -64,17 +66,9 @@ React 可以在浏览器运行，也可以在服务器运行
 
 在RN底下抓取網站數據，不知道除了JAVA的Jsoup之外，在RN的開發環境中有其他可行的方法嗎？
 
-
-
 Jsoup不就是我之前ZhihuDaily项目中介绍过的用来像 html 文件中注入 css 的库？
 
-
-
 [jsoup 解析HTML信息 - OPEN 开发经验库](http://www.open-open.com/lib/view/open1455717177855.html "jsoup 解析HTML信息 - OPEN 开发经验库")
-
-
-
-
 
 
 
@@ -113,6 +107,10 @@ Jsoup不就是我之前ZhihuDaily项目中介绍过的用来像 html 文件中�
 [React 技术栈系列教程 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2016/09/react-technology-stack.html "React 技术栈系列教程 - 阮一峰的网络日志")
 
 [React 入门实例教程 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2015/03/react.html "React 入门实例教程 - 阮一峰的网络日志")
+
+
+
+[React Native 学习线路导航](https://zhuanlan.zhihu.com/c_96526421 "React Native 学习线路导航")
 
 
 
@@ -166,7 +164,7 @@ If you checked out the source from GitHub make sure to run grunt.
 
 ReactDOM.render()：
 
-render：给予, 粉刷, 呈送
+render：给予, 粉刷, 呈送，渲染
 
 
 

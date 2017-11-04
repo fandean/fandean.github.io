@@ -1,4 +1,4 @@
-> 《ECMAScript入门》笔记
+> 《ECMAScript入门》摘抄
 
 ## ECMAScript 6简介
 
@@ -44,6 +44,7 @@ Traceur 允许将 ES6 代码直接插入网页。首先，必须在网页头部�
 
 * 第一种场景，内层变量可能会覆盖外层变量。
 * 第二种场景，用来计数的循环变量泄露为全局变量。
+
 
 
 
@@ -424,6 +425,8 @@ foo.call({ id: 42 });
 
 
 
+
+
 ## Promise对象
 
 > 这个也是重点
@@ -463,9 +466,39 @@ Promise 是异步编程的一种解决方案，比传统的解决方案——回
 
 ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概念，作为对象的模板。通过`class`关键字，可以定义类。
 
-基本上，ES6 的`class`可以看作只是一个语法糖，它的绝大部分功能，ES5 都可以做到，新的`class`写法只是让对象原型的写法更加清晰、更像面向对象编程的语法而已。
+基本上，ES6 的`class`可以看作只是一个**语法糖**，它的绝大部分功能，ES5 都可以做到，新的`class`写法只是让对象原型的写法更加清晰、更像面向对象编程的语法而已。
+
+```javascript
+//定义类
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  toString() {
+    return '(' + this.x + ', ' + this.y + ')';
+  }
+}
+```
+
+注意，定义“类”的方法的时候，前面不需要加上`function`这个关键字，直接把函数定义放进去了就可以了。另外，方法之间不需要逗号分隔，加了会报错。
+
+类必须使用`new`调用，否则会报错。这是它跟普通构造函数的一个主要区别，后者不用`new`也可以执行。
 
 
+
+### Class表达式
+
+与函数一样，类也可以使用表达式的形式定义。
+
+```javascript
+const MyClass = class Me {
+  getClassName() {
+    return Me.name;
+  }
+};
+```
 
 
 
@@ -475,9 +508,24 @@ ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概�
 
 
 
+```javascript
+class ColorPoint extends Point {
+  constructor(x, y, color) {
+    super(x, y); // 调用父类的constructor(x, y)
+    this.color = color;
+  }
 
+  toString() {
+    return this.color + ' ' + super.toString(); // 调用父类的toString()
+  }
+}
+```
 
+上面代码中，`constructor`方法和`toString`方法之中，都出现了`super`关键字，它在这里表示父类的构造函数，用来新建父类的`this`对象。
 
+子类必须在`constructor`方法中调用`super`方法，否则新建实例时会报错。这是因为子类没有自己的`this`对象，而是继承父类的`this`对象，然后对其进行加工。如果不调用`super`方法，子类就得不到`this`对象。
+
+如果子类没有定义`constructor`方法，这个方法会被默认添加，代码如下。也就是说，不管有没有显式定义，任何一个子类都有`constructor`方法。
 
 
 
@@ -485,8 +533,119 @@ ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概�
 
 
 
+模块功能主要由两个命令构成：`export`和`import`。`export`命令用于规定模块的对外接口，`import`命令用于输入其他模块提供的功能。
 
 
+
+### export命令
+
+一个模块就是一个独立的文件。该文件内部的所有变量，外部无法获取。如果你希望外部能够读取模块内部的某个变量，就必须使用`export`关键字输出该变量。`export`还可用于函数和类。
+
+示例：
+
+```javascript
+//单个输出
+export var firstName = 'Michael';
+export var lastName = 'Jackson';
+export var year = 1958;
+```
+
+```javascript
+//profile文件中
+var firstName = 'Michael';
+var lastName = 'Jackson';
+var year = 1958;
+
+export {firstName, lastName, year};
+```
+
+
+```javascript
+//输出函数
+export function multiply(x, y) {
+  return x * y;
+};
+```
+
+
+```javascript
+//使用as进行重命名
+function v1() { ... }
+function v2() { ... }
+
+export {
+  v1 as streamV1,
+  v2 as streamV2,
+  v2 as streamLatestVersion
+};
+```
+
+
+```javascript
+/*   
+ *	错误写法 
+ */
+// 报错
+export 1;
+
+// 报错
+var m = 1;
+export m;
+
+/*   
+ *	正确写法 
+ */
+// 写法一
+export var m = 1;
+
+// 写法二
+var m = 1;
+export {m};
+
+// 写法三
+var n = 1;
+export {n as m};
+```
+
+
+
+
+### import命令
+
+
+```javascript
+// main.js
+import {firstName, lastName, year} from './profile';
+
+function setName(element) {
+  element.textContent = firstName + ' ' + lastName;
+}
+```
+
+
+
+### export default命令
+
+从前面的例子可以看出，使用`import`命令的时候，用户**需要知道所要加载的变量名或函数名**，否则无法加载。
+
+为了给用户提供方便，可以用`export default`命令，为模块**指定默认输出**。
+
+```javascript
+// export-default.js
+export default function () {
+  console.log('foo');
+}
+```
+
+
+
+其他模块加载该模块时，`import`命令可以为该匿名函数**指定任意名字**。
+
+```javascript
+// import-default.js
+import customName from './export-default';
+customName(); // 'foo'
+```
 
 
 
