@@ -15,5 +15,10 @@ npm install npm -g
 
 # Gitmoji is an emoji guide for GitHub commit messages.
 # 安装后的命令为：gitmoji ，用法见其帮助。
-npm i -g gitmoji-cli
+npm i gitmoji-cli -g
+
+
+# 安装CSS预编译器 Less
+npm i less -g
+
 

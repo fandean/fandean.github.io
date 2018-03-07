@@ -162,6 +162,35 @@ VPS 磁盘：有的是大容量的HDD硬盘，有的是相对较小的SSD固态�
 
 
 
+### 几个便宜的VPS服务器，可以买来自建SS、V2Ray翻墙
+
+[原文地址 ](https://www.igfw.net/archives/13440)
+
+
+
+**Virmach**这家被称为价格屠夫不是白叫的，最近支持支付宝支付了，列举几个他家便宜套餐折扣后的价格。
+
+KVM VPS配置 SSD128（KVM类型的VPS性能好比较推荐，注册不要使用代理，信心也不要乱填）        
+内存 128MB        
+硬盘 10GB        
+流量 500GB       
+核心 1       
+IP 1       
+**购买** [年付 8.75 刀](https://billing.virmach.com/aff.php?aff=2798&pid=59) 使用LEB30七折优惠码       
+
+OpenVZ配置       
+内存 128MB       
+硬盘 10GB      
+流量 250GB      
+核心 1H1GIP 1      
+**购买** [年付 5.25 刀](https://billing.virmach.com/aff.php?aff=2798&pid=35) 使用LEB30七折优惠码        
+
+测速选择速度快的美国西部机房https://billing.virmach.com/knowledgebase.php?action=displayarticle&id=11
+
+
+
+
+
 
 
 

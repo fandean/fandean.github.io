@@ -5,8 +5,7 @@
 
 
 
-
-[可能是国内最火的开源项目 —— JavaScript 篇](http://mp.weixin.qq.com/s?src=11&timestamp=1508204933&ver=457&signature=pygUI-CXqW*NSRNXP0xg-bVULhJiPfReBs87j4VkiaIXVpqgrO1bYt*DXIstmYBfMrDC-utiFg74OB72mr2HRLjx6wWwISdkvXMJikeIjuLmRDag-juc3L4VPg3aGfeP&new=1 "可能是国内最火的开源项目 —— JavaScript 篇")
+[可能是国内最火的开源项目 —— JavaScript 篇](https://zhuanlan.zhihu.com/p/29816092 "可能是国内最火的开源项目 —— JavaScript 篇")
 
 
 

@@ -254,8 +254,14 @@ sudo apt-get install okular -y
 #Bleachbit是类似windows中的CCleaner的清理软件
 sudo apt-get install bleachbit -y
 
-#OpenVPN
+#OpenVPN 相关软件（参考ProtonVpn）
 sudo apt-get install openvpn -y
+# Network Manager GUI
+sudo apt-get install network-manager-openvpn-gnome -y
+# resolvconf
+sudo apt-get install resolvconf -y
+
+
 
 #alien 用于各种安装包之间的转换，包括 rmp --> deb，
 #alien 可将RPM包转换成.deb 包,他会安装几个额外的软件，包括rmp
