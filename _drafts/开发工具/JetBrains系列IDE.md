@@ -6,9 +6,18 @@
 
 [JetBrains激活](http://www.imsxm.com/jetbrains-license-server.html "JetBrains激活 - 成都没有派对")
 
-JetBrains 授权服务器(License Server URL): http://idea.imsxm.com
+JetBrains 授权服务器(License Server URL):
 
-**使用方法：** 激活时选择License server 填入 `http://idea.imsxm.com`  点击Active即可。
+- 
+  http://idea.wlphp.com:1017
+
+- http://intellij.mandroid.cn/ 
+- http://idea.imsxm.com/ 
+- http://idea.iteblog.com/key.php 
+- http://idea.qinxi1992.cn 
+- http://idea.lanyus.com/
+
+**使用示例：** 激活时选择License server 填入 `http://idea.imsxm.com`  点击 Active 即可。
 
 **在线激活有一个过期时间**，这个时间一过就必须再次联网授权服务器请求激活。
 
