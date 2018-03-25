@@ -52,11 +52,30 @@
 -e 列出所有进程 
 -x 显示所有程序，不以终端机来区分。
 
-
-## 17. unzip
+17. unzip        
 完整语法：
 unzip [-cflptuvz] [-agCjLMnoqsVX] [-P <密码>] [.zip文件] [文件] [-d <目录>] [-x <文件>] 或 unzip [-Z]
 
 对于大文件分包压缩的，unzip解压时按顺序一个一个解压就行，之前的oracle database 11g 就是这样。
 [参考](http://racoguo.blog.51cto.com/2309068/1288050)
+
+18. chmod
+
+    ​
+
+19. chown
+
+    改变指定目录以及其子目录下的所有文件的拥有者和群组 
+
+    chown -R fan:fan testdir
+
+
+20. du命令
+
+`du：`disk usage 的简称
+
+```
+# -h 人类可读方式，-s目录的总磁盘大小
+du -hs 目录
+```
 

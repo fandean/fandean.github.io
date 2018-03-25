@@ -247,6 +247,28 @@ apm install tool-bar
 # 自定义工具栏图标点击事件
 apm install flex-tool-bar
 
+###### 路径补全 #######
+apm install autocomplete-paths
+
+####### 在单独的一个标签面板中查看文档 ############
+apm install api-docs
+
+#################### linter：检查代码语法和风格 #################
+# 基础linter：检查代码语法和风格。另可安装特定的语言插件
+#apm install linter
+
+# You have both linter and atom-ide-diagnostics enabled, which will both display lint results for Linter-based packages.
+# To avoid duplicate results, please disable one of the packages.
+# 安装时提示 linter和atom-ide-diagnostics(在扩展中搜索一下该插件)之间只能二选一。
+# 所以这里我还是不安装linter
+
+# 另外linter还需要下面的依赖
+# apm install intentions busy-signal linter-ui-default 
+
+# 与特定语言相关的 liinter
+# css html js
+# apm install linter-csslint linter-htmlhint linter-eslint
+
 ################ markdown相关packages #################
 # 预览
 # apm install markdown-preview-plus
@@ -278,6 +300,17 @@ apm install monokay
 
 # 文件图标
 #apm install file-icons
+
+
+###### 运行脚本,支持多种语言 #####
+apm install script
+
+###### 正则表达式图形化 ########
+regex-railroad-diagram
+
+######## 局部选择插件 ######
+apm install sublime-style-column-selection
+
 
 
 ############ JS相关插件 #############
@@ -327,8 +360,6 @@ apm install browser-plus
 # 在浏览器中打开
 #apm install open-in-browsers
 
-###### 路径补全 #######
-apm install autocomplete-paths
 
 ######## Git 相关 #######
 # 处理产生合并冲突的文件
@@ -342,14 +373,6 @@ apm install git-log
 # 快速分享代码到gist
 apm install git-it
 
-###### 运行脚本,支持多种语言 #####
-apm install script
-
-###### 正则表达式图形化 ########
-regex-railroad-diagram
-
-######## 局部选择插件 ######
-apm install sublime-style-column-selection
 ```
 
 

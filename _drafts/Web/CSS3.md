@@ -12,6 +12,8 @@
 
 
 
+记得看 [CSS 参考手册](http://www.w3school.com.cn/cssref/index.asp "CSS 参考手册")
+
 
 
 
@@ -100,7 +102,22 @@ h1选择器 { /*声明块*/
 
 
 
+### 特殊性（优先级）
 
+> 在一次作业中忽略了特殊性问题，导致选择器无法生效
+
+
+
+`元素名.id` > `id` 
+
+```css
+# 特殊性由高到低排列
+article.architect p{}
+
+.architect p{}
+
+article p{}
+```
 
 
 
@@ -319,9 +336,9 @@ HSL和HSLA：色相hue、饱和度saturation、亮度lightness
 
 
 
-
-
 ## 浮动和定位
+
+
 
 如何让文字**围绕**在图像**周围**呢?
 
@@ -338,6 +355,111 @@ HSL和HSLA：色相hue、饱和度saturation、亮度lightness
 实用浮动时，源代码的顺序很重要。比如在实现环绕效果时向左或右浮动的元素必须出现在包围它的元素的前面。
 
 
+
+差。见妙味课堂笔记。
+
+
+
+### 清除浮动 
+
+**清除浮动：**使该元素的某个方向上不能有浮动元素
+
+ 如果对某个元素(该元素自身没有浮动)使用该属性,**该元素**和**它后面的元素**就会显示在浮动元素的下面。
+
+
+
+**书中示例解析：**
+
+书中示例包含了两个浮动， 第一个浮动说的是嵌套在 main 中 section内的图片浮动，要清除浮动的类 `.post-footer`；第二个浮动说的是主页面和附属栏的浮动，需要考虑的是整个页面的footer的显示问题。
+
+```html
+...
+<body>
+<div class="page">
+... [masthead] ...
+<div class="container">
+	<!--main左浮动-->
+    <main role="main">
+        ...
+        
+        <section class="post">
+            <h2>container Main Section 2 </h2>
+
+            <p>Main Section 2 下嵌套的图片浮动，环绕效果 </p>
+            <img src="img/victoria.jpg" width="370" height="220" alt="" class="post-photo"/>
+
+            <div class="post-blurb">
+                <p>An hour and a half aboard a comfortable car</p>
+            </div>
+			<!-- post-footer 显示的位置偏于预期 -->
+            <footer class="footer">
+                <p class="post-footer">Section footer 1</p>
+            </footer>
+        </section>
+        
+    </main>
+    <!--sidebar右浮动-->
+    <div class="sidebar">
+        ...
+    </div>
+</div> <!-- end container -->
+    
+<!-- 整个页面的 footer 显示的位置偏于预期 -->
+<footer role="contentinfo" ...>
+	<p class="legal"><small>&copy;2013 Le Journal. All Rights Reserved.</small></p>
+	</footer>
+</div>
+</body>
+</html>
+```
+
+第一个浮动的解决办法是让： post-footer 清除浮动
+
+第二个浮动，我们为了使父元素container具有宽度，这里采用让浮动元素的父元素“自清除”浮动，即使用clearfix方法。复制粘贴如下代码，然后为父元素添加为 clearfix 类即可。
+
+```html
+.clearfix:before,
+.clearfix:after {
+	content:"";
+	display:table;
+}
+
+.clearfix:after {
+	clear:bath;
+}
+
+/* 为IE6添加下面的语句 */
+.clearfix {
+	*zoom:1;
+}
+```
+
+> 修改（精简）过的代码位于： <https://github.com/FanDean/web-demos/blob/master/miaov/HTML5%E9%AB%98%E7%BA%A7/float2.html>
+
+> 大量网站使用 clearfix 类或类似方法清除浮动。本书不会对所有这些代码进行详细解释,因为有些复杂。不过请将它常备手头,复制到每一个需要用到它的网站的样式表中去。
+>
+> clearfix方法中用到的  **:after 伪元素**
+> ":after" 伪元素可以在元素的内容之后插入新内容。
+>
+> 下面的例子在每个 `<h1>` 元素后面插入一幅图片
+>
+> ```css
+> h1:after
+>   {
+>   content:url(logo.gif);
+>   }
+> ```
+>
+> 
+>
+> 书中介绍还可使用 overflow 方法，示例：
+>
+> ```css
+> /* 父元素 */
+> .container{
+>     overflow:hidden;
+> }
+> ```
 
 
 

@@ -349,6 +349,18 @@ sudo apt-get install speedtest-cli -y
 # pv: Pipe Viewer(管道查看器)。它可以监测Linux管道中数据流通的进度
 sudo apt-get install pv -y
 
+
+# Seahorse： 用于管理PGP和SSH密钥的一个GUI工具(Linux中国)
+sudo apt-get install seahorse -y
+
+# Zsync：用于分发数据。 https://linux.cn/article-9477-1.html
+# 如果你会得到一份已有文件旧版本，它只下载该文件新的部分。
+# 注意：只有当人们提供zsync下载方式时，zsync才有用（后缀为.zsync的文件）
+# 用法示例： zsync http://cdimage.ubuntu.com/ubuntu/daily-live/current/bionic-desktop-amd64.iso.zsync
+sudo apt-get install zsync -y
+
+
+
 #################################################################################
 # 
 #           与特定系统相关的软件

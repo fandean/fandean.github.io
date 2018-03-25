@@ -459,6 +459,8 @@ Promise 是异步编程的一种解决方案，比传统的解决方案——回
 > [Promise - 廖雪峰的官方网站](https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/0014345008539155e93fc16046d4bb7854943814c4f9dc2000)
 >
 > [Promise 对象 - ECMAScript 6入门](http://es6.ruanyifeng.com/#docs/promise "Promise 对象 - ECMAScript 6入门")
+>
+> 你不知道的JavaScript [You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS/blob/1ed-zh-CN/async%20%26%20performance/README.md "You-Dont-Know-JS/README.md at 1ed-zh-CN · getify/You-Dont-Know-JS")
 
 
 
