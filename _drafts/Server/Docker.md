@@ -313,7 +313,7 @@ Job for docker.service failed because the control process exited with error code
        valid_lft forever preferred_lft forever
 ```
 
-看第20行：docker会创建一个 docker0的网桥，并分配了私有网段 `172.17.0.1/16`,docker中的所有容器将会在此网段上分配一个可用的ip地址；该地址是私有地址只能在本机访问。
+看第20行：docker会创建一个 `docker0`的网桥，并分配了私有网段 `172.17.0.1/16`,docker中的所有容器将会在此网段上分配一个可用的ip地址；该地址是私有地址只能在本机访问。
 
 
 
@@ -444,3 +444,12 @@ docker pa -a ：查看运行过的所有的容器
 
 > 第7课
 
+
+
+> [容器与云|Dry：一个命令行交互式 Docker 容器管理器](https://linux.cn/article-9615-1.html "容器与云|Dry：一个命令行交互式 Docker 容器管理器")
+
+
+
+## 学习资料
+
+[Docker入门教程-慕课网](https://www.imooc.com/learn/867?mc_marking=40eb6678df9f85e7a854421cef4ba5e9&mc_channel=syb43 "Docker入门教程-慕课网")

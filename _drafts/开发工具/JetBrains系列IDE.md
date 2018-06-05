@@ -193,6 +193,14 @@ webstorm minimap对应的插件：
 
 
 
+### 小技巧
+
+> [Intellij IDEA神器居然还有这些小技巧 - Sam同学的个人空间](https://my.oschina.net/samgege/blog/1808622 "Intellij IDEA神器居然还有这些小技巧 - Sam同学的个人空间")
+
+
+
+
+
 ## 快捷键
 
 | 快捷键   | 说明               |

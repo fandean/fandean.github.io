@@ -138,3 +138,5 @@ Vue.js 的一些插件：
 
 [vue.js开发（最热门的WEB前端技术）【泰牛程序员PHP培训】_腾讯课堂](https://ke.qq.com/course/180464 "vue.js开发（最热门的WEB前端技术）【泰牛程序员PHP培训】_腾讯课堂")  这套课程非常好，评价高。
 
+[Vue2.0小白入门教程(最全) - 网易云课堂](http://study.163.com/course/introduction.htm?courseId=1004711010#/courseDetail?tab=1 "Vue2.0小白入门教程(最全) - 网易云课堂")
+

@@ -16,7 +16,7 @@
 
 ## 通配泛型类型
 
-Integer是Number的子类型，但是GenericStack<Intger>并不是GenericStack<Number>的子类型；所以在某些情况下就会有限制，可以使用通配泛型类型来**放宽限制**。
+Integer是Number的子类型，但是``GenericStack<Intger>``并不是``GenericStack<Number>``的子类型；所以在某些情况下就会有限制，可以使用通配泛型类型来**放宽限制**。
 
 
 

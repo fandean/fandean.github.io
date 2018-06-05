@@ -616,9 +616,7 @@ node.js上最新HTML5开发框架-**Meteor** 是一组新的技术用于构建�
 
 [60分钟学会使用Node.js+Express+Ejs+mongoDB - 从零到壹全栈部落](https://segmentfault.com/a/1190000010145057 )
 
-
-
 [node.js上最新HTML5开发框架 Meteor-node.js教程-麦子学院](http://www.maiziedu.com/course/342/ "node.js上最新HTML5开发框架 Meteor-node.js教程-麦子学院")
 
-
+[从零玩转Node.js - 网易云课堂](http://study.163.com/course/introduction.htm?courseId=1005269026 "从零玩转Node.js - 网易云课堂")
 
