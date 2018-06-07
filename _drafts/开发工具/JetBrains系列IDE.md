@@ -89,7 +89,21 @@ Line Spacing：1.1
 
 
 
-**界面字体设置：**Appearance & Behavior > Appearance： Name: "Arial Unicode MS"  Size: 12
+1. 设置代码字体（主要字体：推荐 [mononoki](https://madmalik.github.io/mononoki/)，候选字体推荐收费字体"方正稚艺简体"）
+        `File --> Settings --> Editor --> Font`
+
+>**默认是不可改变字体的，要想自定义字体需另存一份Scheme（方案）**，点击`Sava As`然后就可在此基础上修改字体（其它一些自定义设置与此类似）。  其中 Show only monospaced fonts 表示只列出等宽字体；Secondary font表示备用字体，可通过它来设置代码中中文的显示字体。
+
+2. 设置程序界面字体   
+  `Setting --> Appearance & Behavior --> Appearance --> UI Options` 勾选 `Override default fonts by...` 然后即可设置字体。(建议字体 "Arial Unicode MS" Size:12)
+
+3. 设置控制台字体
+
+  `File --> Settings --> Editor --> Color Scheme --> Console Font`
+
+
+
+> 更改某主题的字体，见下面章节。
 
 
 
@@ -101,14 +115,28 @@ Line Spacing：1.1
 
 下载 "Material Theme UI" 主题插件，然后进行修改：
 
-在 Editor > Color Scheme > Color Scheme Font > 选择 Material Default > 然后选择 Duplicate...  复制该主题，将复制后的主题命名为 "DIY Material Default copy"；按此方法将所有Material相关的主题都复制下来。
+在 `Editor > Color Scheme > Color Scheme Font` 下选择 Material Default ， 然后选择 Duplicate...  复制该主题，将复制后的主题命名为 "DIY Material Default copy"；按此方法将所有Material相关的主题都复制下来。
 
 接下来禁用"Material Theme UI" 主题插件。
 
-最后修改字体。
+最后**修改该主题的字体：** 这里和前面的字体设置的位置有所不同，这里同样需要在 `Editor > Color Scheme > Color Scheme Font` 中设置。
 
 > 这里主要就是为了复制"Material Theme UI" 主题插件的代码配色方案，然后更改为自己想要的字体。〔强烈推荐〕
 
+
+
+
+
+
+
+整体主题的设置:  
+`Setting --> Appearance & Behavior --> Appearance --> UI Options --> Theme`
+
+
+| AS主题   | Editor主题             |
+| -------- | ---------------------- |
+| Darcula  | 对应放Editor的暗色主题 |
+| IntelliJ | 对应放Editor的浅色主题 |
 
 
 
@@ -183,19 +211,186 @@ Line Spacing：1.1
 
 
 
-
-webstorm minimap对应的插件：
-
-- CodeGlance
-
-* Code Outline 2
-
+>webstorm minimap对应的插件：
+>
+>- CodeGlance
+>
+>* Code Outline 2
 
 
 
-### 小技巧
 
-> [Intellij IDEA神器居然还有这些小技巧 - Sam同学的个人空间](https://my.oschina.net/samgege/blog/1808622 "Intellij IDEA神器居然还有这些小技巧 - Sam同学的个人空间")
+
+### Live Template
+
+Live Template中有大量的模板，设置路径: Setting --> Editor --> Live Templates。
+
+
+
+
+
+### 使用Enter和Tab进行代码补全的差别
+（Enter vs Tab for Code Completion）
+
+*描述* ：代码补全时，可以使用Enter或Tab来进行补全操作，但是两者是有差别的。
+
+- 使用Enter时：从光标处插入补全的代码，对原来的代码不做任何操作。
+- 使用Tab时：从光标处插入补全的代码，并删除后面的代码，直到遇到点号、圆括号、分号或空格为止。
+
+
+
+
+
+### 鼠标悬停显示 doc
+显示当前鼠标下的类/方法的 Doc （显示函数用法）, 
+
+**需勾选如下设置：**
+
+`File --> Settings --> Editor --> General  |  Other `
+
+- [x] Show quick doc on mouse move Delay (ms) `1500`
+
+>不建议这样做，还是使用快捷键 Ctrl + Q 来代替
+
+
+
+### 重启
+
+    File --> Invalidata Caches/Restart...  --> Just Restart
+
+
+
+### 使用建议
+参考：[Using Suggestion List](https://www.jetbrains.com/help/idea/2016.1/using-suggestion-list.html#sort_order)
+
+
+**更多详细用法及设置尽在：** [**Meet IntelliJ IDEA**](https://www.jetbrains.com/help/idea/2016.1/meet-intellij-idea.html)
+
+
+- 由于屏幕太小，可以设置取消勾选工具栏下的导航栏： `View --> Navigation Bar`。
+- 设置自动换行；（只对当前文件自动换行`View --> Active Edit --> User Soft Wraps`）
+
+
+
+
+
+
+
+
+
+### getter和setter
+
+自动插入的快捷键：
+
+**Android Studio & OSx :**
+
+Press `cmd + n` > Generate > Getter and Setter
+
+**Android Studio & Windows & Linux :**
+
+Press `Alt + Insert` > Generate > Getter and Setter
+
+
+**自定义getter和setter的风格：**
+
+Go to File->Settings and expand Code Style, selectJava, and add your prefixes/suffixes under the Code Generation tab
+
+>设置方法参考《Android 编程权威指南》第2章
+
+
+
+
+
+### 高亮匹配的括号...
+>Automatic Brace Matching
+
+高亮匹配的各种配对符号的设置路径：  
+
+`Setting --> Editor --> Colors & Fonts（或者Color Scheme） --> General --> Code --> Matched brace`
+​    
+推荐勾选 Effects --> Bordered 效果， 一个矩形框框，再为其选择一个颜色。还有就是设置背景色，也可不弄，自己摸索。
+>我的一个设置是 : 
+>勾选Bold；勾选Foreground，颜色为 #ffef28；勾选Effects，颜色为 #b39613，通过下拉选项选择效果为 Bordered。
+
+
+
+
+
+### 在工具栏添加图标
+
+在工具栏右击，选择"Customize Menus and Toolbars"，在弹出的对话框中展开"Main Toolbar"，选中最后一个图标(或任意图标)，然后点击"**Add After...**"来选择需要**添加到此图标之后**的新图标。
+
+
+
+### Git with Android Studio 
+
+`VCS -> Enable Version Control Integration` 然后选择Git即可。
+
+在Android Studio中使用GPG对提交进行签名，见 [Signed commits · Wiki · akwizgran / briar · GitLab](https://code.briarproject.org/akwizgran/briar/wikis/signed-commits "Signed commits · Wiki · akwizgran / briar · GitLab")
+
+
+
+Android Studio中文件的颜色代表的含义：
+
+- Red – File is not added to git
+- Green – File is added but not committed yet
+- Blue – New changes is added to a file that is committed to git already
+
+
+
+
+Unversioned Files：指该项目已修改但还未添加到Git 仓库的文件，即“UNversioned Files”.
+
+
+
+**.ignore 插件的用法:**   
+
+这里介绍了如何通过该插件新建一个.ignore文件（在project视图下）。  
+
+![.ignore support plugin for IntelliJ IDEA](https://camo.githubusercontent.com/c6c6d625729d8d33b34ffbe8c907ebfb38944515/687474703a2f2f67697469676e6f72652e68737a2e6d6f62692f75736167652d312e676966)
+
+
+
+直接在Android Studio外部为项目添加版本控制，在AS的Event Log中会有如下信息，来提示你需在设置中进行注册：  
+
+```
+Unregistered VCS root detected
+					The directory /home/fan/workspace/AndroidStudioProjects/Test/ZhihuDaily is under Git, but is not registered in the Settings.
+					Add root  Configure  Ignore
+```
+
+
+
+> [开发准备--Android Studio中的版本管理git - 简书](http://www.jianshu.com/p/53d02cf04694 "开发准备--Android Studio中的版本管理git - 简书")
+
+
+
+
+
+
+
+
+
+## IDEA
+
+
+
+### JDK
+
+如果没有正确配置jdk或没有安装jdk，IDEA（Android Studio也一样）会提示有三种解决方案: 
+
+```
+Please use JDK 8 or newer : 还会告诉你使用哪个版本的JDK
+
+use embedded JDK (recommended)  使用内嵌的JDK推荐的方法
+Download JDK 8                  下载JDK
+Select a JDK from the File System  选择JDK路径
+```
+
+那就使用内嵌的JDK吧，另外系统中还下载openjdk，这样就不使用oracle-jdk了。
+
+> 另见：[java - How to set the JDK for Android Studio? - Ask Ubuntu](https://askubuntu.com/questions/467870/how-to-set-the-jdk-for-android-studio "java - How to set the JDK for Android Studio? - Ask Ubuntu")
+
 
 
 
@@ -357,6 +552,8 @@ Coding Assistance：点击 enable 来下载Node.js的 。如有必要再点击 U
 
 * 可以直接拖动文件到编辑器中。比如引入jquery.js，我们先将该文件添加到项目中，再直接拖动该文件到html文档中就会直接生成类似下面的语句`<script src="../build/jquery.js"></script>`。
 * 善用“Settings”对话框中的**搜索**功能（直接搜索相关设置）。
+* 根据方法自动生成变量，比如： 我们想将`data.getTime()`的返回值保存在一个变量中，可以这样操作：输入`data.getTime().var`再回车，即可自动创建变量。
+* 增强for循环的快捷输入，比如有一个集合 col，现在要使用for循环遍历该集合，先输入`col.for`再回车。
 
 
 
