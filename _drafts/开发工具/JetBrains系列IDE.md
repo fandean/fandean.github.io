@@ -369,8 +369,6 @@ Unregistered VCS root detected
 
 
 
-
-
 ## IDEA
 
 
@@ -387,7 +385,7 @@ Download JDK 8                  下载JDK
 Select a JDK from the File System  选择JDK路径
 ```
 
-那就使用内嵌的JDK吧，另外系统中还下载openjdk，这样就不使用oracle-jdk了。
+那就使用内嵌的JDK吧，另外系统中还下载openjdk，这样就不使用oracle-jdk了。一般它不会推荐最新版的JDK。
 
 > 另见：[java - How to set the JDK for Android Studio? - Ask Ubuntu](https://askubuntu.com/questions/467870/how-to-set-the-jdk-for-android-studio "java - How to set the JDK for Android Studio? - Ask Ubuntu")
 
@@ -396,14 +394,61 @@ Select a JDK from the File System  选择JDK路径
 
 
 
+
+
+
+
+
+### String或Object显示过时
+
+原来是idea可以在底层jdk或者jar包上加注解的功能，查看过时类的源码，会发现左边会有个`@`，点击或双击即可去掉该注解。
+
+[idea 中 String，Object对象被划横线了怎么破？——CSDN问答频道](https://ask.csdn.net/questions/674750 "idea 15-String，Object对象被划横线了怎么破？——CSDN问答频道")
+
+
+
+
+
+
+
+
 ## 快捷键
 
-| 快捷键   | 说明               |
-| -------- | ------------------ |
-| Ctrl + D | 复制当前行到下一行 |
-| Ctrl + W | 选中单词           |
+| 快捷键               | 说明                                                         |
+| -------------------- | ------------------------------------------------------------ |
+| Tab                  | 代码补全(Code Completion)，覆盖当前                          |
+| Enter                | 代码补全(Code Completion)，直接插入                          |
+| Ctrl + 空格          | 代码补全提示                                                 |
+| Ctrl + Shift + 空格  | 触发 SmartType code completion。The SmartType code completion greatly helps to find methods and variables that are suitable in the current context, by analyzing the expected type of the whole expression. So doing, IntelliJ IDEA pinpoints the top five most suitable results and highlights them on the blue background. |
+| Ctrl + D             | 复制 当前行／当前选中的代码                                  |
+| Ctrl + W             | 选中单词                                                     |
+| Ctrl+Shift+Backspace | (Navigate \| Last Edit Location) brings you back to the last place where you made changes in the code.跳转到上次编辑代码的地方 |
+| Ctrl + P             | If the cursor is between the parentheses of a method call, pressing Ctrl+P brings up a list of valid parameters.显式方法参数 |
+| Ctrl + Q             | (View \| Quick Documentation)  显示对应的doc文档             |
+| Ctrl+Alt+T           | 选中代码，按下该快捷键，然后选择使用何种语句来包含此段代码  (Code \| **Surround With**) |
+| Alt + Insert         | (Code \| Generate)                                           |
+| Ctrl+O               | (Code \| Override Methods)                                   |
+| Ctrl+I               | (Code \| Implement methods)                                  |
+| Shift+F6             | (Refactor \| Rename)                                         |
+| **Ctrl+F12**         | (Navigate \| File Structure)，快速导航到当前文件的某个位置，同时可以在弹出的对话框中直接输入想要查找的内容。（可以将该窗口固定到边栏） |
+|                      |                                                              |
+|                      |                                                              |
+|                      |                                                              |
+|                      |                                                              |
+|                      |                                                              |
+|                      |                                                              |
 
  
+
+快速搜索Project的tree views：光标聚焦到project上，然后直接输入你要查找的文件名。
+
+
+
+
+
+
+
+
 
 
 
