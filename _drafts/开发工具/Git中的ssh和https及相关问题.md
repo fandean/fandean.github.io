@@ -4,7 +4,7 @@
 
 访问远程仓库时可以选择SSH 或者 HTTPS协议进行访问。
 
-(比如，与gitlab远程仓库进行进行安全认证可选择使用ssh或者https)，两者的表现形式：
+(比如，与gitlab 远程仓库进行进行安全认证可选择使用ssh或者https)，两者的表现形式：
 
 ```
 SSH  git@gitlab.com:faner/test01.git
@@ -60,7 +60,7 @@ HTTPS  https://gitlab.com/faner/test01.git
 > ```
 > 解决方法：
 >
-> ssh准备连接远程服务器却遭提示” Permission denied (publickey) “, 这是由于您没有将公钥( publickey ) 添加到本地 ssh 环境造成的，或者是由于多日未 进行ssh 登录操作，本地 publickey 失效造成的。我的mac os x 环境隔几天没有登录ssh 就会报 “Permission denied ” 啦。只要 使用 ssh-add 命令再次添加一下公钥即可。 [Permission denied (publickey). - CSDN博客](https://blog.csdn.net/blog_jihq/article/details/78523513 "Permission denied (publickey). - CSDN博客")
+> ssh准备连接远程服务器却遭提示” Permission denied (publickey) “, 这是由于您没有将公钥( publickey ) 添加到本地 ssh 环境造成的，或者是由于多日未进行ssh 登录操作，本地 publickey 失效造成的。我的mac os x 环境隔几天没有登录ssh 就会报 “Permission denied ” 啦。只要 使用 ssh-add 命令再次添加一下公钥即可。 [Permission denied (publickey). - CSDN博客](https://blog.csdn.net/blog_jihq/article/details/78523513 "Permission denied (publickey). - CSDN博客")
 >
 > ```shell
 >  ssh-add ~/.ssh/id_rsa
