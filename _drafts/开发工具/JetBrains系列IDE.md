@@ -204,6 +204,8 @@ Line Spacing：1.1
 * .ignore：生成各种.ignore文件
 * keypromoter：你用鼠标进行某项操作时，如果有快捷键，会提示你快捷键，如果没有，操作超过三次以后会提示你设置快捷键。
 * CodeGlance：minimap
+* gfm：GitHub markdown插件，效果不错，但是居然有250M。
+* Markdown Navigator：不错的md插件，免费版支持基本功能，付费版支持更多高级功能。（如果vs code中的那个md插件有idea版就好了。对于md文件建议不要使用黑色主题，单独为其配色）
 
 
 
@@ -314,6 +316,12 @@ Go to File->Settings and expand Code Style, selectJava, and add your prefixes/su
 
 
 
+配色更改：
+
+- Unknown symbol：Material Darker主题配色有点不好辨别，建议更改，默认背景色为`#FF5370`。更改路径`Editor > Color Scheme > General > Errors and Wrnings > Unknown symbol`，修改背景色为： `#FF0033`
+
+
+
 
 
 ### 在工具栏添加图标
@@ -362,6 +370,12 @@ Unregistered VCS root detected
 
 
 > [开发准备--Android Studio中的版本管理git - 简书](http://www.jianshu.com/p/53d02cf04694 "开发准备--Android Studio中的版本管理git - 简书")
+
+
+
+
+
+推荐： [IntelliJ IDEA 常用设置 (二) - 请叫我大表哥 - 博客园](https://www.cnblogs.com/wangmingshun/p/6427088.html "IntelliJ IDEA 常用设置 (二) - 请叫我大表哥 - 博客园")
 
 
 
@@ -431,8 +445,8 @@ Select a JDK from the File System  选择JDK路径
 | Ctrl+I               | (Code \| Implement methods)                                  |
 | Shift+F6             | (Refactor \| Rename)                                         |
 | **Ctrl+F12**         | (Navigate \| File Structure)，快速导航到当前文件的某个位置，同时可以在弹出的对话框中直接输入想要查找的内容。（可以将该窗口固定到边栏） |
-|                      |                                                              |
-|                      |                                                              |
+| Alt+Q                | (View \| Context Info) 显示光标当前位置的上下文信息          |
+| Ctrl+E               | (View \| Recent Files)                                       |
 |                      |                                                              |
 |                      |                                                              |
 |                      |                                                              |

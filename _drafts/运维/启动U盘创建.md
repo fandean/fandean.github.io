@@ -10,7 +10,9 @@
 
 #### rufus
 
-只支持Windows和多数Linux的官方原版iso镜像文件
+只支持Windows和多数Linux的官方原版iso镜像文件。
+
+对于**新版**Linux系统镜像，rufus无法做到立即同步，如果rufus提示需要而额外下载文件并且要求的版本号不一致时，建议在之后的选项（如果弹出该选项）中选择"..DD"模式而非推荐的“ISO..”模式，源于一次在写入最新版XUbuntu 18时使用 "ISO..."出现无法引导的情况。
 
 
 
@@ -51,11 +53,29 @@
 
 
 
+### Linux iso文件
+
+
+
+#### UNetbootin 
+
+UNetbootin只可用于写入Linux iso文件，但是它可以在Windows、Linux、Mac上安装。
+
+
+
+
+
 ## Ubuntu中创建启动U盘
 
 
 
 推荐： MultiSystem工具。dd命令
+
+
+
+### UNetbootin
+
+UNetbootin只可用于写入Linux iso文件，但是它可以在Windows、Linux、Mac上安装。
 
 
 
@@ -184,6 +204,8 @@ dd命令直接将Linux的iso写入U盘就能开机引导的原因是，这些Lin
 ## Mac OS中创建启动U盘
 
 
+
+UNetbootin只可用于写入Linux iso文件，但是它可以在Windows、Linux、Mac上安装。
 
 
 

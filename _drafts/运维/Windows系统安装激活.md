@@ -121,7 +121,6 @@ GUID 磁盘分区
 [搭建KMS激活服务器的一些简单思路及方法](https://www.landiannews.com/archives/18526.html)
 这里说的是供外网激活的KMS，不是本地KMS，本地KMS的话只需要运行个批处理即可。
 
-
 ------
 
 
@@ -203,7 +202,7 @@ RTM： 发布制造商版
 
 
 
-####Windows 10  
+#### Windows 10  
 
 
 详见：
@@ -224,7 +223,7 @@ Windows 10的开发进程以及后续更新均采用上述的推送方式。**�
 
 
 
-###2.正式发布   
+### 2.正式发布   
 
 * Windows 10 N     
   所谓 N 版是指“Not with Windows Media Player”的缩写， 也称欧洲版，因为反垄断，所以去掉了Windows Media Player。
@@ -241,7 +240,7 @@ Windows 10的开发进程以及后续更新均采用上述的推送方式。**�
 
 
 
-####2.1 Windows 7
+#### 2.1 Windows 7
 
 | 版本                            | 描述                                       |
 | ----------------------------- | ---------------------------------------- |
@@ -260,7 +259,7 @@ Windows 10的开发进程以及后续更新均采用上述的推送方式。**�
 
 
 
-####2.2Windows 10     
+#### 2.2Windows 10     
 
 |      版本    |                介绍               |
 |-------------|------------------------------------|
@@ -284,8 +283,7 @@ Windows 10的开发进程以及后续更新均采用上述的推送方式。**�
 
 
 
-
-####2.3 VL，VL Build，Retail Build，AIK，Service Pack，WMC代表的意义
+#### 2.3 VL，VL Build，Retail Build，AIK，Service Pack，WMC代表的意义
 
 
 
@@ -368,8 +366,8 @@ VL Build和Retail Build对比:
 
 2. 提示以下内容说明密钥无效        
     此产品密钥无效。
-   （错误代码： 0xC004C003 或 0xC004C060），
-   错误描述：激活服务器确定指定的产品密钥已被阻止。
+      （错误代码： 0xC004C003 或 0xC004C060），
+      错误描述：激活服务器确定指定的产品密钥已被阻止。
 
 
 **Windows 8**
@@ -475,7 +473,6 @@ TechNet [Volume Activation Planning Guide](https://technet.microsoft.com/library
 The Volume Activation Management Tool (VAMT)                
 [Introduction to VAMT](https://technet.microsoft.com/library/hh825141.aspx "包含MAK and KMS的介绍") 另见此页的：See Also  
 
-
 ---
 
 
@@ -551,7 +548,6 @@ BCD ID: {d6e772c7-c870-11e6-af92-c7428044c08f}
 驱动器: C:\
 Bootloader的路径: \NST\AutoNeoGrub0.mbr
 ```
-
 
 --------
 
