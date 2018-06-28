@@ -4,7 +4,7 @@
 
 
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Docker_%28container_engine%29_logo.svg/610px-Docker_%28container_engine%29_logo.svg.png)
+[](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Docker_%28container_engine%29_logo.svg/610px-Docker_%28container_engine%29_logo.svg.png)
 
 ## 学习资料
 
@@ -49,6 +49,23 @@ Docker中国 (Docker官网的中文镜像)  [Docker 文档 - Docker 中文文档
 
 > 第一课
 
+使用 Docker 可以通过定制应用镜像来实现持续集成、持续交付、部署。开发人员可以通过
+Dockerfile 来进行镜像构建，并结合 持续集成(Continuous Integration) 系统进行集成测试
+
+
+
+
+
+Docker 包括三个基本概念：
+
+- 镜像（Image ） 
+- 容器（Container ） 
+- 仓库（Repository ）    
+
+
+
+
+
 
 
 ### Docker Image
@@ -65,18 +82,11 @@ Docker Container 的IP地址只能在当前的主机上才可以ping通。
 
 
 
-### Docker Container的生命周期
+#### Docker Container的生命周期
 
 
 
-Docker Container中运行的命令都是前台的。不管你是否是以后台方式启动的该命令，只要命令命令运行完成，Docker Container就会消亡。很多时候Docker Container作为临时使用。
-
-
-
-### Docker Daemon
-
-守护进程。对应的程序现在已经从 `docker daemon` 变为了 `dockerd`
-
+Docker Container中运行的命令都是前台的。不管你是否是以后台方式启动的该命令，只要命令运行完成，Docker Container就会消亡。很多时候Docker Container作为临时使用。
 
 
 
@@ -93,6 +103,10 @@ Docker Hub 属于公有的
 
 ### Docker核心组件的关系
 
+> Docker Daemon 守护进程。对应的程序现在已经从 `docker daemon` 变为了 `dockerd`
+
+
+
 首先在主机(Host)上安装一个Docker Deamon，它负责启动Docker Container(可以是多个)，它在启动容器的过程中会从Docker Hub中拉取image。
 
 通过Docker Client操作Docker Deamon
@@ -104,6 +118,8 @@ Docker Hub 属于公有的
 ## Docker 部署和配置
 
 > 第2课
+
+
 
 ### 安装社区版 Docker CE 
 
@@ -171,6 +187,51 @@ $ sudo usermod -aG docker $USER
 ```shell
 $ sudo shutdown -r now
 ```
+
+
+
+### Windows中安装Docker
+
+
+
+> 安装 Docker for Windows：
+>
+> 只有windows 10 内置了Hyper V 虚拟环境，所以只有win10才能安装docker for windows。
+>
+> 下载安装包安装即可，首次运行会出现下面的提示：“Hyper-V and Containers features are not enabled. Do you want to enable them for Docker to be able to work properly?
+> Your computer will restart automatically. Note: VirtualBox will no longer work.（VirtualBox将不能运行）” 开启Hyper-V将不能使用Vbox虚拟机，这个让人感到苦恼，这里有人提供了命令来开启和关闭Hyper-V功能 [virtualbox - Simple instructions needed for enabling and disabling Hyper V Docker - Stack Overflow](https://stackoverflow.com/questions/47081205/simple-instructions-needed-for-enabling-and-disabling-hyper-v-docker "virtualbox - Simple instructions needed for enabling and disabling Hyper V Docker - Stack Overflow")。
+>
+> You can do below to disable
+>
+> ```
+> dism.exe /Online /Disable-Feature:Microsoft-Hyper-V
+> bcdedit /set hypervisorlaunchtype off
+> ```
+>
+> and below to enable
+>
+> ```
+> dism.exe /Online /Enable-Feature:Microsoft-Hyper-V /All
+> bcdedit /set hypervisorlaunchtype auto 
+> ```
+>
+> From PowerShell
+>
+> To Disable
+>
+> ```
+> Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All
+> ```
+>
+> To Enable
+>
+> ```
+> Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All
+> ```
+> Windows中的相关问题可以参考一下Docker的文档： [Logs and troubleshooting | Docker Documentation](/docker-for-windows/troubleshoot/ "Logs and troubleshooting | Docker Documentation")
+> 
+
+
 
 
 
@@ -327,6 +388,90 @@ docker服务的配置文件： `/usr/lib/systemd/system/docker.service`
 
 
 
+
+
+### 更改Docker的相关路径
+
+docker for **windows** 安装时默认不能修改路径，所以全部安装在c盘（这让人很火）。
+
+
+
+**Disk image location：**
+
+`seting -> Advanced -> Disk image location`，然后更改目录即可，其包含的 vhdx 文件会自动迁移。
+
+
+
+> 在我的系统默认是：`C:\Users\Public\Documents\Hyper-V\Virtual Hard Disks\MobyLinuxVM.vhdx`（这应该是与我将Docker安装成所以用户可用有关）
+
+
+
+> 这里分为linux容器和windows容器： (这里是个人理解，似乎有误)
+>
+> linux 容器下Docker 容器安装在 MobyLinuxVM.vhdx 内，只要更改VHD 路径即可会自动移动VHD
+>
+> Windows 容器docker的安装路径默认在`C:\ProgramData\Docker`
+
+
+
+
+
+> windows上安装的docker其实本质上还是借助与windows平台的hyper-v技术来创建一个linux虚拟机，你执行的所有命令其实都是在这个虚拟机里执行的，所以所有pull到本地的image都会在虚拟机的Virtual hard disks目录的文件中，这个文件就是虚拟硬盘文件。 
+>
+> [docker for windows pull镜像文件的安装位置改变方法 - CSDN博客](https://blog.csdn.net/stemq/article/details/53150939 "docker for windows pull镜像文件的安装位置改变方法 - CSDN博客")
+>
+> [window7 修改docker安装的machine 位置 - CSDN博客](https://blog.csdn.net/u011248395/article/details/70994088 "window7 修改docker安装的machine 位置 - CSDN博客")
+
+
+
+
+
+**Docker运行根目录：** (似乎不需要更改)
+
+Ｄocker 后台进程参数：
+
+更改docker运行根目录的参数：`-g, --graph="/var/lib/docker"`  ：设置Docker运行时根目录
+
+或者可以在deamon.json配置文件中修改：
+
+```json
+{
+    "graph":"/app/docker"
+}
+```
+
+在Windows中通过 `setting -> Daemon -> 切换“Basic"按钮 -> `然后就可以配置该文件
+
+
+
+> 在cmd中运行 `docker info`命令，会看到 ”Docker Root Dir: /var/lib/docker“
+
+
+
+> 在Windows中 `C:\Users\youname\.docker`目录下可以看到 `config.json`，`deamon.json`两个文件
+
+
+
+
+
+### Docker for Windows 设置 Shared Drives目录
+
+Shared Drives的作用，"Select the local drives you want to be available to your containers."，类似于为虚拟机添加共享文件夹（比如怎样才能让虚拟机中的系统访问主机中的文件）。
+
+
+
+Dockers version 18.03.1-ce已经可以正确处理权限问题，设置shared drives目录时会跳出一个对话框让你输入管理员密码就行。
+
+
+
+> [win10系统，docker设置共享文件夹](https://newsn.net/say/docker-share-folder.html "win10系统，docker设置共享文件夹")
+>
+> [在windows10上使用docker哪些坑 - 程序人生 - SegmentFault 思否](https://segmentfault.com/a/1190000006799421 "在windows10上使用docker哪些坑 - 程序人生 - SegmentFault 思否")
+
+
+
+
+
 ## Docker基础命令
 
 
@@ -344,17 +489,69 @@ Docker运行容器前需要本地存在对应的镜像,如果镜像不存在本�
 
 
 
-`docker	pull	[选项][Docker Registry地址]<仓库名>:<标签>`
+完整格式：
 
- `docker  pull java`   会拉取默认版本
+```shell
+docker pull	[选项][Docker Registry地址]<仓库名>:<标签>
+```
 
-`docker pull index.tenxcloud.com/docker_library/nginx`
+
+
+> Dockers Registry（Docker镜像仓库地址）完整格式： `<域名/IP>[:端口号]` ；默认值（省略时使用默认值）：默认为 hub.docker.com  
+>
+> 仓库名，完整格式：`<用户名>/<软件名>`；默认值，如果省略用户名则默认为 `labrary`，它表示官方版本
+>
+> 标签： 如果省略则表示下载最新版，即 `latest`版
 
 
 
-### docker images
+```shell
+#  会拉取默认版本（表示从Docker Hub网站下载官方的最新版java）
+docker  pull java
+```
+
+
+
+```shell
+docker pull ubuntu
+```
+
+
+
+
+
+
+
+
+### ~~docker images~~
 
  查看本地已经加载的images
+
+
+
+### 镜像相关命令
+
+
+
+列出本地已经下载的镜像：
+
+```
+docker image ls [关键字]
+```
+
+
+
+删除本地镜像：
+
+```
+docker image rm [选项] <镜像1id> [<镜像2id ...]
+```
+
+
+
+> 建议通过镜像的 id 或摘要来删除一个镜像，因为它们是一个镜像的唯一标识
+
+
 
 
 
@@ -383,6 +580,73 @@ docker run -it java env
 
 
 对于临时性的容器我们可以使用 `docker run -rm 。。。`运行完成就删除
+
+> 因为Docker的容器实在太轻量级了，很多使用用户都是随时删除和新建容器
+
+
+
+当容器中指定的应用终结时，容器也自动终止。
+
+
+
+后台运行容器：
+
+在原有运行命令的基础上使用 `-d`参数即可
+
+```shell
+$ docker run -d 
+```
+
+-d 参数启动后会返回一个唯一的 id    
+
+
+
+
+
+### 操作容器
+
+
+
+`docker run`见上文。
+
+
+
+```shell
+$ docker container ls
+
+# 要获取容器的输出信息
+$ docker container logs [container ID or NAMES]
+
+#  终止一个运行中的容器
+$ docker container stop
+
+# 终止状态的容器可以用 下面 命令看到
+$ docker container ls -a
+
+# 处于终止状态的容器，可以通过 docker container start 命令来重新启动。
+$ docker container start
+
+# 进入在后台运行的容器 docker exec
+$ docker exec -it 容器(或id) bash
+# 如果从这个 stdin 中 exit，不会导致容器的停止。这就是为什么推荐大家使用 docker exec 的原因。
+# docker exec --help
+
+# 来删除一个处于终止状态的容器
+$ docker container rm 
+
+# 清理所有处于终止状态的容器
+$ docker container prune
+
+# 导出本地某个容器
+$ docker export
+
+# 从容器快照文件中再导入为镜像
+$ docker import
+```
+
+
+
+​    
 
 
 
@@ -424,6 +688,44 @@ docker pa -a ：查看运行过的所有的容器
 
 
 
+### 数据卷
+
+创建数据卷：
+
+```shell
+$ docker volume create my-vol
+```
+
+查看所有数据卷：
+
+```shell
+$ docker volume ls
+```
+
+查看指定数据卷信息
+
+```shell
+$ docker volume inspect my-vol
+```
+
+删除某个数据卷：
+
+```shell
+$ docker volume rm my-vol
+```
+
+清除所有无主的数据卷：
+
+```shell
+$ docker volume prune
+```
+
+删除容器时同时删除它使用的数据卷
+
+```shell
+$ docker rm -v
+```
+
 
 
 
@@ -447,6 +749,190 @@ docker pa -a ：查看运行过的所有的容器
 
 
 > [容器与云|Dry：一个命令行交互式 Docker 容器管理器](https://linux.cn/article-9615-1.html "容器与云|Dry：一个命令行交互式 Docker 容器管理器")
+
+
+
+
+
+## 安装 mysql
+
+
+
+在Docker Hub上的地址为：[library/mysql](https://hub.docker.com/r/library/mysql/ "library/mysql - Docker Hub") ，打开该连接，默认展示 Repo info 标签页（该标签页中包含了一些操作该容器的方法）中的内容，如果想查看该image大小和各标签，可切换到 "Tags"标签页查看。
+
+
+
+> 2018.06，为什么mysql image 都提示有 " This image has vulnerabilities(漏洞) "？
+>
+> 标记为这类的镜像以为着有漏洞。这些漏洞通常来自他们所基于的系统或者上层镜像所带有的软件以及依赖库，当然也有可能就是软件本身的问题。 这个提示只是表示镜像所基于的环境是存在漏洞的，并不代表漏洞一定会被攻击。 你可以选择使用其Dockerflie重新构建镜像，对有漏洞的软件进行更新，也可以针对漏洞在防火墙层面进行防护。 
+>
+> 但我还是不知道怎么解决。
+
+
+
+**拉取镜像：**
+
+```
+docker pull mysql:5.5.60
+```
+
+
+
+**运行容器：**
+
+简单示例（用于理解各个参数的含义）：
+
+```
+docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=fan123 -d mysql:5.5.60
+```
+
+- **--name**：容器名 
+- **-p 3306:3306**：将容器的 3306 端口映射到主机的 3306 端口。 
+- **-e MYSQL_ROOT_PASSWORD=123456：**设置环境变量 ，这里是初始化 root 用户的密码。 
+- **-d:**  后台运行容器，并返回容器ID
+
+
+
+> 补充：
+>
+> - **-v $PWD/conf:/etc/mysql/conf.d**：将主机当前目录下的 conf/my.cnf 挂载到容器的 /etc/mysql/my.cnf。
+> - **-v $PWD/logs:/logs**：将主机当前目录下的 logs 目录挂载到容器的 /logs。
+> - **-v $PWD/data:/var/lib/mysql** ：将主机当前目录下的data目录挂载到容器的 /var/lib/mysql 
+>
+> 可以看到`-v`用于将主机目录挂载（mount，会屏蔽原目录中的文件）在容器的某个目录（使用`:`分隔），`$PWD`是一个表示当前目录的一个环境变量，
+
+
+
+> 官方给出的示例：
+>
+> ```
+> $ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
+> ```
+>
+> 这里看最后的 `mysql:tag` 表示某镜像，格式是：`容器名: 版本` 。作用：比如 `mysql:5.5.60`它表示使用 `mysql:5.5.60`该镜像为基础来启动容器。
+
+
+
+- `-it` ：其中 `-i`表示交互式操作（让容器的标准输入保持打开），`-t`表示终端；（交互式终端）
+- `--rm`：表示容器退出后就将其删除，默认情况下，为了排障需求，退出的容 器并不会立即删除，除非手动 docker rm 。我们这里只是随便执行个命令，看看结果， 不需要排障和保留结果，因此使用 `--rm` 可以避免浪费空间。    
+
+
+
+
+
+**进入mysql容器：**
+
+在使用`-d`参数时，容器启动后会进入后台。如果此时需要进入容器进行操作，可以使用`docker exec`命令.
+
+
+
+```shell
+# 先查看运行中的容器
+PS G:\Docker> docker container ls
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+a936fdfe89b5        mysql:5.5.60        "docker-entrypoint.s…"   39 minutes ago      Up 39 minutes       0.0.0.0:3306->3306/tcp   mysql
+# 可以看到mysql容器的短id值，这里我们取前3位即可辨识
+# 使用docker exec进入容器， -it 交互式终端  bash 表示使用熟悉的Linux命令提示符形式
+PS G:\Docker> docker exec -it a93 bash
+root@a936fdfe89b5:/#
+```
+
+
+
+终止mysql容器：
+
+```shell
+# 之前已经知道了 mysql 容器的 id值，使用 a93即可标识该容器
+
+# 那么可以使用下面的命令关闭容器
+docker container stop a93
+
+# 当然使用 mysql来标识该容器也是可以的
+docker container stop mysql
+
+# 使用ps检查该容器
+docker ps -a
+# 或 
+docker container ls -a
+
+# 处于终止的容器还可使用下面的命令重新启动
+docker container start mysql
+```
+
+
+
+删除容器：
+
+使用 `docker container rm `来删除一个处于终止状态的容器
+
+
+
+清楚所有处于终止状态的容器：
+
+`docker container prune`
+
+
+
+
+
+**存在的三个问题：**
+
+- 数据保存的路径在哪？
+- 如果编辑mysql的配置文件？比如需要修改字符集为utf8
+- 如果查看日志文件
+
+
+
+当实际使用时还需要考虑，在该容器中mysql的各种文件存放的位置在哪里，只有知道了相关目录那么我们就可以通过使用 `-v`挂载主机中的目录来替换容器中的目录：
+
+相关文件的路径可以通过查看mysql映像本身内的相关文件(比如看看Dockerfile中)和目录以获取更多详细信息。 
+
+ 查看该镜像的Dockerfile文件可知：
+
+- 数据目录位于 `/var/lib/mysql`；所以我们可以在`docker run` 命令中添加下面的选项来覆盖该目录：
+
+  ```
+  -v G:/Docker/mysql/mysql5.5.60/date:/var/lib/mysql
+  ```
+
+  意为，将本机G盘下的 ... date目录挂载到容器的`/var/lib/mysql`目录上
+
+- 默认配置文件目录位于 `/etc/mysql/my.cnf`对于该配置文件我们可以直接覆盖，如果在Dockerfile中还看到`!includedir /etc/mysql/conf.d/`,那么说明mysql会先加载 my.cnf 中的配置，再加载  conf.d 文件夹中配置文件的的配置，利用这一点我们可以保留 my.cnf 中的配置，而将自定义的配置文件放在 conf.d 目录下。
+
+  所以我们可以在`docker run` 命令中添加下面的选项来覆盖该目录：
+
+  ```
+  -v G:/Docker/mysql/mysql5.5.60/custom:/etc/mysql/conf.d
+  ```
+
+  那么我们可以在本机G盘的 custom目录下创建一个名为`config-file.cnf`配置文件，mysql容器就会加载该配置文件。
+
+
+
+> `config-file.cnf`文件内容：(为了设置服务端编码)
+>
+> ```
+> [mysqld]
+> 	character_set_server=utf8
+> ```
+
+
+
+> 参考： [library/mysql - Docker Hub](https://hub.docker.com/r/library/mysql/ "library/mysql - Docker Hub") 下的 Using a custom MySQL configuration file
+>
+> mysql 镜像 的Dockerfile 文件也可以在上面链接中找到。
+
+
+
+**启动一个 mysql 容器的完整命令：**
+
+```shell
+$ docker run --name mysql5.5 -v G:/Docker/mysql/mysql5.5.60/custom:/etc/mysql/conf.d -v G:/Docker/mysql/mysql5.5.60/date:/var/lib/mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=fan123 -d mysql:5.5.60
+```
+
+
+
+
 
 
 

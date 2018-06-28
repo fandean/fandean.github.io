@@ -54,8 +54,33 @@ Ping statistics for 192.168.5.18:
 ...
 ```
 
-
 ## ipconfig
+
+
+
+
+
+## telnet
+
+在Windows中需要先开启telnet，`控制面板 -> 程序和功能-> 启用或关闭Windows功能->Telet客户端` 
+
+测试某个端口是否开启 :
+
+```
+telnet 192.168.3.42 2121
+```
+
+
+
+> ```
+> netstat -anp tcp  可以查看当前主机tcp开放了哪些端口
+> ```
+
+
+
+
+
+
 
 
 ## tracert
@@ -71,8 +96,11 @@ Ping statistics for 192.168.5.18:
 pathping是tracert和ping的混合體。
 `pathping www.baidu.com`:的結果，第一部分显示到达目的地经过了哪些路由，第二部分显示了路径中每个路由器上数据包丢失方面的信息。
 
-
 ## arp
+
+
+
+
 
 
 ## net
@@ -99,7 +127,20 @@ nbtstat：显示统计数据
 - -r:显示路由表的内容
 - -an ：解析当前连接主机的IP地址，并反馈连接端口状态。
 
+
+
+可以查看当前主机tcp开放了哪些端口：
+
+```
+netstat -anp tcp  
+```
+
+
+
+
+
 ### nslookup
+
 [百度百科nslookup](http://baike.baidu.com/item/nslookup)
 显示DNS服务器的信息
 Nslookup(name server lookup)( 域名查询):是一个用于查询 Internet域名信息或诊断DNS 服务器问题的工具.
