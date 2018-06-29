@@ -20,6 +20,7 @@ Docker中国 (Docker官网的中文镜像)  [Docker 文档 - Docker 中文文档
 
 
 
+[Docker 入门教程 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html "Docker 入门教程 - 阮一峰的网络日志")
 
 [Docker (软件)](https://zh.wikipedia.org/zh-cn/Docker_\(%E8%BB%9F%E9%AB%94\))   
 [Docker 教程](http://www.runoob.com/docker/docker-tutorial.html)   
@@ -929,6 +930,12 @@ docker container start mysql
 ```shell
 $ docker run --name mysql5.5 -v G:/Docker/mysql/mysql5.5.60/custom:/etc/mysql/conf.d -v G:/Docker/mysql/mysql5.5.60/date:/var/lib/mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=fan123 -d mysql:5.5.60
 ```
+
+
+
+> 补充： 
+>
+> 实际开发中，一个 image 文件往往通过继承另一个 image 文件，加上一些个性化设置而生成。举例来说，你可以在 Ubuntu 的 image 基础上，往里面加入 Apache 服务器，形成你的 image。 
 
 
 

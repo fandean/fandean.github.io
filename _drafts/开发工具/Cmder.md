@@ -30,6 +30,20 @@ Cmder是一个用于替换windows自带的cmd的，包含各种软件包（比�
 
 ## 常用操作
 
+### 中文配置
+
+进入seting界面：点击Cmder窗口左上角的图标 或者 右下角的 `三`图标，然后选择 `setting`
+
+选择 `Startup -> Environment ` 在这里添加下面的语句：
+
+```
+set LANG=zh_CN.UTF-8
+```
+
+
+
+设置中文界面： 选择`General->Interface language -> zh:简体中文` 
+
 
 
 ### 粘贴复制
@@ -70,7 +84,7 @@ Cmder是一个用于替换windows自带的cmd的，包含各种软件包（比�
 
 - 在Startup处设置cmder启动时需要执行的任务
 
-  默认选择的启动项应该是 “ Specified named task” 而该启动项默认选择的应该是 `{cmd::Cmder}` 这个命名任务，我们可以更改成其它的命令任务或者直接切换到其它的启动项。单词都很简单，仔细看一下就懂。
+  默认选择的启动项应该是 “ Specified named task” 而该启动项默认选择的应该是 `{cmd::Cmder}` 这个命名任务，我们可以更改成其它的命令任务或者直接切换到其它的启动项。
 
   当选中某个命名任务时，下面的 "Selected task contents(选中的任务内容)"下会显示该任务执行的具体内容
 
@@ -106,6 +120,33 @@ Cmder是一个用于替换windows自带的cmd的，包含各种软件包（比�
 
 
 ## 其它问题
+
+### 中文乱码
+
+在 `Startup -> Environment ` 中添加下面的语句：
+
+```
+set LANG=zh_CN.UTF-8
+```
+
+
+
+### 查看git log时乱码
+
+在 `Startup -> Environment ` 中添加下面的语句：
+
+```
+set LANG=zh_CN.UTF-8
+```
+然后执行下面的命令，来配置git log的输出
+
+```
+git config --global i18n.logoutputencoding utf-8
+```
+
+> 或者在 .gitconfig 文件中配置
+
+> 更多乱码问题见： [cmder中文乱码 - CSDN博客](https://blog.csdn.net/guiying123456/article/details/62881400 "cmder中文乱码 - CSDN博客")
 
 
 
@@ -175,3 +216,7 @@ C:\Users\Fan Dean\Documents\fandean.github.io (master -> origin)
 
 
 > 还没搞懂
+
+
+> 乱码问题： 你在 cmder 里面打开的是 cmd 还是 PowerShell 
+可以尝试在 Tasks 里面加入“ chcp 65001 ”看看
