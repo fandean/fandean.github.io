@@ -125,3 +125,61 @@ git remote add origin https://gitlab.com/faner/itheima01.git
 git push -u origin --all
 git push -u origin --tags
 ```
+
+
+
+
+问题：
+
+```
+.ssh/config line 3: Unsupported option "rsaauthentication"
+Load key "C:/Users/Fan Dean/.ssh/GitHub_rsa.pub": invalid format
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository
+```
+
+
+
+**two different public key formats：** 
+
+[git - key_load_public: invalid format - Stack Overflow](https://stackoverflow.com/questions/42863913/key-load-public-invalid-format "git - key_load_public: invalid format - Stack Overflow")   **two different public key formats** 
+
+这里说，有两种格式的公钥，一种是 putty 生成的，一种是 Openssh生成的，但是之前使用 git bash时是没有问题的，后来使用了 cmder 后就就出现了问题。
+
+public key 格式可以转换。
+
+- OpenSSH Private Key （**我的key一直就是这种格式**）
+
+  ```
+  ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAhl/CNy9wI1GVdiHAJQV0CkHnMEqW7+Si9WYFi2fSBrsGcmqeb5EwgnhmTcPgtM5ptGBjUZR84nxjZ8SPmnLDiDyHDPIsmwLBHxcppY0fhRSGtWL5fT8DGm9EfXaO1QN8c31VU/IkD8niWA6NmHNE1qEqpph3DznVzIm3oMrongEjGw7sDP48ZTZp2saYVAKEEuGC1YYcQ1g20yESzo7aP70ZeHmQqI9nTyEAip3mL20+qHNsHfW8hJAchaUN8CwNQABJaOozYijiIUgdbtSTMRDYPi7fjhgB3bA9tBjh7cOyuU/c4M4D6o2mAVYdLAWMBkSoLG8Oel6TCcfpO/nElw== github-example-key
+  ```
+
+  
+
+- `.ppk` (PuTTY Private Key) 
+
+  ```
+  ---- BEGIN SSH2 PUBLIC KEY ----
+  Comment: "github-example-key"
+  AAAAB3NzaC1yc2EAAAABJQAAAQEAhl/CNy9wI1GVdiHAJQV0CkHnMEqW7+Si9WYF
+  i2fSBrsGcmqeb5EwgnhmTcPgtM5ptGBjUZR84nxjZ8SPmnLDiDyHDPIsmwLBHxcp
+  pY0fhRSGtWL5fT8DGm9EfXaO1QN8c31VU/IkD8niWA6NmHNE1qEqpph3DznVzIm3
+  oMrongEjGw7sDP48ZTZp2saYVAKEEuGC1YYcQ1g20yESzo7aP70ZeHmQqI9nTyEA
+  ip3mL20+qHNsHfW8hJAchaUN8CwNQABJaOozYijiIUgdbtSTMRDYPi7fjhgB3bA9
+  tBjh7cOyuU/c4M4D6o2mAVYdLAWMBkSoLG8Oel6TCcfpO/nElw==
+  ---- END SSH2 PUBLIC KEY ----
+  ```
+
+  
+
+排除上面的可能性。
+
+[key_load_public: invalid format with scp or git clone on Ubuntu 15.10 - Ask Ubuntu](https://askubuntu.com/questions/698997/key-load-public-invalid-format-with-scp-or-git-clone-on-ubuntu-15-10 "key_load_public: invalid format with scp or git clone on Ubuntu 15.10 - Ask Ubuntu")
+
+The public part is probably corrupted, so you can recreate it from private one using this command:
+
+```
+ssh-keygen -f ~/.ssh/id_rsa -y > ~/.ssh/id_rsa.pub
+```
+
+试用了上面的方法还是不行。

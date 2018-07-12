@@ -4,7 +4,7 @@
 
 
 
-[](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Docker_%28container_engine%29_logo.svg/610px-Docker_%28container_engine%29_logo.svg.png)
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Docker_%28container_engine%29_logo.svg/610px-Docker_%28container_engine%29_logo.svg.png)
 
 ## 学习资料
 
@@ -20,7 +20,7 @@ Docker中国 (Docker官网的中文镜像)  [Docker 文档 - Docker 中文文档
 
 
 
-[Docker 入门教程 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html "Docker 入门教程 - 阮一峰的网络日志")
+[Docker 入门教程 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html "Docker 入门教程 - 阮一峰的网络日志")   
 
 [Docker (软件)](https://zh.wikipedia.org/zh-cn/Docker_\(%E8%BB%9F%E9%AB%94\))   
 [Docker 教程](http://www.runoob.com/docker/docker-tutorial.html)   
@@ -43,6 +43,12 @@ Docker中国 (Docker官网的中文镜像)  [Docker 文档 - Docker 中文文档
 
 
 
+> 看过《[Docker —— 从入门到实践](https://www.gitbook.com/book/yeasy/docker_practice/details "GitBook") 》
+>
+> 《第一本Docker书》相比之下这本书有不错的补充
+
+
+
 
 
 
@@ -55,15 +61,11 @@ Dockerfile 来进行镜像构建，并结合 持续集成(Continuous Integration
 
 
 
-
-
 Docker 包括三个基本概念：
 
 - 镜像（Image ） 
 - 容器（Container ） 
 - 仓库（Repository ）    
-
-
 
 
 
@@ -88,6 +90,16 @@ Docker Container 的IP地址只能在当前的主机上才可以ping通。
 
 
 Docker Container中运行的命令都是前台的。不管你是否是以后台方式启动的该命令，只要命令运行完成，Docker Container就会消亡。很多时候Docker Container作为临时使用。
+
+
+
+容器的典型生命周期：
+
+```
+创建  -->  管理  --> 停止  --> 最终删除
+```
+
+ docker run 提供了容器的**创建**到启动的功能
 
 
 
@@ -233,6 +245,8 @@ $ sudo shutdown -r now
 > 
 
 
+
+> 看到这样一句话： 默认情况下Boot2Docker需要安装Virtualbox，而不支持Hype-V，这很麻烦，还得我们修改BCD引导文件，因为Hyper-V和Virtualbox不兼容。 
 
 
 
@@ -475,20 +489,44 @@ Dockers version 18.03.1-ce已经可以正确处理权限问题，设置shared dr
 
 ## Docker基础命令
 
-
-
 Docker运行容器前需要本地存在对应的镜像,如果镜像不存在本地,Docker	会从
-镜像仓库下载(默认是 Docker	Hub	公共注册服务器中的仓库)。
+镜像仓库下载(默认是 Docker Hub 公共注册服务器中的仓库)。
 
-### docker search 搜索镜像
+
+
+### docker help
+
+查看一下简单帮助信息和**可用命令**
+
+
+
+[Docker命令详解  - 博客园](https://www.cnblogs.com/ivictor/archive/2015/09/08/4791274.html "Docker命令详解 - iVictor - 博客园")
+
+
+
+### docker info
+
+查看docker的系统信息
+
+
+
+
+
+### docker search 
+
+搜索镜像
 
 `docker search java`  : 查找一个Java镜像。
 
 
 
-### docker pull 拉取镜像到本地
 
 
+
+
+### docker pull 
+
+拉取镜像到本地
 
 完整格式：
 
@@ -519,18 +557,13 @@ docker pull ubuntu
 
 
 
+> 官方版本的理解：官方版本指的是该容器由Docker公司提供。也就是说那么对于 ubuntu 这个镜像它并不是由 ubuntu 公司提供，而是由 Docker公司提供。
 
 
 
 
 
-### ~~docker images~~
-
- 查看本地已经加载的images
-
-
-
-### 镜像相关命令
+### docker image
 
 
 
@@ -556,33 +589,50 @@ docker image rm [选项] <镜像1id> [<镜像2id ...]
 
 
 
-### docker run
+### docker run *
 
-该命令需要详细解释
-
-注意：`docker run 。。。`里面的命令结束了，container就结束了。
-
-```shell
-# 在 
-docker run -it java java -version
-
-# 还可在java镜像中运行 ps 命令，这意味着java镜像也是一个Linux容器
-docker run -it java ps
-
-docker run -it java uname
-# 查看该容器的 ip
-docker run -it java ip addr
-# 查看该容器的环境变量
-docker run -it java env
+```
+docker run -it -rm  java ps 
 ```
 
 
 
+该命令解释：(相关步骤)
+
+1. Docker会检查本地是否存在java镜像，如果没有就会去默认仓库中查看是否有此镜像，如果找到就下载该镜像到本地。
+2. 随后，Docker在文件系统内部用该镜像创建一个新容器。该容器拥有自己的网络、IP地址，以及一个用来和宿主主机进行通信的桥接网络接口。
+3. 最后我们告诉Docker在新容器中要运行的命令 ，这里是 `ps`。
+4. 当 ps 命令运行结束，容器也就停止了运行
 
 
-对于临时性的容器我们可以使用 `docker run -rm 。。。`运行完成就删除
+
+```shell
+docker run -it -rm java java -version 
+
+# 还可在java镜像中运行 ps 命令，这意味着java镜像也是一个Linux容器
+docker run -it -rm  java ps  
+
+docker run -it -rm java uname  
+# 查看该容器的 ip
+docker run -it -rm java ip addr
+# 查看该容器的环境变量
+docker run -it -rm java env 
+```
+
+注意：`docker run 。。。`里面的命令结束了，container就结束了。
+
+对于临时性的容器我们可以使用 `docker run -rm `运行完成就删除
+
+
 
 > 因为Docker的容器实在太轻量级了，很多使用用户都是随时删除和新建容器
+
+
+
+> - `-it` ：其中 `-i`表示交互式操作（让容器的标准输入保持打开），`-t` 表示终端；（交互式终端）
+> - `--rm`：表示容器退出后就将其删除，默认情况下，为了排障需求，退出的容 器并不会立即删除，除非手动 docker rm 。我们这里只是随便执行个命令，看看结果， 不需要排障和保留结果，因此使用 `--rm` 可以避免浪费空间。    
+>
+> 参数的位置：这里对于第一条执行 ps 的命令中参数 `-it`  (-rm也一样) 位置不能随便放，如果放在 ps 的后面，它会认为该参数是传递给 ps 命令的。当使用 `docker ps -a`查看时可以看到在 COMMAND 列中（表示容器最后运行的命令）对应的是 `ps -it`
 
 
 
@@ -590,7 +640,11 @@ docker run -it java env
 
 
 
-后台运行容器：
+
+
+
+
+**后台运行容器：**
 
 在原有运行命令的基础上使用 `-d`参数即可
 
@@ -598,13 +652,68 @@ docker run -it java env
 $ docker run -d 
 ```
 
--d 参数启动后会返回一个唯一的 id    
+`-d` 参数启动后会返回一个唯一的 id    
 
 
 
 
 
-### 操作容器
+> 有三种方式可以指定唯一容器：
+>
+> - 短 UUID
+> - 长 UUID
+> - 容器名称，（在创建容器时如果没有指定名称则将会获得一个自动生成的名称，可以使用 `--name`来为容器命名）
+
+
+
+
+
+**停止后台运行的容器**： 只需要执行 `docker stop`命令
+
+
+
+
+
+### docker exec
+
+可以通过docker exec命令在容器内部额外启动新进程。
+
+可以在容器内运行的进程有两种类型：
+
+- 后台任务
+- 交互式任务
+
+示例：
+
+```shell
+docker exec -t -i deamon_dave /bin/bash
+```
+
+这里的 `-t`和`-i`标志为我们执行的进程创建了 TTY 并捕捉 STDIN。
+
+
+
+
+
+
+
+### docker update
+
+为 容器更新 (部分)配置
+
+- cpu 相关配置
+- mems 内存相关配置
+- `--restart`
+
+
+
+
+
+
+
+
+
+### docker container *
 
 
 
@@ -632,7 +741,7 @@ $ docker exec -it 容器(或id) bash
 # 如果从这个 stdin 中 exit，不会导致容器的停止。这就是为什么推荐大家使用 docker exec 的原因。
 # docker exec --help
 
-# 来删除一个处于终止状态的容器
+# 删除一个处于终止状态的容器
 $ docker container rm 
 
 # 清理所有处于终止状态的容器
@@ -647,7 +756,36 @@ $ docker import
 
 
 
-​    
+#### docker 容器退出方式
+
+可以通过 `docker container start` 命令来重新启动处于终止状态的容器：这里docker容器重启的时候，会沿用 `docker run`命令时指定的参数来运行。
+
+比如，我们这样启动了 ubuntu 容器：
+
+```
+docker run -it ubuntu bash
+```
+
+退出该容器后，使用``docker container start``  启动时依旧会运行一个交互式的会话 shell 。这里容器主要就是运行容器中的 shell，所以如果退出该shell，容器也会随之停止运行。
+
+
+
+**上面容器的几种退出方式：**
+
+- 先按 `ctrl + p`，再按 `ctrl + q`   （我好像明白了，该快捷键应该对应Linux中使进程转换到后台的快捷键。实际操作时结果终端被锁了）
+- 使用 `exit` 或者 `ctrl + d`
+
+
+
+
+
+*方法*一: 如果要正常*退出*不关闭容器,请按Ctrl+P+Q进行*退出*容器
+
+*方法*二: 如果使用 exit *退出* ，那么在*退出*之后会关闭容器，可以使用下面的流程进行恢复使用`docke `
+
+
+
+
 
 
 
@@ -659,23 +797,87 @@ docker pa -a ：查看运行过的所有的容器
 
 
 
-### docker create
 
 
 
-### docker start
+
+### docker attach *
 
 
 
-### docker stop
 
 
 
-### docker pause
 
 
 
-### docker unpause
+
+
+
+
+### docker cp *
+
+```
+Usage:  docker cp [OPTIONS] CONTAINER:SRC_PATH DEST_PATH|-
+        docker cp [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH
+```
+
+
+
+
+
+用于容器与主机之间的数据拷贝 。选项：
+
+- -L ， --follow-link : 保持源目标中的链接 
+
+
+
+
+
+示例：容器 mysql中`/usr/local/bin/`中存在docker-entrypoint.sh文件，可如下方式copy到宿主机
+
+```
+docker cp mysql:/usr/local/bin/docker-entrypoint.sh  /root
+```
+
+修改完毕后，将该文件重新copy回容器
+
+```
+docker cp /root/docker-entrypoint.sh  mysql:/usr/local/bin/  
+```
+
+
+
+
+
+
+### docker logs *
+
+示例：
+
+```
+docker logs -f -t --since="2017-05-31" --tail=10 edu_web_1
+```
+
+
+
+- --since : 此参数指定了输出日志开始日期，即只输出指定日期之后的日志。
+- -f : 查看实时日志
+- -t : 查看日志产生的日期
+- -tail=10 : 查看最后的10条日志。
+- edu_web_1 : 容器名称
+
+
+
+> 推荐： [Docker容器的调试技巧：docker logs 与 docker service logs - CSDN博客](https://blog.csdn.net/u013272009/article/details/79148562 "Docker容器的调试技巧：docker logs 与 docker service logs - CSDN博客")
+>
+> [Docker学习笔记（五）之attach与logs命令 - CSDN博客](https://blog.csdn.net/u013246898/article/details/52986886 "Docker学习笔记(五)之attach与logs命令 - CSDN博客")
+>
+> [docker log - 简书](https://www.jianshu.com/p/c12622a9f4c1 "docker log - 简书")
+
+> 如果安装了 portainer ，也可直接在 portainer中查看
+
+
 
 
 
@@ -689,7 +891,11 @@ docker pa -a ：查看运行过的所有的容器
 
 
 
-### 数据卷
+
+
+### docker volume *
+
+
 
 创建数据卷：
 
@@ -729,15 +935,107 @@ $ docker rm -v
 
 
 
+### docker top
+
+查看容器中正在运行的进程。
 
 
 
 
-## Docker实战之自定义容器镜像
+
+### docker history
+
+显示镜像制作的过程，相当于Dockfile。
+
+
+
+
+
+
+
+## 自启动容器
+
+ 在使用`docker run`启动容器时，使用`--restart`参数来设置：
+
+
+
+| --restart的参数值 | 描述                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| `no`              | 容器退出后，不自动重启容器（默认值）                         |
+| `on-failure`      | 如果容器由于错误（非0）而退出，则将其重新启动；非0退出代码表示错误 |
+| `unless-stopped`  | 重启容器；（排除两种情况）除非明确停止**容器**或者**Docker**被停止或重新启动 |
+| `always`          | 只要容器停止了，就重新启动                                   |
+
+
+
+还可以在使用`on-failure`策略时，可以指定Docker将尝试重新启动容器的最大次数。默认情况下，Docker将尝试永远重新启动容器。
+
+```
+sudo docker run --restart=on-failure:10 redis
+```
+
+
+
+
+
+重启策略注意点：
+
+- 重启策略只在容器启动成功后才生效。这种情况下，成功启动的意思是容器运行 10 秒以上，并且 Docker 已经开始监控它。这可以防止根本不启动的容器进入重启循环。
+- 如果你手动停止一个容器，它的重启策略会被忽略，直到 Docker 守护进程重启或容器手动重启。这是防止重启循环的另一个尝试。
+- 重启策略只作用于容器。swarm 服务的重启策略配置方式不同。
+
+
+
+
+
+如果在最初运行容器时没有使用`--restart`选项，那么可以通过`update`命令进行更新：
+
+```
+docker update --restart=always <container>
+```
+
+取消自动重启：
+
+```
+docker update --restart=no <container>
+```
+
+
+
+
+
+
+
+> [Docker 生产环境之配置容器 - 自动启动容器 - CSDN博客](https://blog.csdn.net/kikajack/article/details/79521306 "Docker 生产环境之配置容器 - 自动启动容器 - CSDN博客")
+>
+> [开机自启docker后 开启或关闭自启容器 | Maple's Blog](https://www.cqmaple.com/201801/when-system-startup-docker-restart-container.html "开机自启docker后 开启或关闭自启容器 | Maple's Blog")
+>
+> 
+
+
+
+## Docker  Ubuntu
+
+
+
+
+[Docker容器中运行Ubuntu系统_楚盟博客](https://www.5yun.org/14787.html "Docker容器中运行Ubuntu系统_楚盟博客")
+
+
+
+
+
+## 自定义容器镜像
 
 > 第3课
 
 将 容器  变为  镜像
+
+
+
+>  实际开发中，一个 image 文件往往通过继承另一个 image 文件，加上一些个性化设置而生成。举例来说，你可以在 Ubuntu 的 image 基础上，往里面加入 Apache 服务器，形成你的 image。 
+
+
 
 
 
@@ -755,189 +1053,123 @@ $ docker rm -v
 
 
 
-## 安装 mysql
+### Portainer
+
+轻量开源。
+
+Portainer的安装方式主要有两种，一个是使用Docker安装，一个是二进制文件直接跑，我建议用Docker安装，比较方便点，也不用你自己去配置自启动啥的。 
 
 
 
-在Docker Hub上的地址为：[library/mysql](https://hub.docker.com/r/library/mysql/ "library/mysql - Docker Hub") ，打开该连接，默认展示 Repo info 标签页（该标签页中包含了一些操作该容器的方法）中的内容，如果想查看该image大小和各标签，可切换到 "Tags"标签页查看。
+参考  [Deployment — Portainer 1.18.1 documentation](https://portainer.readthedocs.io/en/stable/deployment.html "Deployment — Portainer 1.18.1 documentation") 的示例：
 
-
-
-> 2018.06，为什么mysql image 都提示有 " This image has vulnerabilities(漏洞) "？
->
-> 标记为这类的镜像以为着有漏洞。这些漏洞通常来自他们所基于的系统或者上层镜像所带有的软件以及依赖库，当然也有可能就是软件本身的问题。 这个提示只是表示镜像所基于的环境是存在漏洞的，并不代表漏洞一定会被攻击。 你可以选择使用其Dockerflie重新构建镜像，对有漏洞的软件进行更新，也可以针对漏洞在防火墙层面进行防护。 
->
-> 但我还是不知道怎么解决。
-
-
-
-**拉取镜像：**
+Example on Windows: 
 
 ```
-docker pull mysql:5.5.60
+docker run -d -p 9000:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v C:\ProgramData\Portainer:C:\data portainer/portainer
 ```
 
 
 
-**运行容器：**
-
-简单示例（用于理解各个参数的含义）：
+因为我的docker for windwos使用的linux容器，那么我的命令为：
 
 ```
-docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=fan123 -d mysql:5.5.60
+docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v G:\Docker\portainer\data:/data portainer/portainer
 ```
 
-- **--name**：容器名 
-- **-p 3306:3306**：将容器的 3306 端口映射到主机的 3306 端口。 
-- **-e MYSQL_ROOT_PASSWORD=123456：**设置环境变量 ，这里是初始化 root 用户的密码。 
-- **-d:**  后台运行容器，并返回容器ID
+这里先要为主机创建： `G:\Docker\portainer\data` 目录。
+
+- `-v /var/run/docker.sock:/var/run/docker.sock `：把宿主机的Docker守护进程(Docker daemon)默认监听的Unix域套接字挂载到容器中； （上面是照搬Linux中使用的命令，**那么在Windows中该如何？**）
+
+  
+
+> 注意：上面的命令还没有明确为该容器指定一个name， 默认的name是 silly_heyrovsky。
 
 
 
-> 补充：
->
-> - **-v $PWD/conf:/etc/mysql/conf.d**：将主机当前目录下的 conf/my.cnf 挂载到容器的 /etc/mysql/my.cnf。
-> - **-v $PWD/logs:/logs**：将主机当前目录下的 logs 目录挂载到容器的 /logs。
-> - **-v $PWD/data:/var/lib/mysql** ：将主机当前目录下的data目录挂载到容器的 /var/lib/mysql 
->
-> 可以看到`-v`用于将主机目录挂载（mount，会屏蔽原目录中的文件）在容器的某个目录（使用`:`分隔），`$PWD`是一个表示当前目录的一个环境变量，
+运行该容器后，在浏览器中输入： <http://127.0.0.1:9000>
+
+进入管理界面，必须添加用户： 这里为管理员用户： admin  设置的密码为: ···12345
 
 
 
-> 官方给出的示例：
+
+
+
+> 在Windows中发现路径使用下面三种形式都可以：
 >
 > ```
-> $ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
+> docker run -v G:\\Docker\\portainer\\data:/data 
 > ```
 >
-> 这里看最后的 `mysql:tag` 表示某镜像，格式是：`容器名: 版本` 。作用：比如 `mysql:5.5.60`它表示使用 `mysql:5.5.60`该镜像为基础来启动容器。
-
-
-
-- `-it` ：其中 `-i`表示交互式操作（让容器的标准输入保持打开），`-t`表示终端；（交互式终端）
-- `--rm`：表示容器退出后就将其删除，默认情况下，为了排障需求，退出的容 器并不会立即删除，除非手动 docker rm 。我们这里只是随便执行个命令，看看结果， 不需要排障和保留结果，因此使用 `--rm` 可以避免浪费空间。    
-
-
-
-
-
-**进入mysql容器：**
-
-在使用`-d`参数时，容器启动后会进入后台。如果此时需要进入容器进行操作，可以使用`docker exec`命令.
-
-
-
-```shell
-# 先查看运行中的容器
-PS G:\Docker> docker container ls
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
-a936fdfe89b5        mysql:5.5.60        "docker-entrypoint.s…"   39 minutes ago      Up 39 minutes       0.0.0.0:3306->3306/tcp   mysql
-# 可以看到mysql容器的短id值，这里我们取前3位即可辨识
-# 使用docker exec进入容器， -it 交互式终端  bash 表示使用熟悉的Linux命令提示符形式
-PS G:\Docker> docker exec -it a93 bash
-root@a936fdfe89b5:/#
-```
-
-
-
-终止mysql容器：
-
-```shell
-# 之前已经知道了 mysql 容器的 id值，使用 a93即可标识该容器
-
-# 那么可以使用下面的命令关闭容器
-docker container stop a93
-
-# 当然使用 mysql来标识该容器也是可以的
-docker container stop mysql
-
-# 使用ps检查该容器
-docker ps -a
-# 或 
-docker container ls -a
-
-# 处于终止的容器还可使用下面的命令重新启动
-docker container start mysql
-```
-
-
-
-删除容器：
-
-使用 `docker container rm `来删除一个处于终止状态的容器
-
-
-
-清楚所有处于终止状态的容器：
-
-`docker container prune`
-
-
-
-
-
-**存在的三个问题：**
-
-- 数据保存的路径在哪？
-- 如果编辑mysql的配置文件？比如需要修改字符集为utf8
-- 如果查看日志文件
-
-
-
-当实际使用时还需要考虑，在该容器中mysql的各种文件存放的位置在哪里，只有知道了相关目录那么我们就可以通过使用 `-v`挂载主机中的目录来替换容器中的目录：
-
-相关文件的路径可以通过查看mysql映像本身内的相关文件(比如看看Dockerfile中)和目录以获取更多详细信息。 
-
- 查看该镜像的Dockerfile文件可知：
-
-- 数据目录位于 `/var/lib/mysql`；所以我们可以在`docker run` 命令中添加下面的选项来覆盖该目录：
-
-  ```
-  -v G:/Docker/mysql/mysql5.5.60/date:/var/lib/mysql
-  ```
-
-  意为，将本机G盘下的 ... date目录挂载到容器的`/var/lib/mysql`目录上
-
-- 默认配置文件目录位于 `/etc/mysql/my.cnf`对于该配置文件我们可以直接覆盖，如果在Dockerfile中还看到`!includedir /etc/mysql/conf.d/`,那么说明mysql会先加载 my.cnf 中的配置，再加载  conf.d 文件夹中配置文件的的配置，利用这一点我们可以保留 my.cnf 中的配置，而将自定义的配置文件放在 conf.d 目录下。
-
-  所以我们可以在`docker run` 命令中添加下面的选项来覆盖该目录：
-
-  ```
-  -v G:/Docker/mysql/mysql5.5.60/custom:/etc/mysql/conf.d
-  ```
-
-  那么我们可以在本机G盘的 custom目录下创建一个名为`config-file.cnf`配置文件，mysql容器就会加载该配置文件。
-
-
-
-> `config-file.cnf`文件内容：(为了设置服务端编码)
+> ```
+> docker run -v G:\Docker\portainer\data:/data
+> ```
 >
 > ```
-> [mysqld]
-> 	character_set_server=utf8
+> docker run  -v G:/Docker/portainer/data:/data
 > ```
-
-
-
-> 参考： [library/mysql - Docker Hub](https://hub.docker.com/r/library/mysql/ "library/mysql - Docker Hub") 下的 Using a custom MySQL configuration file
 >
-> mysql 镜像 的Dockerfile 文件也可以在上面链接中找到。
-
-
-
-**启动一个 mysql 容器的完整命令：**
-
-```shell
-$ docker run --name mysql5.5 -v G:/Docker/mysql/mysql5.5.60/custom:/etc/mysql/conf.d -v G:/Docker/mysql/mysql5.5.60/date:/var/lib/mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=fan123 -d mysql:5.5.60
-```
-
-
-
-> 补充： 
+> 该命令还没试，我使用的是下面的命令，但是后续出现问题，稍等。
 >
-> 实际开发中，一个 image 文件往往通过继承另一个 image 文件，加上一些个性化设置而生成。举例来说，你可以在 Ubuntu 的 image 基础上，往里面加入 Apache 服务器，形成你的 image。 
+> 最开始我以为在Windows中不可以使用带 `-v /var/run/docker.sock:/var/run/docker.sock`  的run命令，然后再后面的操作中收到下面的错误提示：
+>
+> ```
+> 大概就是提示必须使用： -v /var/run/docker.sock:/var/run/docker.sock  来运行容器
+> ```
+>
+> 最后发现：  [Deployment — Portainer 1.18.1 documentation](https://portainer.readthedocs.io/en/stable/deployment.html "Deployment — Portainer 1.18.1 documentation") 好像似乎明白了，使用该选项是没有任何问题的。
+>
+> 
 
 
+>  运维大神 [docker：轻量级图形页面管理之Portainer-DevOps(甘兵)-51CTO博客](http://blog.51cto.com/ganbing/2083051 "docker：轻量级图形页面管理之Portainer-DevOps(甘兵)-51CTO博客") 
+
+> [Docker管理面板系列——Portainer(简单、美观、强大) | Senraの小窝](http://www.senra.me/docker-management-panel-series-portainer/ "Docker管理面板系列——Portainer(简单、美观、强大) | Senraの小窝")
+
+
+
+
+
+### Rancher
+
+重量级且部署较简单
+
+
+
+[Docker管理面板系列——Rancher(能够对接各家公有云) | Senraの小窝](http://www.senra.me/docker-management-panel-series-rancher/ "Docker管理面板系列——Rancher(能够对接各家公有云) | Senraの小窝") 
+
+
+
+
+
+## Docker Compose
+
+> compose：组成, 构成  
+
+
+
+安装：直接在此[Releases · docker/compose](https://github.com/docker/compose/releases "Releases · docker/compose")下载安装包安装
+
+
+
+>  运维大神 [docker：编排与部署小神器Compose-DevOps(甘兵)-51CTO博客](http://blog.51cto.com/ganbing/2083806 "docker：编排与部署小神器Compose-DevOps(甘兵)-51CTO博客") 
+
+
+
+
+
+
+
+
+
+
+
+## 安装 spring-boot
+
+
+
+[springboot - docker logs为何没有日志输出？ - SegmentFault 思否](https://segmentfault.com/q/1010000010924740 "springboot - docker logs为何没有日志输出？ - SegmentFault 思否")
 
 
 

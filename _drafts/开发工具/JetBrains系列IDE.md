@@ -351,6 +351,10 @@ Unversioned Files：指该项目已修改但还未添加到Git 仓库的文件�
 
 
 
+
+
+### .ignore插件
+
 **.ignore 插件的用法:**   
 
 这里介绍了如何通过该插件新建一个.ignore文件（在project视图下）。  
@@ -373,17 +377,58 @@ Unregistered VCS root detected
 
 
 
+### 文本编辑
 
 
-推荐： [IntelliJ IDEA 常用设置 (二) - 请叫我大表哥 - 博客园](https://www.cnblogs.com/wangmingshun/p/6427088.html "IntelliJ IDEA 常用设置 (二) - 请叫我大表哥 - 博客园")
+
+- 插入多个光标： 按住 `shift + alt`  ＋ 鼠标点击
+- 块级选择： Alt + 鼠标框选
 
 
+
+
+
+
+
+### 默认配置
+
+有些设置在当前项目设置好后，在新建项目时又会恢复到默认配置，导致每次新建项目时都需要手动更改是不是很烦？
+
+IDE有默认配置来帮你解决问题，打开默认配置的方法：
+
+从这里 `File > Other Settings > Default Setting` 即可打开默认设置界面
+
+![](http://static.oschina.net/uploads/space/2015/0720/160046_nOGY_1579644.jpg)
+
+或者通过下面的方式进入默认设置界面：
+
+在ide启动界面 ：` Configure > Project Defaults > Settings`
+
+![](http://static.oschina.net/uploads/space/2015/0720/160035_13g0_1579644.png)
+
+
+
+
+
+
+
+
+
+>  推荐： [IntelliJ IDEA 常用设置 (二) - 请叫我大表哥 - 博客园](https://www.cnblogs.com/wangmingshun/p/6427088.html "IntelliJ IDEA 常用设置 (二) - 请叫我大表哥 - 博客园")
 
 
 
 
 
 ## IDEA
+
+
+
+### 项目与模块
+
+新建一个空项目，之后会要求你添加模块。
+
+
 
 
 
@@ -423,6 +468,36 @@ Select a JDK from the File System  选择JDK路径
 
 
 
+### 连接数据库
+
+
+
+**MySQL：**
+
+在为Idea配置MySQL Data Sources时，对于选择的 Drivers 版本会有不同要求，低于mysql-connector-java-8.jar 版本的 Class 需要选择`com.mysql.jdbc.Driver`而 8 版本的需要选择`com.mysql.cj.jdbc.Driver`
+
+另外可能出现连接参数出现问题：
+
+```
+Connection to @localhost failed.
+[S1009] The connection property 'zeroDateTimeBehavior' acceptable values are: 'CONVERT_TO_NULL', 'EXCEPTION' or 'ROUND'. The value 'convertToNull' is not acceptable.
+注意： CONVERT_TO_NULL 和 convertToNull 的区别，下划线和大小写
+```
+
+
+
+比如使用 8 版本的驱动，有可能出现 `zeroDateTimeBehavior`的值时不可用的 `convertToNull`，标准的值是全部大写的并且各单词之间是使用`_`连接的，刚开始我一直在 Drivers > Mysql下面找，但是它里面的值是正确的（全部是大写的），后来发现，此次连接的属性配置是在配置 你的host, user的界面下的 Advanced 处设置的，这里面有个`zeroDateTimeBehavior`属性的值用的就是`convertToNull`将其更改一下。在该 advanced 下还可以设置 useSSL的值。
+
+当你从 8 版本切换到低版本时又会出现相反的问题。
+
+
+
+
+
+
+
+
+
 
 
 
@@ -447,12 +522,14 @@ Select a JDK from the File System  选择JDK路径
 | **Ctrl+F12**         | (Navigate \| File Structure)，快速导航到当前文件的某个位置，同时可以在弹出的对话框中直接输入想要查找的内容。（可以将该窗口固定到边栏） |
 | Alt+Q                | (View \| Context Info) 显示光标当前位置的上下文信息          |
 | Ctrl+E               | (View \| Recent Files)                                       |
-|                      |                                                              |
-|                      |                                                              |
-|                      |                                                              |
+| Ctrl+H               | (Navigate \| Type Hierarchy)                                 |
+| Ctrl+Shift+V         | choose and insert recent clipboard contents                  |
+| F5                   | Use `Refactor | Copy` to create a class which is a copy of the selected class. This can be useful。 复制class。 |
 |                      |                                                              |
 
  
+
+
 
 快速搜索Project的tree views：光标聚焦到project上，然后直接输入你要查找的文件名。
 
@@ -623,5 +700,28 @@ Coding Assistance：点击 enable 来下载Node.js的 。如有必要再点击 U
 ## PyCharm
 
 PyCharm有免费社区版。PyCharm Community Edition
+
+
+
+
+
+docker setting: 翻译下面语句
+
+exposing deamon on tcp without tls helps legacy clients connect to the deamon. it also
+
+makes yourself vulnerable to remote code execution attacks. use with caution.
+
+
+
+
+
+
+
+ee
+
+
+
+
+
 
 

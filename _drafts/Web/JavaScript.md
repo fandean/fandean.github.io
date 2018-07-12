@@ -33,7 +33,7 @@ DOM (**D**ocument **O**bject **M**odel)（文档对象模型）是用于访问 H
 
 与解析嵌入式 JavaScript 代码一样,在解析外部 JavaScript 文件(包括下载该文件)时,页面的处理也会暂时停止。
 
-需要注意的是,带有 src 属性的`<script>`元素不应该在其`<script>`和 `</script>`标签之间再
+需要注意的是,带有 `src` 属性的`<script>`元素不应该在其`<script>`和 `</script>`标签之间再
 包含额外的 JavaScript 代码。如果包含了嵌入的代码,则只会下载并执行外部脚本文件,嵌入的代码会被忽略。
 
 
@@ -44,9 +44,7 @@ DOM (**D**ocument **O**bject **M**odel)（文档对象模型）是用于访问 H
 
 这种做法的**目的**就是把所有外部文件(包括 CSS 文件和 JavaScript 文件)的引用都放在相同的地方。
 可是,在文档的`<head>`元素中包含所有 JavaScript 文件,意味着必须等到全部 JavaScript 代码都被下载、
-解析和执行完成以后,才能开始呈现页面的内容(
-
-
+解析和执行完成以后,才能开始呈现页面的内容
 
 为了避免这个问题，**现代 Web 应用程序**一般都把全部 JavaScript 引用放在`<body>`元素中**页面内容的后面**。
 
@@ -83,6 +81,8 @@ JavaScript 可以通过不同的方式来**输出数据**：
 > 如果在文档已完成加载后执行 document.write()，整个 HTML 页面将被覆盖。
 >
 > document.write()是直接写入到页面的**内容流**，如果在写之前没有调用document.open(), 浏览器会自动调用open()。每次写完关闭之后重新调用该函数，会导致页面被重写。
+>
+> [document.write的用处! - CSDN博客](https://blog.csdn.net/qq_34986769/article/details/52160532 "document.write的用处! - CSDN博客")
 
 
 
@@ -95,6 +95,8 @@ DevTools
 插件DevTools的新功能 [What's New In DevTools (Chrome 61)  -  Web  -  Google Developers](https://developers.google.com/web/updates/2017/07/devtools-release-notes)
 
 
+
+> 在百度/京东页面打开DevTools > Console下可能有招聘信息
 
 
 
@@ -147,7 +149,7 @@ ECMAScript 中有 5 种简单数据类型(也称为**基本数据类型**) :
 
 
 
-**typeos操作符：**
+**typeof操作符：**
 
 可以通过 typeof 操作符检测一个变量的数据类型。(可以用括号也可不用)
 
@@ -167,6 +169,12 @@ ECMAScript 中的字符串是不可变的,也就是说,字符串一旦创建,它
 
 
 ### 操作符和语句
+
+#### 布尔操作符*
+
+
+
+
 
 
 
@@ -191,7 +199,7 @@ var z = (x * 10 + y * 10) / 10;       // z 的结果为 0.3
 
 
 
-#### 相等操作符
+#### 相等操作符*
 
 ECMAScript提供了两组操作符：
 
@@ -1111,6 +1119,37 @@ querySelectorAll()方法返回一个 NodeList的实例。
 ### 节点的创建与新增
 
 Document.createElement()方法或Document.createTextNode()方法来创建节点。然后通过Node.appendChild()、Node.insertBefore()方法将创建的节点加入DOM树中。
+
+
+
+示例：
+
+```html
+<body>
+<div id="div1">
+    <p id="p1">这是一个段落</p>
+    <p id="p2">这是另一个段落</p>
+</div>
+</body>
+<script>
+    //  创建新的 <p> 元素
+    var para=document.createElement("p");
+    //  如需向 <p> 元素添加文本，您必须首先创建文本节点。这段代码创建了一个文本节点：
+    var node=document.createTextNode("这是新段落。");
+    //  然后必须向 <p> 元素追加这个文本节点
+    para.appendChild(node);
+    //  最后您必须向一个已有的元素追加这个新元素
+    var element=document.getElementById("div1");
+    //  向这个已有的元素追加新元素
+    element.appendChild(para);
+</script>
+```
+
+
+
+
+
+
 
 
 
