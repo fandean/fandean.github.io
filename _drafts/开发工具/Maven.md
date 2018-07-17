@@ -626,3 +626,75 @@ Error:(18, 13) java: -source 1.5 中不支持 try-with-resources
 >
 > 
 
+
+
+
+
+### 使用Maven创建web工程
+
+服务器为 tomcat 
+
+
+
+手动： [IntelliJ IDEA 17 创建maven项目-博客-云栖社区-阿里云](https://yq.aliyun.com/articles/111053 "IntelliJ IDEA 17 创建maven项目-博客-云栖社区-阿里云")  这个方法不错
+
+[IntelliJ IDEA 14 创建maven项目二 - Angelaboy - 博客园](http://www.cnblogs.com/wql025/p/5205716.html?spm=a2c4e.11153940.blogcont111053.14.f890225eb86IGv "IntelliJ IDEA 14 创建maven项目二 - Angelaboy - 博客园")
+
+另一种方法： [使用Intellij IDEA 和maven创建web项目webapp全过程 - CSDN博客](https://blog.csdn.net/qq_33326449/article/details/78034190 "使用Intellij IDEA 和maven创建web项目webapp全过程 - CSDN博客")
+
+[使用IDEA将普通MAVEN项目转为WEB项目 - CSDN博客](https://blog.csdn.net/yun0000000/article/details/70664944 "使用IDEA将普通MAVEN项目转为WEB项目 - CSDN博客")
+
+
+
+>  手动创建的缺点，不能自动添加相关注解，不能自动添加要覆盖的方法。
+>
+>  直接新建一个 servlet 即可。
+
+
+
+
+
+artifactid
+
+artifact
+
+Facts: 表示当前项目的适配服务组件
+
+Aftifacts: 这个Aftifacts描述了当前项目发布的信息。
+
+
+
+> 好像还可以通过tomcat的管理员... 配置maven，然后maven自动部署应用到 tomcat中
+>
+> [\[转\]Maven实现直接部署Web项目到Tomcat7 - dorothychai - 博客园](https://www.cnblogs.com/dorothychai/p/4669808.html "[转]Maven实现直接部署Web项目到Tomcat7 - dorothychai - 博客园")
+>
+> 
+>
+> [IDEA——Maven Web工程：无法创建Java Class文件 - CSDN博客](https://blog.csdn.net/gxx_csdn/article/details/79080265 "IDEA——Maven Web工程：无法创建Java Class文件 - CSDN博客")
+>
+> [Idea 新建Maven项目时没有servlet选项 - CSDN博客](https://blog.csdn.net/u013605060/article/details/80611041 "Idea 新建Maven项目时没有servlet选项 - CSDN博客")
+
+
+
+
+
+错误： tomcat 找不到类
+
+```
+java.lang.NoClassDefFoundError: org/springframework/jdbc/core/JdbcTemplate
+```
+
+
+
+Maven管理的jar没有发布到WEB-INF/lib下的解决方案
+
+Intellij idea 下使用maven管理web项目，部署运行时发现并没有将lib包部署
+
+使用eclipse j2ee IDE时,会将WEB-INF/lib中所有的lib自动加入到library中  
+
+
+
+[Maven管理的jar没有发布到WEB-INF/lib下的解决方案 - CSDN博客](https://blog.csdn.net/hualom/article/details/45824395 "Maven管理的jar没有发布到WEB-INF/lib下的解决方案 - CSDN博客")
+
+
+

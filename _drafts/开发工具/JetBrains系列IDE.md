@@ -468,6 +468,10 @@ Select a JDK from the File System  选择JDK路径
 
 
 
+
+
+
+
 ### 连接数据库
 
 
@@ -492,7 +496,95 @@ Connection to @localhost failed.
 
 
 
+### Tomcat
 
+在Idea中添加Tomcat， `Setting  >  Build, Execution,Deployment > Application Server`添加Tomcat。
+
+
+
+Tomcat的解压路径不能有中文。
+
+
+
+如果弹出如下对话框：
+
+```
+http://localhost:8080/
+找不到应用程序
+```
+
+原因是选择的浏览器无法运行，修改要打开的浏览器（在 Editor Configurations 中）。
+
+
+
+
+
+添加tomcat的依赖是为了满足`servlet`和`jsp`依赖的，tomcat作为一个`servlet`容器提高了`servlet`和`jsp`的API。  
+
+那么如果我直接在 maven 中引入 servlet 呢？可以，这样就不用再手动添加tomcat的依赖。
+
+
+
+
+
+
+
+### 使用Maven创建web工程
+
+
+
+手动： [IntelliJ IDEA 17 创建maven项目-博客-云栖社区-阿里云](https://yq.aliyun.com/articles/111053 "IntelliJ IDEA 17 创建maven项目-博客-云栖社区-阿里云")  这个方法不错
+
+[IntelliJ IDEA 14 创建maven项目二 - Angelaboy - 博客园](http://www.cnblogs.com/wql025/p/5205716.html?spm=a2c4e.11153940.blogcont111053.14.f890225eb86IGv "IntelliJ IDEA 14 创建maven项目二 - Angelaboy - 博客园")
+
+另一种方法： [使用Intellij IDEA 和maven创建web项目webapp全过程 - CSDN博客](https://blog.csdn.net/qq_33326449/article/details/78034190 "使用Intellij IDEA 和maven创建web项目webapp全过程 - CSDN博客")
+
+[使用IDEA将普通MAVEN项目转为WEB项目 - CSDN博客](https://blog.csdn.net/yun0000000/article/details/70664944 "使用IDEA将普通MAVEN项目转为WEB项目 - CSDN博客")
+
+
+
+>  手动创建的缺点，不能自动添加相关注解，不能自动添加要覆盖的方法。
+>
+> 直接新建一个 servlet 即可。
+
+
+
+
+
+artifactid
+
+artifact
+
+Facts: 表示当前项目的适配服务组件
+
+Aftifacts: 这个Aftifacts描述了当前项目发布的信息。
+
+
+
+> 好像还可以通过tomcat的管理员... 配置maven，然后maven自动部署应用到 tomcat中
+>
+> [\[转\]Maven实现直接部署Web项目到Tomcat7 - dorothychai - 博客园](https://www.cnblogs.com/dorothychai/p/4669808.html "[转]Maven实现直接部署Web项目到Tomcat7 - dorothychai - 博客园")
+>
+> 
+>
+> [IDEA——Maven Web工程：无法创建Java Class文件 - CSDN博客](https://blog.csdn.net/gxx_csdn/article/details/79080265 "IDEA——Maven Web工程：无法创建Java Class文件 - CSDN博客")
+>
+> [Idea 新建Maven项目时没有servlet选项 - CSDN博客](https://blog.csdn.net/u013605060/article/details/80611041 "Idea 新建Maven项目时没有servlet选项 - CSDN博客")
+
+
+
+
+
+
+
+### 插件
+
+
+
+- Alibaba Java Coding Guidelines: 阿里代码规约，规约扫描插件,用扫描的方式帮助我们发现代码中的潜在问题和不合规处。用了一下，功能强，中文提示，强烈推荐。类似的插件还有 FindBugs。
+  - 用法：选中目标目录 -> Tools > Alibaba  Coding Guidelines > Alibaba  Coding Guidelines A...
+  - 扫描结果：分为3个级别。 Blocker级别建议尽量修改； Critical 和 Major的也应该尽量遵循。
+- Native Terminal Plugin  :  安装后工具栏多一个图标，点击就可在当前工程目录下打开系统默认终端；还可以通过设置为其它终端，比如 git-bash，但是为啥 指定为 cmder 不行。
 
 
 

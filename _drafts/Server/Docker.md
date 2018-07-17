@@ -73,6 +73,8 @@ Docker 包括三个基本概念：
 
 ### Docker Image
 
+> 《第一本Docker书》第4.1节：什么是Docker镜像？
+
 
 
 
@@ -644,9 +646,9 @@ docker run -it -rm java env
 
 
 
-**后台运行容器：**
+#### 后台运行容器
 
-在原有运行命令的基础上使用 `-d`参数即可
+在原有运行命令的基础上使用 `-d`参数 （detached 分离）即可
 
 ```shell
 $ docker run -d 
@@ -668,7 +670,91 @@ $ docker run -d
 
 
 
-**停止后台运行的容器**： 只需要执行 `docker stop`命令
+#### 停止后台运行的容器
+
+```
+docker stop <容器>
+```
+
+
+
+#### 指定端口
+
+·`-p`选项
+
+指定特定端口， 随机端口，所有端口
+
+
+
+#### 挂载数据卷
+
+`-v`选项
+
+
+
+
+
+
+
+#### 自启动容器
+
+ 在使用`docker run`启动容器时，使用`--restart`参数来设置：
+
+
+
+| --restart的参数值 | 描述                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| `no`              | 容器退出后，不自动重启容器（默认值）                         |
+| `on-failure`      | 如果容器由于错误（非0）而退出，则将其重新启动；非0退出代码表示错误 |
+| `unless-stopped`  | 重启容器；（排除两种情况）除非明确停止**容器**或者**Docker**被停止或重新启动 |
+| `always`          | 只要容器停止了，就重新启动                                   |
+
+
+
+还可以在使用`on-failure`策略时，可以指定Docker将尝试重新启动容器的最大次数。默认情况下，Docker将尝试永远重新启动容器。
+
+```
+sudo docker run --restart=on-failure:10 redis
+```
+
+
+
+
+
+重启策略注意点：
+
+- 重启策略只在容器启动成功后才生效。这种情况下，成功启动的意思是容器运行 10 秒以上，并且 Docker 已经开始监控它。这可以防止根本不启动的容器进入重启循环。
+- 如果你手动停止一个容器，它的重启策略会被忽略，直到 Docker 守护进程重启或容器手动重启。这是防止重启循环的另一个尝试。
+- 重启策略只作用于容器。swarm 服务的重启策略配置方式不同。
+
+
+
+
+
+如果在最初运行容器时没有使用`--restart`选项，那么可以通过`update`命令进行更新：
+
+```
+docker update --restart=always <container>
+```
+
+取消自动重启：
+
+```
+docker update --restart=no <container>
+```
+
+
+
+> [Docker 生产环境之配置容器 - 自动启动容器 - CSDN博客](https://blog.csdn.net/kikajack/article/details/79521306 "Docker 生产环境之配置容器 - 自动启动容器 - CSDN博客")
+>
+> [开机自启docker后 开启或关闭自启容器 | Maple's Blog](https://www.cqmaple.com/201801/when-system-startup-docker-restart-container.html "开机自启docker后 开启或关闭自启容器 | Maple's Blog")
+>
+
+
+
+
+
+
 
 
 
@@ -676,7 +762,9 @@ $ docker run -d
 
 ### docker exec
 
-可以通过docker exec命令在容器内部额外启动新进程。
+可以通过docker exec命令在容器内部**额外启动新进程**。
+
+作用：当需要操作进入后台的容器时 ，可以使用此命令
 
 可以在容器内运行的进程有两种类型：
 
@@ -693,27 +781,127 @@ docker exec -t -i deamon_dave /bin/bash
 
 
 
+**注意：**如果从这个stdin中 exit，容器不会停止运行（因为它是新开一个进程）。
+
+这也是`docker exec` 和 `docker attach` 的区别。
+
+所以推荐使用 `docker exec`。
+
+
+
+### docker attach *
+
+使用该命令**重新**附着到某容器的会话上。
+
+作用：当需要操作进入后台的容器时 ，可以使用此命令
+
+使用场景示例：
+
+```shell
+$ docker run -dit ubuntu
+243c....
+$ docker container ls
+...
+$ docker attach 243c
+```
+
+**注意：**如果从这个stdin中 exit，会导致容器的停止。
 
 
 
 
-### docker update
-
-为 容器更新 (部分)配置
-
-- cpu 相关配置
-- mems 内存相关配置
-- `--restart`
 
 
 
 
 
+### docker ps
+
+docker ps  ： 查看正在运行的容器
+
+docker pa -a ：查看运行过的所有的容器
 
 
 
 
-### docker container *
+### docker logs *
+
+示例：
+
+```
+docker logs -f -t --since="2017-05-31" --tail=10  the_container
+```
+
+
+
+- `--since` : 此参数指定了输出日志开始日期，即只输出指定日期之后的日志。
+- `-f` : 查看实时日志
+- `-t` : 查看日志产生的日期
+- `--tail=10` : 查看最后的10条日志。
+- `edu_web_1` : 容器名称
+
+
+
+
+
+跟踪某个容器的最新日志而不必读取整个日志文件：
+
+```shell
+$ docker logs --tail 0 -f the_container
+```
+
+使用 `-t`为每条日志加上时间戳：
+
+```shell
+$ docker logs -ft the_container
+```
+
+
+
+使用 `Ctrl + C` 退出日志跟踪
+
+
+
+
+
+> 推荐： [Docker容器的调试技巧：docker logs 与 docker service logs - CSDN博客](https://blog.csdn.net/u013272009/article/details/79148562 "Docker容器的调试技巧：docker logs 与 docker service logs - CSDN博客")
+>
+> [Docker学习笔记（五）之attach与logs命令 - CSDN博客](https://blog.csdn.net/u013246898/article/details/52986886 "Docker学习笔记(五)之attach与logs命令 - CSDN博客")
+>
+> [docker log - 简书](https://www.jianshu.com/p/c12622a9f4c1 "docker log - 简书")
+
+> 如果安装了 portainer ，也可直接在 portainer中查看
+
+
+
+
+
+补充知识：
+
+容器中不建议更改配置文件，所以最常用的就是通过环境变量与其进行的信息传输。
+
+但是对于用户密码等并合适通过明文的环境变量进行传递，它又提供了某种机制来保证安全。
+
+
+
+### docker top
+
+查看容器内部运行的进程
+
+```shell
+$ docker top the_container
+```
+
+
+
+
+
+
+
+
+
+
+### docker container 相关*
 
 
 
@@ -743,6 +931,8 @@ $ docker exec -it 容器(或id) bash
 
 # 删除一个处于终止状态的容器
 $ docker container rm 
+# 或使用 
+$ docker rm 
 
 # 清理所有处于终止状态的容器
 $ docker container prune
@@ -787,21 +977,23 @@ docker run -it ubuntu bash
 
 
 
+### docker inspect
 
-
-### docker ps
-
-docker ps  ： 查看正在运行的容器
-
-docker pa -a ：查看运行过的所有的容器
+该命令会对容器进行详细的检查，然后返回其配置信息。
 
 
 
+> 除了查看容器，还可以通过 `/var/lib/docker`目录来深入了解Docker的工作原理.
 
 
 
+### docker update
 
-### docker attach *
+为 容器更新 (部分)配置
+
+- cpu 相关配置
+- mems 内存相关配置
+- `--restart`
 
 
 
@@ -851,46 +1043,6 @@ docker cp /root/docker-entrypoint.sh  mysql:/usr/local/bin/
 
 
 
-### docker logs *
-
-示例：
-
-```
-docker logs -f -t --since="2017-05-31" --tail=10 edu_web_1
-```
-
-
-
-- --since : 此参数指定了输出日志开始日期，即只输出指定日期之后的日志。
-- -f : 查看实时日志
-- -t : 查看日志产生的日期
-- -tail=10 : 查看最后的10条日志。
-- edu_web_1 : 容器名称
-
-
-
-> 推荐： [Docker容器的调试技巧：docker logs 与 docker service logs - CSDN博客](https://blog.csdn.net/u013272009/article/details/79148562 "Docker容器的调试技巧：docker logs 与 docker service logs - CSDN博客")
->
-> [Docker学习笔记（五）之attach与logs命令 - CSDN博客](https://blog.csdn.net/u013246898/article/details/52986886 "Docker学习笔记(五)之attach与logs命令 - CSDN博客")
->
-> [docker log - 简书](https://www.jianshu.com/p/c12622a9f4c1 "docker log - 简书")
-
-> 如果安装了 portainer ，也可直接在 portainer中查看
-
-
-
-
-
-
-
-补充知识：
-
-容器中不建议更改配置文件，所以最常用的就是通过环境变量与其进行的信息传输。
-
-但是对于用户密码等并合适通过明文的环境变量进行传递，它又提供了某种机制来保证安全。
-
-
-
 
 
 ### docker volume *
@@ -935,12 +1087,6 @@ $ docker rm -v
 
 
 
-### docker top
-
-查看容器中正在运行的进程。
-
-
-
 
 
 ### docker history
@@ -949,68 +1095,14 @@ $ docker rm -v
 
 
 
+### docker login
+
+使用该命令登录到Docker Hub。
+
+> 你先要在注册有 docker 网站的帐号，注册时如果看不到图片验证码则必须翻墙。
 
 
 
-
-## 自启动容器
-
- 在使用`docker run`启动容器时，使用`--restart`参数来设置：
-
-
-
-| --restart的参数值 | 描述                                                         |
-| ----------------- | ------------------------------------------------------------ |
-| `no`              | 容器退出后，不自动重启容器（默认值）                         |
-| `on-failure`      | 如果容器由于错误（非0）而退出，则将其重新启动；非0退出代码表示错误 |
-| `unless-stopped`  | 重启容器；（排除两种情况）除非明确停止**容器**或者**Docker**被停止或重新启动 |
-| `always`          | 只要容器停止了，就重新启动                                   |
-
-
-
-还可以在使用`on-failure`策略时，可以指定Docker将尝试重新启动容器的最大次数。默认情况下，Docker将尝试永远重新启动容器。
-
-```
-sudo docker run --restart=on-failure:10 redis
-```
-
-
-
-
-
-重启策略注意点：
-
-- 重启策略只在容器启动成功后才生效。这种情况下，成功启动的意思是容器运行 10 秒以上，并且 Docker 已经开始监控它。这可以防止根本不启动的容器进入重启循环。
-- 如果你手动停止一个容器，它的重启策略会被忽略，直到 Docker 守护进程重启或容器手动重启。这是防止重启循环的另一个尝试。
-- 重启策略只作用于容器。swarm 服务的重启策略配置方式不同。
-
-
-
-
-
-如果在最初运行容器时没有使用`--restart`选项，那么可以通过`update`命令进行更新：
-
-```
-docker update --restart=always <container>
-```
-
-取消自动重启：
-
-```
-docker update --restart=no <container>
-```
-
-
-
-
-
-
-
-> [Docker 生产环境之配置容器 - 自动启动容器 - CSDN博客](https://blog.csdn.net/kikajack/article/details/79521306 "Docker 生产环境之配置容器 - 自动启动容器 - CSDN博客")
->
-> [开机自启docker后 开启或关闭自启容器 | Maple's Blog](https://www.cqmaple.com/201801/when-system-startup-docker-restart-container.html "开机自启docker后 开启或关闭自启容器 | Maple's Blog")
->
-> 
 
 
 
@@ -1025,17 +1117,86 @@ docker update --restart=no <container>
 
 
 
+在容器中安装程序时出现下面的问题：
+
+```shell
+root@31b393be04b1:/# apt-get install vi
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+E: Unable to locate package vi
+```
+
+解决办法： 
+
+需要先运行 `apt-get update` ，再安装程序。这个命令的作用是：同步 `/etc/apt/sources.list` 和 `/etc/apt/sources.list.d` 中列出的源的索引，这样才能获取到最新的软件包。 
+
+
+
+
+
+
+
+
+
 ## 自定义容器镜像
 
-> 第3课
 
-将 容器  变为  镜像
+
+Dockerfile使用基本的基于DSL语法的指令来构建一个Docker镜像。
+
+每条指令必须为大写字母，且后面要跟随一个参数；指令会按照顺序执行。
+
+每条指令都会创建一个新的镜像层并对镜像进行提交。Docker大概按照如下流程执行Dockerfil中的指令：
+
+1. Docker从基础镜像运行一个容器
+2. 执行一条指令，对容器做出修改
+3. 执行类似`docker commit`的操作，提交一个新的镜像层
+4. Docker再基于刚提交的镜像运行一个新容器
+5. 执行dockerfile中的下一条指令，直到所有指令都执行完毕。
+
+
+
+从上面可以看出，如果某条指令失败了，你还是可以得到一个可以使用的容器，这对调试很有用，这样而我们可以在该容器中手动执行失败指令来调试。
+
+
+
+> 使用`#` 注释某行
 
 
 
 >  实际开发中，一个 image 文件往往通过继承另一个 image 文件，加上一些个性化设置而生成。举例来说，你可以在 Ubuntu 的 image 基础上，往里面加入 Apache 服务器，形成你的 image。 
 
 
+
+
+
+
+
+### Dockerfile指令
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+> 目前业界可选的Containger Registry主要有如下：
+>
+> - **Docker Hub** 提供了直观的界面、自动化构建、私有仓库以及众多官方镜像。这是官方的公有库，下载镜像必须联接外网。
+> - **Docker Registry** 最流行的开源registry。你可以在自己的设施上运行或者使用Docker Hub。
+> - **Quay.io** 最初由一个两人工作室开发的产品，专注于Docker私有库。目前已被Coreos收购。
+> - **CoreOS Enterprise Registry Coreos**收购Quay.io之后推出的企业级Containger Registry，提供细化权限和审计跟踪。
+> - **Nexus 3.0 nexus**原来只是一个maven的仓库服务器，升级到3.0之后，也可以使用它对docker的镜像进行管理。
+> - **Harbor vmware**开源的企业级容器registry，基于开源的Docker Registry进行增强。
 
 
 
@@ -1170,6 +1331,39 @@ docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v G:\Do
 
 
 [springboot - docker logs为何没有日志输出？ - SegmentFault 思否](https://segmentfault.com/q/1010000010924740 "springboot - docker logs为何没有日志输出？ - SegmentFault 思否")
+
+
+
+
+
+## 安装 Tomcat
+
+在拉取 tomcat 镜像的时候，可能搞不明白为什么会有如此之多的tag？这里我们先了解一下，该镜像相关的Variants（变体）的含义:
+
+
+
+- `tomcat:<version>`：如果您不确定您的需求是什么，您可能想要使用这个。它被设计为既可以用作丢弃容器（安装源代码并启动容器来启动应用程序），也可以用作构建其他图像的基础。
+- `tomcat:slim`：此映像不包含默认tag中包含的公共包，仅包含运行tomcat所需的最小包。除非您在仅部署tomcat映像并且存在空间限制的环境中工作，否则我们强烈建议您使用此库的默认镜像(即上一个镜像)。 (slim：瘦)
+- `tomcat:alpine` 此镜像基于流行的Alpine Linux项目 。（不了解什么是 Alpine Linux Project，不下这个版本）
+- `tomcat:<version>-jre*`：这个又是什么意思？查看Dockerfile文件，似乎所有文件都是`FROM openjdk:*-jre` 开头，那么所有镜像都是以openjdk作为基础镜像的？
+
+
+
+还是没搞懂，这里选择 `8.5.32` 
+
+```
+docker pull tomcat:8.5.32
+```
+
+运行容器
+
+```shell
+# 记得修改 tag
+$ docker run -it --rm -p 8888:8080 tomcat:tag
+# You can then go to http://localhost:8888 or http://host-ip:8888 in a browser
+```
+
+
 
 
 

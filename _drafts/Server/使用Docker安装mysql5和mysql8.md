@@ -373,3 +373,22 @@ mbind: Operation not permitted
 
 
 
+
+
+
+
+## 使用中遇到的错误
+
+
+
+错误一：
+
+```
+C:\Users\Fan Dean
+λ docker container start fd88
+Error response from daemon: error while creating mount source path '/host_mnt/g/Docker/mysql/mysql5.5.60/custom': mkdir /host_mnt/g: file exists
+Error: failed to start containers: fd88
+```
+
+重启Docker后可以运行mysql容器。（是重启Docker而非容器）。但是之前挂载的数据库文件可能没有读取，之前创建的数据库不见了。
+

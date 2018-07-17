@@ -107,7 +107,7 @@ Web 应用程序开发人员通常编写 Servlet 来扩展 javax.servlet.http.Ht
 
 #### Servlet的一些细节(1)
 
-- 由于客户端是通过URL地址访问Web服务器中的资源，所以Servlet程序若想被外界访问，必须把Servlet程序映射到一个URL地址上，这个工作在web.xml文件中使用`<servlet>`元素和`<servlet-mapping>`元素完成
+- 由于客户端是通过URL地址访问Web服务器中的资源，所以Servlet程序若想被外界访问，必须把Servlet程序映射到一个URL地址上，这个工作在`web.xml`（在servlet 3.0以上版本，只需使用注解即可）文件中使用`<servlet>`元素和`<servlet-mapping>`元素完成
 - `<servlet>`元素用于注册Servlet，它包含两个主要的子元素：`<servlet-name>`和`<servlet-class>`，分别用于设置Servlet的注册名称和Servlet的完整类名。
 - 一个`<servlet-mapping>`元素用于映射一个已注册的Servlet的一个对外访问路径，它包含有两个子元素：`<servlet-name>`和`<url-pattern>`，分别用于指定Servlet的注册名称和Servlet的对外访问路径。例如：
 
