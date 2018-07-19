@@ -1,3 +1,7 @@
+---
+typora-root-url: ..\..\..\..\Pictures\Git-Pictures\typora
+---
+
 # Maven
 
 ---
@@ -326,9 +330,7 @@ mvn help:system
 
 比如我只在 pom.xml 文件中添加 spring-jdbc 依赖，但是我查看项目依赖时发现已经包含了其它几个必要依赖。
 
-![](C:\Users\Fan Dean\Pictures\程序相关\maven repository dependencies.png)
-
-
+![maven repository dependencies](/../../../Documents/fandean.github.io/_drafts/开发工具/assets/maven repository dependencies.png)
 
 
 
@@ -678,7 +680,15 @@ Aftifacts: 这个Aftifacts描述了当前项目发布的信息。
 
 
 
-错误： tomcat 找不到类
+### 将WEB-INF/lib中的jar添加到Library
+
+在lib目录右键选择 add Library
+
+
+
+
+
+#### 错误： tomcat 找不到类
 
 ```
 java.lang.NoClassDefFoundError: org/springframework/jdbc/core/JdbcTemplate
@@ -692,9 +702,12 @@ Intellij idea 下使用maven管理web项目，部署运行时发现并没有将l
 
 使用eclipse j2ee IDE时,会将WEB-INF/lib中所有的lib自动加入到library中  
 
-
-
 [Maven管理的jar没有发布到WEB-INF/lib下的解决方案 - CSDN博客](https://blog.csdn.net/hualom/article/details/45824395 "Maven管理的jar没有发布到WEB-INF/lib下的解决方案 - CSDN博客")
 
 
 
+解决办法：
+
+另见图：
+
+![idea-maven-tomcat-web_inf_lib](assets/idea-maven-tomcat-web_inf_lib.png)

@@ -422,6 +422,8 @@ IDE有默认配置来帮你解决问题，打开默认配置的方法：
 
 ## IDEA
 
+> [IntelliJ IDEA官方文档(中文)_w3cschool](https://www.w3cschool.cn/intellij_idea_doc/ "IntelliJ IDEA官方文档_w3cschool")
+
 
 
 ### 项目与模块

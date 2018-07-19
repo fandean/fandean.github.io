@@ -4,7 +4,7 @@
 
 Cmder是一个用于替换windows自带的cmd的，包含各种软件包（比如 git）并且非常好用的终端模拟器。
 
-![Cmde](http://cmder.net/img/main.png)
+![](assets/cmder06.png)
 
 
 
@@ -46,6 +46,10 @@ set LANG=zh_CN.UTF-8
 
 
 
+![](assets/cmder01.png)
+
+
+
 ### 粘贴复制
 
 复制：只需选中一段文字那么该段文字就会被复制到剪贴板
@@ -62,13 +66,74 @@ set LANG=zh_CN.UTF-8
 
 ### alias别名机制
 
-**Cmder增加了alias功能：** 
-它让你用短短的指令执行一些常见但指令超长又难以记忆的语法; 
+**Cmder增加了alias功能：** 它让你用短短的指令执行一些常见但指令超长又难以记忆的语法; 
 在其控制台输入`alias`可以查看。
 
 
 
-**自定义aliases：**  打开Cmder目录下的config文件夹，里面的aliases文件就是我们可以配置的别名文件。
+**1. cmd aliases：**
+
+在`%CMDER_ROOT%\config\user-aliases.cmd `中添加cmd aliases，它**仅用于 cmd 命令**
+
+示例：
+
+```cmd
+ls=ls --show-control-chars -F --color $*
+pwd=cd
+clear=cls
+```
+
+
+
+> `user-aliases.cmd`: aliases in cmd; called from vendor\init.bat; autocreated from
+> `vendor\user-aliases.cmd.example`.
+>
+> 参考：[cmder/README.md at master · cmderdev/cmder](https://github.com/cmderdev/cmder/blob/master/README.md "cmder/README.md at master · cmderdev/cmder")
+
+
+
+
+
+**2. Bash/Mintty aliases：**
+
+对于bash，其配置文件的加载顺序是：
+
+```
+$CMDER_ROOT/config/profile.d/*.sh
+$CMDER_ROOT/config/user-profile.sh
+$HOME/.bashrc
+```
+
+所以我们可以在上面的文件中添加 alias 即可。
+
+几个示例：
+
+```shell
+alias l.='ls -d .* --color=tty'
+alias ll='ls -l --color=tty'
+alias ls='ls --color=tty'
+```
+
+由于 Git for Windows 会自动创建 `~/.bash_profile`，而对此cmder会提示有冲突，此时可以创建一个`~/.profile`并在该文件中添加别名。（这里 `~`表示`$HOME`）
+
+
+
+> 原本是想添加`ssh-agent bash`相关的别名的，但是一旦执行此命令后启动了一个子shell，在此子shell里不可以使用别名。可参考下文的**ssh agent**部分。（这里属于ssh代理相关问题）
+
+
+
+
+
+**3.Power Shell aliases：**
+
+直接使用`alias`命令添加或在下面的文件中添加：
+
+```
+'$ENV:CMDER_ROOT\config\profile.d\*.ps1'
+'$ENV:CMDER_ROOT\config\user-profile.ps1'
+```
+
+
 
 
 
@@ -76,15 +141,19 @@ set LANG=zh_CN.UTF-8
 
 
 
+
+
 ## Cmder启动选项
+
+![](assets/cmder02.png)
+
+
 
 相关介绍
 
-- 进入seting界面：点击Cmder窗口左上角的图标 或者 右下角的 `三`图标，然后选择 `setting`
-
 - 在Startup处设置cmder启动时需要执行的任务
 
-  默认选择的启动项应该是 “ Specified named task” 而该启动项默认选择的应该是 `{cmd::Cmder}` 这个命名任务，我们可以更改成其它的命令任务或者直接切换到其它的启动项。
+  默认选择的启动项应该是 `{cmd::Cmder}` 这个命名任务，我们可以更改成其它的命令任务或者直接切换到其它的启动项。
 
   当选中某个命名任务时，下面的 "Selected task contents(选中的任务内容)"下会显示该任务执行的具体内容
 
@@ -96,21 +165,23 @@ set LANG=zh_CN.UTF-8
 
 
 
+
+
 ### 自定义启动目录
 
 
 
-下面就来仿照现有的`{cmd::Cmder}`添加一个设置自定义的启动目录的任务(Task)：
+下面就来克隆现有的`{cmd::Cmder}`添加一个设置自定义的启动目录的任务(Task)：
 
-- 添加一个任务：切换到 `startup -> tasks` 后点击 `➕`，这里任务的名称为 `cmd::diy1`
-- 设置命令：复制`{cmd::Cmder}`最下面的命令 `cmd /k ""%ConEmuDir%\..\init.bat" "`粘贴到 `cmd::diy1`相同的位置即可
-- 设置参数（在此处设置目录）：下面来看 “Task parameters”命令参数，阅读实例可知参数 `/icon`指定图标位置，`/dir` 指定启动目录，所以我们可以添加下面的参数：` /icon "%CMDER_ROOT%\icons\cmder.ico"  /dir "C:\Users\Fan Dean"`其中`/icon`参数内容就借鉴 `{cmd::Cmder}` 的 `/dir`后的参数值就是你自行设置的路径。
-- 然后在 `startup` 的“ Specified named task” 处选择 `cmd::diy1`
+![cmder03](assets/cmder03.png)
+
+设置启动目录
+
+![cmder04](assets/cmder04.png)
+
+- 任务参数：下面来看 “Task parameters”命令参数，阅读实例可知参数 `/icon`指定图标位置，`/dir` 指定启动目录，所以我们可以添加下面的参数：` /icon "%CMDER_ROOT%\icons\cmder.ico"  /dir "C:\Users\Fan"`
+- 记得在 `startup` 的“ Specified named task” 处选择 `cmd::diy1`
 - 保存设置，退出，重新打开cmder查看效果
-
-
-
-> 还有更高级的配置，还不会
 
 
 
@@ -128,6 +199,10 @@ set LANG=zh_CN.UTF-8
 ```
 set LANG=zh_CN.UTF-8
 ```
+
+> 如果打开的文本文件的编码方式不是 utf-8 那么在cmder中查看时会乱码，这种情况需要转换该文件的编码方式为 utf-8
+
+![cmder05](assets/cmder05.png)
 
 
 
@@ -147,6 +222,43 @@ git config --global i18n.logoutputencoding utf-8
 > 或者在 .gitconfig 文件中配置
 
 > 更多乱码问题见： [cmder中文乱码 - CSDN博客](https://blog.csdn.net/guiying123456/article/details/62881400 "cmder中文乱码 - CSDN博客")
+
+
+
+### ssh agent
+
+> ssh-agent 介绍可参考: [SSH相关命令 ](https://www.jianshu.com/p/8e88d4b11dec "SSH相关命令 - 简书")中的ssh-agent部分
+
+
+
+**cmd 模式中：**
+
+官方文档中有说在 cmd 模式中如何处理 ssh agent：
+
+To start the vendored SSH agent simply call `start-ssh-agent`, which is in the `vendor/git-for-windows/cmd` folder.
+
+If you want to run SSH agent on startup, include the line `@call "%GIT_INSTALL_ROOT%/cmd/start-ssh-agent.cmd"` in `%CMDER_ROOT%/config/user-profile.cmd` (usually just uncomment it).
+
+
+
+
+
+**bash模式中：**
+
+官方文档中没有说，我们可以这样解决。
+
+在`$HOME/.bashrc`或`$HOME/.profilec`文件中添加如下内容：
+
+```shell
+# 启动一个 ssh-agent 进程 
+eval "$(ssh-agent -s)"
+# 这里同时添加了两个私钥
+ssh-add "C:/Users/Fan/.ssh/one_rsa" "C:/Users/Fan/.ssh/two_id_rsa"
+# 清除上面命令的输出内容
+clear
+```
+
+
 
 
 
@@ -192,6 +304,17 @@ help cd
 # 或者
 cd /?
 ```
+
+
+
+### 参考
+
+看啥都不如官方文档管用：
+
+- Readme：[cmder/README.md at master · cmderdev/cmder](https://github.com/cmderdev/cmder/blob/master/README.md "cmder/README.md at master · cmderdev/cmder")
+- wiki：[Home · cmderdev/cmder Wiki](https://github.com/cmderdev/cmder/wiki "Home · cmderdev/cmder Wiki")
+
+
 
 
 
