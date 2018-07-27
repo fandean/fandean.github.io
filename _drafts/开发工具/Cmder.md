@@ -190,6 +190,32 @@ alias ls='ls --color=tty'
 
 
 
+
+## cmder连接Linux子系统（WSL）
+
+Windows Subsystem for Linux（简称WSL）。
+
+ConEmu（包括基于 ConEmu 修改的 cmder） 等终端模拟器也已经适配了 WSL 环境。
+
+连接方式： 
+
+- 添加一个标签页时（点击右下角的 ➕），选择 `WSL --> bash`
+- 或直接将启动任务指定为 `{WSL::bash}`
+
+
+
+Windows系统的分区全部挂载于Linux子系统的 `/mnt` 目录
+
+```shell
+$ ls /mnt
+c  d  e  f  g
+```
+
+> WSL的安装见： [Install the Linux Subsystem on Windows 10 -  Microsoft Docs](https://docs.microsoft.com/zh-cn/windows/wsl/install-win10 "Install the Linux Subsystem on Windows 10 - Microsoft Docs")
+
+
+
+
 ## 其它问题
 
 ### 中文乱码
@@ -233,7 +259,7 @@ git config --global i18n.logoutputencoding utf-8
 
 **cmd 模式中：**
 
-官方文档中有说在 cmd 模式中如何处理 ssh agent：
+官方文档中有说在 cmd 模式中如何处理 ssh agent的相关问题：
 
 To start the vendored SSH agent simply call `start-ssh-agent`, which is in the `vendor/git-for-windows/cmd` folder.
 
@@ -245,7 +271,7 @@ If you want to run SSH agent on startup, include the line `@call "%GIT_INSTALL_R
 
 **bash模式中：**
 
-官方文档中没有说，我们可以这样解决。
+官方文档中没有说，但我们可以这样解决。
 
 在`$HOME/.bashrc`或`$HOME/.profilec`文件中添加如下内容：
 

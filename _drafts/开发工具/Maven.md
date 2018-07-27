@@ -634,11 +634,19 @@ Error:(18, 13) java: -source 1.5 中不支持 try-with-resources
 
 ### 使用Maven创建web工程
 
+
+
+**新方法：**先新建一个 没有使用模板的maven项目，创建好后选择该模块右键 > Add Framework Support > Web Application  (Versions选择 4.0，取消勾选 "Create web.xml")   为其添加web框架的支持。然后就可以了。
+
+
+
+
+
 服务器为 tomcat 
 
 
 
-手动： [IntelliJ IDEA 17 创建maven项目-博客-云栖社区-阿里云](https://yq.aliyun.com/articles/111053 "IntelliJ IDEA 17 创建maven项目-博客-云栖社区-阿里云")  这个方法不错
+手动： [IntelliJ IDEA 17 创建maven项目-博客-云栖社区-阿里云](https://yq.aliyun.com/articles/111053 "IntelliJ IDEA 17 创建maven项目-博客-云栖社区-阿里云")  最开始使用这个方法
 
 [IntelliJ IDEA 14 创建maven项目二 - Angelaboy - 博客园](http://www.cnblogs.com/wql025/p/5205716.html?spm=a2c4e.11153940.blogcont111053.14.f890225eb86IGv "IntelliJ IDEA 14 创建maven项目二 - Angelaboy - 博客园")
 
@@ -710,4 +718,32 @@ Intellij idea 下使用maven管理web项目，部署运行时发现并没有将l
 
 另见图：
 
-![idea-maven-tomcat-web_inf_lib](assets/idea-maven-tomcat-web_inf_lib.png)
+![](/../../../Documents/fandean.github.io/_drafts/开发工具/assets/idea-maven-tomcat-web_inf_lib.png)
+
+
+
+
+
+
+
+### Tomcat部署时war和war exploded区别
+
+- `war` 模式：将WEB工程以包的形式上传到服务器 ；
+- `war exploded` 模式：将WEB工程以当前文件夹的位置关系上传到服务器；
+
+
+
+（1）war模式这种可以称之为是发布模式，看名字也知道，这是先打成war包，再发布；
+
+（2）war exploded模式是直接把文件夹、jsp页面 、classes等等移到Tomcat 部署文件夹里面，进行加载部署。因此这种方式支持热部署，一般在开发的时候也是用这种方式。
+
+（3）在平时开发的时候，使用热部署的话，应该对Tomcat进行相应的设置，这样的话修改的jsp界面什么的东西才可以及时的显示出来。
+
+
+
+
+
+[Tomcat部署时war和war exploded区别以及平时踩得坑 - CSDN博客](https://blog.csdn.net/xlgen157387/article/details/56498938 "Tomcat部署时war和war exploded区别以及平时踩得坑 - CSDN博客")
+
+[intelliJ Idea自带热部署和Jrebel实现热部署 - CSDN博客](https://blog.csdn.net/wei19880402/article/details/75529231 "intelliJ Idea自带热部署和Jrebel实现热部署 - CSDN博客")
+

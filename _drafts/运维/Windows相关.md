@@ -103,10 +103,6 @@ Win + R 实在是一个神奇的东西
 
 4.Bash on Ubuntu on Windows
 ------------------------------------
-[Bash on Ubuntu on Windows](https://msdn.microsoft.com/zh-cn/commandline/wsl/about)
-
-[Install the Windows Subsystem for Linux](https://docs.microsoft.com/zh-cn/windows/wsl/install-win10)
-
 
 
 For Windows, install a Bash shell. There are several options, including the following:
@@ -117,9 +113,27 @@ For Windows, install a Bash shell. There are several options, including the foll
 
 
 
-> [Win10进阶：在WSL中安装SUSE Linux替换Ubuntu](https://www.ithome.com/html/win10/289012.htm)
->
-> How to Upgrade Bash on Windows 10 to Ubuntu 16.04 LTS
+
+
+新版参考这里：
+
+[Install the Windows Subsystem for Linux](https://docs.microsoft.com/zh-cn/windows/wsl/install-win10)
+
+[Ubuntu on Windows10 跨平台开发环境搭建权威指南 - leejun2005的个人页面 - 开源中国](https://my.oschina.net/leejun2005/blog/1621918?from=juejin "Ubuntu on Windows10 跨平台开发环境搭建权威指南 - leejun2005的个人页面 - 开源中国")
+
+
+
+
+
+
+
+>  lxrun属于旧命令，过时了 ，比如：`lxrun /uninstall /full`   `lxrun /install`
+
+
+
+
+
+
 
 
 

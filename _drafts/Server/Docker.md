@@ -71,6 +71,32 @@ Docker 包括三个基本概念：
 
 
 
+### Windows Container和Linux Container(LXC)
+
+
+
+[Windows Container 和 Docker：你需要知道的5件事 - CSDN博客](https://blog.csdn.net/gm48mg0m/article/details/55049491 "Windows Container 和 Docker：你需要知道的5件事 - CSDN博客")
+
+[Install Docker for Windows | Docker Documentation](https://docs.docker.com/docker-for-windows/install/ "Install Docker for Windows | Docker Documentation")
+
+
+
+
+
+
+
+在Ubuntu上安装LXC：
+
+```
+sudo apt-get install lxc
+```
+
+
+
+
+
+
+
 ### Docker Image
 
 > 《第一本Docker书》第4.1节：什么是Docker镜像？
@@ -249,6 +275,22 @@ $ sudo shutdown -r now
 
 
 > 看到这样一句话： 默认情况下Boot2Docker需要安装Virtualbox，而不支持Hype-V，这很麻烦，还得我们修改BCD引导文件，因为Hyper-V和Virtualbox不兼容。 
+
+
+
+**后期遇到的问题：**使用`-v`挂载本机目录到容器中时没有任何效果，容器启动时也没有报错。主机中保存了数据库文件，开启mysql容器后却不能挂载这些，之前是可以的；后来查看某博文说自己更改了windows的密码，需要重新认证；才想起前段时间，自己将windows的本地账户转换为了在线账户，可能是这个问题。
+
+解决步骤：
+
+`Docker Setting > Shared Drives > Reset credentials... ` 然后在弹出的对话框中输入你的在线账户的密码（也就是你电子邮箱的密码）。
+
+坑了我好久。
+
+
+
+[win10 docker 使用run -v 时，虚拟机无法显示宿主机挂载的目录 - CSDN博客](https://blog.csdn.net/ap10062kai/article/details/79232582 "win10 docker 使用run -v 时，虚拟机无法显示宿主机挂载的目录 - CSDN博客")
+
+
 
 
 

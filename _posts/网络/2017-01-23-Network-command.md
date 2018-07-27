@@ -137,6 +137,16 @@ netstat -anp tcp
 
 
 
+`findstr "关键字"`
+
+
+
+```
+netstat -anp | findstr "80"
+```
+
+
+
 
 
 ### nslookup

@@ -211,6 +211,10 @@ Line Spacing：1.1
 
 
 
+[利用grep-console插件使Intellij idea显示多颜色调试日志 - CSDN博客](https://blog.csdn.net/ruglcc/article/details/73844044 "利用grep-console插件使Intellij idea显示多颜色调试日志 - CSDN博客")
+
+[YiiGuxing/TranslationPlugin: Translation plugin for JetBrains IDE/Android Studio](https://github.com/YiiGuxing/TranslationPlugin "YiiGuxing/TranslationPlugin: Translation plugin for JetBrains IDE/Android Studio")
+
 
 
 >webstorm minimap对应的插件：
@@ -446,9 +450,19 @@ Download JDK 8                  下载JDK
 Select a JDK from the File System  选择JDK路径
 ```
 
-那就使用内嵌的JDK吧，另外系统中还下载openjdk，这样就不使用oracle-jdk了。一般它不会推荐最新版的JDK。
+内嵌的JDK，一般它不会推荐最新版的JDK。
+
+如果在使用Idea时出现输入法不能跟随光标，可能是与jdk有关。
 
 > 另见：[java - How to set the JDK for Android Studio? - Ask Ubuntu](https://askubuntu.com/questions/467870/how-to-set-the-jdk-for-android-studio "java - How to set the JDK for Android Studio? - Ask Ubuntu")
+
+
+
+
+
+### JavaScript和jQuery
+
+见下文的 WebStorm 
 
 
 
@@ -521,9 +535,9 @@ http://localhost:8080/
 
 
 
-添加tomcat的依赖是为了满足`servlet`和`jsp`依赖的，tomcat作为一个`servlet`容器提高了`servlet`和`jsp`的API。  
+添加tomcat的依赖是为了满足`servlet`和`jsp`依赖的，tomcat作为一个`servlet`容器提供了`servlet`和`jsp`的API。  
 
-那么如果我直接在 maven 中引入 servlet 呢？可以，这样就不用再手动添加tomcat的依赖。
+那么如果我直接在 maven 中引入 servlet 呢？**可以**，这样就不用再手动添加tomcat的依赖。
 
 
 
@@ -535,13 +549,9 @@ http://localhost:8080/
 
 
 
-手动： [IntelliJ IDEA 17 创建maven项目-博客-云栖社区-阿里云](https://yq.aliyun.com/articles/111053 "IntelliJ IDEA 17 创建maven项目-博客-云栖社区-阿里云")  这个方法不错
+见Maven相关文章。
 
-[IntelliJ IDEA 14 创建maven项目二 - Angelaboy - 博客园](http://www.cnblogs.com/wql025/p/5205716.html?spm=a2c4e.11153940.blogcont111053.14.f890225eb86IGv "IntelliJ IDEA 14 创建maven项目二 - Angelaboy - 博客园")
 
-另一种方法： [使用Intellij IDEA 和maven创建web项目webapp全过程 - CSDN博客](https://blog.csdn.net/qq_33326449/article/details/78034190 "使用Intellij IDEA 和maven创建web项目webapp全过程 - CSDN博客")
-
-[使用IDEA将普通MAVEN项目转为WEB项目 - CSDN博客](https://blog.csdn.net/yun0000000/article/details/70664944 "使用IDEA将普通MAVEN项目转为WEB项目 - CSDN博客")
 
 
 
@@ -587,6 +597,17 @@ Aftifacts: 这个Aftifacts描述了当前项目发布的信息。
   - 用法：选中目标目录 -> Tools > Alibaba  Coding Guidelines > Alibaba  Coding Guidelines A...
   - 扫描结果：分为3个级别。 Blocker级别建议尽量修改； Critical 和 Major的也应该尽量遵循。
 - Native Terminal Plugin  :  安装后工具栏多一个图标，点击就可在当前工程目录下打开系统默认终端；还可以通过设置为其它终端，比如 git-bash，但是为啥 指定为 cmder 不行。
+- 热部署插件Jerbel：JRebel是一套JavaEE开发工具。 Jrebel 可快速实现热部署，节省了大量重启时间，提高了个人开发效率。 但是他是收费的。
+
+
+
+> 搜索：IDEA热部署
+>
+> [intelliJ Idea自带热部署和Jrebel实现热部署 - CSDN博客](https://blog.csdn.net/wei19880402/article/details/75529231 "intelliJ Idea自带热部署和Jrebel实现热部署 - CSDN博客")
+>
+> [Intellij IDEA 4种配置热部署的方法 - JCook - 博客园](https://www.cnblogs.com/jcook/p/6910238.html "Intellij IDEA 4种配置热部署的方法 - JCook - 博客园")
+>
+> （idea自带的）基于JVM提供的热加载仅支持方法块内代码修改，只有debug模式下，并且是在idea失去焦点时才会出发热加载，相对加载速度缓慢。
 
 
 
@@ -695,7 +716,7 @@ IDE自带了些默认的配置，在打开的对话框中点击左边的 “+”
 
 ### 设置 JavaScript 语言版本
 
-设置 JavaScript 语言版本 ：File -> Setting -> Languages & Frameworks -> JavaScript ，选择语言版本。
+设置 JavaScript 语言版本 ：File -> Setting -> Languages & Frameworks -> JavaScript ，选择语言版本。一般设置为能选择的最新版（比如：ECMAScript 6），否则有些新的语言特性可能不支持。
 
 
 
