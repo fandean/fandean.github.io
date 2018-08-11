@@ -21,16 +21,19 @@ share: true
 > Vbox网卡配置，Vbox与主机通信，见《使用SSH连接VirtualBox虚拟机.md》
 
 
+
 ## 在客户机时中安装Vbox的增强程序
 
 手动安装VBoxAdditon ，即在虚拟机中安装Vbox的增强程序。
 
-前提：  
+**前提**：  
 
-虚拟机需安装了 gcc 和 make 
+- 虚拟机需安装 gcc 和 make 
+
 
 
 ### Fedora 中安装增强插件错误
+
 根据之前的记录： 
 ```
 #install gcc 
@@ -42,6 +45,7 @@ yum install kernel -y
 yum install kernel-devel -y
 #现在安装 vbox 增强插件的依赖已经具备， 现在需要手动进入 挂载的iso文件中执行操作。
 ```
+
 
 
 ### Debian 中安装增强插件错误
@@ -112,6 +116,9 @@ sudo /etc/init.d/vboxdrv setup
 > 处理方法已经写入 `~/.local/bin/`  下的相关sh文件中。
 
 
+
+
+
 ## 不能为虚拟机XXX打开一个新任务
 
 
@@ -126,9 +133,48 @@ apic#0: Config mismatch - uApicMode: saved=3 config=2 [ver=5 pass=final] (VERR_S
 
 
 
-### VirtualBox安装扩展包
+## VirtualBox安装扩展包
 
 [在此](https://www.virtualbox.org/wiki/Downloads)下载对应版本的扩展包（版本一定要对应），扩展包后缀名为 ` .vbox-extpack`，直接双击扩展包进行安装即可。
 
 [VirtualBox扩展包安装教程](http://www.xitongcheng.com/jiaocheng/xtazjc_article_24066.html "VirtualBox扩展包安装教程")
+
+
+
+
+
+## VirtualBox快照失效
+
+在重装系统后，再次安装virtualox，所有路径保持原先路径，然后调用原来的磁盘文件，发现虚拟机是可以使用了，但是原来的快照全部丢失，虽然我的快照文件还在电脑里并且还在原来的路径，但是virtualbox死活不认了 。
+
+VirtualBox快照（Snapshot）
+
+
+
+**最初的操作步骤：**
+
+`新建 -> 填入“虚拟电脑名称和系统类型” -> 然后在虚拟硬盘处 -> 选用"使用已有的虚拟硬盘文件" -> 创建 -> 完成 `
+
+出现的问题： 新建的虚拟机运行于创建第一个快照之前，并且无法看到任何快照。
+
+
+
+**之后又使用如下的方式导入虚拟机：**
+
+1. 控制
+2. 注册
+3. 选择对应虚拟机的 `.vbox` 文件
+
+运行虚拟机后，可以看到已经恢复到最新状态（最后一个快照之后），但是还是不能看到之前创建的虚拟机。
+
+
+
+
+
+ `.vbox` 文件，可以以文本格式打开。
+
+
+[VirtualBox虚拟机的迁移和快照问题__新浪博客](http://blog.sina.com.cn/s/blog_4adf6c7b0101i4x0.html "VirtualBox虚拟机的迁移和快照问题_章郎虫_新浪博客")
+
+
 

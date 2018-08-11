@@ -4,7 +4,7 @@
 
 
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Docker_%28container_engine%29_logo.svg/610px-Docker_%28container_engine%29_logo.svg.png)
+[](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Docker_%28container_engine%29_logo.svg/610px-Docker_%28container_engine%29_logo.svg.png)
 
 ## 学习资料
 
@@ -231,6 +231,35 @@ $ sudo shutdown -r now
 
 
 
+
+
+**推荐的storage driver：**
+
+Docker 官方推荐使用 `overlay2` storage driver，Docker EE和Docker CE都建议使用storage driver。
+
+在 `/etc/docker/daemon.json`文件中 配置Docker使用`overlay2` storage driver，见 [Use the OverlayFS storage driver](https://docs.docker.com/storage/storagedriver/overlayfs-driver/ "Use the OverlayFS storage driver | Docker Documentation")
+
+
+
+> 不推荐使用 `overlay` storage driver。
+>
+> 此外，Docker不建议任何需要您禁用操作系统安全功能的配置，例如，如果您在CentOS上使用overlay或overlay2驱动程序，则需要禁用selinux。
+>
+> ```shell
+> $ docker info
+> 
+> Containers: 0
+> Images: 0
+> Storage Driver: overlay2 # 查看当前
+>  Backing Filesystem: extfs # 没搞懂
+> ```
+
+
+
+
+
+
+
 ### Windows中安装Docker
 
 
@@ -270,7 +299,12 @@ $ sudo shutdown -r now
 > Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All
 > ```
 > Windows中的相关问题可以参考一下Docker的文档： [Logs and troubleshooting | Docker Documentation](/docker-for-windows/troubleshoot/ "Logs and troubleshooting | Docker Documentation")
-> 
+>
+> [Windows 10 上的 Hyper-V 简介 | Microsoft Docs](https://docs.microsoft.com/zh-cn/virtualization/hyper-v-on-windows/about/ "Windows 10 上的 Hyper-V 简介 | Microsoft Docs")
+>
+> [在 Windows 10 上启用 Hyper-V | Microsoft Docs](https://docs.microsoft.com/zh-cn/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v "在 Windows 10 上启用 Hyper-V | Microsoft Docs")
+
+
 
 
 
@@ -651,21 +685,21 @@ docker run -it -rm  java ps
 
 
 ```shell
-docker run -it -rm java java -version 
+docker run -it --rm java java -version 
 
 # 还可在java镜像中运行 ps 命令，这意味着java镜像也是一个Linux容器
-docker run -it -rm  java ps  
+docker run -it --rm  java ps  
 
-docker run -it -rm java uname  
+docker run -it --rm java uname  
 # 查看该容器的 ip
-docker run -it -rm java ip addr
+docker run -it --rm java ip addr
 # 查看该容器的环境变量
-docker run -it -rm java env 
+docker run -it --rm java env 
 ```
 
 注意：`docker run 。。。`里面的命令结束了，container就结束了。
 
-对于临时性的容器我们可以使用 `docker run -rm `运行完成就删除
+对于临时性的容器我们可以使用 `docker run --rm `运行完成就删除
 
 
 
@@ -732,7 +766,9 @@ docker stop <容器>
 
 `-v`选项
 
+挂载目录
 
+可以挂载文件，但是不可以改变文件inode (改变后容器内外就不再是同一文件了) ；也就是说能够更改此文件的内容，但是不能从别处复制一个同名文件过来进行覆盖。
 
 
 
@@ -796,7 +832,60 @@ docker update --restart=no <container>
 
 
 
+#### Docker容器互连
 
+
+
+**方法一：**使用`--link`，创建两个容器的别名，它需要两个参数：
+
+- 一个时要连接的容器名字
+- 另一个是连接后容器的别名
+
+
+
+示例1：
+
+```shell
+$ docker run -d --name db mysql
+$ docker run -d --name web --link db:webdb httpd
+```
+
+通过`--link`参数连接到容器db，并为其设置别名webdb。然后在httpd容器中就可以直接使用**db或webdb**作为连接地址来和mysql通信了 。 不要再使用 localhost  了。
+
+
+
+示例2：
+
+```
+docker run --name some-redis -d redis
+```
+
+其它 app 使用 redis
+
+```shell
+docker run --name some-app --link some-redis:redis -d application-that-uses-redis
+```
+
+redis-cli 连接 redis
+
+```shell
+# 这里 -h -p 选项是传递给 redis-cli 用的，并非给 docker run 使用
+docker run -it --link some-redis:redis --rm redis redis-cli -h redis -p 6379
+```
+
+
+
+
+
+
+
+**方法二：** **建议**将容器加入自定义的Docker网络来连接多个容器，而不是使用 `--link`
+
+**方法三**：如果你有多个容器之间需要互相连接，推荐使用 Docker Compose
+
+
+
+> [Docker学习总结之跨主机进行link - vikings`s blog - 博客园](https://www.cnblogs.com/vikings-blog/p/4223462.html "Docker学习总结之跨主机进行link - vikings`s blog - 博客园")
 
 
 
@@ -1058,6 +1147,10 @@ Usage:  docker cp [OPTIONS] CONTAINER:SRC_PATH DEST_PATH|-
 
 
 
+容器 -> 主机
+
+主机 -> 容器
+
 
 
 用于容器与主机之间的数据拷贝 。选项：
@@ -1131,6 +1224,10 @@ $ docker rm -v
 
 
 
+
+
+
+
 ### docker history
 
 显示镜像制作的过程，相当于Dockfile。
@@ -1185,7 +1282,7 @@ E: Unable to locate package vi
 
 
 
-Dockerfile使用基本的基于DSL语法的指令来构建一个Docker镜像。
+Dockerfile 使用基本的基于DSL语法的指令来构建一个Docker镜像。
 
 每条指令必须为大写字母，且后面要跟随一个参数；指令会按照顺序执行。
 
@@ -1194,7 +1291,7 @@ Dockerfile使用基本的基于DSL语法的指令来构建一个Docker镜像。
 1. Docker从基础镜像运行一个容器
 2. 执行一条指令，对容器做出修改
 3. 执行类似`docker commit`的操作，提交一个新的镜像层
-4. Docker再基于刚提交的镜像运行一个新容器
+4. Docker再基于刚才提交的镜像运行一个新容器
 5. 执行dockerfile中的下一条指令，直到所有指令都执行完毕。
 
 
@@ -1213,17 +1310,286 @@ Dockerfile使用基本的基于DSL语法的指令来构建一个Docker镜像。
 
 
 
+### docker commit命令创建镜像
 
-
-### Dockerfile指令
-
-
-
+> 现在不推荐使用`docker commit`，建议使用Dockerfile
 
 
 
+**`docker commit`语法格式：**
+
+```shell
+docker commit [选项] <容器ID或容器名> [<仓库名>[:<标签>]]
+```
+
+示例： 
+```shell
+docker commit -m="A new custom image" --author="fan" webserver nginx:v2
+```
 
 
+
+
+
+> 《第一本Docker书》
+>
+> 这里 `jamtur01` 是作者在Docker Hub上的仓库。下文有无需指定仓库的示例。
+>
+> ```shell
+> #                镜像id   镜像仓库/镜像名
+> sudo docker commit 4aab3ce jamtur01/apache2
+> ```
+>
+> 提交的同时添加提交信息：
+>
+> ```shell
+> # 使用m选项指定提交信息；使用--author指定作者信息； 同时为该镜像增加了一个webserver标签
+> sudo docker commit -m="A new custom image" --author="James Turnbull" 4aab3ce jamtur01/apache2:webserver
+> ```
+>
+> 可以使用完整标签`jamtur01/apache2:webserver`来指定这个镜像。
+>
+> 
+
+
+
+### docker build命令和Dockerfile文件
+
+> Dockerfile使用基本的基于DSL语法的指令来构建一个Docker镜像；之后使用`docker build`命令基于该Dockerfile中的指令构建一个新的镜像。
+
+
+
+
+
+
+
+#### Dockerfile指令
+
+
+
+
+
+注释：使用`#`进行注释
+
+`FROM`指令：因该是第一条指令，该指令指定一个已经存在的镜像，有后续指令都将基于该镜像进行，这个镜像被称为基础镜像(base iamge)。
+
+`MAINTAINER`指令：指定该镜像的作者以及电子邮件（有助于标识镜像）
+
+`RUN`指令： 在当前镜像中运行指定的命令。每条`RUN`指令都会创建一个新的镜像层。
+
+`EXPOSE`指令：指示容器建议向外公开的(多个)端口。
+
+
+
+> 《docker 实战》中： 之前说过， Dockerfile 中每一个指令都会建立一层， RUN 也不例外。     我感觉不对呀。
+
+
+
+> 《第一本Docker书》
+>
+> 示例：
+>
+> ```shell
+> # 创建目录 用于放置 Dockerfile 文件
+> mkdir static_web
+> cd static_web
+> touch Dockerfile
+> ```
+>
+> 
+>
+> 一个Dockerfile示例
+>
+> ```dockerfile
+> FROM ubuntu:18.04
+> MAINTAINER Fan "fan@gmail.com"
+> RUN apt-get -qq update
+> RUN apt-get install -y nginx
+> RUN echo 'Hi, I am in your container' > /usr/share/nginx/html/index.html
+> EXPOSE 80
+> ```
+>
+> 
+>
+> ```shell
+> # 切换到存放dockerfile文件的目录中
+> cd static_web
+> # 使用 docker build 执行 dockerfile 中的指令
+> sudo docker build -t="jammtur01/static_web" .
+> # 也可以为镜像设置一个标签 v1 
+> sudo docker build -t="jammtur01/static_web:v1" .
+> ```
+>
+> 
+>
+> `-t`选项为新镜像设置了[仓库]和名称。本书中仓库为 jamtur01；在这里镜像名称为 static_web
+>
+> 
+
+
+
+另一个示例：
+
+```shell
+docker build -t nginx:v3 .
+```
+
+
+
+#### 正确的Dockerfile写法
+
+同一目的的相关命令可以通过 `&&`写在同一个`RUN`指令中，这样完成该功能对应只需创建一层镜像。
+
+
+
+在撰写 Dockerfile 的时候， 要经常提醒自己， 这并不是在写 Shell 脚本， 而是在定义每 一层该如何构建    
+
+
+
+#### 构建上下文
+
+用于放置 Dockerfile 文件的目录，就是我们的构建环境；Docker称此环境为上下文或者构建上下文。Docker会在构建镜像时将构建上下文**和**该上下文中的文件和目录**上传到Docker守护进程**。这样Docker守护进程就能**直接访问**你想在镜像中存储的任何代码、文件或者其它数据。
+
+
+
+比如在执行 `docker build`时会看到下面的输出：
+
+```
+Sending build context to Docker deamon
+
+```
+
+
+
+可以通过创建 `.dockerignore`文件来指定需要忽略的文件（作用类似 .gitignore文件），其匹配规则采用Go语言中的filepath。
+
+
+
+
+
+**注意：**在《docker实战》中，作者特别说明了 `.` 是用于指定构建上下文所在位置，如果要明确指定Dockerfile所在位置，可以使用 `-f`来指定。可能的一种情况是docker更新后相关命令发生了变化，而《第一本docker书》比较旧了（上文内容）。
+
+默认情况下，如果不额外指定 Dockerfile 的话，会使用上下文目录下的Dockerfile 。可以使用 `-f`选项指定`docker build`执行的文件及其位置。
+
+
+
+`ENV`指令：在镜像中设置环境变量
+
+
+
+
+
+#### 构建缓存
+
+考虑场景：第一次我们执行了该Dockerfile，之后我们又更改了该Dockerfile，需要再次执行。由于Docker的构建缓存机制，当再次构建时，会从第一条变动的指令处开始，而非从头开始构建；这样可以节省大量时间。
+
+但是像执行 `sudo apt update` 这类命令时，我们并不希望使用之前的APT的包缓存，这时可以为 `docker build` 添加 `--no-cache`选项来略过docker的缓存功能。
+
+
+
+**基于构建缓存的Dockerfile模板：**
+
+这里先不管模板的概念，先来理解。
+
+```dockerfile
+FROM ubuntu:18.04
+MAINTAINER Fan "fan@gmail.com"
+RUN apt-get -qq update
+RUN apt-get install -y nginx
+RUN echo 'Hi, I am in your container' > /usr/share/nginx/html/index.html
+EXPOSE 80
+```
+
+
+
+`ENV`指令：在镜像中设置环境变量。 `REFRESHED_AT`环境变量，来表明该镜像模板最后的更新时间。 只需更新`REFRESHED_AT`的时间值
+
+
+
+#### 容器中应用在前台和后台执行的问题
+
+见`CMD`指令
+
+
+
+Docker不是虚拟机，容器中的应用都应该以前台执行，容器内没有后台服务的概念。而不应像虚拟机一样使用类似`updtart` 、`systemd`这样的启动后台服务的命令
+
+对于容器而言， 其启动程序就是容器应用进程， 容器就是为了主进程而存在的， 主进程退 出， 容器就失去了存在的意义， 从而退出， 其它辅助进程不是它需要关心的东西。    
+
+
+
+推荐使用 exec格式:
+
+```
+exec 格式： CMD ["可执行文件", "参数1", "参数2"...]
+```
+
+
+
+在 shell 格式中，每次主进程都是 `sh` ，主进程一结束，容器也就退出了。
+
+
+
+示例：
+
+```
+CMD ["./sbin/nginx","-g","daemon off;"]
+```
+
+
+
+- /sbin/nginx 这个没什么说的，就是正常启动nginx服务；
+- `-g`： 设置配置文件外的全局指令，也就是启动nginx时设置了`daemon off`参数，默认参数是打开的on，是否以守护进程的方式运行nginx，守护进程是指脱离终端并且在后台运行的进程。这里设置为off，也就是不让它在后台运行。为什么我们启动nginx容器时不让它在后台运行呢，docker 容器默认会把容器内部第一个进程，也就是pid=1的程序作为docker容器是否正在运行的依据，如果docker 容器pid挂了，那么docker容器便会直接退出。
+
+
+
+
+
+#### Dockefile不等同于shell脚本
+
+`WORKDIR`和 `USER`指令：
+
+
+
+错误示例：
+
+```dockerfile
+RUN cd /app
+RUN echo "hello" > world.txt
+```
+
+> 避免方法之一：使用绝对路径
+
+
+
+在 Shell 中， 连续两行是同一个进程执行环境， 因此前 一个命令修改的内存状态， 会直接影响后一个命令； 
+
+而在 Dockerfile 中， 这两行 RUN 命令 的执行环境根本不同， 是两个完全不同的容器。 这就是对 Dockerfile 构建分层存储的概念 不了解所导致的错误。    
+
+之前说过每一个 RUN 都是启动一个容器、 执行命令、 然后提交存储层文件变更。 第一层 RUN cd /app 的执行仅仅是当前进程的工作目录变更， 一个内存上的变化而已， 其结果不会造成任 何文件变更。 而到第二层的时候， 启动的是一个全新的容器， 跟第一层的容器更完全没关 系， 自然不可能继承前一层构建过程中的内存变化。    
+
+因此如果需要改变以后各层的工作目录的位置， 那么应该使用 WORKDIR 指令。    
+
+
+
+
+
+
+
+
+
+
+
+```
+###### 想启动 nginx 服务并持续提供服务 #########
+# shell思维：想在后台启动nginx守护进程
+# shell 格式，（主进程为sh，sh执行完下面的命令后就退出了。结果：服务无法启动）
+CMD service nginx start
+
+# exec 格式 
+# 直接让nginx作为主进程，并要求以前台形式运行
+CMD ["nginx", "-g", "daemon off;"]
+```
 
 
 
@@ -1239,6 +1605,10 @@ Dockerfile使用基本的基于DSL语法的指令来构建一个Docker镜像。
 > - **CoreOS Enterprise Registry Coreos**收购Quay.io之后推出的企业级Containger Registry，提供细化权限和审计跟踪。
 > - **Nexus 3.0 nexus**原来只是一个maven的仓库服务器，升级到3.0之后，也可以使用它对docker的镜像进行管理。
 > - **Harbor vmware**开源的企业级容器registry，基于开源的Docker Registry进行增强。
+
+
+
+
 
 
 
@@ -1346,64 +1716,78 @@ docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v G:\Do
 
 
 
+## Docker 网络
+
+```
+docker help network
+```
+
+
+
+创建一个网络：
+
+```
+docker network create -d bridge my-net
+```
+
+
+
+-d 参数指定 Docker 网络类型， 有 bridge overlay 。 其中 overlay 网络类型用于 Swarm mode， 在本小节中你可以忽略它。    
+
+
+
+运行一个容器并连接到新建的 my-net 网络 
+
+```
+$ docker run -it --rm --name busybox1 --network my-net busybox sh
+```
+
+ 打开新的终端， 再运行一个容器并加入到 my-net 网络 
+
+```
+$ docker run -it --rm --name busybox2 --network my-net busybox sh   
+```
+
+
+
+ 下面通过 ping 来证明 busybox1 容器和 busybox2 容器建立了互联关系。即可以通过容器的名称来进行通信。
+
+
+
+​    
+
+
+
 ## Docker Compose
 
 > compose：组成, 构成  
+
+Define and run multi-container applications with Docker.
 
 
 
 安装：直接在此[Releases · docker/compose](https://github.com/docker/compose/releases "Releases · docker/compose")下载安装包安装
 
+然而， 在日常工作中， 经常会碰到需要多个容器相互配合来完成某 项任务的情况。 例如要实现一个 Web 项目， 除了 Web 服务容器本身， 往往还需要再加上后 端的数据库服务容器， 甚至还包括负载均衡容器等。
+
+ Compose 恰好满足了这样的需求。 它允许用户通过一个单独的 docker-compose.yml 模板文件 （ YAML 格式） 来定义一组相关联的应用容器为一个项目（ project） 。    
+
+
+
+Compose 中有两个重要的概念： 
+
+- 服务 ( service )： 一个应用的容器， 实际上可以包括若干运行**相同镜像**的容器实例。 
+- 项目 ( project )： 由一组关联的应用容器组成的一个完整业务单元， 在 dockercompose.yml 文件中定义。    
+
+可见， 一个项目可以由多个服务（ 容器） 关联而成， Compose 面向项目进行管理。    
+
+
+
+注意每个服务都必须通过 image 指令指定镜像 **或** build 指令（ 需要 Dockerfile） 等来自动 构建生成镜像。    
+
 
 
 >  运维大神 [docker：编排与部署小神器Compose-DevOps(甘兵)-51CTO博客](http://blog.51cto.com/ganbing/2083806 "docker：编排与部署小神器Compose-DevOps(甘兵)-51CTO博客") 
-
-
-
-
-
-
-
-
-
-
-
-## 安装 spring-boot
-
-
-
-[springboot - docker logs为何没有日志输出？ - SegmentFault 思否](https://segmentfault.com/q/1010000010924740 "springboot - docker logs为何没有日志输出？ - SegmentFault 思否")
-
-
-
-
-
-## 安装 Tomcat
-
-在拉取 tomcat 镜像的时候，可能搞不明白为什么会有如此之多的tag？这里我们先了解一下，该镜像相关的Variants（变体）的含义:
-
-
-
-- `tomcat:<version>`：如果您不确定您的需求是什么，您可能想要使用这个。它被设计为既可以用作丢弃容器（安装源代码并启动容器来启动应用程序），也可以用作构建其他图像的基础。
-- `tomcat:slim`：此映像不包含默认tag中包含的公共包，仅包含运行tomcat所需的最小包。除非您在仅部署tomcat映像并且存在空间限制的环境中工作，否则我们强烈建议您使用此库的默认镜像(即上一个镜像)。 (slim：瘦)
-- `tomcat:alpine` 此镜像基于流行的Alpine Linux项目 。（不了解什么是 Alpine Linux Project，不下这个版本）
-- `tomcat:<version>-jre*`：这个又是什么意思？查看Dockerfile文件，似乎所有文件都是`FROM openjdk:*-jre` 开头，那么所有镜像都是以openjdk作为基础镜像的？
-
-
-
-还是没搞懂，这里选择 `8.5.32` 
-
-```
-docker pull tomcat:8.5.32
-```
-
-运行容器
-
-```shell
-# 记得修改 tag
-$ docker run -it --rm -p 8888:8080 tomcat:tag
-# You can then go to http://localhost:8888 or http://host-ip:8888 in a browser
-```
 
 
 

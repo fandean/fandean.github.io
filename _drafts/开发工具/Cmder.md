@@ -286,6 +286,12 @@ clear
 
 
 
+## 补充
+
+两个版本，分别是 mini 与 full 版；唯一的差别在于有没有内建 msysgit 工具，这是 Git for Windows 的标准配备；全安装版 Cmder自带了 msysgit,除了 git 本身这个命令之外, 里面可以使用大量的 linux 命令；比如 grep, curl(没有 wget)； 像 vim, grep, tar, unzip, ssh, ls, bash, perl 等 
+
+
+
 
 
 ### cmder无法切换路径?

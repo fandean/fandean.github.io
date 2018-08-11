@@ -21,6 +21,10 @@ JetBrains 授权服务器(License Server URL):
 
 **在线激活有一个过期时间**，这个时间一过就必须再次联网授权服务器请求激活。
 
+[IntelliJ IDEA License Server本地搭建教程 - ilanyu's Blog](http://blog.lanyus.com/archives/174.html "IntelliJ IDEA License Server本地搭建教程 - ilanyu's Blog")
+
+
+
 
 
 
@@ -206,6 +210,7 @@ Line Spacing：1.1
 * CodeGlance：minimap
 * gfm：GitHub markdown插件，效果不错，但是居然有250M。
 * Markdown Navigator：不错的md插件，免费版支持基本功能，付费版支持更多高级功能。（如果vs code中的那个md插件有idea版就好了。对于md文件建议不要使用黑色主题，单独为其配色）
+* Dash：结合zeal，方便查看各种离线文档。
 
 
 
@@ -424,6 +429,109 @@ IDE有默认配置来帮你解决问题，打开默认配置的方法：
 
 
 
+
+
+
+
+### 收藏
+
+将一个或多个项目添加到收藏夹。
+
+
+
+
+
+### 标签页操作
+
+- 固定标签页：右键  pin tab
+- 分离标签页：拖动标签页到主窗口外部
+
+
+
+切换标签页：
+
+- 按 Alt+Right 或 Alt+Left。这样做，鼠标指针会移动到位于“活动编辑器”选项卡右侧或左侧的“编辑器”选项卡。
+- 按 `Ctrl+Tab` 使用 切换器。
+
+
+
+
+
+
+
+### 代码折叠
+
+`Ctrl Shift  - `
+
+`Ctrl Shift  + `
+
+
+
+折叠注释：支持两种注释
+
+- NetBeans风格
+
+```
+//<editor-fold desc="Description">...//</editor-fold>
+```
+
+- Visual Studio风格
+
+```
+//region Description...//endregion
+```
+
+创建注释的方式：
+
+- 手动输入
+- 通过 `Code | Surround With  `生成
+
+
+
+### scratches文件（临时文件）
+
+ IntelliJ IDEA 提供了临时编辑器。您可以创建一个文本或一段代码进行搜索或探索。IntelliJ IDEA 提供了两种类型的临时文件： 
+
+- Scratch 文件
+
+  scratch 文件功能齐全，如可运行，可调试等。它们需要指定一种语言并具有扩展名。scratch 文件可以通过 ：
+
+  - Ctrl+Shift+Alt+Insert 创
+  - 在主菜单上选择（`File | New | Scratch File`） 
+  - 按 Ctrl+Shift+A，开始输入 scratch file..，然后选择相应的动作。
+
+- Scratch 缓冲区
+
+  scratch 缓冲区仅用于纯编辑，因此它们不需要指定语言，也不需要扩展名。scratch 缓冲区默认属于`.txt`类型。此操作没有专门的快捷方式，但您可以按照配置键盘快捷键一节进行配置。scratch 文件在创建5个文件后重新使用。这样做，重用后，内容和语言将重置。
+
+  - 按 Ctrl+Shift+A 或  search everywhere。
+  - 开始输入命令名称: New Scratch Buffer：（或键入new s b）
+
+
+
+查看可用的 scratch 文件和缓冲区 （已经存在的）：
+
+- （project侧边栏）在项目工具窗口中，选择 Scratches 窗口 
+
+
+
+
+
+### 终端
+
+Win10 中 Idea中的Terminal不能运行mvn命令，提示mvn不存在，这里mvn已经明确添加到了path环境变量中；当以管理员权限打开 Idea 时才可以运行 mvn 。
+
+解决方案：  
+
+1. 可以手动修改为其他的命令，我设置了git下的sh.exe替代cmd.exe。  
+2. 把cmd设置为**旧版本特性**，即关闭新特性即可正常使用了。 
+
+[Win10 下intellij idea 的Terminal不能用的问题 - CSDN博客](https://blog.csdn.net/act262/article/details/48263489 "Win10 下intellij idea 的Terminal不能用的问题 - CSDN博客")
+
+
+
+
+
 ## IDEA
 
 > [IntelliJ IDEA官方文档(中文)_w3cschool](https://www.w3cschool.cn/intellij_idea_doc/ "IntelliJ IDEA官方文档_w3cschool")
@@ -625,6 +733,7 @@ Aftifacts: 这个Aftifacts描述了当前项目发布的信息。
 | Ctrl + 空格          | 代码补全提示                                                 |
 | Ctrl + Shift + 空格  | 触发 SmartType code completion。The SmartType code completion greatly helps to find methods and variables that are suitable in the current context, by analyzing the expected type of the whole expression. So doing, IntelliJ IDEA pinpoints the top five most suitable results and highlights them on the blue background. |
 | Ctrl + D             | 复制 当前行／当前选中的代码                                  |
+| Alt + J              | 向下搜索当前选中的字符串，实现多选                           |
 | Ctrl + W             | 选中单词                                                     |
 | Ctrl+Shift+Backspace | (Navigate \| Last Edit Location) brings you back to the last place where you made changes in the code.跳转到上次编辑代码的地方 |
 | Ctrl + P             | If the cursor is between the parentheses of a method call, pressing Ctrl+P brings up a list of valid parameters.显式方法参数 |
@@ -640,6 +749,14 @@ Aftifacts: 这个Aftifacts描述了当前项目发布的信息。
 | Ctrl+H               | (Navigate \| Type Hierarchy)                                 |
 | Ctrl+Shift+V         | choose and insert recent clipboard contents                  |
 | F5                   | Use `Refactor | Copy` to create a class which is a copy of the selected class. This can be useful。 复制class。 |
+| Ctrl+Shift+I         | `Quick Definition Viewer` can also be used for items in lookup lists that appear on code completion and class/file/symbol navigaton commands. |
+|                      |                                                              |
+|                      |                                                              |
+|                      |                                                              |
+|                      |                                                              |
+|                      |                                                              |
+|                      |                                                              |
+|                      |                                                              |
 |                      |                                                              |
 
  
@@ -652,9 +769,58 @@ Aftifacts: 这个Aftifacts描述了当前项目发布的信息。
 
 
 
+[在IntelliJ IDEA编辑器中选择文本_w3cschool](https://www.w3cschool.cn/intellij_idea_doc/intellij_idea_doc-lo4i2d91.html "在IntelliJ IDEA编辑器中选择文本_w3cschool")
 
 
 
+| 方法                                             | 描述                                             |
+| ------------------------------------------------ | ------------------------------------------------ |
+| Alt + J                                          | 向下匹配当前选中的字符串，实现多选               |
+| Shift + alt + `鼠标点击` 或 `双击` 或 `拖动鼠标` | 插入多个光标 / 选中多个字符串 / 选择多段字符串。 |
+| Alt + 鼠标拖动 / 按住鼠标中键/shift + alt + 中键 | 选择一列文本                                     |
+|                                                  |                                                  |
+|                                                  |                                                  |
+|                                                  |                                                  |
+
+
+
+
+
+
+
+
+
+
+
+常用快捷键：
+
+| 行为                                     | 快捷方式                       |
+| ---------------------------------------- | ------------------------------ |
+| 按名称查找行为                           | **Ctrl+Shift+A**               |
+| 显示可用意图行为的列表                   | Alt+Enter                      |
+| 在视图 (项目、结构等) 之间切换           | Alt+F1                         |
+| 在编辑器中打开的工具窗口和文件之间切换   | Ctrl+Tab                       |
+| 显示导航栏                               | Alt+Home                       |
+| 插入实时模板                             | Ctrl+J                         |
+| 用实时模板环绕                           | Ctrl+Alt+J                     |
+| 从项目或其他树视图编辑项目               | F4                             |
+| 使用行或块注释来注释或取消注释行或代码段 | Ctrl+Slash Ctrl+Shift+Slash    |
+| 按名称查找类或文件                       | Ctrl+N Ctrl+Shift+N            |
+| 复制当前行或选择.                        | Ctrl+D                         |
+| 增量表达式选择.                          | Ctrl+W和Ctrl+Shift+W           |
+| 在当前文件查找/替换文本字符串.           | Ctrl+F Ctrl+R                  |
+| 在项目或指定的目录中查找/替换文本        | Ctrl+Shift+F Ctrl+Shift+R      |
+| 四处搜索                                 | 双按 shift                     |
+| 快速查看所选符号的用法                   | Ctrl+Shift+F7                  |
+| 在编辑器中展开或折叠代码片段             | Ctrl+NumPad Plus Ctrl+NumPad - |
+| 调用代码完成                             | Ctrl+Space                     |
+| 完成 Smart 声明                          | N/A                            |
+| 完成 Smart                               | Ctrl+Shift+Space               |
+| 显示可用的重构（重构该列表）             | Ctrl+Shift+Alt+T               |
+
+
+
+[设置IntelliJ IDEA背景图像_w3cschool](https://www.w3cschool.cn/intellij_idea_doc/intellij_idea_doc-i4at2cxi.html "设置IntelliJ IDEA背景图像_w3cschool")
 
 
 
@@ -718,7 +884,7 @@ IDE自带了些默认的配置，在打开的对话框中点击左边的 “+”
 
 设置 JavaScript 语言版本 ：File -> Setting -> Languages & Frameworks -> JavaScript ，选择语言版本。一般设置为能选择的最新版（比如：ECMAScript 6），否则有些新的语言特性可能不支持。
 
-
+> 在默认设置中更改
 
 **在本地运行js文件**，右键点击 `run **.js`。事先需要安装好node.js并在webstorm中进行配置（File -> Setting -> Languages & Frameworks -> node.js）
 

@@ -6,8 +6,15 @@ Ubuntu文件系统和目录结构
 
 
 
+![](assets/Linux目录结构.png)
+
+注意： `/usr`目录中的 usr 是 unix shared resources 的简称，用于存放共享的系统资源。
+
+
+
 主要目录结构：
 
+```
 /						 根目录
 |
 |——boot/		 启动文件
@@ -50,28 +57,32 @@ Ubuntu文件系统和目录结构
 |——lost+found/ 磁盘修复文件
 |
 |--opt/			详见markdown文件
+```
 
-######################################################################
-启动流程：
-		Linux系统主要通过以下步骤启动：
 
-		1. 读取MBR的信息，启动Boot Manager
-				Windows使用NTLDR作为Boot Manager；
-				Linux使用GRUB作为Boot Manager
-		2. 加载系统内核，启动init进程
-		3. init进程读取 /etc/inittab 文件，进入预设运行级别，按顺序运行级别对应
-				文件夹下的脚本。脚本通常以"start"参数启动，并指向系统中的程序。
+
+**启动流程：**
+
+Linux系统主要通过以下步骤启动：
+
+1. 读取MBR的信息，启动Boot Manager
+Windows使用NTLDR作为Boot Manager；
+Linux使用GRUB作为Boot Manager
+2. 加载系统内核，启动init进程
+3. init进程读取 /etc/inittab 文件，进入预设运行级别，按顺序运行级别对应
+文件夹下的脚本。脚本通常以"start"参数启动，并指向系统中的程序。
 
 未完
 
-
+见 Grub 2 相关文章
 
 [技术|Linux 开机引导和启动过程详解](https://linux.cn/article-8807-1.html "技术|Linux 开机引导和启动过程详解")
 
 
 
-全局配置文件：
------------------
+## 全局配置文件
+
+```
 系统初始化：
 	/etc/inittab									运行级别、控制台数量
 	/etc/timezone									时区
@@ -116,6 +127,6 @@ shell:
 	.vim/vimrc
 	少数例外，常为系统程序：
 	/etc/bash.bashrc			/home/user/.bashrc
-
+```
 
 

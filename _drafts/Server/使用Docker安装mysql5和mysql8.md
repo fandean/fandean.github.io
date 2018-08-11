@@ -152,7 +152,7 @@ docker container prune
 
   意为，将本机G盘下的 ... date目录挂载到容器的`/var/lib/mysql`目录上
 
-- 默认配置文件目录位于 `/etc/mysql/my.cnf`对于该配置文件我们可以直接覆盖，如果在Dockerfile中还看到`!includedir /etc/mysql/conf.d/`,那么说明mysql会先加载 my.cnf 中的配置，再加载  conf.d 文件夹中配置文件的的配置，利用这一点我们可以保留 my.cnf 中的配置，而将自定义的配置文件放在 conf.d 目录下。
+- 默认配置文件目录位于 `/etc/mysql/my.cnf`对于该配置文件我们可以直接覆盖，如果在Dockerfile中还看到`!includedir /etc/mysql/conf.d/`，那么说明mysql会先加载 my.cnf 中的配置，再加载  conf.d 文件夹中配置文件的的配置，利用这一点我们可以保留 my.cnf 中的配置，而将自定义的配置文件放在 conf.d 目录下。
 
   所以我们可以在`docker run` 命令中添加下面的选项来覆盖该目录：
 
@@ -164,11 +164,27 @@ docker container prune
 
 
 
+> 我们可以直接查看容器中的配置文件内容（使用之前介绍的exec），内容如下：
+>
+> ```shell
+> $ docker exec -it javaee-mysql5.5 bash
+> root@51a502030907:/# ls /etc/mysql/
+> conf.d  my.cnf
+> root@51a502030907:/# cat /etc/mysql/my.cnf
+> [mysqld]
+> skip-host-cache
+> skip-name-resolve
+> datadir = /var/lib/mysql
+> !includedir /etc/mysql/conf.d/  # 这表明会加载conf.d文件夹中的配置文件
+> ```
+>
+> 
+>
 > `config-file.cnf`文件内容：(为了设置服务端编码)
 >
-> ```
+> ```ini
 > [mysqld]
-> 	character_set_server=utf8
+> 	character-set-server=utf8
 > ```
 
 
@@ -194,8 +210,6 @@ $ docker run --name mysql5.5 -v G:/Docker/mysql/mysql5.5.60/custom:/etc/mysql/co
 
 
 > 注意运行该命令前，主机上的相关目录一定要先创建好。
-
-
 
 
 
@@ -229,11 +243,11 @@ docker run --name mysql-latest -v G:/Docker/mysql/mysql-latest/custom:/etc/mysql
 
 ```ini
 [mysqld]
-	character_set_server=utf8
-	lower_case_table_names=1
+	character-set-server=utf8
+	lower-case-table-names=1
 ```
 
-其中就是： `lower_case_table_names=1` **导致了错误**，容器无法运行。
+其中就是： `lower-case-table-names=1` **导致了错误**，容器无法运行。
 
 
 
@@ -377,11 +391,80 @@ mbind: Operation not permitted
 
 
 
+
+
+
+
 ## 使用中遇到的错误
 
 
 
-错误一：
+### 错误1，配置文件被忽略
+
+配置文件中明明配置了使用 `utf8` 字符集，可就是没用；查看容器的 log ，发现下面的警告：
+
+```
+Warning: World-writable config file '/etc/mysql/my.cnf' is ignored,
+```
+
+或者：
+
+```
+Warning: World-writable config file '/etc/mysql/conf.d/config-file.cnf' is ignored,
+```
+
+
+
+大概意思是权限全局可写，任何一个用户都可以写。mysql担心这种文件被其他用户恶意修改，所以忽略掉这个配置文件。
+
+进入容器查看该文件的权限：
+
+```shell
+$ docker exec -it javaee-mysql5.5 bash
+root@426722d87a35:/# ls -l /etc/mysql/conf.d/
+total 1
+-rwxrwxrwx 1 root root 109 Aug  7 10:38 config-file.cnf
+```
+
+解决思路：
+
+```shell
+# 更改文件权限
+chmod 644 /etc/mysql/conf.d/config-file.cnf
+# 重启 mysql
+```
+
+
+
+那么我该如何在Windows中更改此文件的权限呢？到底怎么解决？只能通过自建 Dockerfile 来解决吗？
+
+
+
+参考上文链接，脱离配置文件，直接在命令中配置：
+
+Many configuration options can be passed as flags to `mysqld`. This will give you the flexibility to customize the container without needing a `cnf` file.  
+
+对于mysql 5 ，设置字符集、排序方式和忽略大小写：
+
+```shell
+docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag --character-set-server=utf8 --collation-server=utf8_unicode_ci --lower-case-table-names=1
+```
+
+
+
+对于mysql 8 ，设置字符集和排序方式：
+
+```shell
+docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+```
+
+
+
+
+
+
+
+### 错误2：无法挂载主机中的目录
 
 ```
 C:\Users\Fan Dean
@@ -391,4 +474,8 @@ Error: failed to start containers: fd88
 ```
 
 重启Docker后可以运行mysql容器。（是重启Docker而非容器）。但是之前挂载的数据库文件可能没有读取，之前创建的数据库不见了。
+
+
+
+参考另一篇文章。
 

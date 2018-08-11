@@ -215,20 +215,120 @@ switch 语句会使用全等运算符(===)进行比较，而非相等运算符�
 
 
 
+#### in运算符
+
+`in`是一种用于检测属性是否存在的运算符，结果是布尔值。
+
+
+
+#### instanceof 运算符
+
+`instanceof` 用于类型判断，结果为布尔值。
+
+
+
+#### typeof 运算符
+
+`typeof ` 用于数据类型判断的单目运算符，支持任意类型的操作数。结果为标识操作数的数据类型的字符串值。
+
+
+
+#### void 运算符
+
+`void` 运算符是 `undefined` 类型的单目运算符。无论向其传递什么操作数，其结果都是 `undefined`值。
+
+```js
+console.log(void 0);
+> undefined
+console.log(void "x");
+> undefined
+var x = 0;
+void x++; //由于会先对操作数进行求值，所以 x 将自增
+console.log(x)
+> 1
+```
+
+通常会将它的操作数放在括号中：
+
+```js
+void(x);
+```
+
+
+
+使用示例：
+
+```html
+<a href="javascript:void(document.form.submit())">发送HTML表单数据但不跳转页面</a>
+```
+
+`href`属性中的表达式如果有值的话，则会被标签 a 认为是 URL 并跳转到该页面，为了阻止这一行为，可以将其值设为 `undefined`值，最常用的方法就是使用 `void` 来实现。
+
+
+
+> [详解A标签中href=&quot;&quot;的几种用法_javascript技巧_脚本之家](https://www.jb51.net/article/121630.htm?utm_medium=referral "详解A标签中href=&quot;&quot;的几种用法_javascript技巧_脚本之家")
+
+
+
 
 
 #### for in语句
 
-for in语句是用于枚举**对象属性**名的循环语句。
+`for in`语句是用于枚举**对象属性**名的循环语句。
 
-in 的右侧是 Object 类型的表达式；而任何类型的值都可以转换为Object类型。
+`in` 的**右侧是 Object 类型**的表达式；而任何类型的值都可以转换为Object类型。
 
 ```javascript
 var obj = {x:1, y:3, z:2};
 for (var k in obj){ //这里并不保证枚举的顺序
-    print(k);
+    console.log(k);
 }
 ```
+
+数组不推荐使用 `for in` : 数组的每个元素的索引被视为对象的属性。
+
+```javascript
+var a = ['A', 'B', 'C'];
+for (var i in a) {
+    console.log(i); // '0', '1', '2'
+    console.log(a[i]); // 'A', 'B', 'C'
+}
+```
+
+
+
+**使用 `for in`的注意事项：**
+
+- 枚举属性的顺序（无序）：由于属性之间本身不存在顺序，所以它并不保证枚举的顺序。但是数组是有顺序的，多数情况其输出也是有顺序的，但`for in`并不保证顺序，所以不要过分依赖。
+
+- 无法被枚举的属性：比如数组对象的 length 属性。
+
+- 由原型继承而来的属性：`for in` 还可以枚举由原型继承而来的属性。可以使用 `hasOwnProperty()` 过滤掉对象继承的属性。
+
+  ```js
+  for (var key in o) {
+      if (o.hasOwnProperty(key)) {
+          console.log(key); // 'name', 'age', 'city'
+      }
+  }
+  ```
+
+
+
+`for each in`：它与 `for in`的注意事项相同，不同之处就是它并不是把属性名赋值给临时变量，而是将属性值赋值给它。
+
+```js
+var obj = {x:1, y:3, z:2};
+for each (var v in obj){
+    console.log(v); // 1, 3, 2 
+}
+```
+
+
+
+
+
+> 另还新增了 `for of`循环 
 
 
 
@@ -291,6 +391,14 @@ function sayHi(name, message) {
 ```
 
 
+
+
+
+####  () 函数调用运算符 
+
+`()` 用来实现对函数的调用，其**左操作数**是一个函数；而**右操作数**是要传递给函数的参数。
+
+需要注意的一点是，当某个函数作为另一个函数的参数时，不要在该函数名后面添加 `()`。
 
 
 
@@ -1439,15 +1547,18 @@ btn.addEventListener("click", function(){
 
 
 
-## 访问和变更样式
+### 访问和变更样式
 
 JavaScript实现了动态的样式变更，其目的是为用户提供视觉反馈。
 
 **样式变更的方法：**
 
 * 通过 className 属性更改class名
+
 * 通过 classList 属性更改 class 名
+
 * 更改style 属性
+
 * 直接切换样式表
 
 
@@ -1456,7 +1567,7 @@ JavaScript实现了动态的样式变更，其目的是为用户提供视觉反�
 
 
 
-### 通过 className 属性更改class名
+#### 通过 className 属性更改class名
 
 即事先通过 CSS 定义好对应于**变更前**与**更改后**的 class 名的样式，然后通过 className 属性来设置 class。
 
@@ -1464,11 +1575,36 @@ JavaScript实现了动态的样式变更，其目的是为用户提供视觉反�
 
 注意：在变更 class 名后相关元素的样式也会改变。
 
+  ```js
+  var foo = document.getElementById('foo');
+  foo.onclick = function toggleStyle(){
+      this.className = (this.className === 'foo-before') ? 'foo-after' : 'foo-before';
+  }
+  ```
+
+  
 
 
-### 通过 classList 属性更改 class 名
 
-与 classList 类似。
+#### 通过 classList 属性更改 class 名
+
+html5 新增的属性。比如某个标签可能会同时属于多个 class 值 ，`class="foo-before foo-after"`
+
+
+
+  ```js
+  var foo = document.getElementById('foo');
+  foo.onclick = function toggleStyle(){
+      this.classList.toggle('foo-before'); 
+      this.classList.toggle('foo-after');
+  }
+  ```
+
+  
+
+
+
+可以使用 classList 属性的方法：
 
 | 方法名             | 说明                                       |
 | --------------- | ---------------------------------------- |
@@ -1481,7 +1617,7 @@ JavaScript实现了动态的样式变更，其目的是为用户提供视觉反�
 
 
 
-### 更改style 属性
+#### 更改style 属性
 
 通过这种方法，样式的更改范围明确的限定在这个元素。
 
@@ -1539,14 +1675,55 @@ style对象的一些属性和方法：
 
 
 
-### 直接切换样式表
+#### 直接切换样式表
 
-如果将 link 元素与 style 元素的 disabled 属性设置为 true，相应的样式表就将被禁用。
+如果将 link 元素与 style 元素的 disabled 属性设置为 true，相应的样式表就将被 **禁用**。
 
 对于已经事先准备了一些样式主题，需要让用户选择自己喜欢的主题以显示页面内容的情况，就可以通过这种方式实现。
 
 
-## AJAX
+
+```js
+function change(id,enable) {
+    //在勾选了复选框之后启用样式
+    document.getElementById(id).disabled = !enable;
+}
+```
+
+
+
+### 位置的设定
+
+更改DOM元素的位置，这里是通过设置该元素的 `position` 属性来完成。略
+
+
+
+
+
+### 位置
+
+如果要实现在鼠标点击位置附近显示一个框这样的效果，则必须要知道点击位置。在 `MouseEvent`被触发时，相应的 Event 对象提供了多个属性来获取这一位置。这是的问题在于，点击的位置是以什么为基准来表示的？
+
+略
+
+
+
+
+
+### 动画
+
+使样式可以以一定的速率逐渐变化，可以让js定期执行相应任务来实现，那么可以使用 `setInterval` 函数。
+
+
+
+通过 CSS 实现的动画性能比通过 js 实现的动画性能更好。略
+
+
+
+
+
+
+### AJAX
 
  Ajax，是对 Asynchronous JavaScript + XML 的简写。这一技术能够向服务器请求额外的数据而无须卸载页面，会带来更好的用户体验。
 
@@ -1554,7 +1731,99 @@ Ajax 技术的核心是 XMLHttpRequest 对象(简称 **XHR**)。XHR 为向服务
 
 
 
-## 表单
+> JS 中直接使用 Ajax 推荐《JavaScript编程全解》
+>
+> jQuery操作 ajax 更方便
+
+
+
+
+
+
+
+### 表单
+
+
+
+#### 表单元素
+
+
+
+
+
+#### 表单控件
+
+
+
+
+
+#### 内容验证
+
+
+
+
+
+#### 可用于验证的事件
+
+
+
+
+
+#### 使用表单而不产生页面跳转的方法
+
+
+
+
+
+### JSON
+
+《JavaScript高级程序设计》
+
+
+
+ECMAScript 5 对解析 JSON 的行 为进行规范，定义了全局对象 JSON    。
+
+JSON 不支持变量、函数或对象实例，它就是一种表示结构化数据的格式    。
+
+
+
+**对象：**
+
+一个 **JavaScript 中的对象**字面量 ：
+
+```js
+// 不同点一： 有声明变量
+var person = {
+	name: "Nicholas", // 这里属性名也是可以加引号的
+	age: 29
+}; //不同点二： 末尾有分号
+```
+
+但 **JSON中的对象**必须要求给属性加**双**引号：
+
+```json
+{
+	"name": "Nicholas",
+	"age": 29
+}
+```
+
+
+
+**数组：**
+
+JSON 数组采用的就是 JavaScript 中的数组字面量形式。    
+
+
+
+
+
+解析与序列化：
+
+JSON对象的两个方法：
+
+- `stringfy()` 用于把JS对象序列化为JSON字符串
+- `parse()` 把JSON字符串解析为原生 JS 
 
 
 
@@ -1575,7 +1844,25 @@ Ajax 技术的核心是 XMLHttpRequest 对象(简称 **XHR**)。XHR 为向服务
 
 
 
+### 表单脚本
 
+
+
+### 错误处理与调试
+
+
+
+
+
+
+
+
+
+
+
+`evel()` 函数 
+
+  
 
 ## 学习资料
 
@@ -1585,7 +1872,7 @@ Ajax 技术的核心是 XMLHttpRequest 对象(简称 **XHR**)。XHR 为向服务
 
 阮大侠当前(2017)正在创造的一部教程：[JavaScript 标准参考教程（alpha）](http://javascript.ruanyifeng.com/)
 
-你不知道的Javasc [You-Dont-Know-JS at 1ed-zh-CN](https://github.com/getify/You-Dont-Know-JS/tree/1ed-zh-CN "getify/You-Dont-Know-JS at 1ed-zh-CN")
+你不知道的JavaScritp [You-Dont-Know-JS at 1ed-zh-CN](https://github.com/getify/You-Dont-Know-JS/tree/1ed-zh-CN "getify/You-Dont-Know-JS at 1ed-zh-CN")
 
 《JavaScript编程全解》介绍了一些实用方法。  
 

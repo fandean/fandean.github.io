@@ -1,5 +1,5 @@
 
-## Mac OS安装
+## Mac OS
 
 这里是在 Vbox中安装 macOS Sierra 版本 10.12
 
@@ -302,6 +302,10 @@ sudo 命令: 与Ubuntu中的一样
 
 
 
+## 软件管理
+
+
+
 ### Homebrew 与 Homebrew-cask
 
 用 `brew` （Homebrew）或者 `port` （MacPorts）进行包管理。这些可以用来在 OS X 系统上安装以上的大多数命令。
@@ -413,6 +417,26 @@ brew cask install atom
 >
 > [brew和brew cask有什么区别？ - 知乎](https://www.zhihu.com/question/22624898 "brew和brew cask有什么区别？ - 知乎")
 
+
+
+
+
+### Mac开源软件列表
+
+
+
+open-source-mac-os-apps
+
+https://github.com/serhii-londar/open-source-mac-os-apps Star 12654
+
+![img](https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1568666117,2122488795&fm=173&app=25&f=JPEG?w=640&h=206&s=790C3472C7F5503116552DCF0100C0B2)
+
+macOS开源应用程序列表，包含许多本机和跨平台应用程序，旨在找到免费的macOS开源应用程序，涵盖音频、浏览器、数据库、JSON解析等模块
+
+
+
+
+
 ### 安装和使用Xcode
 
 首先你需要注册一个Apple id。如果你的id可用，就可以直接在 App Store中搜索并安装xcode。
@@ -426,4 +450,10 @@ brew cask install atom
 
 
 项目文件 `xcodeproj` 或 `.playground` 文件
+
+
+
+
+
+
 

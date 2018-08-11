@@ -32,6 +32,20 @@ Maven是声明式的，项目构建过程和各个阶段所需的工作都由插
 
 
 
+
+
+**Maven的几个核心概念：**
+
+- POM (Project Object Model)
+- Maven 插件
+- Maven 生命周期
+- Maven 依赖管理
+- Maven 库
+
+
+
+
+
 ### Maven安装
 
 
@@ -102,10 +116,12 @@ Windows安装Maven：
 
 
 ### 设置HTTP代理
-先检测代理服务器地址(218...)和相关端口(3128)是否畅通： telnet 218... 3128 。如果连接正确，输入`ctrl + ]` 然后 q ，回车退出。
+先检测代理服务器地址(218...)和相关端口(3128)是否畅通： `telnet 218... 3128` 。如果连接正确，输入`ctrl + ]` 然后 q ，回车退出。
 
 复制`Maven home: /usr/share/maven` `/conf/settings.xml`文件到`~/.m2/settings.xml`
 编辑`<proxies>`下的`<proxy>`标签即可；默认第一个被激活的proxy会生效。其中active的值为true表示激活该代理，用户和密码等可以注释掉；其中nonProxyHost元素用来指定哪些主机名不需要代理，使用 `|`分隔多个主机名并支持通配符。
+
+
 
 
 
@@ -162,7 +178,7 @@ Maven镜像(更改`vim ~/.m2/settings.xml`文件)：
 ### Maven项目结构
 
 
-Maven 使用惯例优于配置的原则 。它要求在没有定制之前，所有的项目都有如下的结构：
+_**Maven 使用惯例优于配置的原则**_ 。它要求在没有定制之前，所有的项目都有如下的结构：
 
 |目录 | 目的|
 |------|-------|
@@ -289,17 +305,26 @@ null
 
 
 ### Maven安装最佳实践
-设置MAVEN_OPTS环境变量：
-运行mvn命令实际上是执行java命令，那么运行Java命令可用的参数也可应用在mvn命令上，可以利用MAVEN_OPTS来做到这一点。
-通常设置MAVEN_OPTS的值为 `-Xms128m -xmx512m`因为Java默认的最大可用内存往往不能满足Maven运行的需要，在项目较大时如果没有此配置，很容易得到java.lang.OutOfMemeoryError。
+**设置MAVEN_OPTS环境变量：**
 
-配置用户范围settings.xml：   
-全局范围：`Maven home: /usr/share/maven` `/conf/settings.xml`文件
-用户范围：`~/.m2/settings.xml`
+运行mvn命令实际上是执行java命令，那么运行Java命令可用的参数也可应用在mvn命令上，可以利用MAVEN_OPTS来做到这一点。通常设置MAVEN_OPTS的值为 `-Xms128m -xmx512m`因为Java默认的最大可用内存往往不能满足Maven运行的需要，在项目较大时如果没有此配置，很容易得到`java.lang.OutOfMemeoryError`。
 
-不要使用IDE内嵌的Maven：
+
+
+**配置用户范围settings.xml：**   
+
+- 全局范围：`Maven home: /usr/share/maven` `/conf/settings.xml`文件
+- 用户范围：`~/.m2/settings.xml`
+
+
+
+**不要使用IDE内嵌的Maven：**
+
 因为内嵌的Maven版本较新，会有各种问题。
-在Eclipse中的更改方法：Windows -- Preferences -- Maven -- Installation， Add -- 输入Maven Home目录，并取消内嵌Maven。
+
+在Eclipse中的更改方法：`Windows -- Preferences -- Maven -- Installation， Add -- 输入Maven Home目录，并取消内嵌Maven`。
+
+Idea的见后文。
 
 
 
@@ -441,11 +466,35 @@ jar插件将项目主代码打包成一个jar文件，该文件也位于 target/
 
 
 
+## 清除未下载成功的文件
+
+当网络出错时，可能会有未下载完成的文件，这些文件中包含 `lastUpdated`，可以使用下面的脚本清除 maven 未下载完成的文件。
+
+注意：先将 `REPOSITORY_PATH`设置为你的maven的本地仓库的路径。
+
+对应的 bat 脚本文件：
+
+```powershell
+set REPOSITORY_PATH=E:\allSrc\javaJarSC\repository
+rem 正在搜索...
+for /f "delims=" %%i in ('dir /b /s "%REPOSITORY_PATH%\*lastUpdated*"') do (
+    del /s /q %%i
+)
+rem 搜索完毕
+pause
+```
+
+
+
+
+
+
+
 ## 在IDEA中使用Maven
 
 
 
-### 创建maven项目
+### 创建maven项目：不使用原型
 
 
 
@@ -490,6 +539,10 @@ jar插件将项目主代码打包成一个jar文件，该文件也位于 target/
 
 
 
+
+
+
+
 ### 在 idea 中设置默认maven
 
 **设置默认 Maven home directory ：**
@@ -513,6 +566,8 @@ Maven jar Repositories 每次新建项目也都会恢复到默认值，使用上
 
 
 > [Idea 修改默认的Maven配置 - CSDN博客](https://blog.csdn.net/xzx4959/article/details/79565595 "Idea 修改默认的Maven配置 - CSDN博客")
+
+
 
 
 
@@ -540,6 +595,8 @@ Repositories：
 `Setting > build, Execution，Deployment > Maven > Repositories `
 
 为啥这里的仓库不可在这里更改？
+
+
 
 
 
@@ -580,11 +637,7 @@ Error:(18, 13) java: -source 1.5 中不支持 try-with-resources
 
 
 
-![](C:\Users\Fan Dean\Pictures\程序相关\idea Java Compiler.png)
-
-
-
-
+![idea Java Compiler](/../../../Documents/fandean.github.io/_drafts/开发工具/assets/idea Java Compiler.png)
 
 > 每次新建maven项目后 target bytecode version 都会变成 1.5，如何修改该默认值？
 
@@ -690,7 +743,7 @@ Aftifacts: 这个Aftifacts描述了当前项目发布的信息。
 
 ### 将WEB-INF/lib中的jar添加到Library
 
-在lib目录右键选择 add Library
+在lib目录右键选择 `add Library`
 
 
 
@@ -704,7 +757,7 @@ java.lang.NoClassDefFoundError: org/springframework/jdbc/core/JdbcTemplate
 
 
 
-Maven管理的jar没有发布到WEB-INF/lib下的解决方案
+Maven管理的jar没有发布到`WEB-INF/lib`下的解决方案
 
 Intellij idea 下使用maven管理web项目，部署运行时发现并没有将lib包部署
 
@@ -746,4 +799,153 @@ Intellij idea 下使用maven管理web项目，部署运行时发现并没有将l
 [Tomcat部署时war和war exploded区别以及平时踩得坑 - CSDN博客](https://blog.csdn.net/xlgen157387/article/details/56498938 "Tomcat部署时war和war exploded区别以及平时踩得坑 - CSDN博客")
 
 [intelliJ Idea自带热部署和Jrebel实现热部署 - CSDN博客](https://blog.csdn.net/wei19880402/article/details/75529231 "intelliJ Idea自带热部署和Jrebel实现热部署 - CSDN博客")
+
+
+
+
+
+### 创建Maven项目：使用原型
+
+
+
+优先使用本地 archetype-catalog.xml 文件，从而加快创建速度 ：
+
+[解决IntelliJ IDEA 创建Maven项目速度慢问题 DarchetypeCatalog - 记性这么差 - 博客园](https://www.cnblogs.com/del88/p/6286887.html "解决IntelliJ IDEA 创建Maven项目速度慢问题 DarchetypeCatalog - 记性这么差 - 博客园")
+
+在 `Default Settings > Build,Execution... > Maven > Runner > VM Options`中添加如下选项：`-DarchetypeCatalog=internal `
+
+
+
+
+
+**创建Java项目：**
+
+选择`maven-archetype-quickstart`原型。
+
+![idea-maven-java](/../../../Documents/fandean.github.io/_drafts/开发工具/assets/idea-maven-java.png)
+
+创建之后会缺少`resources`目录，需要手动创建该目录，并将其添加为资源的根目录: `右键目录 > Mark Directory as > Resources Root`。
+
+![idea-maven-add-resources](/../../../Documents/fandean.github.io/_drafts/开发工具/assets/idea-maven-add-resources.png)
+
+
+
+pom.xml 文件中部分内容： 
+
+```xml
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+  </properties>
+```
+
+可根据需要更改使用到的 JDK 的版本，比如更改为 1.8 .
+
+
+
+
+
+**创建Web项目：**
+
+选择`maven-archetype-webapp`原型。如果想要通过添加一个新的模型的形式来创建一个Maven项目，在选择原型后的下一步中需要确保：  `Add as module to` 和 `Parent` 都为 `<none>`。
+
+
+
+创建之后会缺少`java`和`resources`目录，需要手动创建，并将它们分别设置为相应目录： `右键目录 > Mark Directory as > Sources Root`和  `右键目录 > Mark Directory as > Resources Root`。但是idea可能会并没有在对应的模块的 `.iml` 文件中正确生成 `<sourceRoot>`标签，这时如果想直接新建一个 servlet 可能发现并没有 servlet 这个选项，我们可以重启Idea（不可能）或者手动更改模块 .iml 文件，设置源码根目录，使其能够在new右键列表中出现servlet。
+
+```xml
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/src/main/java" />
+          <root url="file://$MODULE_DIR$/src/main/resources" />
+        </sourceRoots>
+```
+
+
+
+使用原型的好处之一是：无需手动添加 `WEB-INF/lib`，但是缺点也很明显；那么能否自定义原型？
+
+
+
+### Idea中maven相关技巧
+
+在Idea中可以通过点击Maven侧边栏中的 `Execute Maven Goal`图标来执行maven的任意命令。
+
+在Idea中搜索依赖：
+
+![idea-maven-search-dependency](/../../../Documents/fandean.github.io/_drafts/开发工具/assets/idea-maven-search-dependency.png)
+
+如果搜索不到任何结果，则需要更新一下仓库索引：
+
+![](/../../../Documents/fandean.github.io/_drafts/开发工具/assets/idea-maven-update-index.png)
+
+
+
+
+
+创建骨架（原型）：
+
+[使用Maven Archetype插件构建Maven工程原型模板的实例_java_脚本之家](https://www.jb51.net/article/129672.htm "使用Maven Archetype插件构建Maven工程原型模板的实例_java_脚本之家")
+
+
+
+com.fan.maven.archetypes:fan-quickstart
+
+com.fan.maven.archetypes:fan-webapp
+
+
+
+GroupId : com.fan.maven.archetypes
+
+artifactId :  fan-webapp
+
+
+
+```xml
+  <groupId>com.fan.maven.archetypes</groupId>
+  <artifactId>fan-webapp-archetype</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>maven-archetype</packaging>
+```
+
+
+
+
+
+## Maven 相关命令
+
+
+
+
+
+列出本地资源库中的依赖（比如，需要获取其版本号）
+
+
+
+一些基本的操作，编译，构建，单元测试，安装，网站生成和基于Maven部署项目。
+
+- [使用Maven构建项目](http://www.yiibai.com/maven/build-project-with-maven.html)
+  “mvn package” 来构建项目
+- [使用Maven清理项目](http://www.yiibai.com/maven/clean-project-with-maven.html)
+  “mvn clean” 来清理项目
+- [使用Maven运行单元测试](http://www.yiibai.com/maven/run-unit-test-with-maven.html)
+  “mvn test” 来执行单元测试
+- [将项目安装到Maven本地资源库](http://www.yiibai.com/maven/install-project-into-maven-local-repository.html)
+  “mvn install” 打包和部署项目到本地资源库
+- [生成基于Maven的项目文档站点](http://www.yiibai.com/maven/generate-a-site-for-your-maven-based-project.html)
+  “mvn site” 来为您的项目生成信息文档站点
+- [使用“mvn site-deploy”部署站点（WebDAV例子）](http://www.yiibai.com/maven/deploy-site-with-mvn-site-deploy-webdav-example.html)
+  “mvn site-deploy” 通过WebDAV部署自动生成的文档站点到服务器
+- [部署基于Maven的war文件到Tomcat](http://www.yiibai.com/maven/deploy-maven-based-war-file-to-tomcat.html)
+  “mvn tomcat:deploy” 以 WAR 文件部署到 Tomcat
+
+
+
+
+
+[Maven常用命令： - 艺意 - 博客园](https://www.cnblogs.com/wkrbky/p/6352188.html "Maven常用命令： - 艺意 - 博客园")
+
+[Maven教程™](https://www.yiibai.com/maven/ "Maven教程™")
+
+
 

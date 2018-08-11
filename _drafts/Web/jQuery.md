@@ -104,6 +104,28 @@ jQuery 语法是通过选取 HTML 元素，并对选取的元素执行某些操�
 
 
 
+### 基本过滤选择器
+
+有用
+
+
+
+```js
+//获取 除首尾之外的 li
+// 选择器一：
+$("ul.nav li:not(:first,:last)")
+//选择器二： 
+$("ul.nav).children(":not(:first,:last)")
+//可能需要加 '
+$("ul.nav).children(":not(':first,:last')")
+```
+
+
+
+
+
+
+
 ### 自定义选择符
 
 但是其查找速度就会变慢。
@@ -130,6 +152,10 @@ $(document).ready(function() {
 	$('td:contains(Henry)').addClass('highlight');
 });
 ```
+
+
+
+
 
 
 
@@ -237,6 +263,78 @@ jQuery validation plugin ，学习方法，将官方提供的 demo。
 
 
 ## 通过Ajax发送数据
+
+
+
+还记得Promise对象吗？jQuery的`jqXHR`对象类似一个Promise对象，我们可以用链式写法来处理各种回调： 
+
+```js
+'use strict';
+
+function ajaxLog(s) {
+    var txt = $('#test-response-text');
+    txt.val(txt.val() + '\n' + s);
+}
+```
+
+
+
+```js
+var jqxhr = $.ajax('/api/categories', {
+    dataType: 'json'
+}).done(function (data) {
+    ajaxLog('成功, 收到的数据: ' + JSON.stringify(data));
+}).fail(function (xhr, status) { //这里 xhr 应该是 jqXHR 对象
+    ajaxLog('失败: ' + xhr.status + ', 原因: ' + status);
+}).always(function () {
+    ajaxLog('请求完成: 无论成功或失败都会调用');
+});
+```
+
+
+
+接收的数据类型：缺省情况下根据响应的`Content-Type`猜测 
+
+
+
+jQuery还提供了几个简便方法：
+
+- get
+
+  ```js
+  var jqxhr = $.get('/path/to/resource', {
+      name: 'Bob Lee',
+      check: 1
+  });
+  ```
+
+- post
+
+  ```js
+  var jqxhr = $.post('/path/to/resource', {
+      name: 'Bob Lee',
+      check: 1
+  });
+  ```
+
+- getJSON：（通过get来获取一个JSON对象）
+
+  ```js
+  var jqxhr = $.getJSON('/path/to/resource', {
+      name: 'Bob Lee',
+      check: 1
+  }).done(function (data) {
+      // data已经被解析为JSON对象了
+  });
+  ```
+
+  
+
+
+
+
+
+> [AJAX - 廖雪峰的官方网站](https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/00143450046645491e306a4f74746daaef4d172f66335b5000 "AJAX - 廖雪峰的官方网站")
 
 
 
