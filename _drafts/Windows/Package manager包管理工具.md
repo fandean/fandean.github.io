@@ -164,16 +164,60 @@ scoop install curl grep
 
 
 
+### 创建自己的Bucket
+
+参考：
+
+[Buckets · lukesampson/scoop Wiki](https://github.com/lukesampson/scoop/wiki/Buckets#creating-your-own-bucket "Buckets · lukesampson/scoop Wiki")
+
+
+
+一个github中的个人bucket，示例：
+
+**1. How to install scoop apps from this bucket?**
+
+Run below command in PowerShell to tap the bucket:
+
+```
+scoop bucket add dorado https://github.com/h404bi/dorado
+```
+
+Install apps from this bucket with below command: 明确指定安装此处的 app
+
+```
+scoop install dorado/<app_name>
+```
+
+
+
+
+
 ### 已安装软件列表
 
+强烈推荐 [extras](https://github.com/lukesampson/scoop-extras/) 
+
+添加额外的extras bucket：
+
+```shell
+scoop bucket add extras
+```
 
 
-添加额外的bucket：
 
 ```shell
 λ scoop bucket add extras
 Checking repo... ok
 The extras bucket was added successfully.
+```
+
+
+
+
+
+scoop可通过aria2来进行多任务下载：
+
+```shell
+scoop install aria2
 ```
 
 
@@ -280,4 +324,46 @@ Installing 'ImageMagick' (7.0.8-8) [64bit]
 URL https://www.imagemagick.org/download/binaries/ImageMagick-7.0.8-8-portable-Q16-x64.zip is not valid
 ```
 
-远程服务器返回错误: (404) 未找到，看来需要手动更改 配置文件来更改可用的软件包下载地址。
+ImageMagick 在Windows中对应的命令：
+
+```
+Linking D:\Scoop\Applications\apps\ImageMagick\current => D:\Scoop\Applications\apps\ImageMagick\7.0.8-10
+Creating shim for 'compare'.
+Creating shim for 'composite'.
+Creating shim for 'conjure'.
+Creating shim for 'convert'.
+Creating shim for 'imconvert'.
+Creating shim for 'dcraw'.
+Creating shim for 'hp2xx'.
+Creating shim for 'identify'.
+Creating shim for 'IMDisplay'.
+Creating shim for 'magick'.
+Creating shim for 'mogrify'.
+Creating shim for 'montage'.
+Creating shim for 'stream'.
+'ImageMagick' (7.0.8-10) was installed successfully!
+```
+
+**ImageMagick命令行工具**  
+
+ ImageMagick 包括一组命令行工具来操作图片。你大部份习惯每次编辑图片都提供图形用户接口 (GUI) 编辑图像就像GIMP和PhotoShop一样。 然而，一个图形用户接口不总是方便的。 假如你想要从一个网页动态地处理一个图像，或者你在不同时间生成一样的或不同的图像，想要对许多图像或重复特定应用相同的操作。 对于操作的这些类型，处理公用程序命令行工具是一个好的选择。  在下面的段落中，可以找到命令行工具的简单短描述。点击程序名称可以得到关于这个程序的具体用法。 如果你想得到更多的关于ImageMagick，请仔细阅读以下命令行工具的使用方法：  
+
+**convert** 转换图像格式和大小，模糊，裁剪，驱除污点，抖动，临近，图片上画图片，加入新图片，生成缩略图等。  
+
+**identify** 描述一个或较多图像文件的格式和特性。  
+
+**mogrify** 按规定尺寸制作一个图像，模糊，裁剪，抖动等。Mogrify改写最初的图像文件然后写到一个不同的图像文件。  
+
+**composite** 根据一个图片或多个图片组合生成图片。  
+
+**montage** 创建一些分开的要素图像。在含有要素图像任意的装饰图片，如边框、结构、图片名称等。   
+
+**compare** 在算术上和视觉上评估不同的图片及其它的改造图片。  
+
+**display** 如果你拥有一个X server的系统，它可以按次序的显示图片  
+
+**animate** 利用X server显示动画图片 
+
+ **import** 在X server或任何可见的窗口上输出图片文件。 你可以捕获单一窗口，整个的荧屏或任何荧屏的矩形部分。  
+
+**conjure** 解释执行 MSL (Magick Scripting Language) 写的脚本。 

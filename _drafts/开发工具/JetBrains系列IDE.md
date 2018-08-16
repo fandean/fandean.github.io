@@ -25,6 +25,10 @@ JetBrains 授权服务器(License Server URL):
 
 
 
+还是选择取淘宝购买JetBrains系列全家桶套餐，大概 **10元/年** 左右。具体操作是在淘宝付款后，会要求你提供，要在JetBrains网站上注册时使用的用户名和密码，他会为你注册。注册好后还要你亲自去官网更改验证邮箱。最后在你的Ieda中（或其它）输入用户名和密码，你会发现该账户是提供给教育人员使用。
+
+
+
 
 
 
@@ -234,7 +238,17 @@ Line Spacing：1.1
 
 ### Live Template
 
-Live Template中有大量的模板，设置路径: Setting --> Editor --> Live Templates。
+Live Template中有大量的模板，设置路径: `Setting --> Editor --> Live Templates`。
+
+
+
+![](assets/idea Live Templates.png)
+
+
+
+导出模板。
+
+[实时模板定义的配置文件](https://www.w3cschool.cn/intellij_idea_doc/intellij_idea_doc-nsj12eb2.html)
 
 
 
@@ -380,6 +394,14 @@ Unregistered VCS root detected
 					Add root  Configure  Ignore
 ```
 
+技巧：点击新建一个 .ignore 文件后，会弹出一个 Ignore file Generator 窗口，在此窗口我们可以使用搜索框来快速搜索模板，或者可以选中某个模板然后点击⭐收藏该模板。应该还可以创建 User templates。
+
+
+
+如果还没有为整个 Git Project级别添加 .gitignore文件，则会在编辑器顶部有提示信息，点击"Create .gitignore"进行创建。
+
+
+
 
 
 > [开发准备--Android Studio中的版本管理git - 简书](http://www.jianshu.com/p/53d02cf04694 "开发准备--Android Studio中的版本管理git - 简书")
@@ -515,6 +537,16 @@ IDE有默认配置来帮你解决问题，打开默认配置的方法：
 
 
 
+查看Scratches文件的方法：
+
+![查看Scratches文件的方法](assets/idea project Scratches and Consoles.png)
+
+
+
+
+
+
+
 
 
 ### 终端
@@ -543,6 +575,10 @@ Win10 中 Idea中的Terminal不能运行mvn命令，提示mvn不存在，这里m
 新建一个空项目，之后会要求你添加模块。
 
 
+
+### 单行注释
+
+取消单行注释的斜杠出现在每行的开头：`code style > java > code generation > comment code > 取消勾选 Line comment ant first column`
 
 
 
@@ -617,6 +653,20 @@ Connection to @localhost failed.
 比如使用 8 版本的驱动，有可能出现 `zeroDateTimeBehavior`的值时不可用的 `convertToNull`，标准的值是全部大写的并且各单词之间是使用`_`连接的，刚开始我一直在 Drivers > Mysql下面找，但是它里面的值是正确的（全部是大写的），后来发现，此次连接的属性配置是在配置 你的host, user的界面下的 Advanced 处设置的，这里面有个`zeroDateTimeBehavior`属性的值用的就是`convertToNull`将其更改一下。在该 advanced 下还可以设置 useSSL的值。
 
 当你从 8 版本切换到低版本时又会出现相反的问题。
+
+
+
+### DataSource相关
+
+
+
+**为表和视图生成Java实体类：**
+
+1. 右击表格或视图。
+2. 在右键菜单中，指向“脚本扩展（Scripted Extensions）”，然后单击“生成POJOs.clj（Generate POJOs.clj）”或“生成POJOs.groovy（Generate POJOs.groovy）”。
+3. 在打开的对话框中，指定要创建`.java`类文件的目录。
+
+
 
 
 
@@ -716,6 +766,117 @@ Aftifacts: 这个Aftifacts描述了当前项目发布的信息。
 > [Intellij IDEA 4种配置热部署的方法 - JCook - 博客园](https://www.cnblogs.com/jcook/p/6910238.html "Intellij IDEA 4种配置热部署的方法 - JCook - 博客园")
 >
 > （idea自带的）基于JVM提供的热加载仅支持方法块内代码修改，只有debug模式下，并且是在idea失去焦点时才会出发热加载，相对加载速度缓慢。
+
+
+
+### 构建Web应用程序
+
+对于web应用程序，Idea提供了两种Artifacts：
+
+- war：部署就绪 war
+- war exploded：解压缩的 war
+
+
+
+具体操作方式如下：
+
+1. 创建一个web应用：
+
+   - 方式一：在创建项目时就选择 `（File | New | Project | Java Enterprise | Web Application）`等 
+   - 方式二：对于现有项目。右键单击相应的模块文件，选择添加框架支持（Add Framework Support）”。然后在打开的对话框中选择“Web应用程序（Web Application） 
+
+2. 为该应用程序创建Artifacts配置：`（File | Project Structure | Artifacts `点击加号添加
+
+   - Web Application(类型时webapp哦)： Exploded（就是war exploded）；当创建好web项目时自动会创建。
+   - Web Application：Archive（就是war）；需要手动创建这种 webapp。`（ ➕| Web Application: Archive | For '... exploded'） `
+
+3. 构建 Artifacts：
+
+   `Build |构建工件|<ArtifactName>|建立（Build | Build Artifacts | <ArtifactName> | Build）`。或者，您可以在Docker运行配置的“启动前（Before launch）”任务列表中包含“构建工件（Build artifact）”任务。 
+
+
+
+### Docker
+
+运行应用服务器的Docker image：
+
+- 方式一：在Dockerfile中运行，只需在Dockerfile中添加类似的如下内容:
+
+  ```dockerfile
+  FROM tomcat:latest
+  ```
+
+  然后点击左侧的 `>>` 再选择 “Run on Docker”，
+
+- 方式二：通过Docker插件，选择一个image，然后创建并运行容器。
+
+
+
+在容器中部署Web应用程序：
+
+您可以通过将工件文件夹映射到应用服务器部署文件夹来部署您的Web应用程序，您也可以通过将工件复制到部署文件夹来部署您的应用程序。
+
+创建一个新的绑定，在打开的对话框中，指定：
+- 容器路径。 服务器部署文件夹的路径，例如：/usr/local/tomcat/webappsTomcat。
+- 主机路径：对于WAR工件，指向工件输出目录的路径；对于分解的WAR工件，指向包含工件输出目录的目录的路径。
+
+
+
+通过将工件复制到服务器部署文件夹来部署应用程序：
+
+- 确保您的工件与您的工具位于同一个目录中，例如，Dockerfile。
+
+- 在你的Dockerfile，在FROM <app_server_image_name>:<tag>后，例如，FROM tomcat:latest，添加以下内容：
+
+  - 对于分解的工件： 
+
+  `COPY . </server/deployment/path>`，例如，`COPY . /usr/local/tomcat/webappsTomcat`。
+
+  - 对于WAR工件： 
+
+  `COPY <artifactname>.war </server/deployment/path>`
+
+- 单击  并选择“运行`'<ConfigurationName>'（Run '<ConfigurationName>'）`”。
+
+
+
+最后，将容器http端口映射到主机端口，以便通过浏览器访问。
+
+
+
+### 代码测试
+
+
+
+**先添加测试库**。
+
+**创建测试类**方式之一：
+
+- 在编辑器中打开要创建测试的类，并将光标放在类名上。
+- 按下 `Alt+Enter` 可以调用可用意图操作列表。
+- 从列表中选择“Create test”。
+- 在“Create test”对话框中：选择要使用的测试库。如果模块中缺少选定的库，请单击“修复”按钮。相应的库将自动添加到模块库中。定义要生成的测试类的名称和位置。 
+
+创建测试类其它方式：
+
+- 将光标放在类名上 
+- 在主菜单上选择 `Navigate > Test` ，或者
+- 在右键菜单上选择 `Go to > Test`
+
+
+
+**创建测试方法：**
+
+在 JUnit 测试类中创建存根测试方法，具体操作步骤如下： 
+
+1. 在编辑器中打开相应的 JUnit 测试类。
+2. 将光标放在要生成新测试方法的位置。
+3. 按 `Alt+Insert`，并从 "生成" 菜单中选择 "测试方法"。
+
+
+
+略 ...
+
 
 
 

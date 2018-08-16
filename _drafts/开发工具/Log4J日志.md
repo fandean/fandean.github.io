@@ -15,13 +15,13 @@ Log4J是Apache的一个开放源代码项目。通过Log4J，可以指定日志�
 **Log4J主要由以下3大组件构成：**
 
 - Logger:负责**生成日志**，并能对日志信息进行**分类筛选**。（日志记录器）
-- Appender:定义日志信息输出的目的地。
-- Layout:指定日志信息的输出格式（比如：SimpleLayout、PatternLayout）
+- Appender: 定义日志信息输出的目的地。
+- Layout: 指定日志信息的输出格式（比如：SimpleLayout、PatternLayout）
 
 
 ## Logger组件
 它代表了Log4J的日志记录器。
-Logger组件由org.apache.log4j.Logger类来实现，它提供了如下方法：
+Logger组件由`org.apache.log4j.Logger`类来实现，它提供了如下方法：
 ```
 //创建及访问Logger实例的静态方法
 public static Logger getRootLogger();
@@ -38,7 +38,7 @@ public void fatal(Object message);
 public void log(Priority P, Object message);
 ```
 
-可以在Log4J的*配置文件*中配置自己的Logger组件，例如：
+可以在Log4J的***配置文件***中配置自己的Logger组件，例如：
 ```
 log4j.logger.helloappLogger=WARN
 ```
@@ -61,7 +61,7 @@ Appender组件执行将日志信息输出到以下目的地：
 
 一个Logger可以同时对应多个Appender。
 
-```
+```properties
 # 配置代码
 log4j.logger.helloappLogger=WARN,file,console
 
@@ -133,12 +133,43 @@ Logger组件的继承关系：
 ### 定义配置文件
 Log4J支持在程序中以编程方式设置这些组件，还支持通过配置文件来配置组件。
 
-Log4J支持xml和Java属性文件两种配置文件。
+Log4J支持xml和Java属性文件(后缀为`.properties`)两种配置文件。
 
-> 上面的配置都是在Java属性文件的格式。文件名为 **properties.lcf**
+
+
+```properties
+# Set root category priority to INFO and its only appender to CONSOLE.
+#log4j.rootCategory=INFO, CONSOLE            五种日志级别 debug   info   warn error fatal
+# 含义： 输出级别为 info ，既在控制台输出，又在日志文件中输出
+log4j.rootCategory=info, CONSOLE, LOGFILE
+
+# Set the enterprise logger category to FATAL and its only appender to CONSOLE.
+log4j.logger.org.apache.axis.enterprise=FATAL, CONSOLE
+
+# CONSOLE is set to be a ConsoleAppender using a PatternLayout.
+log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
+log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
+log4j.appender.CONSOLE.layout.ConversionPattern=%d{ISO8601} %-6r [%15.15t] %-5p %30.30c %x - %m\n
+
+# LOGFILE is set to be a File appender using a PatternLayout.
+log4j.appender.LOGFILE=org.apache.log4j.FileAppender
+# 指定日志的输出文件
+log4j.appender.LOGFILE.File=d:/axis.log
+log4j.appender.LOGFILE.Append=true
+log4j.appender.LOGFILE.layout=org.apache.log4j.PatternLayout
+log4j.appender.LOGFILE.layout.ConversionPattern=%d{ISO8601} %-6r [%15.15t] %-5p %30.30c %x - %m\n
+```
+
+
+
+
+
+> 上面的配置都是在Java属性文件的格式。
+
 
 
 ### 在程序中使用Log4J
+
 下载Log4J的jar包。
 
 1.读取配置文件，配置Log4J环境
