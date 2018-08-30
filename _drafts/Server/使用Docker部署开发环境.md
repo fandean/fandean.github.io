@@ -77,9 +77,126 @@ docker pull centos:7
 
 
 
-## 安装 Oracle Db 11
+## 安装 Oracle Db 11g
+
+### Oracle 11g
 
 [wnameless/docker-oracle-xe-11g: Dockerfile of Oracle Database Express Edition 11g Release 2](https://github.com/wnameless/docker-oracle-xe-11g "wnameless/docker-oracle-xe-11g: Dockerfile of Oracle Database Express Edition 11g Release 2")
+
+
+
+添加到 javaee 网络
+
+```
+docker run --name oracle11g -d -p 49161:22 -p 1522:1521 -p 49163:8080 -v /oracle11g-data/:/u01/app/oracle/oradata/oracle11g-data/ -e ORACLE_ALLOW_REMOTE=true wnameless/oracle-xe-11g
+```
+
+
+
+使用下面的语句启动容器：
+
+```
+docker run --name oracle11g -d -p 1522:1521 -p 49163:8080 --network javaee -v G:/Docker/JavaEERuntime/oracle11g/data:/u01/app/oracle/oradata/oracle11g-data/ -e ORACLE_ALLOW_REMOTE=true wnameless/oracle-xe-11g
+```
+
+启动容器后要等1~2分钟Oracle监听器才开启，所以等一下再连接。
+
+
+
+使用jdbc连接数据库：
+
+url：
+
+```
+jdbc:oracle:thin:@//127.0.0.1:1522
+jdbc:oracle:thin:@localhost:1522
+```
+
+
+
+使用非DBA用户连接(需选择system用户)
+
+```
+hostname: localhost
+port: 49161
+sid: xe
+username: system
+password: oracle
+```
+
+
+
+> `sid : xe` 其中 xe 也是当前实例名称，在单机模式`xe`也就是数据库名称。
+>
+> 以dba身份登录： 用户`sys`和密码 `oracle`
+>
+> 如果选择sys用户则需勾选 as SYSDBA
+
+
+
+在浏览器中访问：
+
+url：`127.0.0.1:49163`
+
+用户和密码： `system` ， `oracle`
+
+
+
+创建表空间：
+
+```sql
+-- 创建表空间1
+create tablespace itheima
+datafile '/u01/app/oracle/oradata/oracle11g-data/itheima.dbf'
+size 20M  --初始化大小
+autoextend on  --自动扩展
+next 10M;  --每次添加10M
+
+-- 创建表空间2
+create tablespace itheima
+  datafile '/u01/app/oracle/oradata/oracle11g-data/itheima.dbf'
+size 10M
+extent management local autoallocate;
+
+--  本地化管理方式创建,
+-- extent management local autoallocate是设置当表空间大小已满时，用自动管理的方式扩展表空间。
+
+```
+
+
+
+创建用户：
+
+```sql
+create user itheima identified by fan123
+  default tablespace itheima;
+```
+
+
+
+为用户授权：
+
+```sql
+grant connect, resource, dba to itheima;
+```
+
+
+
+
+
+
+
+
+
+
+
+### Oracle 12c
+
+image 太大 3G，没下载完成，强行结束了，但不知如何删除？
+
+[MaksymBilenko/docker-oracle-12c: Docker image with Oracle Database 12c on board](https://github.com/MaksymBilenko/docker-oracle-12c "MaksymBilenko/docker-oracle-12c: Docker image with Oracle Database 12c on board")
+
+[![asciicast](https://asciinema.org/a/45878.png)](https://asciinema.org/a/45878)
 
 
 

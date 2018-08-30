@@ -21,8 +21,8 @@
 **注意事项：**
 
 1. 需要注意的是在安装之前的配置工作中，有几个操作可能是需要重启的(也可使用某个命令而不重启)：
-  如：在/etc/selinux/config 中添加 SELINUX=permissive
-  和 systemctl 。。。
+    如：在/etc/selinux/config 中添加 SELINUX=permissive
+    和 systemctl 。。。
 2. 选择安装并创建数据库到达Typical install configuration界面时，一定记得字符集选择为UTF-8相关的比如：AL32UTF8。另外OSDBA Group选择dba（win中选择ORA_DBA）详见下文的翻译。
 3. 最后使用root身份执行两条shell命令：需要两条都执行后在点击ok。
 4. ​
@@ -330,7 +330,7 @@ SYSOPER：
 术语： Oracle Universal Installer (OUI)
 
 1. 可以使用交互式(interactive)的DBAC
-  DBAC可以启动OUI进行交互操作。记得设置字符集。
+    DBAC可以启动OUI进行交互操作。记得设置字符集。
 2. 可以使用非交互式(Noninteractive/Silent)的DBAC
 
 使用非交互式(Noninteractive/Silent)的DBAC：
@@ -363,7 +363,7 @@ Copying database files
 
 >**单实例数据库single-instance database:**
 >它并不是意为着一台主机只允许存在一个Oracle instance(实例)。
->A single-instance database is a database that is accessed(访问) by only one Oracle instance。只允许同时访问一个数据库？
+>A single-instance database is a database that is accessed(访问) by only one Oracle instance。同时只允许单个实例访问该数据库？
 
 ### 3 Starting Up and Shutting Down
 

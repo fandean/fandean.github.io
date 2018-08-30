@@ -10,9 +10,9 @@
 
 我们知道依赖管理、仓库、约定优于配置等概念是Maven的核心内容，Gradle也实现了这些优秀概念。
 
-在Gradle中配置使用Maven本地仓库、中央仓库、以及自定义地址仓库。
+**在Gradle中配置使用Maven本地仓库、中央仓库、以及自定义地址仓库。**（见依赖管理）
 
-实际构建项目的时候,下载后的文件被存储在 USER_HOME/.gradle/cache/ 目录下供项目使用，这种实现的方法与Maven类似。构建后的 build目录，包含了所有的输出，包含class文件，测试报告，打包的jar文件，以及一些用来归档的临时文件。
+实际构建项目的时候,下载后的文件被存储在 `USER_HOME/.gradle/cache/` 目录下供项目使用，这种实现的方法与Maven类似。构建后的 build目录，包含了所有的输出，包含class文件，测试报告，打包的jar文件，以及一些用来归档的临时文件。
 
 Gradle项目使用Maven项目生成的资源已经不是个问题了，接着需要反过来考虑，Maven用户是否能够使用 Gradle生成的资源呢？或者更简单点问，Gradle项目生成的构件是否可以发布到Maven仓库中供人使用呢？  
 使用Gradle的Maven Plugin，用户就可以轻松地将项目构件上传到Maven仓库中. 
@@ -24,6 +24,59 @@ Gradle项目使用Maven项目生成的资源已经不是个问题了，接着需
 构建脚本，这个文件通常称之为build.grade
 
 gradle会为我们提供很多默认的配置以及通常的默认值，而这极大的简化了我们的工作
+
+
+
+## 安装
+
+参考官方文档： [Gradle - Installation](https://gradle.org/install/ "Gradle - Installation")
+
+windows建议使用scoop：
+
+```
+scoop install gradle
+```
+
+使用scoop安装好gradle后自动就可以在命令行执行gradle。
+
+
+
+更改gradle本地仓库默认存储位置：
+
+```
+GRADLE_USER_HOME=D:\Portable Software\gradle-repo
+```
+
+> [更改gradle本地仓库默认存储位置 - CSDN博客](https://blog.csdn.net/sinat_22840937/article/details/78275215 "更改gradle本地仓库默认存储位置 - CSDN博客")
+
+
+
+
+
+> 三个用于gradle命令的环境变量：
+> ```
+> GRADLE_OPTS
+> ```
+>
+> Specifies [command-line arguments](https://docs.gradle.org/current/userguide/command_line_interface.html) to use when starting the Gradle client. This can be useful for setting the properties to use when running Gradle.
+>
+> ```
+> GRADLE_USER_HOME
+> ```
+>
+> Specifies the Gradle user home directory (which defaults to `$USER_HOME/.gradle` if not set).
+>
+> ```
+> JAVA_HOME
+> ```
+>
+> Specifies the JDK installation directory to use.（JDK版本必须 ≥ 1.8）
+>
+> [Build Environment - Gradle User Manual](https://docs.gradle.org/current/userguide/build_environment.html "Build Environment - Gradle User Manual")
+
+
+
+
 
 
 ## project和tasks
@@ -92,12 +145,30 @@ include':app'
 * 执行阶段：这一阶段，gradle会决定哪一个tasks会被执行，哪一个tasks会被执行完全依赖开始构建时传入的参数和当前所在的文件夹位置有关。
 
 
+
+
+
+## 依赖管理
+
+
+
+[Gradle学习笔记 依赖管理 - CSDN博客](https://blog.csdn.net/u011054333/article/details/54024060 "Gradle学习笔记 依赖管理 - CSDN博客")
+
+
+
+
+
+
+
+
 ## 使用Gradle Wrapper
 
 [**Gradle包装器**](https://lippiouyang.gitbooks.io/gradle-in-action-cn/content/first-project/gradle-wrapper.html "Gradle包装器") 必看。
 
 
-使用Gradle Wrapper将会是一个好的选择去避免由于gradle版本更新导致的问题。Gradle Wrapper提供了一个windows的batch文件和其他系统的shell文件，当你使用这些脚本的时候，当前gradle版本将会被下载，并且会被自动用在项目的构建，所以每个开发者在构建自己app的时候只需要使用Wrapper。所以开发者不需要为你的电脑安装任何gradle版本。
+
+
+使用Gradle Wrapper将会是一个好的选择去避免由于gradle版本更新导致的问题。Gradle Wrapper提供了一个windows的batch文件和其他系统的shell文件，*当你使用这些脚本的时候，当前gradle版本将会被下载，并且会被自动用在项目的构建*，所以每个开发者在构建自己app的时候只需要使用Wrapper。所以开发者不需要为你的电脑安装任何gradle版本。
 
 
 ```
@@ -126,10 +197,13 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-3.3-all.zip
 
 在一个 Android Studio工程目录，利用命令行`./gradlew -v`来查看当前gradle版本
 
+> 使用 Gradle Wrapper安装 Gradle： 如果你想使用gradle命令，你需要预先安装gradle以及设置环境变量，而如果本机没有安装gradle，你下载了gradle项目，你可以直接运行`./gradlew build`等命令，其会**自动为你安装gradle** 
 
-如果你想使用gradle命令，你需要预先安装gradle以及设置环境变量，而如果本机没有安装gradle，你下载了gradle项目，你可以直接运行`./gradlew build`等命令，其会**自动为你安装gradle**
 
- gradlew的用法跟gradle一模一样，比如执行构建gradle build命令，你可以用gradlew build。gradlew即gradle wrapper的缩写。
+
+gradlew的用法跟gradle一模一样，比如执行构建gradle build命令，你可以用gradlew build。gradlew即gradle wrapper的缩写。
+
+
 
 
 ```shell
@@ -138,6 +212,12 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-3.3-all.zip
 gradle-2.10-all  gradle-2.14.1-all  gradle-2.2.1-all  gradle-2.4-all  gradle-3.3-all
 gradle-2.11-all  gradle-2.14-all    gradle-2.2-all    gradle-2.8-all
 ```
+
+
+
+Gradle Wrapper会自动为我们下载合适的Gradle版本。默认情况下，下载位置是`$USER_HOME/.gradle/wrapper/dists`，如果设置了`GRADLE_USER_HOME`环境变量，那么就会下载到`GRADLE_USER_HOME/wrapper/dists`下。
+
+
 
 
 

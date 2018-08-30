@@ -949,3 +949,84 @@ artifactId :  fan-webapp
 
 
 
+
+
+
+
+## Maven Wrapper
+
+mvnw全名是Maven Wrapper,它的原理是在maven-wrapper.properties文件中记录你要使用的Maven版本，当用户执行mvnw clean 命令时，发现当前用户的Maven版本和期望的版本不一致，那么就下载期望的版本，然后用期望的版本来执行mvn命令。
+
+
+
+Maven Wrapper官方项目主页： [maven-wrapper: The easiest way to integrate Maven into your project!](https://github.com/takari/maven-wrapper "takari/maven-wrapper: The easiest way to integrate Maven into your project!")
+
+
+
+
+
+**为项目添加mvnw支持很简单，有两种方式：** 
+
+**方法一**，在pom.Xml中添加Plugin声明：
+
+```xml
+<plugin>
+<groupId>com.rimerosolutions.maven.plugins</groupId>
+<artifactId>wrapper-maven-plugin</artifactId>
+<version>0.0.4</version>
+</plugin>
+```
+
+这样当我们执行`mvn wrapper:wrapper` 时，会帮我们生成`mvnw.bat, mvnw, maven/maven-wrapper.jar, maven/maven-wrapper.properties`这些文件。
+然后我们就可以**使用`mvnw`代替`mvn`命令** 执行所有的maven命令，比如`mvnw clean package`
+
+
+
+**方法二**，直接执行Goal（推荐）
+
+`mvn -N io.takari:maven:wrapper -Dmaven=3.5.4`  表示我们期望使用的maven的版本为3.5.4
+
+产生的内容和第一种方式是一样的，只是目录结构不一样，maven-wrapper.jar 和 maven-wrapper.properties 在 ".mvn/wrapper" 目录下（位于当前项目中）
+
+
+
+使用的注意事项：
+
+1、由于我们使用了新的maven ,如果你的settings.xml没有放在当前用户下的.m2目录下，那么执行mvnw时不会去读取你原来的settings.xml文件
+2、在mvnw.bat中有如下的一段脚本
+`if exist "%M2_HOME%\bin\mvn.cmd" goto init`
+意思是如果找到mvn.cmd就执行初始化操作，但是maven早期版本不叫mvn.cmd,而是叫mvn.bat,所以会报"Error: M2_HOME is set to an invalid directory"错误，改成你本地的maven的匹配后缀就好了。（可能没有）
+
+
+
+> Maven是一个常用的构建工具，但是Maven的版本和插件的配合并不是那么完美，有时候你不得不切换到一个稍微旧一些的版本，以保证所有东西正常工作。
+>
+> 而Gradle提供了一个Wrapper，可以很好解决版本切换的问题，当然更重要的是不需要预安装Gradle。
+>
+> Maven虽然没有官方的Wrapper，但是有一个第三方的Wrapper可以使用。
+>
+> 安装很简单 `mvn -N io.takari:maven:wrapper `
+>
+> 使用的时候直接 `./mvnw clean install `即可，它会自动下载**最新版本**来执行。如果需要指定版本则可以使用相关参数：`mvn -N io.takari:maven:wrapper -Dmaven=3.3.3` 表示我们期望使用的Maven的版本为3.3.3。
+>
+> 如果需要指定版本,重新生成mvnw文件在运行即可
+>
+> ```
+> mvn -N io.takari:maven:wrapper -Dmaven=3.1.0
+> ./mvnw clean install
+> ```
+
+[Maven Wrapper - 为程序员服务](http://ju.outofmemory.cn/entry/214018 "Maven Wrapper - 为程序员服务")
+
+[mvnw是什么（Maven Wrapper/Maven保持构建工具版本一直的工具） - EasonJim - 博客园](https://www.cnblogs.com/EasonJim/p/7620085.html "mvnw是什么(Maven Wrapper/Maven保持构建工具版本一直的工具) - EasonJim - 博客园")
+
+
+
+
+
+
+
+
+
+
+

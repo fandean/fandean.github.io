@@ -367,3 +367,13 @@ Creating shim for 'stream'.
  **import** 在X server或任何可见的窗口上输出图片文件。 你可以捕获单一窗口，整个的荧屏或任何荧屏的矩形部分。  
 
 **conjure** 解释执行 MSL (Magick Scripting Language) 写的脚本。 
+
+
+
+
+
+```
+scoop install sliksvn
+scoop install xx-net
+```
+

@@ -103,7 +103,7 @@ Line Spacing：1.1
 >**默认是不可改变字体的，要想自定义字体需另存一份Scheme（方案）**，点击`Sava As`然后就可在此基础上修改字体（其它一些自定义设置与此类似）。  其中 Show only monospaced fonts 表示只列出等宽字体；Secondary font表示备用字体，可通过它来设置代码中中文的显示字体。
 
 2. 设置程序界面字体   
-  `Setting --> Appearance & Behavior --> Appearance --> UI Options` 勾选 `Override default fonts by...` 然后即可设置字体。(建议字体 "Arial Unicode MS" Size:12)
+    `Setting --> Appearance & Behavior --> Appearance --> UI Options` 勾选 `Override default fonts by...` 然后即可设置字体。(建议字体 "Arial Unicode MS" Size:12)
 
 3. 设置控制台字体
 
@@ -331,9 +331,10 @@ Go to File->Settings and expand Code Style, selectJava, and add your prefixes/su
 
 高亮匹配的各种配对符号的设置路径：  
 
-`Setting --> Editor --> Colors & Fonts（或者Color Scheme） --> General --> Code --> Matched brace`
-​    
+​`Setting --> Editor --> Colors & Fonts（或者Color Scheme） --> General --> Code --> Matched brace`
+    
 推荐勾选 Effects --> Bordered 效果， 一个矩形框框，再为其选择一个颜色。还有就是设置背景色，也可不弄，自己摸索。
+
 >我的一个设置是 : 
 >勾选Bold；勾选Foreground，颜色为 #ffef28；勾选Effects，颜色为 #b39613，通过下拉选项选择效果为 Bordered。
 
@@ -467,6 +468,7 @@ IDE有默认配置来帮你解决问题，打开默认配置的方法：
 
 - 固定标签页：右键  pin tab
 - 分离标签页：拖动标签页到主窗口外部
+- 访问当前标签页中文件路径：Ctrl + 鼠标点击标签页
 
 
 
@@ -650,9 +652,11 @@ Connection to @localhost failed.
 
 
 
-比如使用 8 版本的驱动，有可能出现 `zeroDateTimeBehavior`的值时不可用的 `convertToNull`，标准的值是全部大写的并且各单词之间是使用`_`连接的，刚开始我一直在 Drivers > Mysql下面找，但是它里面的值是正确的（全部是大写的），后来发现，此次连接的属性配置是在配置 你的host, user的界面下的 Advanced 处设置的，这里面有个`zeroDateTimeBehavior`属性的值用的就是`convertToNull`将其更改一下。在该 advanced 下还可以设置 useSSL的值。
+比如使用 8 版本的驱动，有可能出现 `zeroDateTimeBehavior`的值时不可用的 `convertToNull`，标准的值是全部大写的并且各单词之间是使用`_`连接的，刚开始我一直在 `Drivers > Mysql`下面找，但是它里面的值是正确的（全部是大写的），后来发现，此次连接的属性配置是在配置 你的host, user的界面下的 Advanced 处设置的，这里面有个`zeroDateTimeBehavior`属性的值用的就是`convertToNull`将其更改一下。在该 advanced 下还可以设置 useSSL的值。
 
 当你从 8 版本切换到低版本时又会出现相反的问题。
+
+
 
 
 
@@ -731,6 +735,10 @@ Aftifacts: 这个Aftifacts描述了当前项目发布的信息。
 
 
 
+Facets中则可以设置当前项目所用的框架，如Hibernate和Spring，如果是Web项目，也需要添加Web的Facets，这个界面中的显示和Modules中的很类似。如果想要通过idea做Hibernate的映射文件（.hbm）生成或jpa注解配置代码生成，则需要添加Hibernate配置，如果添加了Spring，则在Spring的xml中properties文件的占位符可以被自动替换为properties中已配置的值。 
+
+
+
 > 好像还可以通过tomcat的管理员... 配置maven，然后maven自动部署应用到 tomcat中
 >
 > [\[转\]Maven实现直接部署Web项目到Tomcat7 - dorothychai - 博客园](https://www.cnblogs.com/dorothychai/p/4669808.html "[转]Maven实现直接部署Web项目到Tomcat7 - dorothychai - 博客园")
@@ -793,6 +801,14 @@ Aftifacts: 这个Aftifacts描述了当前项目发布的信息。
 3. 构建 Artifacts：
 
    `Build |构建工件|<ArtifactName>|建立（Build | Build Artifacts | <ArtifactName> | Build）`。或者，您可以在Docker运行配置的“启动前（Before launch）”任务列表中包含“构建工件（Build artifact）”任务。 
+
+
+
+生成`web.xml`文件：
+
+`Project Structure > Modules > 展开modules > web >Deployment Descriptors > + > web.xml` 注意xml文件的路径问题
+
+
 
 
 
@@ -876,6 +892,28 @@ Aftifacts: 这个Aftifacts描述了当前项目发布的信息。
 
 
 略 ...
+
+
+
+### spring
+
+弹出提示：
+
+![](assets/idea Spring Configuration Check.png)
+
+
+
+- 直接点击 "Create Default Context"  即可
+- 或者在 `Project structure > facet` 中选中模块中列出的 "Spring"，此时会发现有提示"Unmapped Spring configuration files:  ***.xml"，点击 ➕ 然后在弹出的对话框中勾选当前项目中对应的 spring配置文件。
+- 打开 applicationContext.xml 文件，如果编辑器顶部有提示："Configure application context" 则直接点击该文字，在弹出的界面为当前模块勾选对应的xml文件即可。（如果使用了`<import>`引入过多个xml则将该模块下的列出的xml都勾选上）
+
+
+
+
+
+**Idea创建Spring的xml配置文件的方法：**
+
+`New > XML Configuration File > Spring Config`
 
 
 
@@ -980,6 +1018,8 @@ Aftifacts: 这个Aftifacts描述了当前项目发布的信息。
 | 显示可用的重构（重构该列表）             | Ctrl+Shift+Alt+T               |
 
 
+
+[十大Intellij IDEA快捷键 - CSDN博客](https://blog.csdn.net/dc_726/article/details/42784275 "十大Intellij IDEA快捷键 - CSDN博客")
 
 [设置IntelliJ IDEA背景图像_w3cschool](https://www.w3cschool.cn/intellij_idea_doc/intellij_idea_doc-i4at2cxi.html "设置IntelliJ IDEA背景图像_w3cschool")
 
@@ -1130,8 +1170,8 @@ Coding Assistance：点击 enable 来下载Node.js的 。如有必要再点击 U
 
 * 可以直接拖动文件到编辑器中。比如引入jquery.js，我们先将该文件添加到项目中，再直接拖动该文件到html文档中就会直接生成类似下面的语句`<script src="../build/jquery.js"></script>`。
 * 善用“Settings”对话框中的**搜索**功能（直接搜索相关设置）。
-* 根据方法自动生成变量，比如： 我们想将`data.getTime()`的返回值保存在一个变量中，可以这样操作：输入`data.getTime().var`再回车，即可自动创建变量。
-* 增强for循环的快捷输入，比如有一个集合 col，现在要使用for循环遍历该集合，先输入`col.for`再回车。
+* 根据方法自动生成变量，比如： 我们想将`data.getTime()`的返回值保存在一个变量中，可以这样操作：输入`data.getTime().var` 再按Tab或回车，即可自动创建变量。
+* 增强for循环的快捷输入，比如有一个集合 col，现在要使用for循环遍历该集合，先输入`col.for`再按Tab或回车。
 
 
 

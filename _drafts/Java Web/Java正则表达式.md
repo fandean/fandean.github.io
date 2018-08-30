@@ -390,30 +390,6 @@ group(4)： [toves]
 
 
 
-```
-Command to be executed:
-"C:\WINDOWS\system32\cmd.exe" /C "changeit"
-
-Command to be executed:
-"C:\WINDOWS\system32\cmd.exe" /C "-storepass"
-
-Command to be executed:
-"C:\WINDOWS\system32\cmd.exe" /C "Files\Java\jdk1.8.0_77/jre/lib/security/cacerts"
-
-Command to be executed:
-"C:\WINDOWS\system32\cmd.exe" /C "D:\Program"
-
-Command to be executed:
-"C:\WINDOWS\system32\cmd.exe" /C " -list -keystore "
-
-
-
-Using the local CA at "C:\Users\Fan Dean\AppData\Local\mkcert" ✨
-Warning: the local CA is not installed in the system trust store! ⚠️
-ERROR: failed to execute "keytool -list": exit status 1
-```
-
-
 
 
 

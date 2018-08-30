@@ -1,10 +1,5 @@
-﻿# Oracle数据库管理
+# Oracle数据库管理
 
-标签（空格分隔）： DataBase
-
----
-
-## Oracle数据库常用操作
 
 
 开启数据库
@@ -12,8 +7,90 @@
 
 检查监听器是否正常开启
 
+```
 sqlplus /nologin
 conn 连接
+```
+
+
+
+## 相关概念
+
+
+
+### 数据库启动
+
+数据库启动时要经历3个阶段： 
+
+1. 启动实例（start An Instance)
+2. 装载数据库（Mount The Database)
+3. 打开数据库 (Open The Database)
+
+
+
+### 数据库与实例
+
+**数据库：**
+
+数据库的名称（Database Name）和实例的名称（SID）是两个不同的概念，在RAC（集群）环境下，多个实例可以同时打开一个数据库；数据库的名称可以和实例的名称不同。
+
+但通常在单机环境下，数据库的名称和实例的名称相同。（那么在单机创建多个数据库时是否需要同时创建对应的数据库实例？）
+
+
+
+> **单实例数据库single-instance database:**
+> 它并不是意为着一台主机只允许存在一个Oracle instance(实例)。
+> A single-instance database is a database that is accessed(访问) by only one Oracle instance。同时只允许单个实例访问该数据库？
+
+
+
+
+
+**当你使用sqlplus连接时，你连接的是数据库实例**，每一个实例都有一个实例ID，或叫做system ID (SID)。由于一个电脑中可以存在多个实例，所以必须指定你想连接哪个实例。对于本地连接，你可以通过**设置系统环境变量**的方法来识别一个实例；对于远程连接，通过指定网络地址和数据库服务名(a database service name)
+
+
+
+> 可以这样简单理解：在单机模式一般就使用一个数据库，该数据库在安装Oracle时创建。
+>
+> 当然也可以创建多个数据库，对于新手通过图形界面更加方便。
+
+
+
+
+
+### 物理结构
+
+物理结构由数据文件(Datafiles)，联机日志文件(Online Redo logs),控制文件(control files)组成
+
+除此之外还有一些其它文件，如参数文件。
+
+一个或多个数据文件形成一个表空间（表空间是逻辑结构）。
+
+### 逻辑结构
+
+逻辑结构由： 数据块（Data Block)、区（Extent）、段（Segment）和表空间（Tablespace）组成。
+
+```
+                         数据库
+                 
+                 表空间            表空间
+            
+            段       段        段         段
+         
+        区    区     区    区  ...
+        
+    块    块    块      块    块   ...
+```
+
+表空间：用于存储数据库对象（比如：表，索引等）【而这些对象实际存放在数据文件中】
+
+
+
+
+
+## 常用操作
+
+
 
 查看数据库用户
 
@@ -30,13 +107,15 @@ select * from all_users;
 select * from dba_users;
 ```
 
-
 查看当前用户（会话）权限
-select * from session_roles;
 
+```sql
+select * from session_roles;
+```
 
 解锁用户
 设置密码
+
 ```sql
 -- 解锁scott用户，其默认密码是tiger。但默认密码提示无效(expire)更改密码为2tiger
 alter user scott account unlock;
@@ -45,7 +124,7 @@ alter user scott identified by 2tiger;
 ```
 
 
-查看数据库参数：show parameter
+查看数据库参数：`show parameter`
 
 ```sql
 -- 查看当前数据库的实例名
@@ -87,6 +166,51 @@ select * from user_tab_cols;
 ```
 
 
+
+想要**操作**数据库，首先需要创建用户并给用户授予权限；在创建用户时需要指定表空间并指定用户在表空间中能够使用的大小。因此，想要创建用户，首先需要创建数据库表空间。
+
+
+
+创建表空间：
+
+```sql
+-- 创建表空间1
+create tablespace itheima
+datafile '/u01/app/oracle/oradata/oracle11g-data/itheima.dbf'
+size 20M  --初始化大小
+autoextend on  --自动扩展
+next 10M;  --每次添加10M
+
+-- 创建表空间2
+create tablespace itheima
+  datafile '/u01/app/oracle/oradata/oracle11g-data/itheima.dbf'
+size 10M
+extent management local autoallocate;
+
+--  本地化管理方式创建,
+-- extent management local autoallocate是设置当表空间大小已满时，用自动管理的方式扩展表空间。
+```
+
+创建用户：
+
+```sql
+create user itheima identified by fan123
+  default tablespace itheima;
+```
+
+为用户授权：
+
+```
+grant connect, resource, dba to itheima;
+```
+
+
+
+
+
+
+
+
 ```sql
 /*
 增加注释：
@@ -114,3 +238,81 @@ create table tb_clazz3
 as 
 select code from tb_clazz where code=NULL;  -- 让where无匹配行，则没有数据只是复制了表结构
 ```
+
+
+
+
+
+## 字符集
+
+
+
+查询server端的字符集：
+
+```sql
+select userenv('language') from dual;
+```
+
+
+
+查询oracle client端的字符集：
+
+- 在windows平台下，就是注册表里面相应`OracleHome`的`NLS_LANG`。还可以在dos窗口里面自己设置，
+
+  比如: `set nls_lang=AMERICAN_AMERICA.ZHS16GBK`
+
+  这样就只影响这个窗口里面的环境变量。
+
+- 在unix平台下，就是环境变量NLS_LANG。
+
+  `echo $NLS_LANG`
+
+  `AMERICAN_AMERICA.ZHS16GBK`
+
+
+
+如果检查的结果发现server端与client端字符集不一致，请统一修改为同server端相同的字符集。
+
+
+
+**补充：**
+
+(1).数据库服务器字符集
+
+```sql
+select * from v$nls_parameters where parameter='NLS_CHARACTERSET';
+select * from nls_database_parameters
+```
+
+来源于`props$`，是表示数据库的字符集。
+
+ 
+
+(2).客户端字符集环境
+
+```sql
+select * from nls_instance_parameters
+```
+
+其来源于`v$parameter`，表示客户端的字符集的设置，可能是参数文件，环境变量或者是注册表
+
+ 
+
+(3).会话字符集环境
+
+```sql
+select * from nls_session_parameters
+```
+
+来源于`v$nls_parameters`，表示会话自己的设置，可能是会话的环境变量或者是alter session完成，如果会话没有特殊的设置，将与`nls_instance_parameters`一致。
+
+ 
+
+
+
+[Oracle 字符集的查看和修改 - 一江水 - 博客园](https://www.cnblogs.com/rootq/articles/2049324.html "Oracle 字符集的查看和修改 - 一江水 - 博客园")
+
+[彻底搞懂Oracle字符集_oracle_脚本之家](https://www.jb51.net/article/39719.htm)
+
+[Oracle11g创建表空间、创建用户、角色授权、导入导出表以及中文字符乱码问题 - 乐呵呵的小码农 - 博客园](https://www.cnblogs.com/bjh1117/p/6605037.html "Oracle11g创建表空间、创建用户、角色授权、导入导出表以及中文字符乱码问题 - 乐呵呵的小码农 - 博客园") （使用 PL/SQL 的配置）
+
