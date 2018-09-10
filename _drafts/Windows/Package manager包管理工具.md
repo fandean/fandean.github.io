@@ -93,6 +93,8 @@ Chocolatey 的安装脚本默认要求管理员权限安装，同时非管理员
 
 
 > [再谈谈 Scoop 这个 Windows 下的软件包管理器 · Chawye Hsu, H404bi](https://h404bi.com/blog/2018/05/12/talk-about-scoop-the-package-manager-for-windows-again.html "再谈谈 Scoop 这个 Windows 下的软件包管理器 · Chawye Hsu, H404bi")
+>
+> 作者个人维护的Bucket [h404bi/dorado: 🐟 A bucket of Scoop, for h404bi](https://github.com/h404bi/dorado "h404bi/dorado: 🐟 A bucket of Scoop, for h404bi")
 
 
 
@@ -149,6 +151,10 @@ scoop update #更新 APP 和 Scoop 自身
 ```
 
 
+
+对于GUI程序，scoop会自动为其在开始菜单中添加快捷方式 ，路径： `C:\Users\Fan Dean\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Scoop Apps`
+
+对于命令行程序，scoop会自动在 scoop应用安装路径下的 shims 文件夹下为其添加对应的exe程序，而shims文件夹是被添加到 PATH 变量中，所以可以直接在命令行中运行刚安装的程序。
 
 
 
@@ -264,7 +270,7 @@ Persisting docsets
 
 
 
-视频播放器 mpv 
+**视频播放器 mpv** 
 
 ```shell
 λ scoop install mpv
@@ -286,7 +292,7 @@ To set up file type associations and AutoPlay handlers use https://github.com/ro
 
 
 
-文件同步工具 syncthing，在GitHub上超级火爆
+**文件同步工具 syncthing**，在GitHub上超级火爆
 
 ```shell
 λ scoop install syncthing
@@ -306,7 +312,7 @@ To start syncthing automatically, use a method described at https://github.com/s
 
 
 
-ImageMagick 看图软件:
+**ImageMagick 看图软件**:
 
 ```shell
 λ scoop install ImageMagick
@@ -375,5 +381,27 @@ Creating shim for 'stream'.
 ```
 scoop install sliksvn
 scoop install xx-net
+```
+
+
+
+**idea-ultimate：**
+
+```
+scoop install idea-ultimate
+
+...
+
+Download: Status Legend:
+Download: (OK):download completed.
+Checking hash of ideaIU-2018.2.2.win.zip ... ok.
+Extracting ideaIU-2018.2.2.win.zip ... done.
+Linking D:\Scoop\Applications\apps\idea-ultimate\current => D:\Scoop\Applications\apps\idea-ultimate\2018.2.2
+Creating shim for 'idea64'.
+Creating shortcut for IntelliJ IDEA Ultimate (idea64.exe)
+'idea-ultimate' (2018.2.2) was installed successfully!
+Notes
+-----
+Please restart your command line for changes to take effect.
 ```
 

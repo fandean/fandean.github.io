@@ -7,6 +7,11 @@
 > 参考《Tomcat与Java Web开发技术详解》的第31章：使用Log4J进行日志操作
 
 
+
+> 另见 SLF4J 的相关文章
+
+
+
 ## Log4J简介
 
 Log4J是Apache的一个开放源代码项目。通过Log4J，可以指定日志信息输出的目的地，如控制台、文件、GUI组件、远程套接字服务器、NT的事件记录器、Unix Syslog守护进程等。

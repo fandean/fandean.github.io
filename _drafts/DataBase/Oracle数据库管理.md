@@ -46,6 +46,12 @@ conn 连接
 
 
 
+实例：
+
+何为实例？
+
+
+
 **当你使用sqlplus连接时，你连接的是数据库实例**，每一个实例都有一个实例ID，或叫做system ID (SID)。由于一个电脑中可以存在多个实例，所以必须指定你想连接哪个实例。对于本地连接，你可以通过**设置系统环境变量**的方法来识别一个实例；对于远程连接，通过指定网络地址和数据库服务名(a database service name)
 
 
@@ -315,4 +321,216 @@ select * from nls_session_parameters
 [彻底搞懂Oracle字符集_oracle_脚本之家](https://www.jb51.net/article/39719.htm)
 
 [Oracle11g创建表空间、创建用户、角色授权、导入导出表以及中文字符乱码问题 - 乐呵呵的小码农 - 博客园](https://www.cnblogs.com/bjh1117/p/6605037.html "Oracle11g创建表空间、创建用户、角色授权、导入导出表以及中文字符乱码问题 - 乐呵呵的小码农 - 博客园") （使用 PL/SQL 的配置）
+
+
+
+
+
+## scott用户
+
+scott是oracle创建时的一位员工的名字，该用户下提供了几个测试表来给我们练习
+
+```sql
+--07scott用户
+--默认是锁定 默认密码：tiger
+
+--为用户解锁
+alter user scott account unlock;
+--为用户设置密码
+alter user scott identified by tiger;
+
+/*
+  表说明：
+    dept      --部门表
+    emp       --员工表
+    salgrade  --工资等级表
+    bonus     --工资表（现在不用)
+*/
+```
+
+如果解锁 scott 用户时提示，scoot用户不存在，可以使用下面的bat来创建需要用到的测试表： 
+
+scott.sql 文件：
+
+```sql
+Rem Copyright (c) 1990 by Oracle Corporation
+Rem NAME
+REM    UTLSAMPL.SQL
+Rem  FUNCTION
+Rem  NOTES
+Rem  MODIFIED
+Rem	gdudey	   06/28/95 -  Modified for desktop seed database
+Rem	glumpkin   10/21/92 -  Renamed from SQLBLD.SQL
+Rem	blinden   07/27/92 -  Added primary and foreign keys to EMP and DEPT
+Rem	rlim	   04/29/91 -	      change char to varchar2
+Rem	mmoore	   04/08/91 -	      use unlimited tablespace priv
+Rem	pritto	   04/04/91 -	      change SYSDATE to 13-JUL-87
+Rem   Mendels	 12/07/90 - bug 30123;add to_date calls so language independent
+Rem
+rem
+rem $Header: utlsampl.sql 7020100.1 94/09/23 22:14:24 cli Generic<base> $ sqlbld.sql
+rem
+SET TERMOUT OFF
+SET ECHO OFF
+ 
+rem CONGDON    Invoked in RDBMS at build time.	 29-DEC-1988
+rem OATES:     Created: 16-Feb-83
+ 
+GRANT CONNECT,RESOURCE,UNLIMITED TABLESPACE TO SCOTT IDENTIFIED BY TIGER;
+ALTER USER SCOTT DEFAULT TABLESPACE USERS;
+ALTER USER SCOTT TEMPORARY TABLESPACE TEMP;
+CONNECT SCOTT/TIGER
+DROP TABLE DEPT;
+CREATE TABLE DEPT
+       (DEPTNO NUMBER(2) CONSTRAINT PK_DEPT PRIMARY KEY,
+	DNAME VARCHAR2(14) ,
+	LOC VARCHAR2(13) ) ;
+DROP TABLE EMP;
+CREATE TABLE EMP
+       (EMPNO NUMBER(4) CONSTRAINT PK_EMP PRIMARY KEY,
+	ENAME VARCHAR2(10),
+	JOB VARCHAR2(9),
+	MGR NUMBER(4),
+	HIREDATE DATE,
+	SAL NUMBER(7,2),
+	COMM NUMBER(7,2),
+	DEPTNO NUMBER(2) CONSTRAINT FK_DEPTNO REFERENCES DEPT);
+INSERT INTO DEPT VALUES
+	(10,'ACCOUNTING','NEW YORK');
+INSERT INTO DEPT VALUES (20,'RESEARCH','DALLAS');
+INSERT INTO DEPT VALUES
+	(30,'SALES','CHICAGO');
+INSERT INTO DEPT VALUES
+	(40,'OPERATIONS','BOSTON');
+INSERT INTO EMP VALUES
+(7369,'SMITH','CLERK',7902,to_date('17-12-1980','dd-mm-yyyy'),800,NULL,20);
+INSERT INTO EMP VALUES
+(7499,'ALLEN','SALESMAN',7698,to_date('20-2-1981','dd-mm-yyyy'),1600,300,30);
+INSERT INTO EMP VALUES
+(7521,'WARD','SALESMAN',7698,to_date('22-2-1981','dd-mm-yyyy'),1250,500,30);
+INSERT INTO EMP VALUES
+(7566,'JONES','MANAGER',7839,to_date('2-4-1981','dd-mm-yyyy'),2975,NULL,20);
+INSERT INTO EMP VALUES
+(7654,'MARTIN','SALESMAN',7698,to_date('28-9-1981','dd-mm-yyyy'),1250,1400,30);
+INSERT INTO EMP VALUES
+(7698,'BLAKE','MANAGER',7839,to_date('1-5-1981','dd-mm-yyyy'),2850,NULL,30);
+INSERT INTO EMP VALUES
+(7782,'CLARK','MANAGER',7839,to_date('9-6-1981','dd-mm-yyyy'),2450,NULL,10);
+INSERT INTO EMP VALUES
+(7788,'SCOTT','ANALYST',7566,to_date('13-JUL-87')-85,3000,NULL,20);
+INSERT INTO EMP VALUES
+(7839,'KING','PRESIDENT',NULL,to_date('17-11-1981','dd-mm-yyyy'),5000,NULL,10);
+INSERT INTO EMP VALUES
+(7844,'TURNER','SALESMAN',7698,to_date('8-9-1981','dd-mm-yyyy'),1500,0,30);
+INSERT INTO EMP VALUES
+(7876,'ADAMS','CLERK',7788,to_date('13-JUL-87')-51,1100,NULL,20);
+INSERT INTO EMP VALUES
+(7900,'JAMES','CLERK',7698,to_date('3-12-1981','dd-mm-yyyy'),950,NULL,30);
+INSERT INTO EMP VALUES
+(7902,'FORD','ANALYST',7566,to_date('3-12-1981','dd-mm-yyyy'),3000,NULL,20);
+INSERT INTO EMP VALUES
+(7934,'MILLER','CLERK',7782,to_date('23-1-1982','dd-mm-yyyy'),1300,NULL,10);
+DROP TABLE BONUS;
+CREATE TABLE BONUS
+	(
+	ENAME VARCHAR2(10)	,
+	JOB VARCHAR2(9)  ,
+	SAL NUMBER,
+	COMM NUMBER
+	) ;
+DROP TABLE SALGRADE;
+CREATE TABLE SALGRADE
+      ( GRADE NUMBER,
+	LOSAL NUMBER,
+	HISAL NUMBER );
+INSERT INTO SALGRADE VALUES (1,700,1200);
+INSERT INTO SALGRADE VALUES (2,1201,1400);
+INSERT INTO SALGRADE VALUES (3,1401,2000);
+INSERT INTO SALGRADE VALUES (4,2001,3000);
+INSERT INTO SALGRADE VALUES (5,3001,9999);
+COMMIT;
+ 
+SET TERMOUT ON
+
+```
+
+
+
+更正后的sql：
+
+```sql
+-- DROP TABLE DEPT;
+CREATE TABLE DEPT
+(DEPTNO NUMBER(2) CONSTRAINT PK_DEPT PRIMARY KEY,
+ DNAME VARCHAR2(14) ,
+ LOC VARCHAR2(13) ) ;
+-- DROP TABLE EMP;
+CREATE TABLE EMP
+(EMPNO NUMBER(4) CONSTRAINT PK_EMP PRIMARY KEY,
+ ENAME VARCHAR2(10),
+ JOB VARCHAR2(9),
+ MGR NUMBER(4),
+ HIREDATE DATE,
+ SAL NUMBER(7,2),
+ COMM NUMBER(7,2),
+ DEPTNO NUMBER(2) CONSTRAINT FK_DEPTNO REFERENCES DEPT);
+
+INSERT INTO DEPT VALUES
+                        (10,'ACCOUNTING','NEW YORK');
+INSERT INTO DEPT VALUES (20,'RESEARCH','DALLAS');
+INSERT INTO DEPT VALUES
+                        (30,'SALES','CHICAGO');
+INSERT INTO DEPT VALUES
+                        (40,'OPERATIONS','BOSTON');
+
+
+
+INSERT INTO EMP VALUES
+                       (7369,'SMITH','CLERK',7902,to_date('17-12-1980','dd-mm-yyyy'),800,NULL,20);
+INSERT INTO EMP VALUES
+                       (7499,'ALLEN','SALESMAN',7698,to_date('20-2-1981','dd-mm-yyyy'),1600,300,30);
+INSERT INTO EMP VALUES
+                       (7521,'WARD','SALESMAN',7698,to_date('22-2-1981','dd-mm-yyyy'),1250,500,30);
+INSERT INTO EMP VALUES
+                       (7566,'JONES','MANAGER',7839,to_date('2-4-1981','dd-mm-yyyy'),2975,NULL,20);
+INSERT INTO EMP VALUES
+                       (7654,'MARTIN','SALESMAN',7698,to_date('28-9-1981','dd-mm-yyyy'),1250,1400,30);
+INSERT INTO EMP VALUES
+                       (7698,'BLAKE','MANAGER',7839,to_date('1-5-1981','dd-mm-yyyy'),2850,NULL,30);
+INSERT INTO EMP VALUES
+                       (7782,'CLARK','MANAGER',7839,to_date('9-6-1981','dd-mm-yyyy'),2450,NULL,10);
+INSERT INTO EMP VALUES
+                       (7788,'SCOTT','ANALYST',7566,to_date('3-10-1987','dd-mm-yyyy'),3000,NULL,20);
+INSERT INTO EMP VALUES
+                       (7839,'KING','PRESIDENT',NULL,to_date('17-11-1981','dd-mm-yyyy'),5000,NULL,10);
+INSERT INTO EMP VALUES
+                       (7844,'TURNER','SALESMAN',7698,to_date('8-9-1981','dd-mm-yyyy'),1500,0,30);
+INSERT INTO EMP VALUES
+                       (7876,'ADAMS','CLERK',7788,to_date('13-7-1987','dd-mm-yyyy'),1100,NULL,20);
+INSERT INTO EMP VALUES
+                       (7900,'JAMES','CLERK',7698,to_date('3-12-1981','dd-mm-yyyy'),950,NULL,30);
+INSERT INTO EMP VALUES
+                       (7902,'FORD','ANALYST',7566,to_date('3-12-1981','dd-mm-yyyy'),3000,NULL,20);
+INSERT INTO EMP VALUES
+                       (7934,'MILLER','CLERK',7782,to_date('23-1-1982','dd-mm-yyyy'),1300,NULL,10);
+-- DROP TABLE BONUS;
+CREATE TABLE BONUS
+(
+  ENAME VARCHAR2(10)	,
+  JOB VARCHAR2(9)  ,
+  SAL NUMBER,
+  COMM NUMBER
+) ;
+-- DROP TABLE SALGRADE;
+CREATE TABLE SALGRADE
+( GRADE NUMBER,
+  LOSAL NUMBER,
+  HISAL NUMBER );
+INSERT INTO SALGRADE VALUES (1,700,1200);
+INSERT INTO SALGRADE VALUES (2,1201,1400);
+INSERT INTO SALGRADE VALUES (3,1401,2000);
+INSERT INTO SALGRADE VALUES (4,2001,3000);
+INSERT INTO SALGRADE VALUES (5,3001,9999);
+COMMIT;
+```
 

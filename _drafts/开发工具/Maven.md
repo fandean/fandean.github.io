@@ -4,17 +4,17 @@ typora-root-url: ..\..\..\..\Pictures\Git-Pictures\typora
 
 # Maven
 
----
+
 
 在看完《Maven实战》第3章后再看下面两篇文章。
 [Apache Maven 入门篇(上)](http://www.oracle.com/technetwork/cn/community/java/apache-maven-getting-started-1-406235-zhs.html)
 [**Apache Maven 入门篇(下)**](http://www.oracle.com/technetwork/cn/community/java/apache-maven-getting-started-2-405568-zhs.html "推荐")
 
-
 [极客学院： Maven 教程](http://wiki.jikexueyuan.com/project/maven/)
 
+ [Apache Maven Tutorials](https://www.logicbig.com/tutorials/apache-maven.html "Apache Maven Tutorials")
 
-> 本笔记主要参考《Maven实战》
+
 
 
 
@@ -25,7 +25,6 @@ Maven是一个跨平台的项目管理工具；Maven主要服务于基于Java平
 Maven是基于项目对象模型（POM project object model）,可以通过一小段描述信息来管理项目的构建、报告和文档的软件项目管理工具
 
 构建(Build)：编译、运行单元测试、生成文档、打包和部署等工作。
-
 
 Make和Ant是过程式的，开发者需要显示指定每一个目标，以及完成该目标所需要执行的任务。
 Maven是声明式的，项目构建过程和各个阶段所需的工作都由插件实现，并且大部分插件都是现成的，开发者只需要声明项目的基本元素，Maven就执行内置的、完整的构建过程。
@@ -867,6 +866,8 @@ pom.xml 文件中部分内容：
 
 
 
+
+
 ### Idea中maven相关技巧
 
 在Idea中可以通过点击Maven侧边栏中的 `Execute Maven Goal`图标来执行maven的任意命令。
@@ -912,6 +913,24 @@ artifactId :  fan-webapp
 
 
 
+### Maven的Mybatis插件
+
+mybatis-generator-maven-plugin 插件：
+
+
+
+
+
+> [利用mybatis-generator自动生成代码 - 菩提树下的杨过 - 博客园](http://www.cnblogs.com/yjmyzz/p/4210554.html "利用mybatis-generator自动生成代码 - 菩提树下的杨过 - 博客园")
+>
+> [mybatis-generator-maven-plugin在idea中使用 - 简书](https://www.jianshu.com/p/4db902936b29 "mybatis-generator-maven-plugin在idea中使用 - 简书")
+
+
+
+
+
+
+
 ## Maven 相关命令
 
 
@@ -946,6 +965,48 @@ artifactId :  fan-webapp
 [Maven常用命令： - 艺意 - 博客园](https://www.cnblogs.com/wkrbky/p/6352188.html "Maven常用命令： - 艺意 - 博客园")
 
 [Maven教程™](https://www.yiibai.com/maven/ "Maven教程™")
+
+
+
+### 安装第三方jar包
+
+[Maven两种方法解决本地第三方jar包引用问题 - CSDN博客](https://blog.csdn.net/pslwap3/article/details/78021966 "Maven两种方法解决本地第三方jar包引用问题 - CSDN博客")
+
+
+
+```
+mvn install:install-file -Dfile=<path-to-file> -DgroupId=<group-id> \
+    -DartifactId=<artifact-id> -Dversion=<version> -Dpackaging=<packaging>
+```
+
+
+
+示例安装 ojdbc8 到本地仓库：
+
+```
+mvn install:install-file -Dfile="D:\Portable Software\Database\sql-JDBC\ojdbc8-oracle18.3.jar" -DgroupId=com.oracle \
+    -DartifactId=ojdbc -Dversion=8 -Dpackaging=jar
+```
+
+如果在idea中使用，运行上上面的命令后，可能需要更新一下本地maven仓库， `Setting > Build.. > Maven > respositories > Update`
+
+```
+mvn install:install-file -Dfile="D:\Portable Software\Database\sql-JDBC\ojdbc6-oracle11.2.0.4.jar" -DgroupId=com.oracle \
+    -DartifactId=ojdbc -Dversion=6 -Dpackaging=jar
+```
+
+```xml
+    <!-- 数据源 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+        <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+        <!--<property name="driverClassName" value="com.oracle.jdbc.OracleDriver"/>-->
+        <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1522:XE"/>
+        <property name="username" value="itheima"/>
+        <property name="password" value="fan123"/>
+    </bean>
+```
+
+
 
 
 
@@ -1023,6 +1084,87 @@ Maven Wrapper官方项目主页： [maven-wrapper: The easiest way to integrate 
 
 
 
+
+
+
+## Maven插件
+
+
+
+### maven compiler plugin
+
+
+
+
+
+各配置说明：
+
+```xml
+<plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-compiler-plugin</artifactId>
+	<version>3.1</version>
+	<configuration>
+		<source>1.6</source>
+		<!-- 源代码使用的开发版本 -->
+		<target>1.6</target>
+		<!-- 需要生成的目标class文件的编译版本 -->
+		<!-- 一般而言，target与source是保持一致的，但是，有时候为了让程序能在其他版本的jdk中运行(对于低版本目标jdk，源代码中需要没有使用低版本jdk中不支持的语法)，会存在target不同于source的情况 -->
+		<!-- 指定项目编码为utf-8 -->
+		<encoding>UTF-8</encoding>
+		<!-- 这下面的是可选项 -->
+		<meminitial>128m</meminitial>
+		<maxmem>512m</maxmem>
+		<fork>true</fork>
+		<!-- fork is enable,用于明确表示编译版本配置的可用 -->
+		<compilerVersion>1.3</compilerVersion>
+		<!-- 这个选项用来传递编译器自身不包含但是却支持的参数选项 -->
+		<!-- <compilerArgument>-verbose -bootclasspath ${java.home}\lib\rt.jar</compilerArgument> -->
+		<compilerArguments>
+			<verbose />
+			<!-- 这个选项用来传递编译器自身不包含但是却支持的参数选项 -->
+			<!-- <bootclasspath>${java.home}/lib/rt.jar:${java.home}/jre/lib/jce.jar</bootclasspath> -->
+		</compilerArguments>
+		<!--  传递参数给 javac -->
+		<compilerArgs>
+			<arg>-verbose</arg>
+			<arg>-Xlint:all,-options,-path</arg>
+		</compilerArgs>
+	</configuration>
+</plugin>
+```
+
+> 这里只是为了介绍各种用法而拼凑的内容
+
+也可以这样配置：
+
+```xml
+<properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- 配置 maven compiler 插件-->
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+</properties>
+```
+
+
+## Docker
+另见 Docker Idea 相关文章
+
+
+
+
+## Maven私服
+
+
+
+### Nexus
+
+在maven中的配置
+
+
+
+> Nexus的安装和配置见相关文章
 
 
 

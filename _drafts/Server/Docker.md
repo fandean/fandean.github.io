@@ -1359,7 +1359,19 @@ docker commit -m="A new custom image" --author="fan" webserver nginx:v2
 
 
 
-
+> 看到过下面的build命令：
+>
+> ```
+> docker build --rm --tag sonatype/nexus oss/
+> ```
+>
+> 还有
+>
+> ```
+> docker build --rm=true --tag=sonatype/nexus .
+> ```
+>
+> 好奇其 --rm 参数的具体作用是什么？
 
 
 
@@ -1654,7 +1666,6 @@ docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v G:\Do
 
 - `-v /var/run/docker.sock:/var/run/docker.sock `：把宿主机的Docker守护进程(Docker daemon)默认监听的Unix域套接字挂载到容器中； （上面是照搬Linux中使用的命令，**那么在Windows中该如何？**）
 
-  
 
 > 注意：上面的命令还没有明确为该容器指定一个name， 默认的name是 silly_heyrovsky。
 
@@ -1754,7 +1765,7 @@ $ docker run -it --rm --name busybox2 --network my-net busybox sh
 
 
 
-​    
+    
 
 
 

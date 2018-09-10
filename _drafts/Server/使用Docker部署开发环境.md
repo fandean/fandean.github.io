@@ -105,7 +105,7 @@ docker run --name oracle11g -d -p 1522:1521 -p 49163:8080 --network javaee -v G:
 
 使用jdbc连接数据库：
 
-url：
+url： 注意端口这里并不是 默认的 1521 
 
 ```
 jdbc:oracle:thin:@//127.0.0.1:1522

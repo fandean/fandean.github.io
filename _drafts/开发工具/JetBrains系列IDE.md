@@ -2,7 +2,7 @@
 
 ### 通过授权服务器激活
 
-
+[XIdea.online Free JetBrains Products License Server.](http://xidea.online/ "XIdea.online Free JetBrains Products License Server.") 这个网站貌似不错。
 
 [JetBrains激活](http://www.imsxm.com/jetbrains-license-server.html "JetBrains激活 - 成都没有派对")
 
@@ -354,7 +354,7 @@ Go to File->Settings and expand Code Style, selectJava, and add your prefixes/su
 
 
 
-### Git with Android Studio 
+### Git版本控制
 
 `VCS -> Enable Version Control Integration` 然后选择Git即可。
 
@@ -406,6 +406,26 @@ Unregistered VCS root detected
 
 
 > [开发准备--Android Studio中的版本管理git - 简书](http://www.jianshu.com/p/53d02cf04694 "开发准备--Android Studio中的版本管理git - 简书")
+
+
+
+### 代码提交前后的操作
+
+`Before Commit`，在提交项目前，进行一些前置操作；
+
+
+
+- Perform code analysis：IntelliJ IDEA 的Code Analysis机制比较敏感，就算我们在文本注释中用错了标签或者注释时方法的参数与实际参数不一致，在Code Analysis的时候，都会以错误和警告的形式给出。
+
+- `Reformat code`，提交代码之前对代码进行格式化；
+- `Optimize imports`，提交代码之前对代码进行导入包的优化；
+- `Upload files`，提交代码之后上传文件。
+
+
+
+`After Commit`，在提交项目后，进行一些后置操作。
+
+
 
 
 
@@ -478,6 +498,14 @@ IDE有默认配置来帮你解决问题，打开默认配置的方法：
 - 按 `Ctrl+Tab` 使用 切换器。
 
 
+
+大神建议关闭标签页：
+
+使用 `Ctrl + E` 查看最近**打开**过的文件
+
+或者直接用 `Ctrl + Shift + E` 来访问最近**编辑**的文件
+
+或者双击 shift 再输入 `/` 加 文件名，来搜索文件。
 
 
 
@@ -561,6 +589,40 @@ Win10 中 Idea中的Terminal不能运行mvn命令，提示mvn不存在，这里m
 2. 把cmd设置为**旧版本特性**，即关闭新特性即可正常使用了。 
 
 [Win10 下intellij idea 的Terminal不能用的问题 - CSDN博客](https://blog.csdn.net/act262/article/details/48263489 "Win10 下intellij idea 的Terminal不能用的问题 - CSDN博客")
+
+
+
+
+
+### Ctrl + Shift + A
+
+
+
+
+
+### 双击shift
+
+
+
+
+
+
+
+### Language Injection
+
+
+
+>  [Intellij IDEA 一些不为人知的技巧 - 简书](https://www.jianshu.com/p/364b94a664ff "Intellij IDEA 一些不为人知的技巧 - 简书")
+
+
+
+### 快速跳转
+
+
+
+- `ctrl + alt + b` ：跳转到实现类
+
+
 
 
 
@@ -804,6 +866,10 @@ Facets中则可以设置当前项目所用的框架，如Hibernate和Spring，�
 
 
 
+### web.xml的作用
+
+
+
 生成`web.xml`文件：
 
 `Project Structure > Modules > 展开modules > web >Deployment Descriptors > + > web.xml` 注意xml文件的路径问题
@@ -812,51 +878,34 @@ Facets中则可以设置当前项目所用的框架，如Hibernate和Spring，�
 
 
 
+web.xml加载过程如下：
+
+1. 启动一个WEB项目的时候，WEB容器会去读取它的配置文件web.xml，读取`<listener>`和`<context-param>`两个结点。 
+2. 紧急着，容创建一个`ServletContext`（servlet上下文），这个web项目的所有部分都将共享这个上下文。 
+3. 容器将`<context-param>`转换为键值对，并交给servletContext。 
+4. 容器创建`<listener>`中的类实例，创建监听器。
+
+
+
+
+
+>
+>
+> - [Web.xml详解 - CSDN博客](https://blog.csdn.net/believejava/article/details/43229361 "Web.xml详解 - CSDN博客") 
+> - [web.xml文件详解 - OpenFire_ - 博客园](http://www.cnblogs.com/hellojava/archive/2012/12/28/2835730.html "web.xml文件详解 - OpenFire_ - 博客园")
+> - [web.xml文件的作用及基本配置 - 简书](https://www.jianshu.com/p/285ad45f60d1 "web.xml文件的作用及基本配置 - 简书")
+>
+>
+
+
+
+
+
 ### Docker
 
-运行应用服务器的Docker image：
+[Docker - Help - IntelliJ IDEA](https://www.jetbrains.com/help/idea/docker.html "Docker - Help - IntelliJ IDEA")
 
-- 方式一：在Dockerfile中运行，只需在Dockerfile中添加类似的如下内容:
-
-  ```dockerfile
-  FROM tomcat:latest
-  ```
-
-  然后点击左侧的 `>>` 再选择 “Run on Docker”，
-
-- 方式二：通过Docker插件，选择一个image，然后创建并运行容器。
-
-
-
-在容器中部署Web应用程序：
-
-您可以通过将工件文件夹映射到应用服务器部署文件夹来部署您的Web应用程序，您也可以通过将工件复制到部署文件夹来部署您的应用程序。
-
-创建一个新的绑定，在打开的对话框中，指定：
-- 容器路径。 服务器部署文件夹的路径，例如：/usr/local/tomcat/webappsTomcat。
-- 主机路径：对于WAR工件，指向工件输出目录的路径；对于分解的WAR工件，指向包含工件输出目录的目录的路径。
-
-
-
-通过将工件复制到服务器部署文件夹来部署应用程序：
-
-- 确保您的工件与您的工具位于同一个目录中，例如，Dockerfile。
-
-- 在你的Dockerfile，在FROM <app_server_image_name>:<tag>后，例如，FROM tomcat:latest，添加以下内容：
-
-  - 对于分解的工件： 
-
-  `COPY . </server/deployment/path>`，例如，`COPY . /usr/local/tomcat/webappsTomcat`。
-
-  - 对于WAR工件： 
-
-  `COPY <artifactname>.war </server/deployment/path>`
-
-- 单击  并选择“运行`'<ConfigurationName>'（Run '<ConfigurationName>'）`”。
-
-
-
-最后，将容器http端口映射到主机端口，以便通过浏览器访问。
+详见 Docker 和 Idea相关文章 
 
 
 
@@ -895,7 +944,7 @@ Facets中则可以设置当前项目所用的框架，如Hibernate和Spring，�
 
 
 
-### spring
+### Spring
 
 弹出提示：
 
@@ -914,6 +963,65 @@ Facets中则可以设置当前项目所用的框架，如Hibernate和Spring，�
 **Idea创建Spring的xml配置文件的方法：**
 
 `New > XML Configuration File > Spring Config`
+
+
+
+
+
+### Mybatis
+
+
+
+**mybatis-generator：**
+
+利用 mybatis-generator 自动生成代码，（根据我们的数据库自动生成pojo、dao和映射用的xml文件）
+
+mybatis-generator有三种用法：命令行、eclipse插件、maven插件。网上教程大多都是基于 maven插件 来讲解的；即在 pom.xml 文件中添加 mybatis-generator-maven-plugin 插件。
+
+需要通过 `generatorConfig.xml`配置文件，来配置数据库连接信息、数据库表信息，生成的类名和相关文件存放的路径（需要经常变动的部分）和 生成选项（基本不变）。
+
+
+
+> [利用mybatis-generator自动生成代码 - 菩提树下的杨过 - 博客园](http://www.cnblogs.com/yjmyzz/p/4210554.html "利用mybatis-generator自动生成代码 - 菩提树下的杨过 - 博客园")
+>
+> [mybatis-generator-maven-plugin在idea中使用 - 简书](https://www.jianshu.com/p/4db902936b29 "mybatis-generator-maven-plugin在idea中使用 - 简书")
+
+
+
+在Idea上搜索了一下发现idea的 codehelper.generator 插件，看起来不错。该插件暂时只支持 `java + mysql`，更多数据库的支持还在开发中。更多特性：
+
+codehelper.generator ：GenDaoCode 特性：
+
+- 根据Pojo 文件一键生成 Dao，Service，Xml，Sql文件。
+- Pojo文件更新后一键更新对应的Sql和mybatis xml文件。
+- 提供insert，insertList，update，select，delete五种方法。
+- 能够批量生成多个Pojo的对应的文件。
+- 自动将pojo的注释添加到对应的Sql文件的注释中。 
+- 丰富的配置，如果没有配置文件，则会使用默认配置。
+- 可以在Intellij Idea中快捷键配置中配置快捷键。
+- 目前支持MySQL + Java，后续会支持更多的DB。
+
+[zhengjunbase/codehelper.generator: source code of codehelper.generator](https://github.com/zhengjunbase/codehelper.generator "zhengjunbase/codehelper.generator: source code of codehelper.generator")
+
+
+
+
+
+### Build
+
+在Java Web工程中，这里使用maven：
+
+
+
+示例一：创建一个简单的servlet后，可以编译一下该文件，看该servlet是否正确
+
+Open the Build menu and click Rebuild Project to make sure that the servlet is compiling correctly. The Event Log should output `Compilation completed successfully` 并且你可以看到此时会生成输出目录，在该目录中可以看到对应的 class 文件
+
+
+
+示例二：
+
+点击 `Build > Build Artifacts` ，可以在输出目录中生成 war 包，或者解压的 war包目录，这样可以在不启动 Tomcat 服务器的情况下，自动生成 war 包文件。
 
 
 
@@ -960,9 +1068,54 @@ Facets中则可以设置当前项目所用的框架，如Hibernate和Spring，�
 
  
 
+Alt+F7，查找整个工程中使用地某一个类、方法或者变量的位置 
+
+Ctrl+I，实现方法 
+
+Ctrl+B/Ctrl+Click，快速打开光标处的类或方法（跳转到定义处）
+
+ Ctrl+Alt+B，跳转到方法实现处
+
+Ctrl+Shift+Backspace，*跳转到上次编辑的地方* 
+
+Ctrl+O，重写方法 
+
+Ctrl+Alt+Space，类名自动完成
+
+Alt+F1，查找代码所在位置 
+
+Alt+1，快速打开或隐藏工程面板 
+
+Ctrl+Alt+left/right，返回至上次浏览的位置  （windows需要先禁用显卡快捷键）
+
+Alt+left/right，切换代码视图 
+
+Alt+Up/Down，在方法间快速移动定位
+
+Ctrl+[ OR ]，可以跑到大括号的开头与结尾 
+
+Ctrl+F12，可以显示当前文件的结构 
+
+Ctrl+F7，可以查询当前元素在当前文件中的引用，然后按 F3 可以选择 
+
+Ctrl+N，*可以快速打开类* 
+
+Ctrl+Shift+N，*可以快速打开文件* 
+
+Alt+Q，可以看到当前方法的声明
+
+Ctrl + U
+将选定文本更改为小写字符。
+
+编辑.转换为大写
+Ctrl + Shift + U
+将选定文本更改为大写字符。
+
 
 
 快速搜索Project的tree views：光标聚焦到project上，然后直接输入你要查找的文件名。
+
+
 
 
 
@@ -1172,6 +1325,7 @@ Coding Assistance：点击 enable 来下载Node.js的 。如有必要再点击 U
 * 善用“Settings”对话框中的**搜索**功能（直接搜索相关设置）。
 * 根据方法自动生成变量，比如： 我们想将`data.getTime()`的返回值保存在一个变量中，可以这样操作：输入`data.getTime().var` 再按Tab或回车，即可自动创建变量。
 * 增强for循环的快捷输入，比如有一个集合 col，现在要使用for循环遍历该集合，先输入`col.for`再按Tab或回车。
+* 快速为行末添加分号：我们可以在行中任意位置使用快捷键 `Ctrl + Shift + Enter` 来快速补全分号。
 
 
 
