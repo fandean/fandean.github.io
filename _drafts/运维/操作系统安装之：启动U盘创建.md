@@ -4,6 +4,16 @@
 
 
 
+## 系统镜像下载
+[在 Mac 上通过 Boot Camp 使用 Windows 10](https://support.apple.com/zh-cn/HT204990)
+[从 Microsoft 下载 ISO 文件](https://www.microsoft.com/zh-cn/software-download/windows10ISO)
+
+MSDN我告诉你
+
+
+
+
+
 ### Windows和Linux官方原版iso文件
 
 
