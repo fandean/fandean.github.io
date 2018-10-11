@@ -14,6 +14,10 @@ Hyper-v 的各种操作，包括如何开启Hyper-V 和 如何创建虚拟机。
 
 
 
+> 各种虚拟机： [4 Free Virtualization Software Solutions For Windows](https://www.maketecheasier.com/4-free-virtualization-software-solutions-for-windows/ "4 Free Virtualization Software Solutions For Windows")
+
+
+
 由于想体验 Docker for Windows 才启用了 Hyper-V 功能，但是还是会照成不少麻烦，后来想到可以通过在 Linux 虚拟机中安装 Docker来使用 Docker。
 
 

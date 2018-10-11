@@ -2,11 +2,7 @@
 
 
 
-
-
-
-
-## 安装 spring-boot
+## spring-boot
 
 
 
@@ -71,7 +67,7 @@ docker pull centos:7
 
 
 
-> tag带有小数点的版本不进行滚动更新维护
+> tag 带有小数点的版本不进行滚动更新维护
 
 
 
@@ -186,10 +182,6 @@ grant connect, resource, dba to itheima;
 
 
 
-
-
-
-
 ### Oracle 12c
 
 image 太大 3G，没下载完成，强行结束了，但不知如何删除？
@@ -287,6 +279,400 @@ redis有两种数据持久化方式：
 
 
 
+## Docker下 Dubbo开发
+
+
+
+
+
+### ZooKeeper
+
+[library/zookeeper - Docker Hub](https://hub.docker.com/_/zookeeper/ "library/zookeeper - Docker Hub")
+
+[Zookeeper应用介绍与安装部署 - 简书](https://www.jianshu.com/p/4c13132ce49f "Zookeeper应用介绍与安装部署 - 简书")
+
+
+
+**单机模式**
+
+zoo.cfg配置
+
+```ini
+ticketTime=2000
+clientPort=2181
+dataDir=/opt/zookeeper/data
+dataLogDir=/opt/zookeeper/logs
+```
+
+
+
+**集群模式** 
+
+zoo.cfg配置
+
+```ini
+ticketTime=2000
+clientPort=2181
+dataDir=/opt/zookeeper/data
+dataLogDir=/opt/zookeeper/logs
+
+initLimit=10
+syncLimit=5
+server.1=master:2888:3888
+server.2=slave01:2888:3888
+server.3=slave02:2888:3888
+```
+
+
+
+由上面的配置可知，需要挂载的有 zoo.cfg 配置文件、保存数据的data目录、保存log的logs目录。
+
+```shell
+docker run --name temp-zookeeper --rm -d zookeeper
+```
+
+先查看容器结构：
+
+```shell
+bash-4.4# cat /conf/zoo.cfg 
+clientPort=2181
+dataDir=/data
+dataLogDir=/datalog
+tickTime=2000
+initLimit=5
+syncLimit=2
+autopurge.snapRetainCount=3
+autopurge.purgeInterval=0
+maxClientCnxns=60
+```
+
+
+
+修改本地 conf/zoo.cfg 文件内容，然后运行容器：
+
+```shell
+docker run --name javaee-zookeeper -v G:/Docker/JavaEERuntime/zookeeper/data:/data -v G:/Docker/JavaEERuntime/zookeepe/conf:/conf -v G:/Docker/JavaEERuntime/zookeeper/logs:/datalog -p 2181:2181 --network javaee -d zookeeper:latest
+```
+
+
+
+
+
+### dubbo-admin
+
+[监控与管理dubbo服务 ](http://qinghua.github.io/dubbo-3/ "监控与管理dubbo服务")
+
+老师给的 dubbo-admin.war 包无法在 Docker中的tomcat上运行，
+
+从网上下载的Dubbo源码通过编码后得到的war包或者下载的war包，默认不支持JDK1.8，在tomcat中运行会报错
+
+
+
+解决方式一： 直接在Docker Hub上寻找现有dubbo-admin镜像
+
+```
+docker pull chenchuxin/dubbo-admin
+```
+
+
+
+解决方式二：寻找可用的 war 包 （**tomcat还是报异常**）
+
+可以寻找支持 JDK1.8 的  Dubbo-admin war包，比如：<https://pan.baidu.com/s/1jpq8tD7DlKZItLpgyx5lfA>  密码：**6w7d**
+
+
+
+
+
+> [Docker下dubbo开发，三部曲之二：本地环境搭建 - CSDN博客](https://blog.csdn.net/boling_cavalry/article/details/72460526 "Docker下dubbo开发，三部曲之二：本地环境搭建 - CSDN博客")
+>
+> [docker安装zookeeper和dubbo-admin - CSDN博客](https://blog.csdn.net/qq_33562996/article/details/80599922 "docker安装zookeeper和dubbo-admin - CSDN博客")
+>
+> [Dubbo教程(二)----Dubbo-admin管理平台搭建 - CSDN博客](https://blog.csdn.net/u011781521/article/details/76037473 "Dubbo教程(二)----Dubbo-admin管理平台搭建 - CSDN博客")
+>
+> [Docker+Spring+Dubbo+ZooKeeper完成服务化RPC实验 - CSDN博客](https://blog.csdn.net/zhengwei223/article/details/78077582)
+
+
+
+
+
+注意，dubbo-admin有些是tomcat7有些是tomcat8的
+
+并且可能和 jdk 版本也有关系。
+
+
+
+
+
+## FastDFS
+
+
+
+### 第一次尝试
+
+使用  [season/fastdfs](https://hub.docker.com/r/season/fastdfs/ "season/fastdfs - Docker Hub") （不确定其是否整合了Nginx，因该时没有，怕麻烦直接使用了第二种方法）
+
+```shell
+docker run --name javaee-zookeeper -v G:/Docker/JavaEERuntime/zookeeper/data:/data -v G:/Docker/JavaEERuntime/zookeepe/conf:/conf -v G:/Docker/JavaEERuntime/zookeeper/logs:/datalog -p 2181:2181 --network javaee -d zookeeper:latest
+
+# tracker
+docker run -dti --name fastdfs-trakcer -v G:/Docker/JavaEERuntime/fastDFS/tracker/data:/fastdfs/tracker/data --network javaee season/fastdfs tracker
+
+docker run -dti --name fastdfs-trakcer -v G:/Docker/JavaEERuntime/fastDFS/tracker/data:/fastdfs/tracker/data -p 22122:22122 --network javaee season/fastdfs
+```
+
+
+
+- port
+
+tracker default port is 22122
+
+- base_path
+
+you should map the path: /fastdfs/tracker/data to keep the data
+
+```
+安装成功后进入/etc/fdfs 目录：
+拷贝一份新的 tracker 配置文件：
+cp tracker.conf.sample tracker.conf
+修改 tracker.conf
+vi tracker.conf
+base_path=/home/yuqing/FastDFS
+改为：
+base_path=/home/FastDFS
+```
+
+
+
+
+
+
+
+
+
+```shell
+#storage
+docker run -ti --name fastdfs-storage -v ~/storage_data:/fastdfs/storage/data -v ~/store_path:/fastdfs/store_path --net=host -e TRACKER_SERVER:192.168.1.2:22122 season/fastdfs storage
+
+docker run --name fastdfs-storage -v G:/Docker/JavaEERuntime/fastDFS/storage/data:/fastdfs/storage/data -v G:/Docker/JavaEERuntime/fastDFS/storage/store_path:/fastdfs/store_path --network javaee -e TRACKER_SERVER:fastdfs-trakcer:22122 season/fastdfs
+
+docker run --name fastdfs-storage -v G:/Docker/JavaEERuntime/fastDFS/storage/base_data:/fastdfs/storage/data -v G:/Docker/JavaEERuntime/fastDFS/storage/store_path0:/fastdfs/store_path --network javaee -e TRACKER_SERVER:fastdfs-trakcer:22122 season/fastdfs
+```
+
+
+
+- storage_data
+
+equal to "base_path" in store.conf
+
+- store_path
+
+equal to "store_path0" in store.conf
+
+- TRACKER_SERVER
+
+tracker address
+
+补充
+
+- log (所以不用指定log目录)
+
+I redirect FastDFS's log file to container's stdout, so, its easy to collect log.
+
+- use your config file
+
+FastDFS config files is in: /fdfs_conf
+
+
+
+```
+安装成功后进入/etc/fdfs 目录：
+拷贝一份新的 storage 配置文件：
+cp storage.conf.sample storage.conf
+修改 storage.conf
+vi storage.conf
+group_name=group1
+base_path=/home/yuqing/FastDFS 改为：base_path=/home/FastDFS
+store_path0=/home/yuqing/FastDFS 改为：store_path0=/home/FastDFS/fdfs_storage
+#如果有多个挂载磁盘则定义多个 store_path，如下
+#store_path1=.....
+#store_path2=......
+tracker_server=192.168.101.3:22122 #配置 tracker 服务器:IP
+#如果有多个则配置多个 tracker
+tracker_server=192.168.101.4:22122
+```
+
+
+
+
+
+### 第二次尝试
+
+
+
+使用整合了nginx的fastdfs :  [ygqygq2/fastdfs-nginx](https://hub.docker.com/r/ygqygq2/fastdfs-nginx/ "ygqygq2/fastdfs-nginx - Docker Hub")
+
+
+
+```shell
+docker run -dti --network=host --name tracker -v /var/fdfs/tracker:/var/fdfs ygqygq2/fastdfs-nginx tracker
+
+docker run -dti --network=host --name storage0 -e TRACKER_SERVER=10.1.5.85:22122 -v /var/fdfs/storage0:/var/fdfs ygqygq2/fastdfs-nginx storage
+
+docker run -dti --network=host --name storage1 -e TRACKER_SERVER=10.1.5.85:22122 -v /var/fdfs/storage1:/var/fdfs ygqygq2/fastdfs-nginx storage
+
+docker run -dti --network=host --name storage2 -e TRACKER_SERVER=10.1.5.85:22122 -e GROUP_NAME=group2 -e PORT=22222 -v /var/fdfs/storage2:/var/fdfs ygqygq2/fastdfs-nginx storage
+```
+
+修改
+
+```shell
+docker run -dti --network=javaee --name tracker -v G:/Docker/JavaEERuntime/fastDFS/tracker/data:/var/fdfs  -p 22122:22122 ygqygq2/fastdfs-nginx tracker
+
+docker run -dti --network=javaee --name storage0 -e TRACKER_SERVER=tracker:22122 -v G:/Docker/JavaEERuntime/fastDFS/storage/store_path0:/var/fdfs ygqygq2/fastdfs-nginx storage
+
+docker run -dti --network=javaee --name storage1 -e TRACKER_SERVER=tracker:22122 -v G:/Docker/JavaEERuntime/fastDFS/storage/store_path1:/var/fdfs ygqygq2/fastdfs-nginx storage
+
+docker run -dti --network=javaee --name storage2 -e TRACKER_SERVER=tracker:22122 -e GROUP_NAME=group2 -e PORT=22222 -v G:/Docker/JavaEERuntime/fastDFS/storage/store_path2:/var/fdfs ygqygq2/fastdfs-nginx storage
+```
+
+
+
+tracker log： 
+
+```
+[2018-09-26 15:41:02] INFO - file: tracker_relationship.c, line: 394, selecting leader...
+[2018-09-26 15:41:02] INFO - file: tracker_relationship.c, line: 412, I am the new tracker leader 172.18.0.2:22122
+```
+
+storage0 log:
+
+```
+[2018-09-26 15:41:03] INFO - file: storage_func.c, line: 257, tracker_client_ip: 172.18.0.3, my_server_id_str: 172.18.0.3, g_server_id_in_filename: 50336428
+[2018-09-26 15:41:03] INFO - file: tracker_client_thread.c, line: 310, successfully connect to tracker server 172.18.0.2:22122, as a tracker client, my ip is 172.18.0.3
+[2018-09-26 15:41:33] INFO - file: tracker_client_thread.c, line: 1263, tracker server 172.18.0.2:22122, set tracker leader: 172.18.0.2:22122
+```
+
+两者可以连接成功，但是java无法使用该地址连接
+
+```
+connect to server 172.18.0.2:22122 fail
+java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.csource.fastdfs.TrackerGroup.getConnection(TrackerGroup.java:47)
+	at org.csource.fastdfs.TrackerGroup.getConnection(TrackerGroup.java:72)
+	at org.csource.fastdfs.TrackerClient.getConnection(TrackerClient.java:58)
+	at cn.itcast.demo.FastDFSDemo.main(FastDFSDemo.java:14)
+connect to server 172.18.0.2:22122 fail
+java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.csource.fastdfs.TrackerGroup.getConnection(TrackerGroup.java:47)
+	at org.csource.fastdfs.TrackerGroup.getConnection(TrackerGroup.java:72)
+	at org.csource.fastdfs.TrackerClient.getConnection(TrackerClient.java:58)
+	at org.csource.fastdfs.TrackerClient.getStoreStorage(TrackerClient.java:91)
+	at org.csource.fastdfs.StorageClient.newWritableStorageConnection(StorageClient.java:1912)
+	at org.csource.fastdfs.StorageClient.do_upload_file(StorageClient.java:702)
+	at org.csource.fastdfs.StorageClient.upload_file(StorageClient.java:163)
+	at org.csource.fastdfs.StorageClient.upload_file(StorageClient.java:131)
+	at org.csource.fastdfs.StorageClient.upload_file(StorageClient.java:113)
+	at cn.itcast.demo.FastDFSDemo.main(FastDFSDemo.java:20)
+Exception in thread "main" java.lang.Exception: getStoreStorage fail, errno code: 0
+	at org.csource.fastdfs.StorageClient.newWritableStorageConnection(StorageClient.java:1915)
+	at org.csource.fastdfs.StorageClient.do_upload_file(StorageClient.java:702)
+	at org.csource.fastdfs.StorageClient.upload_file(StorageClient.java:163)
+	at org.csource.fastdfs.StorageClient.upload_file(StorageClient.java:131)
+	at org.csource.fastdfs.StorageClient.upload_file(StorageClient.java:113)
+	at cn.itcast.demo.FastDFSDemo.main(FastDFSDemo.java:20)
+
+```
+
+
+
+
+
+将ip地址改为本地回环地址后出现：
+
+```
+Exception in thread "main" java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.csource.fastdfs.ClientGlobal.getSocket(ClientGlobal.java:107)
+	at org.csource.fastdfs.StorageServer.<init>(StorageServer.java:45)
+	at org.csource.fastdfs.TrackerClient.getStoreStorage(TrackerClient.java:158)
+	at org.csource.fastdfs.StorageClient.newWritableStorageConnection(StorageClient.java:1912)
+	at org.csource.fastdfs.StorageClient.do_upload_file(StorageClient.java:702)
+	at org.csource.fastdfs.StorageClient.upload_file(StorageClient.java:163)
+	at org.csource.fastdfs.StorageClient.upload_file(StorageClient.java:131)
+	at org.csource.fastdfs.StorageClient.upload_file(StorageClient.java:113)
+	at cn.itcast.demo.FastDFSDemo.main(FastDFSDemo.java:20)
+
+```
+
+
+
+
+
+
+
+```
+docker run -dti --network=host --name tracker ygqygq2/fastdfs-nginx tracker
+
+docker run -dti --network=host --name storage0 -e TRACKER_SERVER=10.1.5.85:22122  ygqygq2/fastdfs-nginx storage
+
+docker run -dti --network=host --name storage1 -e TRACKER_SERVER=10.1.5.85:22122  ygqygq2/fastdfs-nginx storage
+
+docker run -dti --network=host --name storage2 -e TRACKER_SERVER=10.1.5.85:22122 -e GROUP_NAME=group2 -e PORT=22222  ygqygq2/fastdfs-nginx storage
+
+######
+
+docker run -dti --network=host --name storage0 -e TRACKER_SERVER=tracker:22122  ygqygq2/fastdfs-nginx storage
+
+docker run -dti --network=host --name storage1 -e TRACKER_SERVER=tracker:22122  ygqygq2/fastdfs-nginx storage
+
+docker run -dti --network=host --name storage2 -e TRACKER_SERVER=tracker:22122 -e GROUP_NAME=group2 -e PORT=22222  ygqygq2/fastdfs-nginx storage
+```
+
+
+
+
+
+
+
+
+
+上面修改的命令中，需要改进的地方是：`G:/Docker/JavaEERuntime/fastDFS/storage/store_path0` 不要写成
+
+`store_path0` ，直接是 `storage0` 就行，因为该目录下会自动创建 data 和 log 目录
+
+
+
+- [FASTDFS - 简书](https://www.jianshu.com/p/1c71ae024e5e "FASTDFS - 简书") 入门推荐
+- [分布式文件系统 - FastDFS 简单了解一下 - Mafly - 博客园](http://www.cnblogs.com/mafly/p/fastdfs.html "分布式文件系统 - FastDFS 简单了解一下 - Mafly - 博客园")
+- [用FastDFS一步步搭建文件管理系统 - bojiangzhou - 博客园](https://www.cnblogs.com/chiangchou/p/fastdfs.html "用FastDFS一步步搭建文件管理系统 - bojiangzhou - 博客园") 
+- [使用docker进行FastDFS搭建_慕课手记](https://www.imooc.com/article/66981?block_id=tuijian_wz "使用docker进行FastDFS搭建_慕课手记")
+
+
+
 
 
 ## javaee
@@ -304,18 +690,39 @@ docker run --name javaee-mysql5.5 -v G:/Docker/JavaEERuntime/mysql5.5/data:/var/
 
 docker run --name javaee-tomcat -v G:/Docker/JavaEERuntime/tomcat-8.5/webapps:/usr/local/tomcat/webapps -v G:/Docker/JavaEERuntime/tomcat-8.5/conf:/usr/local/tomcat/conf -p 8080:8080 --network javaee -d tomcat:8.5.32
 
-
 docker run --name javaee-nginx -v G:/Docker/JavaEERuntime/nginx/html:/usr/share/nginx/html -v G:/Docker/JavaEERuntime/nginx/nginx.conf:/etc/nginx/nginx.conf -p 80:80 --network javaee -d nginx:latest
 
 
 docker run --name javaee-redis  -v G:/Docker/JavaEERuntime/redis/redis.conf:/usr/local/etc/redis/redis.conf -v G:/Docker/JavaEERuntime/redis/data:/data -p 6379:6379 --network javaee -d redis:latest redis-server /usr/local/etc/redis/redis.conf
+
+# ---------------------------------------
+
+docker run --name javaee-zookeeper -v G:/Docker/JavaEERuntime/zookeeper/data:/data -v G:/Docker/JavaEERuntime/zookeepe/conf:/conf -v G:/Docker/JavaEERuntime/zookeeper/logs:/datalog -p 2181:2181 --network javaee -d zookeeper:latest
+
+
+## 使用 javaee-zookeeper:2181 代替 127.0.0.1:2181 才能连接成功
+docker run --name dubbo-admin \
+-p 8888:8080 \
+-e dubbo.registry.address=zookeeper://javaee-zookeeper:2181 \
+-e dubbo.admin.root.password=root \
+-e dubbo.admin.guest.password=guest \
+--network javaee -d \
+chenchuxin/dubbo-admin
+
+
+docker run --name javaee-tomcat7-01 -v G:/Docker/JavaEERuntime/tomcat-7/webapps:/usr/local/tomcat/webapps -v G:/Docker/JavaEERuntime/tomcat-7/conf:/usr/local/tomcat/conf -p 8701:8080 --network javaee -d tomcat:7
+webapps目录和 conf目录非原生，还需要更改
 ```
 
 
 
 
 
-> 可以使用此方式连接 redis：
+
+
+
+
+> 可以使用此方式连接 redis：  不建议使用 --link 
 >
 > ```shell
 > # 使用下面的方法不行，提示他们不属于同一个网络
@@ -371,8 +778,6 @@ $ docker run -it --rm --name my-running-script -v "$PWD":/usr/src/app -w /usr/sr
 
 
 Create a Dockerfile in your Node.js app project：
-
-
 
 
 

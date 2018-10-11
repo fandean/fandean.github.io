@@ -4,6 +4,8 @@
 
 [XIdea.online Free JetBrains Products License Server.](http://xidea.online/ "XIdea.online Free JetBrains Products License Server.") 这个网站貌似不错。
 
+
+
 [JetBrains激活](http://www.imsxm.com/jetbrains-license-server.html "JetBrains激活 - 成都没有派对")
 
 JetBrains 授权服务器(License Server URL):
@@ -81,7 +83,7 @@ JetBrains 授权服务器(License Server URL):
 
 
 
-### 字体设置
+### 各种字体设置
 
 **编辑器字体设置：** Editor > Font : 
 
@@ -98,7 +100,7 @@ Line Spacing：1.1
 
 
 1. 设置代码字体（主要字体：推荐 [mononoki](https://madmalik.github.io/mononoki/)，候选字体推荐收费字体"方正稚艺简体"）
-        `File --> Settings --> Editor --> Font`
+    ​    `File --> Settings --> Editor --> Font`
 
 >**默认是不可改变字体的，要想自定义字体需另存一份Scheme（方案）**，点击`Sava As`然后就可在此基础上修改字体（其它一些自定义设置与此类似）。  其中 Show only monospaced fonts 表示只列出等宽字体；Secondary font表示备用字体，可通过它来设置代码中中文的显示字体。
 
@@ -332,7 +334,7 @@ Go to File->Settings and expand Code Style, selectJava, and add your prefixes/su
 高亮匹配的各种配对符号的设置路径：  
 
 ​`Setting --> Editor --> Colors & Fonts（或者Color Scheme） --> General --> Code --> Matched brace`
-    
+​    
 推荐勾选 Effects --> Bordered 效果， 一个矩形框框，再为其选择一个颜色。还有就是设置背景色，也可不弄，自己摸索。
 
 >我的一个设置是 : 
@@ -594,6 +596,10 @@ Win10 中 Idea中的Terminal不能运行mvn命令，提示mvn不存在，这里m
 
 
 
+
+
+
+
 ### Ctrl + Shift + A
 
 
@@ -640,6 +646,14 @@ Win10 中 Idea中的Terminal不能运行mvn命令，提示mvn不存在，这里m
 
 
 
+### 导入其它工程
+
+导入其它工程
+
+- 导入maven工程，需要配置一下maven
+
+
+
 ### 单行注释
 
 取消单行注释的斜杠出现在每行的开头：`code style > java > code generation > comment code > 取消勾选 Line comment ant first column`
@@ -660,9 +674,26 @@ Select a JDK from the File System  选择JDK路径
 
 内嵌的JDK，一般它不会推荐最新版的JDK。
 
+
+
 如果在使用Idea时出现输入法不能跟随光标，可能是与jdk有关。
 
 > 另见：[java - How to set the JDK for Android Studio? - Ask Ubuntu](https://askubuntu.com/questions/467870/how-to-set-the-jdk-for-android-studio "java - How to set the JDK for Android Studio? - Ask Ubuntu")
+
+
+
+
+
+### 自动导包和智能移除
+
+
+
+`Editor > General > Auto Import` 勾选：
+
+- Add unambiguous imports on the fly 自动导包
+- Optimize imports on the fly  智能移除
+
+
 
 
 
@@ -836,6 +867,20 @@ Facets中则可以设置当前项目所用的框架，如Hibernate和Spring，�
 > [Intellij IDEA 4种配置热部署的方法 - JCook - 博客园](https://www.cnblogs.com/jcook/p/6910238.html "Intellij IDEA 4种配置热部署的方法 - JCook - 博客园")
 >
 > （idea自带的）基于JVM提供的热加载仅支持方法块内代码修改，只有debug模式下，并且是在idea失去焦点时才会出发热加载，相对加载速度缓慢。
+
+
+
+- grep console：可以方便的查找日志（在控制台右键选择带grep的项），并且可以设置不同的日志级别的显示样式（`other setting>grep console`中点击右侧的 Add 添加一个配置，调整后再将其 set as Default）。
+
+- Lombok：[☆十分钟搞懂Lombok使用与原理 - 简书](https://www.jianshu.com/p/63038c7c515a "☆十分钟搞懂Lombok使用与原理 - 简书") 
+- AceJump：快速定位光标位置
+  - 第1步：`Ctrl+;` 快捷键，激活插件。此时，IDE代码编辑区会出现一个蓝色光标，然后输入你要跳转的标签。
+  - 第2步，这是，IDE全屏所有你刚才输入的标签都会被高亮显示，并且在这个高亮的标签前面会出现相应的键盘字母，你按照相应提示的字母去敲击键盘就可以自动跳转了。
+- redis 插件（名字叫ledis）
+
+
+
+
 
 
 

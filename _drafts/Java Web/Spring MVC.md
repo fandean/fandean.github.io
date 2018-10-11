@@ -16,6 +16,10 @@ Spring将请求在调 度Servlet、处理器映射（handler mapping）、控制
 
 
 
+Spring MVC 本质是 Servlet
+
+
+
 ## 跟踪Spring MVC的请求
 
 
@@ -23,6 +27,19 @@ Spring将请求在调 度Servlet、处理器映射（handler mapping）、控制
 
 
 
+
+
+
+
+
+
+
+子容器可以访问父容器的对象，父容器不可以访问子容器的对象：
+
+
+
+- Spring 容器 由监听器产生 ContextLoaderListener （父）
+  - Spring MVC 容器由 Servlet （DispacherServlet）产生  （子）
 
 
 

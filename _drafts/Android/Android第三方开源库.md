@@ -143,7 +143,7 @@ Facebook出品，的强大的图片加载组件。
 
 介绍：
 
-khttp是高性能的http库，支持同步、异步，而且实现了spdy、http2、websocket协议，api很简洁易用，和volley一样实现了http协议的缓存。
+okhttp是高性能的http库，支持同步、异步，而且实现了spdy、http2、websocket协议，api很简洁易用，和volley一样实现了http协议的缓存。
 
 [OkHttp3使用指南_清屏网_在线知识学习平台](http://www.qingpingshan.com/rjbc/az/110232.html "OkHttp3使用指南_清屏网_在线知识学习平台")
 

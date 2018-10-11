@@ -33,7 +33,11 @@ Solid State Disk，SSD已不是使用“碟盘”来记存数据，而是使用N
 
 
 **SSD安装系统（引导）**
-SSD不同于机械硬盘，SSD一定用运行在AHCI模式下。AHCI，全称Advanced Host Controller Interface,即高级主机控制器接口，相比老旧的“IDE“ 虚拟模式更适合SSD SATA存储设备通信协议。**空盘装系统之前**，我们先进入主板BIOS设置SATA模式为AHCI。
+SSD不同于机械硬盘，SSD建议运行在AHCI模式下。AHCI，全称Advanced Host Controller Interface,即高级主机控制器接口，相比老旧的“IDE“ 虚拟模式更适合SSD SATA存储设备通信协议。**空盘装系统之前**，我们先进入主板BIOS设置SATA模式为AHCI。
+
+
+
+> 在我直接迁移系统之后，再切换到 AHCI 出现无法进入系统的问题；但是不切换也是能够运行的。
 
 
 
@@ -43,10 +47,16 @@ SSD不同于机械硬盘，SSD一定用运行在AHCI模式下。AHCI，全称Adv
 > ![](http://img0.pconline.com.cn/pconline/1611/11/8542681_32_thumb.png)
 > “DiskGenius”进行分区，选择分区时一定记得勾选“对齐到下列扇区数的整数倍”，也就是我们常说的SSD 4K分区对齐。
 >
+>
 - **注意**勾选“对齐分区到此扇区数的整数倍”这样就可以4K对齐了。
 - 32位系统扇区数输入值为2048。如果系统是64位，建议输入值为4096。
 
+
+
+
+
 原文出自：www.hangge.com  转载请保留原文链接：http://www.hangge.com/blog/cache/detail_901.html
+
 > ![](http://img0.pconline.com.cn/pconline/1310/11/3603296_img_0275_thumb.jpg)
 > ![](http://img0.pconline.com.cn/pconline/1305/13/3294218_3_thumb.jpg)
 

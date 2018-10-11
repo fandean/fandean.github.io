@@ -147,7 +147,9 @@ scoop install #安装 APP
 scoop uninstall #卸载 APP
 scoop list #列出已安装的 APP
 scoop search #搜索 APP
-scoop update #更新 APP 和 Scoop 自身
+scoop update #更新 Scoop 自身
+scoop update appName # 更新某app
+scoop update *  # 更新所有 app （前提是需要在apps目录下操作）
 ```
 
 

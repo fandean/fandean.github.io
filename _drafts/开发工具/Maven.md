@@ -474,7 +474,7 @@ jar插件将项目主代码打包成一个jar文件，该文件也位于 target/
 对应的 bat 脚本文件：
 
 ```powershell
-set REPOSITORY_PATH=E:\allSrc\javaJarSC\repository
+set REPOSITORY_PATH="D:\Portable Software\Maven\repository"
 rem 正在搜索...
 for /f "delims=" %%i in ('dir /b /s "%REPOSITORY_PATH%\*lastUpdated*"') do (
     del /s /q %%i

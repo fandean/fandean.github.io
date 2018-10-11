@@ -5,6 +5,7 @@
 如果觉得现有Spring教程太老可以看一下国外的一下示例：
 
 - [Spring Tutorial](https://www.logicbig.com/tutorials/spring-framework.html "Spring Tutorial")
+- [Spring 快速上手](http://greycode.github.io/2016/01/spring-fast/ "Spring 快速上手")
 
 
 
@@ -273,4 +274,8 @@ public class AppConfig {
 
 
 
+
+## Spring Task
+
+[Spring任务调度之Spring-Task - 独具匠心 - 博客园](https://www.cnblogs.com/hongwz/p/5642497.html "Spring任务调度之Spring-Task - 独具匠心 - 博客园")
 
