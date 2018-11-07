@@ -160,6 +160,10 @@
 
 
 
+跨域：只要协议、IP、端口三者有一个不同，就属于跨域。
+
+
+
 
 
 ## 配置 spring-security 
@@ -395,6 +399,56 @@ JSR 269: Pluggable Annotation Processing API
 
 
 main.jsp 不在 pages目录下，所以没有由视图解析器管理，所以不会经过 Spring的拦截器。
+
+
+
+
+
+
+
+## spring security之匿名访问
+
+
+
+空指针异常出现时security的配置：
+
+```xml
+<http pattern="/cart.html" security="none"/>
+<http pattern="/cart/*.do" security="none"/>
+```
+
+我们的思路是，用户不登录也能访问购物车页面，并对购物车进行操作，但是我们需要在后台获取用户名，我们使用下面的代码：
+
+```java
+//获取用户名
+String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+```
+
+当执行`/cart/*.do`的相关操作时，会出现空指针的异常。
+
+原因是：`/cart/*.do`已经在配置文件中配置为被排除在security的管理之外，但是我们却又对应的后端controller中使用SecurityContextHolder，就会出现异常。
+
+解决方法：修改配置文件
+
+```xml
+<http pattern="/cart.html" security="none"/>
+<!--<http pattern="/cart/*.do" security="none"/>-->
+
+<http use-expressions="false" entry-point-ref="casProcessingFilterEntryPoint">
+    <!--IS_AUTHENTICATED_ANONYMOUSLY 匿名用户可以访问 anonymousUser-->
+    <intercept-url pattern="/cart/*.do" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+    <!-- 必须放在 /cart/*.do 下面，如果它在第一个位置就会先拦截所有，那么它下面的拦截器起不到作用 -->
+    <intercept-url pattern="/**" access="ROLE_USER"/>
+    
+	略 ...
+</http>
+```
+
+我们需要让security管理 `/cart/*.do` （也就是让security拦截`/cart/*.do`），但又让未登录用户能够访问；我们可以在 intercept-url 中配置 `/cart/*.do` 为匿名用户可以访问，这样如果是未登录用户进行访问，security也会先自动为其分配一个名为`anonymousUser` 用户名称。
+
+
+
+需要注意：一定要将其放在 `<intercept-url pattern="/**" access="ROLE_USER"/>` 这条拦截器之前。
 
 
 

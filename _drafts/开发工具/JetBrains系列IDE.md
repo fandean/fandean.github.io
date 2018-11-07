@@ -581,20 +581,22 @@ IDE有默认配置来帮你解决问题，打开默认配置的方法：
 
 
 
-### 终端
+### Terminal相关
 
 Win10 中 Idea中的Terminal不能运行mvn命令，提示mvn不存在，这里mvn已经明确添加到了path环境变量中；当以管理员权限打开 Idea 时才可以运行 mvn 。
 
 解决方案：  
 
-1. 可以手动修改为其他的命令，我设置了git下的sh.exe替代cmd.exe。  
+1. 可以手动修改为其他的命令，我设置了git下的sh.exe（或bash.exe）替代cmd.exe。  
 2. 把cmd设置为**旧版本特性**，即关闭新特性即可正常使用了。 
 
 [Win10 下intellij idea 的Terminal不能用的问题 - CSDN博客](https://blog.csdn.net/act262/article/details/48263489 "Win10 下intellij idea 的Terminal不能用的问题 - CSDN博客")
 
 
 
+但是如果把cmd勾选为 “使用旧版控制台（需要重启）”，会导致找不到 git 命令，所以建议使用第一种解决方案。
 
+> 当指定Idea中的Terminal为bash时（重启Idea后）会提示必须禁用旧版控制台。
 
 
 
@@ -619,6 +621,10 @@ Win10 中 Idea中的Terminal不能运行mvn命令，提示mvn不存在，这里m
 
 
 >  [Intellij IDEA 一些不为人知的技巧 - 简书](https://www.jianshu.com/p/364b94a664ff "Intellij IDEA 一些不为人知的技巧 - 简书")
+
+
+
+Alt + Enter ：是一种快速打开“小灯泡”的快捷键
 
 
 
@@ -804,9 +810,7 @@ http://localhost:8080/
 
 
 
-见Maven相关文章。
-
-
+~~见Maven相关文章~~。
 
 
 
@@ -1069,6 +1073,30 @@ Open the Build menu and click Rebuild Project to make sure that the servlet is c
 点击 `Build > Build Artifacts` ，可以在输出目录中生成 war 包，或者解压的 war包目录，这样可以在不启动 Tomcat 服务器的情况下，自动生成 war 包文件。
 
 
+
+
+
+### Lombok
+
+
+
+百度云》慕课Java企业级电商项目架构演进之路 Tomcat集群与Redis分布式》第2章 Lombok框架集成及原理。
+
+另见 简书收藏。
+
+见相关笔记。
+
+
+
+
+
+### UML
+
+
+
+快捷键： Ctrl + Shift + Alt + U 
+
+或者  Ctrl + Alt + U 
 
 
 
@@ -1397,8 +1425,6 @@ makes yourself vulnerable to remote code execution attacks. use with caution.
 
 
 
-
-ee
 
 
 

@@ -170,10 +170,31 @@ public class Client {
 
 
 
-`@Value` ： 用于注入**基本类型**和String类型的字段。可以使用 SpEL表达式。
+`@Value` ： 用于注入**基本类型**和String类型的字段。可以使用 SpEL表达式。还可以
 
+引入属性文件中的值，方法是：
 
+- 创建一个属性文件 application.properties
 
+  ```properties
+  accessKeyId=LTAImgqgo
+  accessKeySecret=Xxgs4Asg4gqgogqgo
+  ```
+
+- 在spring.xml配置文件中指定属性文件
+
+  ```xml
+  	<context:property-placeholder location="classpath:config/application.properties" />
+  ```
+
+- 在java代码中使用
+
+  ```java
+      @Value("${accessKeyId}")
+      private String accessKeyId ;
+      @Value("${accessKeySecret}")
+      private String accessKeySecret;
+  ```
 
 
 

@@ -969,7 +969,7 @@ docker logs -f -t --since="2017-05-31" --tail=10  the_container
 - `-f` : 查看实时日志
 - `-t` : 查看日志产生的日期
 - `--tail=10` : 查看最后的10条日志。
-- `edu_web_1` : 容器名称
+- `the_container` : 容器名称
 
 
 
@@ -1719,7 +1719,7 @@ docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v G:\Do
 
 重量级且部署较简单
 
-
+[Rancher文档](https://rancher.com/docs/rancher/v1.6/zh/ "Rancher文档") 
 
 [Docker管理面板系列——Rancher(能够对接各家公有云) | Senraの小窝](http://www.senra.me/docker-management-panel-series-rancher/ "Docker管理面板系列——Rancher(能够对接各家公有云) | Senraの小窝") 
 
@@ -1762,45 +1762,6 @@ $ docker run -it --rm --name busybox2 --network my-net busybox sh
 
 
  下面通过 ping 来证明 busybox1 容器和 busybox2 容器建立了互联关系。即可以通过容器的名称来进行通信。
-
-
-
-    
-
-
-
-## Docker Compose
-
-> compose：组成, 构成  
-
-Define and run multi-container applications with Docker.
-
-
-
-安装：直接在此[Releases · docker/compose](https://github.com/docker/compose/releases "Releases · docker/compose")下载安装包安装
-
-然而， 在日常工作中， 经常会碰到需要多个容器相互配合来完成某 项任务的情况。 例如要实现一个 Web 项目， 除了 Web 服务容器本身， 往往还需要再加上后 端的数据库服务容器， 甚至还包括负载均衡容器等。
-
- Compose 恰好满足了这样的需求。 它允许用户通过一个单独的 docker-compose.yml 模板文件 （ YAML 格式） 来定义一组相关联的应用容器为一个项目（ project） 。    
-
-
-
-Compose 中有两个重要的概念： 
-
-- 服务 ( service )： 一个应用的容器， 实际上可以包括若干运行**相同镜像**的容器实例。 
-- 项目 ( project )： 由一组关联的应用容器组成的一个完整业务单元， 在 dockercompose.yml 文件中定义。    
-
-可见， 一个项目可以由多个服务（ 容器） 关联而成， Compose 面向项目进行管理。    
-
-
-
-注意每个服务都必须通过 image 指令指定镜像 **或** build 指令（ 需要 Dockerfile） 等来自动 构建生成镜像。    
-
-
-
->  运维大神 [docker：编排与部署小神器Compose-DevOps(甘兵)-51CTO博客](http://blog.51cto.com/ganbing/2083806 "docker：编排与部署小神器Compose-DevOps(甘兵)-51CTO博客") 
-
-
 
 
 

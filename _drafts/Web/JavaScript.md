@@ -1802,6 +1802,34 @@ Ajax 技术的核心是 XMLHttpRequest 对象(简称 **XHR**)。XHR 为向服务
 
 
 
+#### 同源限制（跨域问题）
+
+安全限制：浏览器的同源策略
+
+默认情况下，JavaScript在发送AJAX请求时，URL的域名必须和当前页面完全一致（协议、域名、端口三者全都一致）。
+
+
+
+跨域问题，来自于浏览器的同源策略
+
+[AJAX - 廖雪峰的官方网站](https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001434499861493e7c35be5e0864769a2c06afb4754acc6000 "AJAX - 廖雪峰的官方网站") 不错，比阮大侠的更通俗易懂
+
+[同源限制 - JavaScript 教程 - 网道](https://wangdoc.com/javascript/bom/same-origin.html "同源限制 - JavaScript 教程 - 网道")
+
+
+
+#### CORS通信
+
+
+
+使用CORS解决资源的跨域权限问题的方法：
+
+- 在服务端设置response的 `Acces-Controll-Allow-Origin:某域 `
+
+
+
+[CORS 通信 - JavaScript 教程 - 网道](https://wangdoc.com/javascript/bom/cors.html "CORS 通信 - JavaScript 教程 - 网道")
+
 
 
 ### 表单
@@ -1890,6 +1918,18 @@ JSON对象的两个方法：
 
 
 
+### Cookie
+
+[Cookie - JavaScript 教程 - 网道](https://wangdoc.com/javascript/bom/cookie.html "Cookie - JavaScript 教程 - 网道")
+
+另见 java web 的相关文章
+
+
+
+
+
+### 浏览器缓存Cache
+
 
 
 
@@ -1933,7 +1973,7 @@ JSON对象的两个方法：
 
 [廖雪峰:JavaScript教程](http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000)
 
-阮大侠当前(2017)正在创造的一部教程：[JavaScript 标准参考教程（alpha）](http://javascript.ruanyifeng.com/)
+阮大侠当前(2017)正在创造的一部教程：[JavaScript 标准参考教程（alpha）](http://javascript.ruanyifeng.com/) ，该教程已迁移到 [JavaScript 教程 - 网道](https://wangdoc.com/javascript/index.html "JavaScript 教程 - 网道")
 
 你不知道的JavaScritp [You-Dont-Know-JS at 1ed-zh-CN](https://github.com/getify/You-Dont-Know-JS/tree/1ed-zh-CN "getify/You-Dont-Know-JS at 1ed-zh-CN")
 

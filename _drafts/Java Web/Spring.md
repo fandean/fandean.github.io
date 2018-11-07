@@ -279,3 +279,19 @@ public class AppConfig {
 
 [Spring任务调度之Spring-Task - 独具匠心 - 博客园](https://www.cnblogs.com/hongwz/p/5642497.html "Spring任务调度之Spring-Task - 独具匠心 - 博客园")
 
+
+
+
+
+补充：
+
+## AspectJ：面向切面的Java扩展
+
+[AspectJ：面向切面的Java扩展 - 资源 - 伯乐在线](http://hao.jobbole.com/aspectj/ "AspectJ：面向切面的Java扩展 - 资源 - 伯乐在线")
+
+
+
+
+
+
+

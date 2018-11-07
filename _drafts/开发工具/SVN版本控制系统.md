@@ -454,15 +454,11 @@ Subversion's support for ignorable file patterns extends only to the one-time pr
 
 
 
-
-
 1. Tutorials Point 上的svn教程 [SVN Tutorial](https://www.tutorialspoint.com/svn/index.htm "SVN Tutorial")
 2. 对应的翻译版本：[svn 教程_极客学院wiki](http://wiki.jikexueyuan.com/project/svn/ "svn 教程_极客学院wiki")， [SVN 教程_w3cschool](https://www.w3cschool.cn/svn/ "SVN 教程_w3cschool")
 3. [SVN 生命周期 - 菜鸟教程](http://www.runoob.com/svn/svn-life-cycle.html "SVN 生命周期  菜鸟教程")  推荐
 4. [SVN版本管理详解 · 看云 ](https://www.kancloud.cn/i281151/svn "SVN版本管理详解 · 看云")  **强烈推荐**
 5. [Subversion 与版本控制](http://svnbook.red-bean.com/ "Subversion 与版本控制") 英文版 书籍
-
-
 
 
 

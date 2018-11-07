@@ -173,7 +173,7 @@ location ~ \.php {
 
 
 
-
+> 在做品优购项目时：可以通过 user.pinyougou.com 访问服务器，但是登录之后显示的地址还是原服务器的地址（loaclhost:8086）
 
 
 

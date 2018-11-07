@@ -516,9 +516,16 @@ systemctl restart network.service  # centos 7
 
 
 
-
-
->  [技术|如何在 CentOS 7 中安装或升级最新的内核](https://linux.cn/article-8310-1.html "技术|如何在 CentOS 7 中安装或升级最新的内核")
+>  [如何在 CentOS 7 中安装或升级最新的内核](https://linux.cn/article-8310-1.html "技术|如何在 CentOS 7 中安装或升级最新的内核")
 >
 > [CentOS 7 升级 Linux 内核 - CSDN博客](https://blog.csdn.net/kikajack/article/details/79396793 "CentOS 7 升级 Linux 内核 - CSDN博客")
 
+
+
+
+
+### 安装各种JDK
+
+
+
+[How To Install Java on CentOS and Fedora | DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-java-on-centos-and-fedora "How To Install Java on CentOS and Fedora | DigitalOcean")

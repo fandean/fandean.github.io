@@ -447,7 +447,7 @@ Many configuration options can be passed as flags to `mysqld`. This will give y
 对于mysql 5 ，设置字符集、排序方式和忽略大小写：
 
 ```shell
-docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag --character-set-server=utf8 --collation-server=utf8_unicode_ci --lower-case-table-names=1
+docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag --character-set-server=utf8 --collation-server=utf8_unicode_ci --lower-case-table-names=1
 ```
 
 
@@ -455,7 +455,7 @@ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag --
 对于mysql 8 ，设置字符集和排序方式：
 
 ```shell
-docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 ```
 
 

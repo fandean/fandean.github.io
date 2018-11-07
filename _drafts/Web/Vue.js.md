@@ -119,10 +119,14 @@ Vue.js 的一些插件：
 * vue-loader：作用；我们可以将一个组件的 CSS、HTML 和 js 都写在一个文件里,
   做到模块化的开发（webpack）。
 * vue-router：提供单页面路由组件的功能。
-* vue-resource：异步发送http请求。
+* vue-resource：异步发送http请求。（已被弃用，建议使用axios）
 * vuex：提供状态管理能力
 
 
+
+[Vue 生命周期 — Vue.js](https://cn.vuejs.org/v2/guide/instance.html#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%BE%E7%A4%BA "Vue 实例 — Vue.js")
+
+![](https://raw.githubusercontent.com/fandean/images/master/PicGo/20181029153525.png)
 
 
 

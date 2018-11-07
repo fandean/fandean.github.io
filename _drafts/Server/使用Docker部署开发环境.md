@@ -1,17 +1,5 @@
 
 
-
-
-## spring-boot
-
-
-
-[springboot - docker logs为何没有日志输出？ - SegmentFault 思否](https://segmentfault.com/q/1010000010924740 "springboot - docker logs为何没有日志输出？ - SegmentFault 思否")
-
-
-
-
-
 ## 安装 Tomcat
 
 在拉取 tomcat 镜像的时候，可能搞不明白为什么会有如此之多的tag？这里我们先了解一下，该镜像相关的Variants（变体）的含义:
@@ -68,8 +56,6 @@ docker pull centos:7
 
 
 > tag 带有小数点的版本不进行滚动更新维护
-
-
 
 
 
@@ -238,7 +224,7 @@ CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
 $ docker run -v /myredis/conf/redis.conf:/usr/local/etc/redis/redis.conf --name myredis redis redis-server /usr/local/etc/redis/redis.conf
 ```
 
-好吧redis容器中并不存在`/usr/local/etc/redis/redis.conf`文件，如果需要使用配置文件，可以下载一个redis压缩包，解压后使用里面的 redis.conf 文件，然后将此配置文件随便挂载到容器的某个目录，但是要与 `redis-server`命令后跟的路径一直即可。
+好吧redis容器中并不存在`/usr/local/etc/redis/redis.conf`文件，如果需要使用配置文件，可以下载一个redis压缩包，解压后使用里面的 redis.conf 文件，然后将此配置文件随便挂载到容器的某个目录，但是要与 `redis-server`命令后跟的路径一致即可。
 
 
 
@@ -276,6 +262,205 @@ redis有两种数据持久化方式：
 感觉根据redis的使用方式，只需在运行时能够进行持久化即可，而无需挂载数据卷
 
 
+
+示例：
+
+```shell
+docker run --name redisServer -d -p 6379:6379  redis redis-server
+
+docker run -it --link redisServer:redis --rm  redis redis-cli -h redis -p 6379
+```
+
+
+
+
+
+## Elasticsearch
+
+[library/elasticsearch - Docker Hub](https://hub.docker.com/_/elasticsearch/ "library/elasticsearch - Docker Hub")
+
+[Install Elasticsearch with Docker - Elasticsearch Reference 6.4](https://www.elastic.co/guide/en/elasticsearch/reference/6.4/docker.html )
+
+```shell
+docker pull elasticsearch
+```
+
+
+
+
+
+```
+docker run -itd -p 9200:9200 -p 9300:9300 -v /opt/data/elasticsearch/logs:/usr/share/elasticsearch/logs -v /opt/data/elasticsearch/data:/usr/share/elasticsearch/data --name mylasticsearch -e "discovery.type=single-node" elasticsearch
+```
+
+```
+# 运行下面的命令会报java异常
+docker run -d -p 9200:9200 -p 9300:9300 -v /opt/data/elasticsearch/logs:/usr/share/elasticsearch/logs -v /opt/data/elasticsearch/data:/usr/share/elasticsearch/data -v /opt/data/elasticsearch/plugins:/usr/share/elasticsearch/plugins -v /opt/data/elasticsearch/config:/usr/share/elasticsearch/config --name es -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms512m -Xmx512m" elasticsearch
+```
+
+
+
+```
+# 同时限制jvm内存
+docker run -d -p 9200:9200 -p 9300:9300 --name es -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms512m -Xmx512m" elasticsearch
+```
+
+
+
+实时查看某容器的log：
+
+```
+docker logs -f 容器名/id
+```
+
+
+
+
+
+### 管理工具/插件
+
+-  [elasticsearch-head: A web front end for an elastic search cluster](https://github.com/mobz/elasticsearch-head "mobz/elasticsearch-head: A web front end for an elastic search cluster") ：文档有说明如何在docker中运行该插件和如何直接通过 chrome插件 来运行该head（感觉不错简单）
+-  Kibana插件：[开始使用 Kibana | Elastic](https://www.elastic.co/cn/webinars/getting-started-kibana?elektra=home&storm=sub2 "开始使用 Kibana | Elastic") 和 [Kibana Reference | Elastic](https://www.elastic.co/guide/en/kibana/index.html# "Kibana Reference | Elastic")
+
+
+
+> docker中安装elasticsearch-head： 浏览器输入 host-ip:9100 访问该插件 （推荐chrome插件）
+>
+> ```shell
+> docker run -d --name es_admin -p 9100:9100 mobz/elasticsearch-head
+> ```
+>
+>
+
+**部署kibana**
+
+```
+docker run -p 5601:5601 -e "ELASTICSEARCH_URL=http://172.17.0.2:9200" --name kibana --network host -d kibana:5.6.12
+```
+
+172.17.0.2 是 ES容器的地址。
+
+报如下错误：WARNING: Published ports are discarded when using **host** network mode
+
+但好像没有影响使用。
+
+
+
+
+
+
+
+
+> [Elasticsearch: 权威指南 - Elastic](https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html "Elasticsearch: 权威指南 - Elastic")
+>
+> [elasticsearch插件大全（不断更新） - 云端分布式搜索技术](http://www.searchtech.pro/elasticsearch-plugins "elasticsearch插件大全（不断更新） - 云端分布式搜索技术")
+
+
+
+
+
+### ik 分词器插件
+
+需要下载对应版本的 ik 分词器。
+
+下载地址：[Releases · medcl/elasticsearch-analysis-ik](https://github.com/medcl/elasticsearch-analysis-ik/releases "Releases · medcl/elasticsearch-analysis-ik")
+
+安装方法见其 github上的readme.md
+
+
+
+1.  解压elasticsearch-analysis-ik-xx 后,将文件夹拷贝到elasticsearch-xx\plugins下，并重命名文件夹为ik
+2. 重新启动ElasticSearch，即可加载IK分词器
+
+
+
+ ik 分词器版本与es版本不对应报错：
+
+```
+org.elasticsearch.bootstrap.StartupException: java.lang.IllegalArgumentException: plugin [analysis-ik] is incompatible with version [5.6.12]; was designed for version [5.6.11]
+```
+
+但是并没有对应的 5.6.12 版的 ik分词器，可以尝试修改 ik分词器下的 plugin-descriptor.properties 文件，将所有的 5.6.11 都改为 5.6.12
+
+
+
+测试：
+
+```
+# IK提供了两个分词算法ik_smart 和 ik_max_word
+# 最小切分
+http://192.168.25.129:9200/_analyze?analyzer=ik_smart&pretty=true&text=我是程序员
+# 最细切分
+http://192.168.25.129:9200/_analyze?analyzer=ik_max_word&pretty=true&text=我是程序员
+```
+
+
+
+
+
+
+
+### NoNodeAvailableException 错误
+
+在Java代码中连接时出现错误：
+
+```
+NoNodeAvailableException[None of the configured nodes are available:
+```
+
+
+
+查看log日志发现：
+
+```
+[2018-11-02T07:03:56,627][INFO ][o.e.n.Node               ] [l1tnBgE] starting ...
+[2018-11-02T07:03:56,934][INFO ][o.e.t.TransportService   ] [l1tnBgE] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}
+[2018-11-02T07:04:00,151][INFO ][o.e.c.s.ClusterService   ] [l1tnBgE] new_master {l1tnBgE}{l1tnBgEeTWig7WULclcimQ}{dvOVG91GT--NfTl_iVnfzQ}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-elected-as-master ([0] nodes joined)[, ]
+[2018-11-02T07:04:00,231][INFO ][o.e.h.n.Netty4HttpServerTransport] [l1tnBgE] publish_address {172.17.0.2:9200}, bound_addresses {0.0.0.0:9200}
+```
+
+
+
+可以发现9300和9200端口的地址是不一样的
+
+```
+publish_address {127.0.0.1:9300}
+
+publish_address {172.17.0.2:9200}
+```
+
+再查看容器中config下的elasticsearch.yml配置文件：
+
+```
+# cat elasticsearch.yml
+http.host: 0.0.0.0
+# Uncomment the following lines for a production cluster deployment
+#transport.host: 0.0.0.0
+#discovery.zen.minimum_master_nodes: 1
+```
+
+会发现 并没有看到他人所说的  `network.host: 0.0.0.0`  （将其**配置为0.0.0.0意为允许外部访问**），这里它被分成了 http.host 和 transport.host 两个配置项，并且 **transport.host 默认是被注释掉的**！！ 所以我们**需要取消 transport.host 的注释**，方法是在外部新建一个 elasticsearch.yml 然后再cp到容器内。
+
+
+
+```
+ # 一个cp 示例：这里是从es容器中复制文件到主机 （调换一下即可改变复制方向）
+ docker cp es:/usr/share/elasticsearch/config  /opt/data/elasticsearch
+```
+
+
+
+> 最后查看系统的相应端口有没有开放
+
+
+
+
+
+
+
+黑马战队：
+
+https://m.aliyun.com/act/team1111/#/share?params=N.mZb8DJHcOa.wyc8ilta
 
 
 
@@ -368,7 +553,7 @@ docker run --name javaee-zookeeper -v G:/Docker/JavaEERuntime/zookeeper/data:/da
 
 
 
-解决方式一： 直接在Docker Hub上寻找现有dubbo-admin镜像
+解决方式一： 直接在Docker Hub上寻找现有dubbo-admin镜像（完美解决）
 
 ```
 docker pull chenchuxin/dubbo-admin
@@ -798,4 +983,88 @@ $ docker run \
   --name "my-nodejs-app" \
   node [script]
 ```
+
+
+
+
+
+## CentOS7虚拟机中安装Docker
+
+
+
+运行容器时提示：
+
+```
+[root@localhost ~]# docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql:5.5.60
+
+WARNING: IPv4 forwarding is disabled. Networking will not work.
+```
+
+解决办法：
+```
+# vim  /usr/lib/sysctl.d/00-system.conf1
+```
+
+添加如下代码：
+
+```
+net.ipv4.ip_forward=11
+```
+
+重启network服务
+
+```
+# systemctl restart network
+```
+
+
+
+
+
+### Idea 连接 CentOS7虚拟机中的Docker
+
+
+
+需要修改 Docker 配置文件让其开放 Docker Remote API （docker REST API）
+
+网上有很多方式，且有些如果操作系统或docker版本不同配置也不相同。
+
+
+
+查看配置文件位于哪里：
+
+```shell
+[root@localhost ~]# systemctl show --property=FragmentPath docker
+FragmentPath=/usr/lib/systemd/system/docker.service
+[root@localhost ~]# whereis dockerd
+dockerd: /usr/bin/dockerd /usr/share/man/man8/dockerd.8.gz
+```
+
+编辑该文件：
+
+```shell
+[root@localhost ~]# vi /usr/lib/systemd/system/docker.service
+```
+
+在此处添加如下内容：(这里端口为2375，所以之后再idea中连接时也要填写该端口)
+
+```
+ExecStart=/usr/bin/dockerd -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375
+```
+
+重新加载配置文件：
+
+```shell
+[root@localhost ~]# systemctl daemon-reload
+```
+
+重启docker
+
+```shell
+[root@localhost ~]# systemctl restart docker
+```
+
+
+
+
 

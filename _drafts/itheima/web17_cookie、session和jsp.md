@@ -4,7 +4,13 @@
 
 
 
-在浏览器关闭后会话才结束。会话数据可以这样理解：其数据保存在浏览器的内存中，当浏览器关闭会话结束，内存被清除，数据也就没了。cookie
+## Session
+
+
+
+在浏览器关闭后会话才结束。会话数据可以这样理解：其数据保存在浏览器的内存中，当浏览器关闭会话结束，内存被清除，数据也就没了。
+
+
 
 
 
@@ -37,7 +43,13 @@ requestContex更加不适合保存加入购物车的商品。
 
 
 
-cookie只能保存字符串（从其构造方法中可以看出），并且数据保存在客户端不安全。该字符串中不能包含空格。`JSESSIONID=6FDD64CD43F3AD664935E4F84D210EDD` 这就是一个cookie对象，一个cookie对象就只有一个name和一个value：
+## cookie
+
+
+
+cookie只能保存字符串（从其构造方法中可以看出），并且数据保存在客户端不安全。该字符串中不能包含空格。`JSESSIONID=6FDD64CD43F3AD664935E4F84D210EDD` 这就是一个cookie对象，
+
+一个cookie对象就只有一个name和一个value（该如何理解这句话）：我这样理解，只有一个 name和对应的 value，但是还可以有其它的cookie属性。
 
 ```java
 Cookie(String name, String value) 创建cookie对象
@@ -48,9 +60,69 @@ void setPath(String uri) 设置cookie的路径——浏览器根据这个路径�
 
 
 
+Cookie 包含以下几方面的信息。
+
+- Cookie 的名字
+- Cookie 的值（真正的数据写在这里面）
+- 到期时间
+- 所属域名（默认是当前域名）
+- 生效的路径（默认是当前网址）
 
 
-### 为什么说session技术是依赖于cookie技术？
+
+
+
+> Cookie的存在形式是？
+>
+> 在Chrome浏览器中，通过开发者工具中的 Application > Storage > Cookies 可以看到当前页面中所有的cookie （document.cookie获取的也是所有的cookie）
+>
+> 但是如何在文件系统中查看浏览器保存的 Cookie：[IE/Firefox/Chrome等浏览器保存Cookie的位置 - 脚本小娃子 - 博客园](https://www.cnblogs.com/shengulong/p/5718060.html "IE/Firefox/Chrome等浏览器保存Cookie的位置 - 脚本小娃子 - 博客园") 不重要。
+
+
+
+Cookie保存在浏览器，服务器可以通过在相应头中的 Set-Cookie 字段描述一个cookie，那么浏览器就会在客户端生成一个对应的 Cookie ，之后浏览器向该服务器发起请求时就会携带该cookie。
+
+
+
+
+
+
+
+在浏览器关闭后会话才结束。会话数据可以这样理解：其数据保存在浏览器的内存中，当浏览器关闭会话结束，内存被清除，数据也就没了。
+
+
+
+> 设置cookie的有效时间：
+>
+> - 正整数：表示cookie数据保存浏览器的缓存目录（硬盘中）：数值表示保存的时间。
+> - 负整数：表示cookie数据保存浏览器的内存中。浏览器关闭cookie就丢失。
+> - 零：表示删除同名的cookie数据
+>
+> **如果不设置过期时间**，则表示这个cookie生命周期为浏览器会话期间，只要关闭浏览器窗口，cookie就消失了。
+>
+> 这种生命期为浏览会话期的cookie被称为**会话cookie**。会话cookie一般不保存在硬盘上而是保存在内存里。
+>
+> 如果设置了过期时间，浏览器就会把cookie保存到硬盘上，关闭后再次打开浏览器，这些cookie依然有效直到超过设定的过期时间。存储在硬盘上的cookie可以在不同的浏览器进程间共享，比如两个IE窗口。而对于保存在内存的cookie，不同的浏览器有不同的处理方式。
+>
+> cookie.setmaxage设置为0时，会马上在浏览器上删除指定的cookie
+>
+> cookie.setmaxage设置为-1时，代表关闭当前浏览器即失效。
+
+
+
+
+
+
+
+- [Cookie - JavaScript 教程 - 网道](https://wangdoc.com/javascript/bom/cookie.html "Cookie - JavaScript 教程 - 网道")
+
+
+
+
+
+
+
+## 为什么说session技术是依赖于cookie技术？
 
 因为session的实现需要将一个JSESSIONID保存到客户端，那么就需要使用cookie来保存。
 
@@ -66,10 +138,10 @@ session何时**创建**？
 
 **request.getSession方法有两个功能：**
 1. 创建session对象
-  - 如果客户端没有JSESSIONID，会创建新的session对象
+  - 如果客户端没有 JSESSIONID，会创建新的session对象
   - 客户端有JSESSIONID，但是服务端已经没有对应的session对象了， 会创建新的session对象；强制关闭服务器软件时，session对象会被销毁掉。
-2. 获取已有的session对象
-  - 如果客户端访问时候携带了JSESSIONID，且服务端有对应的session对象存在，就会获取原有的session对象。
+2. 获取已有的session对象 
+  - 如果客户端访问时候携带了JSESSIONID，**且** 服务端有对应的session对象存在，就会获取原有的session对象。
 
 
 
@@ -140,8 +212,6 @@ Cookie: JSESSIONID=6FDD64CD43F3AD664935E4F84D210EDD
 
 
 
-
-> Cookie的存在形式是？
 
 
 
